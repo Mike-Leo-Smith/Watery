@@ -5,7 +5,7 @@
 #ifndef WATERY_TIMER_H
 #define WATERY_TIMER_H
 
-#include "../../Middleware/Clock/clock.h"
+#include "../../Framework/Clock/clock.h"
 
 namespace watery
 {

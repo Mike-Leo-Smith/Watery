@@ -6,8 +6,8 @@
 #define WATERY_MESSAGE_H
 
 #include <ctime>
-#include "../../Middleware/Clock/clock.h"
 #include "../Timer/timer.h"
+#include "../../Framework/Clock/clock.h"
 
 namespace watery
 {

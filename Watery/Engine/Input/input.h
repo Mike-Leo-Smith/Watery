@@ -6,7 +6,8 @@
 #define WATERY_INPUT_H
 
 #include "../System/system.h"
-#include "../../Middleware/HID/keyboard.h"
+#include "../../Framework/HID/keyboard.h"
+#include "../Message/message.h"
 
 namespace watery
 {
