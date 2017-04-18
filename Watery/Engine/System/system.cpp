@@ -6,8 +6,21 @@
 
 namespace watery
 {
-	void System::handle_message(Message *message)
+	void System::_handle_message(void)
 	{
+		Message *message = _retrieve_message();
+		
+		if (message == nullptr)
+		{
+			return;
+		}
+		
+		if (message->time_out())
+		{
+			delete(message);
+			return;
+		}
+		
 		switch (message->type())
 		{
 		case MESSAGE_KEYBOARD_EVENT:

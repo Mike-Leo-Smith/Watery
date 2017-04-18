@@ -6,7 +6,7 @@
 #define WATERY_MESSAGE_BUS_H
 
 #include <queue>
-#include "message.h"
+#include "../../Engine/Message/message.h"
 
 namespace watery
 {

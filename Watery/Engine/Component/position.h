@@ -6,7 +6,7 @@
 #define WATERY_POSITION_H
 
 #include "component.h"
-#include "coord.h"
+#include "../../Data/Coord/coord.h"
 
 namespace watery
 {

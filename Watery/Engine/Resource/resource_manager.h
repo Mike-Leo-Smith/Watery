@@ -11,6 +11,7 @@ namespace watery
 {
 	class ResourceManager : public System
 	{
+	private:
 	
 	};
 }
