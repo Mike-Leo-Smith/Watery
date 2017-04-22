@@ -5,7 +5,7 @@
 #ifndef WATERY_MESSENGER_H
 #define WATERY_MESSENGER_H
 
-#include "../../Framework/MessageBus/message_bus.h"
+#include "message_bus.h"
 
 namespace watery
 {

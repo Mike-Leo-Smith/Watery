@@ -12,6 +12,7 @@ namespace watery
 		COMPONENT_UNDEFINED,
 		COMPONENT_POSITION,
 		COMPONENT_VELOCITY,
+		COMPONENT_TEXTURE,
 		
 		COMPONENT_TYPE_COUNT    // This item has to be placed at last.
 	};

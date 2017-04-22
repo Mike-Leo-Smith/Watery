@@ -16,25 +16,37 @@ namespace watery
 	private:
 		Messenger _messenger;
 		Timer _timer;
-		Microsecond _update_interval;
+		Microsecond _interval;
+		bool _paused;
+		bool _terminated;
+		
+		// Forbidden functions.
+		System(const System &) = delete;
+		System &operator=(const System &) = delete;
 	
 	protected:
+		// Basic progresses for message processing.
 		virtual Message *_retrieve_message(void) { return _messenger.retrieve(); }
 		virtual void _dispatch_message(Message *message) { _messenger.dispatch(message); }
-		virtual void _calibrate_timer(void) { _timer.set_time_out(2 * _update_interval - _timer.elapsed_time()); }
-		virtual bool _should_update(void) const { return _timer.time_out(); }
 		
 		// Functions handling specific messages. Pass them on by default.
 		virtual void _handle_keyboard_message(Message *message) { _dispatch_message(message); }
 		virtual void _handle_mouse_message(Message *message) { _dispatch_message(message); }
+		
+		// Updating tasks.
 		virtual void _handle_message(void);
 		
+		// Interface for updating.
+		virtual void _update(void) { _handle_message(); }
+		
+		// Endless updating loop, used in the thread of the system.
+		virtual void _update_loop(void);
+	
 	public:
-		System(Microsecond update_interval = SYSTEM_DEFAULT_UPDATE_INTERVAL)
-				: _update_interval(update_interval), _timer(update_interval) { _timer.reset(); }
-		virtual ~System(void) {}
-		virtual void update(void) = 0;
-		virtual void set_update_interval(Microsecond interval) { _update_interval = interval; }
+		System(Microsecond update_interval = SYSTEM_DEFAULT_UPDATE_INTERVAL);
+		virtual ~System(void) { _terminated = true; }
+		virtual void start(void);
+		virtual void pause(void) { _paused = true; }
 	};
 }
 

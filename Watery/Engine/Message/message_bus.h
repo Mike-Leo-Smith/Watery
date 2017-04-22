@@ -6,7 +6,7 @@
 #define WATERY_MESSAGE_BUS_H
 
 #include <queue>
-#include "../../Engine/Message/message.h"
+#include "message.h"
 
 namespace watery
 {
@@ -27,7 +27,7 @@ namespace watery
 		
 	public:
 		virtual Message *retrieve(void);
-		virtual void dispatch(Message *message) { _message_queue.push(message); }
+		virtual void dispatch(Message *message);
 		
 		// Get the singleton instance.
 		static MessageBus &instance(void) { return *_instance; }

@@ -6,8 +6,8 @@
 #define WATERY_INPUT_H
 
 #include "../System/system.h"
-#include "../../Framework/HID/keyboard.h"
 #include "../Message/message.h"
+#include "../../Framework/HID/keyboard.h"
 
 namespace watery
 {
@@ -21,7 +21,7 @@ namespace watery
 		virtual void _handle_mouse_message(Message *message) override;
 	
 	public:
-		virtual void update(void) override;
+		virtual void _update(void) override;
 	};
 }
 

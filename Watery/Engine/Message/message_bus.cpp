@@ -18,9 +18,13 @@ namespace watery
 		else
 		{
 			Message *message = _message_queue.front();
-			
 			_message_queue.pop();
 			return message;
 		}
+	}
+	
+	void MessageBus::dispatch(Message *message)
+	{
+		_message_queue.push(message);
 	}
 }

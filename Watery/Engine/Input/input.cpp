@@ -17,18 +17,13 @@ namespace watery
 		delete message;
 	}
 	
-	void Input::update(void)
+	void Input::_update(void)
 	{
-		if (_should_update())
-		{
-			_handle_message();
-			
-			if (_keyboard.key_down(KEY_UP)) { _dispatch_message(new KeyboardMessage(KEY_UP)); }
-			if (_keyboard.key_down(KEY_DOWN)) { _dispatch_message(new KeyboardMessage(KEY_DOWN)); }
-			if (_keyboard.key_down(KEY_LEFT)) { _dispatch_message(new KeyboardMessage(KEY_LEFT)); }
-			if (_keyboard.key_down(KEY_RIGHT)) { _dispatch_message(new KeyboardMessage(KEY_RIGHT)); }
-			
-			_calibrate_timer();
-		}
+		_handle_message();
+		
+		if (_keyboard.key_down(KEY_UP)) { _dispatch_message(new KeyboardMessage(KEY_UP)); }
+		if (_keyboard.key_down(KEY_DOWN)) { _dispatch_message(new KeyboardMessage(KEY_DOWN)); }
+		if (_keyboard.key_down(KEY_LEFT)) { _dispatch_message(new KeyboardMessage(KEY_LEFT)); }
+		if (_keyboard.key_down(KEY_RIGHT)) { _dispatch_message(new KeyboardMessage(KEY_RIGHT)); }
 	}
 }

@@ -19,8 +19,8 @@ set(SOURCE_FILES
 		Watery/Engine/Component/component_node.h
 		Watery/Engine/Message/messenger.cpp
 		Watery/Engine/Message/messenger.h
-		Watery/Framework/MessageBus/message_bus.cpp
-		Watery/Framework/MessageBus/message_bus.h
+		Watery/Engine/Message/message_bus.cpp
+		Watery/Engine/Message/message_bus.h
 		Watery/Engine/Message/message.cpp
 		Watery/Engine/Message/message.h
 		Watery/Engine/System/system.cpp
@@ -56,7 +56,21 @@ set(SOURCE_FILES
 		Watery/Engine/Timer/timer.cpp
 		Watery/Engine/Timer/timer.h
 		Watery/Framework/Context/context.cpp
-		Watery/Framework/Context/context.h)
+		Watery/Framework/Context/context.h
+		Watery/Framework/Image/lodepng.cpp
+		Watery/Framework/Image/lodepng.h
+		Watery/Data/Bitmap/bitmap.cpp
+		Watery/Data/Bitmap/bitmap.h
+		Watery/Data/Size/size.cpp
+		Watery/Data/Size/size.h
+		Watery/Data/Quaternion/quaternion.cpp
+		Watery/Data/Quaternion/quaternion.h
+		Watery/Data/Color/color.cpp
+		Watery/Data/Color/color.h
+		Watery/Engine/Component/velocity.cpp
+		Watery/Engine/Component/velocity.h
+		Watery/Engine/Component/texture.cpp
+		Watery/Engine/Component/texture.h Watery/Framework/Graphics/gl_texture.cpp Watery/Framework/Graphics/gl_texture.h Watery/Framework/Graphics/gl_shader.cpp Watery/Framework/Graphics/gl_shader.h Watery/Framework/Graphics/gl_vertex_array.cpp Watery/Framework/Graphics/gl_vertex_array.h)
 
 add_executable(Watery ${SOURCE_FILES})
-target_link_libraries(${PROJECT_NAME} glfw)
+target_link_libraries(${PROJECT_NAME} glfw glew)
