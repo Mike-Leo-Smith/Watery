@@ -17,9 +17,13 @@ namespace watery
 	public:
 		GLShader(void) : _id(0) {}
 		GLShader(const char *vertex_shader_source, const char *fragment_shader_source);
-		GLuint id(void) const { return _id; }
-		void compile(const char *vertex_shader_source, const char *fragment_shader_source);
-		void activiate(void) const { glUseProgram(_id); }
+		virtual ~GLShader(void);
+		virtual GLuint id(void) const { return _id; }
+		virtual void compile(const char *vertex_shader_source, const char *fragment_shader_source);
+		virtual void activate(void) const { glUseProgram(_id); }
+		virtual void set_uniform_int(const char *name, int val);
+		virtual void set_uniform_float(const char *name, float val);
+		virtual void set_uniform_mat4fv(const char *name, const float *mat4fv);
 	};
 }
 

@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.7)
 project(Watery)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -O3")
 
 set(SOURCE_FILES
 		main.cpp
@@ -70,7 +70,13 @@ set(SOURCE_FILES
 		Watery/Engine/Component/velocity.cpp
 		Watery/Engine/Component/velocity.h
 		Watery/Engine/Component/texture.cpp
-		Watery/Engine/Component/texture.h Watery/Framework/Graphics/gl_texture.cpp Watery/Framework/Graphics/gl_texture.h Watery/Framework/Graphics/gl_shader.cpp Watery/Framework/Graphics/gl_shader.h Watery/Framework/Graphics/gl_vertex_array.cpp Watery/Framework/Graphics/gl_vertex_array.h)
+		Watery/Engine/Component/texture.h
+		Watery/Framework/Graphics/gl_texture.cpp
+		Watery/Framework/Graphics/gl_texture.h
+		Watery/Framework/Graphics/gl_shader.cpp
+		Watery/Framework/Graphics/gl_shader.h
+		Watery/Framework/Graphics/gl_vertex_array.cpp
+		Watery/Framework/Graphics/gl_vertex_array.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew)

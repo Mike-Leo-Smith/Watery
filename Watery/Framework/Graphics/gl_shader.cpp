@@ -7,7 +7,7 @@
 
 namespace watery
 {
-	GLShader::GLShader(const char *vertex_shader_source, const char *fragment_shader_source)
+	GLShader::GLShader(const char *vertex_shader_source, const char *fragment_shader_source) : _id(0)
 	{
 		compile(vertex_shader_source, fragment_shader_source);
 	}
@@ -58,5 +58,55 @@ namespace watery
 		
 		glDeleteShader(vertex_shader);
 		glDeleteShader(fragment_shader);
+	}
+	
+	GLShader::~GLShader(void)
+	{
+		if (_id != 0)
+		{
+			glDeleteProgram(_id);
+		}
+	}
+	
+	void GLShader::set_uniform_int(const char *name, int val)
+	{
+		GLint uniform = glGetUniformLocation(_id, name);
+		
+		if (uniform != 0)
+		{
+			glUniform1i(uniform, val);
+		}
+		else
+		{
+			std::cerr << "Cannot find the uniform..." << std::endl;
+		}
+	}
+	
+	void GLShader::set_uniform_float(const char *name, float val)
+	{
+		GLint uniform = glGetUniformLocation(_id, name);
+		
+		if (uniform != 0)
+		{
+			glUniform1f(uniform, val);
+		}
+		else
+		{
+			std::cerr << "Cannot find the uniform..." << std::endl;
+		}
+	}
+	
+	void GLShader::set_uniform_mat4fv(const char *name, const float *mat4fv)
+	{
+		GLint uniform = glGetUniformLocation(_id, name);
+		
+		if (uniform != 0)
+		{
+			glUniformMatrix4fv(uniform, 1, GL_FALSE, mat4fv);
+		}
+		else
+		{
+			std::cerr << "Cannot find the uniform..." << std::endl;
+		}
 	}
 }
