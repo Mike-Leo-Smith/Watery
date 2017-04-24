@@ -6,7 +6,7 @@
 #define WATERY_KEYBOARD_MESSAGE_H
 
 #include "message.h"
-#include "../../Framework/HID/keyboard.h"
+#include "../../Framework/Window/window.h"
 
 namespace watery
 {

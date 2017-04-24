@@ -18,7 +18,7 @@ namespace watery
 		
 		if (message->time_out())
 		{
-			delete (message);   // Delete expiring messages.
+			delete message;   // Delete expiring messages.
 			return;
 		}
 		
@@ -48,26 +48,16 @@ namespace watery
 		}
 	}
 	
-	void System::_update_loop(void)
+	void System::update(void)
 	{
-		while (!_terminated)
+		if (!_paused && _timer.time_out())
 		{
-			if (!_paused && _timer.time_out())
-			{
-				_update();                                                      // Do updating tasks.
-				_timer.set_time_out(2 * _interval - _timer.elapsed_time());     // Calibrate the timer.
-				_timer.reset();                                                 // Restart the timer.
-			}
-			
-			// Sleep for a little while to lower the CPU occupancy.
-			std::this_thread::sleep_for(std::chrono::microseconds(_interval / 128));
+			_updating_tasks();                                              // Do updating tasks.
+			_timer.set_time_out(2 * _interval - _timer.elapsed_time());     // Calibrate the timer.
+			_timer.reset();                                                 // Restart the timer.
 		}
 	}
 	
 	System::System(Microsecond update_interval)
-			: _interval(update_interval), _timer(update_interval), _paused(true), _terminated(false)
-	{
-		std::thread thread([&] { this->_update_loop(); });
-		thread.detach();
-	}
+			: _interval(update_interval), _timer(update_interval), _paused(true) {}
 }

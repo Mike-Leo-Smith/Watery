@@ -30,8 +30,6 @@ Rename this file to lodepng.cpp to use it for C++, or to lodepng.c to active it 
 
 #include "lodepng.h"
 
-#include <limits.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1310) /*Visual Studio: A few warning types are not desired here.*/
@@ -1621,7 +1619,7 @@ static unsigned encodeLZ77(uivector *out, Hash *hash,
 				{
 					length = lazylength;
 					offset = lazyoffset;
-					hash->head[hashval] = -1; /*the same hashchain _update will be done, this ensures no wrong alteration*/
+					hash->head[hashval] = -1; /*the same hashchain update will be done, this ensures no wrong alteration*/
 					hash->headz[numzeros] = -1; /*idem*/
 					--pos;
 				}

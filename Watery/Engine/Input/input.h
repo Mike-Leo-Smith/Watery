@@ -7,21 +7,22 @@
 
 #include "../System/system.h"
 #include "../Message/message.h"
-#include "../../Framework/HID/keyboard.h"
+#include "../../Framework/Window/window.h"
 
 namespace watery
 {
+	constexpr Microsecond INPUT_DEFAULT_UPDATE_INTERVAL = 50000;
+	
 	class Input : public System
 	{
 	private:
-		Keyboard _keyboard;
+		Window &_window;
 	
 	protected:
-		virtual void _handle_keyboard_message(Message *message) override;
-		virtual void _handle_mouse_message(Message *message) override;
+		virtual void _updating_tasks(void) override;
 	
 	public:
-		virtual void _update(void) override;
+		Input(Microsecond interval = INPUT_DEFAULT_UPDATE_INTERVAL) : System(interval), _window(Window::instance()) {}
 	};
 }
 

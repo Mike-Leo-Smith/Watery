@@ -18,7 +18,6 @@ namespace watery
 		Timer _timer;
 		Microsecond _interval;
 		bool _paused;
-		bool _terminated;
 		
 		// Forbidden functions.
 		System(const System &) = delete;
@@ -37,14 +36,12 @@ namespace watery
 		virtual void _handle_message(void);
 		
 		// Interface for updating.
-		virtual void _update(void) { _handle_message(); }
-		
-		// Endless updating loop, used in the thread of the system.
-		virtual void _update_loop(void);
+		virtual void _updating_tasks(void) { _handle_message(); }
 	
 	public:
 		System(Microsecond update_interval = SYSTEM_DEFAULT_UPDATE_INTERVAL);
-		virtual ~System(void) { _terminated = true; }
+		virtual ~System(void) {}
+		virtual void update(void);
 		virtual void start(void);
 		virtual void pause(void) { _paused = true; }
 	};

@@ -5,9 +5,14 @@
 #ifndef WATERY_GRAPHICS_H
 #define WATERY_GRAPHICS_H
 
-class graphics
-{
+#include "../Window/window.h"
 
-};
+namespace watery
+{
+	class Graphics
+	{
+	
+	};
+}
 
 #endif  // WATERY_GRAPHICS_H
