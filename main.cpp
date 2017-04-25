@@ -12,6 +12,7 @@
 #include "Watery/Framework/Graphics/graphics.h"
 #include "Watery/Engine/Camera/camera.h"
 #include "Watery/Engine/Scene/scene.h"
+#include "Watery/Framework/Image/lodepng.h"
 
 class TestSystem : public watery::System
 {
@@ -57,8 +58,8 @@ int main(void)
 	watery::Graphics graphics;
 	watery::GLShader shader;
 	
-	std::ifstream vertex_shader("Shaders/rectangle.vert");
-	std::ifstream fragment_shader("Shaders/rectangle.frag");
+	std::ifstream vertex_shader("Scripts/Shaders/sprite.vert");
+	std::ifstream fragment_shader("Scripts/Shaders/sprite.frag");
 	
 	std::stringstream vert_src, frag_src;
 	vert_src << vertex_shader.rdbuf();
@@ -79,10 +80,10 @@ int main(void)
 	
 	float proj[] =
 			{
-					1.25e-3f, 0, 0, 0,
-					0, 1.67e-3f, 0, 0,
+					1.25e-3f * 2, 0, 0, 0,
+					0, 1.67e-3f * 2, 0, 0,
 					0, 0, 1.0f, 0,
-					0, 0, 0, 1.0f
+					-1, -1, 0, 1.0f
 			};
 	
 	watery::GLVertexArray vao(rect, 12);
@@ -90,20 +91,37 @@ int main(void)
 	
 	watery::Camera camera;
 	
-	watery::Scene scene("Scene", 5000);
+	watery::Scene scene("Scene", 15000);
 	watery::Input input("Input", 50000);
 	
 	scene.start();
 	input.start();
 	
-	glClearColor(0.0, 0.0, 0.0, 1.0);
+	unsigned int width, height;
+	std::vector<unsigned char> pixels;
+	
+	lodepng::decode(pixels, width, height, "Assets/face.png");
+	std::cout << width << " " << height << std::endl;
+	
+	//scene.camera().move_x(400);
+	//scene.camera().move_y(300);
+	
+	watery::Timer timer(16000);
+	
+	glClearColor(0.2, 0.3, 0.4, 1.0);
 	while (window.alive())
 	{
 		input.update();
 		scene.update();
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		graphics.draw(shader, vao, -200, -200, 200, 200, proj, scene.camera().mat());
-		window.update();
+		
+		if (timer.time_out())
+		{
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			//graphics.draw(shader, vao, -200, -200, 200, 200, proj, scene.camera().mat());
+			graphics.draw_sprite(shader, proj, scene.camera().mat(), 0, 0, pixels.data(), width, height, 4);
+			window.update();
+			timer.reset();
+		}
 	}
 }
 

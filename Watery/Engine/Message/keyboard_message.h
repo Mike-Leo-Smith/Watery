@@ -10,7 +10,7 @@
 
 namespace watery
 {
-	constexpr Microsecond KEYBOARD_DEFAULT_TIME_OUT = 100000;
+	constexpr Microsecond KEYBOARD_DEFAULT_TIME_OUT = 50000;
 	
 	class KeyboardMessage : public Message
 	{

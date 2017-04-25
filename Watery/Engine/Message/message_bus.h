@@ -26,6 +26,7 @@ namespace watery
 		MessageBus &operator=(const MessageBus &) = delete;
 		
 	public:
+		virtual bool empty(void) const { return _message_queue.empty(); }
 		virtual Message *retrieve(void);
 		virtual void dispatch(Message *message);
 		

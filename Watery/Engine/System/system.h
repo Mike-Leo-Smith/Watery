@@ -6,11 +6,13 @@
 #define WATERY_SYSTEM_H
 
 #include <string>
+#include <deque>
 #include "../Message/messenger.h"
 
 namespace watery
 {
 	constexpr Microsecond SYSTEM_DEFAULT_UPDATE_INTERVAL = 5000;
+	constexpr int SYSTEM_TIMER_CALIBRATION_FREQUENCY = 10;
 	
 	class System
 	{
@@ -21,13 +23,18 @@ namespace watery
 		std::string _name;
 		bool _paused;
 		
+		// Records for calibrating the timer.
+		std::deque<Microsecond> _recoder;
+		
 		// Forbidden functions.
 		System(const System &) = delete;
 		System &operator=(const System &) = delete;
 	
 	protected:
+		// Basic timer functions.
+		virtual Microsecond _elapsed_time(void) const { return _timer.elapsed_time(); }
+		
 		// Basic progresses for message processing.
-		virtual Message *_retrieve_message(void) { return _messenger.retrieve(); }
 		virtual void _dispatch_message(Message *message) { message->sign(_name), _messenger.dispatch(message); }
 		
 		// Functions handling specific messages. Pass them on by default.

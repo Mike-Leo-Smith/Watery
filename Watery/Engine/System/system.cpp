@@ -3,44 +3,48 @@
 //
 
 #include <thread>
+#include <iostream>
 #include "system.h"
 
 namespace watery
 {
 	void System::_handle_message(void)
 	{
-		Message *message = _retrieve_message();
+		std::vector<Message *> &messages = _messenger.retrieve();
 		
-		if (message == nullptr)
+		for (Message *message : messages)
 		{
-			return;
-		}
-		
-		if (message->time_out())
-		{
-			delete message;   // Delete expiring messages.
-			return;
-		}
-		
-		if (message->signed_by(_name))
-		{
-			_dispatch_message(message);
-			return;
-		}
-		
-		switch (message->type())
-		{
-		case MESSAGE_KEYBOARD_EVENT:
-			_handle_keyboard_message(message);
-			break;
-		
-		case MESSAGE_MOUSE_EVENT:
-			_handle_mouse_message(message);
-			break;
-		
-		default:
-			delete message;     // Delete useless messages.
-			break;
+			if (message == nullptr)
+			{
+				continue;
+			}
+			
+			if (message->time_out())
+			{
+				delete message;   // Delete expiring messages.
+				continue;
+			}
+			
+			if (message->signed_by(_name))
+			{
+				_dispatch_message(message);
+				continue;
+			}
+			
+			switch (message->type())
+			{
+			case MESSAGE_KEYBOARD_EVENT:
+				_handle_keyboard_message(message);
+				break;
+			
+			case MESSAGE_MOUSE_EVENT:
+				_handle_mouse_message(message);
+				break;
+			
+			default:
+				delete message;     // Delete useless messages.
+				break;
+			}
 		}
 	}
 	
@@ -59,7 +63,31 @@ namespace watery
 		if (!_paused && _timer.time_out())
 		{
 			_updating_tasks();                                              // Do updating tasks.
-			_timer.set_time_out(2 * _interval - _timer.elapsed_time());     // Calibrate the timer.
+			
+			if (_recoder.size() >= SYSTEM_TIMER_CALIBRATION_FREQUENCY)
+			{
+				_recoder.pop_front();
+			}
+			_recoder.push_back(_timer.elapsed_time());
+			
+			Microsecond accumulated = 0;
+			
+			for (Microsecond time : _recoder)
+			{
+				accumulated += time;
+			}
+			
+			Microsecond average = accumulated / _recoder.size();
+			Microsecond calibrated = 2 * _interval - average;
+			
+			std::cout << _name << ": " << 1000000.0 / average << " fps" << std::endl;
+			
+			if (calibrated <= 0)
+			{
+				calibrated = _interval;
+			}
+			
+			_timer.set_time_out(calibrated);                                // Calibrate the timer.
 			_timer.reset();                                                 // Restart the timer.
 		}
 	}

@@ -13,11 +13,13 @@ namespace watery
 	{
 	private:
 		MessageBus &_message_bus;
+		std::vector<Message *> _messages;
 		
 	public:
 		Messenger(void) : _message_bus(MessageBus::instance()) {}
 		virtual ~Messenger(void) {}
-		virtual Message *retrieve(void) { return _message_bus.retrieve(); }
+		virtual Message *retrieve_(void) { return _message_bus.retrieve(); }
+		virtual std::vector<Message *> &retrieve(void);
 		virtual void dispatch(Message *message) { _message_bus.dispatch(message); }
 	};
 }

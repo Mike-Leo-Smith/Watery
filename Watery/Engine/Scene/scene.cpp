@@ -11,22 +11,24 @@ namespace watery
 	{
 		KeyboardMessage *cast_message = static_cast<KeyboardMessage *>(message);
 		
+		float ds = 10.0f;
+		
 		switch (cast_message->code())
 		{
 		case KEY_UP:
-			_camera.move_y(5);
+			_camera.move_y(ds);
 			break;
 		
 		case KEY_DOWN:
-			_camera.move_y(-5);
+			_camera.move_y(-ds);
 			break;
 		
 		case KEY_LEFT:
-			_camera.move_x(-5);
+			_camera.move_x(-ds);
 			break;
 		
 		case KEY_RIGHT:
-			_camera.move_x(5);
+			_camera.move_x(ds);
 			break;
 		
 		default:
