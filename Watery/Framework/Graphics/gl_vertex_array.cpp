@@ -13,29 +13,12 @@ namespace watery
 	
 	GLVertexArray::~GLVertexArray(void)
 	{
-		if (_vao != 0)
-		{
-			glDeleteVertexArrays(1, &_vao);
-		}
-		
-		if (_vbo != 0)
-		{
-			glDeleteBuffers(1, &_vbo);
-		}
+		glDeleteVertexArrays(1, &_vao);
+		glDeleteBuffers(1, &_vbo);
 	}
 	
 	void GLVertexArray::load(const float *vertices, GLsizei size)
 	{
-		if (_vao != 0)
-		{
-			glDeleteVertexArrays(1, &_vao);
-		}
-		
-		if (_vbo != 0)
-		{
-			glDeleteBuffers(1, &_vbo);
-		}
-		
 		glGenBuffers(1, &_vbo);
 		glGenVertexArrays(1, &_vao);
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);

@@ -15,13 +15,12 @@ namespace watery
 		GLuint _id;
 	
 	public:
-		GLTexture(void) : _id(0) {}
+		GLTexture(void) { glGenTextures(1, &_id); }
 		GLTexture(const unsigned char *image, GLsizei width, GLsizei height, GLsizei depth);
 		virtual ~GLTexture(void);
 		virtual GLuint id(void) const { return _id; }
 		virtual void load(const unsigned char *image, GLsizei width, GLsizei height, GLsizei depth);
 		virtual void activate(GLuint unit) const;
-		
 	};
 }
 

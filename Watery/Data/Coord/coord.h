@@ -26,6 +26,8 @@ namespace watery
 		virtual void set_y(float y) { _xyz[1] = y; }
 		virtual void set_z(float z) { _xyz[2] = z; }
 		virtual void set_xyz(const float *xyz) { memmove(_xyz, xyz, 3); }
+		Coord &operator+=(const Coord &rhs);
+		Coord &operator-=(const Coord &rhs);
 	};
 }
 

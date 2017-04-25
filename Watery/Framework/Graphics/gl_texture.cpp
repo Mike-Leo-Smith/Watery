@@ -8,10 +8,7 @@ namespace watery
 {
 	GLTexture::~GLTexture(void)
 	{
-		if (_id != 0)
-		{
-			glDeleteTextures(1, &_id);
-		}
+		glDeleteTextures(1, &_id);
 	}
 	
 	void GLTexture::activate(GLuint unit) const
@@ -20,19 +17,14 @@ namespace watery
 		glBindTexture(GL_TEXTURE_2D, _id);
 	}
 	
-	GLTexture::GLTexture(const unsigned char *image, GLsizei width, GLsizei height, GLsizei depth) : _id(0)
+	GLTexture::GLTexture(const unsigned char *image, GLsizei width, GLsizei height, GLsizei depth)
 	{
+		glGenTextures(1, &_id);
 		load(image, width, height, depth);
 	}
 	
 	void GLTexture::load(const unsigned char *image, GLsizei width, GLsizei height, GLsizei depth)
 	{
-		if (_id != 0)
-		{
-			glDeleteTextures(1, &_id);
-		}
-		
-		glGenTextures(1, &_id);
 		glBindTexture(GL_TEXTURE_2D, _id);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);

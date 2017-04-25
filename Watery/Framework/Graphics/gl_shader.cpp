@@ -14,11 +14,6 @@ namespace watery
 	
 	void GLShader::compile(const char *vertex_shader_source, const char *fragment_shader_source)
 	{
-		if (_id != 0)
-		{
-			glDeleteProgram(_id);
-		}
-		
 		GLint success;
 		GLchar info[512];
 		
@@ -44,6 +39,7 @@ namespace watery
 			std::cerr << info << std::endl;
 		}
 		
+		glDeleteProgram(_id);
 		_id = glCreateProgram();
 		glAttachShader(_id, vertex_shader);
 		glAttachShader(_id, fragment_shader);
@@ -62,51 +58,51 @@ namespace watery
 	
 	GLShader::~GLShader(void)
 	{
-		if (_id != 0)
-		{
-			glDeleteProgram(_id);
-		}
+		glDeleteProgram(_id);
 	}
 	
 	void GLShader::set_uniform_int(const char *name, int val)
 	{
 		GLint uniform = glGetUniformLocation(_id, name);
-		
-		if (uniform != 0)
-		{
-			glUniform1i(uniform, val);
-		}
-		else
-		{
-			std::cerr << "Cannot find the uniform..." << std::endl;
-		}
+		glUniform1i(uniform, val);
 	}
 	
 	void GLShader::set_uniform_float(const char *name, float val)
 	{
 		GLint uniform = glGetUniformLocation(_id, name);
-		
-		if (uniform != 0)
-		{
-			glUniform1f(uniform, val);
-		}
-		else
-		{
-			std::cerr << "Cannot find the uniform..." << std::endl;
-		}
+		glUniform1f(uniform, val);
 	}
 	
 	void GLShader::set_uniform_mat4fv(const char *name, const float *mat4fv)
 	{
 		GLint uniform = glGetUniformLocation(_id, name);
-		
-		if (uniform != 0)
-		{
-			glUniformMatrix4fv(uniform, 1, GL_FALSE, mat4fv);
-		}
-		else
-		{
-			std::cerr << "Cannot find the uniform..." << std::endl;
-		}
+		glUniformMatrix4fv(uniform, 1, GL_FALSE, mat4fv);
+	}
+	
+	void GLShader::set_uniform_vec4fv(const char *name, const float *vec4fv)
+	{
+		GLint uniform = glGetUniformLocation(_id, name);
+		glUniform4fv(uniform, 1, vec4fv);
+	}
+	
+	void GLShader::set_uniform_vec4f(const char *name, float v1, float v2, float v3, float v4)
+	{
+		GLint uniform = glGetUniformLocation(_id, name);
+		//std::cout << uniform << std::endl;
+		glUniform4f(uniform, v1, v2, v3, v4);
+	}
+	
+	void GLShader::set_uniform_vec2f(const char *name, float v1, float v2)
+	{
+		GLint uniform = glGetUniformLocation(_id, name);
+		//std::cout << uniform << std::endl;
+		glUniform2f(uniform, v1, v2);
+	}
+	
+	void GLShader::set_uniform_vec3f(const char *name, float v1, float v2, float v3)
+	{
+		GLint uniform = glGetUniformLocation(_id, name);
+		//std::cout << uniform << std::endl;
+		glUniform3f(uniform, v1, v2, v3);
 	}
 }

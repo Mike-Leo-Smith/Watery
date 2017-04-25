@@ -2,11 +2,15 @@
 #include <cmath>
 #include <gl/glew.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include "Watery/Framework/Window/window.h"
 #include "Watery/Engine/Timer/timer.h"
 #include "Watery/Engine/System/system.h"
 #include "Watery/Engine/Message/keyboard_message.h"
 #include "Watery/Engine/Input/input.h"
+#include "Watery/Framework/Graphics/graphics.h"
+#include "Watery/Engine/Camera/camera.h"
 
 class TestSystem : public watery::System
 {
@@ -47,25 +51,52 @@ public:
 int main(void)
 {
 	watery::Window &window = watery::Window::instance();
-	window.setup("Hello", 800, 600);
+	window.setup("Test", 800, 600);
 	
-	watery::Input input(50000);
-	input.start();
+	watery::Graphics graphics;
+	watery::GLShader shader;
 	
-	TestSystem system;
-	system.start();
+	std::ifstream vertex_shader("Shaders/rectangle.vert");
+	std::ifstream fragment_shader("Shaders/rectangle.frag");
 	
-	watery::Timer timer;
+	std::stringstream vert_src, frag_src;
+	vert_src << vertex_shader.rdbuf();
+	frag_src << fragment_shader.rdbuf();
 	
+	std::string vert = vert_src.str();
+	std::string frag = frag_src.str();
+	
+	shader.compile(vert.c_str(), frag.c_str());
+	
+	float rect[] =
+			{
+					0, 0, 0,
+					1, 0, 0,
+					1, 1, 0,
+					0, 1, 0
+			};
+	
+	float proj[] =
+			{
+					1.25e-3f, 0, 0, 0,
+					0, 1.67e-3f, 0, 0,
+					0, 0, 1.0f, 0,
+					0, 0, 0, 1.0f
+			};
+	
+	watery::GLVertexArray vao(rect, 12);
+	vao.set_pointers(0, 3, 3, 0);
+	
+	watery::Camera camera;
+	
+	glClearColor(0.0, 0.0, 0.0, 1.0);
 	while (window.alive())
 	{
-		input.update();
-		system.update();
-		
-		float brightness = (float)(1.0 + sin(timer.elapsed_time() / 1500000.0)) / 2.0f;
-		
-		glClearColor(brightness, brightness, brightness, brightness);
-		glClear(GL_COLOR_BUFFER_BIT);
+		camera.move_x(1);
+		camera.move_y(1);
+		rect[0] += 0.1;
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		graphics.draw(shader, vao, -200, -200, 200, 200, proj, camera.mat());
 		window.update();
 	}
 }

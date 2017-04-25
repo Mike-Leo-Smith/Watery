@@ -53,6 +53,10 @@ set(SOURCE_FILES
 		Watery/Engine/Component/velocity.h
 		Watery/Engine/Component/texture.cpp
 		Watery/Engine/Component/texture.h
+		Watery/Engine/Component/shader.cpp
+		Watery/Engine/Component/shader.h
+		Watery/Engine/Camera/camera.cpp
+		Watery/Engine/Camera/camera.h
 		Watery/Framework/Network/network.cpp
 		Watery/Framework/Network/network.h
 		Watery/Framework/Clock/clock.cpp
@@ -72,7 +76,9 @@ set(SOURCE_FILES
 		Watery/Framework/Graphics/gl_vertex_array.cpp
 		Watery/Framework/Graphics/gl_vertex_array.h
 		Watery/Framework/Window/window.cpp
-		Watery/Framework/Window/window.h)
+		Watery/Framework/Window/window.h
+		Game/Sources/game.cpp
+		Game/Sources/game.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew)
