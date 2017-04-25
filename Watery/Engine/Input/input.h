@@ -22,7 +22,8 @@ namespace watery
 		virtual void _updating_tasks(void) override;
 	
 	public:
-		Input(Microsecond interval = INPUT_DEFAULT_UPDATE_INTERVAL) : System(interval), _window(Window::instance()) {}
+		Input(const std::string &name = "Input", Microsecond interval = INPUT_DEFAULT_UPDATE_INTERVAL)
+				: System(name, interval), _window(Window::instance()) {}
 	};
 }
 

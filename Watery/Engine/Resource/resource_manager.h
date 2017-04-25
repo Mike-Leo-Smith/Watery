@@ -9,11 +9,7 @@
 
 namespace watery
 {
-	class ResourceManager : public System
-	{
-	private:
-	
-	};
+
 }
 
 #endif  // WATERY_RESOURCE_MANAGER_H

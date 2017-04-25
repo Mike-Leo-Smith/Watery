@@ -11,6 +11,7 @@
 #include "Watery/Engine/Input/input.h"
 #include "Watery/Framework/Graphics/graphics.h"
 #include "Watery/Engine/Camera/camera.h"
+#include "Watery/Engine/Scene/scene.h"
 
 class TestSystem : public watery::System
 {
@@ -45,7 +46,7 @@ protected:
 	}
 
 public:
-	TestSystem(void) : _counter(0), System(50000) {}
+	TestSystem(void) : _counter(0), System("Test", 50000) {}
 };
 
 int main(void)
@@ -89,14 +90,19 @@ int main(void)
 	
 	watery::Camera camera;
 	
+	watery::Scene scene("Scene", 5000);
+	watery::Input input("Input", 50000);
+	
+	scene.start();
+	input.start();
+	
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	while (window.alive())
 	{
-		camera.move_x(1);
-		camera.move_y(1);
-		rect[0] += 0.1;
+		input.update();
+		scene.update();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		graphics.draw(shader, vao, -200, -200, 200, 200, proj, camera.mat());
+		graphics.draw(shader, vao, -200, -200, 200, 200, proj, scene.camera().mat());
 		window.update();
 	}
 }

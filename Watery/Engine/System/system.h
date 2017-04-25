@@ -5,6 +5,7 @@
 #ifndef WATERY_SYSTEM_H
 #define WATERY_SYSTEM_H
 
+#include <string>
 #include "../Message/messenger.h"
 
 namespace watery
@@ -17,6 +18,7 @@ namespace watery
 		Messenger _messenger;
 		Timer _timer;
 		Microsecond _interval;
+		std::string _name;
 		bool _paused;
 		
 		// Forbidden functions.
@@ -26,7 +28,7 @@ namespace watery
 	protected:
 		// Basic progresses for message processing.
 		virtual Message *_retrieve_message(void) { return _messenger.retrieve(); }
-		virtual void _dispatch_message(Message *message) { _messenger.dispatch(message); }
+		virtual void _dispatch_message(Message *message) { message->sign(_name), _messenger.dispatch(message); }
 		
 		// Functions handling specific messages. Pass them on by default.
 		virtual void _handle_keyboard_message(Message *message) { _dispatch_message(message); }
@@ -39,7 +41,7 @@ namespace watery
 		virtual void _updating_tasks(void) { _handle_message(); }
 	
 	public:
-		System(Microsecond update_interval = SYSTEM_DEFAULT_UPDATE_INTERVAL);
+		System(const std::string &name, Microsecond update_interval = SYSTEM_DEFAULT_UPDATE_INTERVAL);
 		virtual ~System(void) {}
 		virtual void update(void);
 		virtual void start(void);

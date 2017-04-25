@@ -13,15 +13,23 @@
 
 namespace watery
 {
+	constexpr Microsecond SCENE_DEFAULT_UPDATE_INTERVAL = 10000;
+	
 	class Scene : public System
 	{
 	private:
 		std::map<std::string, Entity *> _world;
 		Camera _camera;
 	
+	protected:
+		virtual void _handle_keyboard_message(Message *message) override;
+	
 	public:
+		Scene(const std::string &name = "Scene", Microsecond interval = SCENE_DEFAULT_UPDATE_INTERVAL)
+				: System(name, interval) {}
 		virtual std::map<std::string, Entity *> &world(void) { return _world; }
 		virtual Entity *entity(const std::string &name) { return (_world.count(name) ? _world.at(name) : nullptr); }
+		virtual Camera &camera(void) { return _camera; }
 	};
 }
 

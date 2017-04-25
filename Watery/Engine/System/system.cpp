@@ -22,6 +22,12 @@ namespace watery
 			return;
 		}
 		
+		if (message->signed_by(_name))
+		{
+			_dispatch_message(message);
+			return;
+		}
+		
 		switch (message->type())
 		{
 		case MESSAGE_KEYBOARD_EVENT:
@@ -58,6 +64,6 @@ namespace watery
 		}
 	}
 	
-	System::System(Microsecond update_interval)
-			: _interval(update_interval), _timer(update_interval), _paused(true) {}
+	System::System(const std::string &name, Microsecond update_interval)
+			: _interval(update_interval), _timer(update_interval), _paused(true), _name(name) {}
 }
