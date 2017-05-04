@@ -10,11 +10,10 @@
 #include <set>
 #include "../Timer/timer.h"
 #include "../../Framework/Clock/clock.h"
+#include "../Configure/configure.h"
 
 namespace watery
 {
-	constexpr Microsecond MESSAGE_DEFAULT_TIME_OUT = 50000;
-	
 	enum MessageType
 	{
 		MESSAGE_UNDEFINED,

@@ -13,42 +13,7 @@
 #include "Watery/Engine/Camera/camera.h"
 #include "Watery/Engine/Scene/scene.h"
 #include "Watery/Framework/Image/lodepng.h"
-
-class TestSystem : public watery::System
-{
-private:
-	float _counter;
-
-protected:
-	virtual void _handle_keyboard_message(watery::Message *message) override
-	{
-		watery::KeyboardMessage *cast_message = static_cast<watery::KeyboardMessage *>(message);
-		
-		if (cast_message != nullptr)
-		{
-			switch (cast_message->code())
-			{
-			case watery::KEY_UP:
-				std::cout << "KEY_UP" << std::endl;
-				break;
-			case watery::KEY_DOWN:
-				std::cout << "KEY_DOWN" << std::endl;
-				break;
-			case watery::KEY_LEFT:
-				std::cout << "KEY_LEFT" << std::endl;
-				break;
-			case watery::KEY_RIGHT:
-				std::cout << "KEY_RIGHT" << std::endl;
-				break;
-			default:
-				break;
-			}
-		}
-	}
-
-public:
-	TestSystem(void) : _counter(0), System("Test", 50000) {}
-};
+#include "Watery/Engine/Resource/resource_manager.h"
 
 int main(void)
 {
@@ -100,13 +65,15 @@ int main(void)
 	unsigned int width, height;
 	std::vector<unsigned char> pixels;
 	
-	lodepng::decode(pixels, width, height, "Assets/face.png");
+	lodepng::decode(pixels, width, height, "Assets/Images/face.png");
 	std::cout << width << " " << height << std::endl;
 	
-	//scene.camera().move_x(400);
-	//scene.camera().move_y(300);
-	
 	watery::Timer timer(16000);
+	
+	watery::Resource resource;
+	watery::ALAudio *audio = resource.load_audio("Assets/Sounds/test.wav");
+	
+	audio->play(true);
 	
 	glClearColor(0.2, 0.3, 0.4, 1.0);
 	while (window.alive())
@@ -117,11 +84,9 @@ int main(void)
 		if (timer.time_out())
 		{
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			//graphics.draw(shader, vao, -200, -200, 200, 200, proj, scene.camera().mat());
 			graphics.draw_sprite(shader, proj, scene.camera().mat(), 0, 0, pixels.data(), width, height, 4);
 			window.update();
 			timer.reset();
 		}
 	}
 }
-

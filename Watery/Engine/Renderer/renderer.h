@@ -11,8 +11,6 @@
 
 namespace watery
 {
-	constexpr Microsecond RENDERER_DEFAULT_UPDATE_INTERVAL = 17000;
-	
 	class Renderer : public System
 	{
 	private:

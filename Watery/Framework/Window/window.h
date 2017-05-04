@@ -17,6 +17,7 @@ namespace watery
 		KEY_DOWN,
 		KEY_LEFT,
 		KEY_RIGHT,
+		KEY_SPACE,
 		
 		KEY_CODE_COUNT
 	};

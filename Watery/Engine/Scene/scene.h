@@ -13,8 +13,6 @@
 
 namespace watery
 {
-	constexpr Microsecond SCENE_DEFAULT_UPDATE_INTERVAL = 10000;
-	
 	class Scene : public System
 	{
 	private:

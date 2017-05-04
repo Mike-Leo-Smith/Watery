@@ -5,15 +5,6 @@
 #ifndef WATERY_CAMERA_H
 #define WATERY_CAMERA_H
 
-/*
- *
- * | 1       |
- * |   1     |
- * |     1   |
- * |       1 |
- *
- */
-
 #include "../../Data/Coord/coord.h"
 #include "../../Data/Size/size.h"
 

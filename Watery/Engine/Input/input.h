@@ -8,11 +8,10 @@
 #include "../System/system.h"
 #include "../Message/message.h"
 #include "../../Framework/Window/window.h"
+#include "../Configure/configure.h"
 
 namespace watery
 {
-	constexpr Microsecond INPUT_DEFAULT_UPDATE_INTERVAL = 50000;
-	
 	class Input : public System
 	{
 	private:

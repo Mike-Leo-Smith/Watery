@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 project(Watery)
 
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL")
 
 set(SOURCE_FILES
 		main.cpp
@@ -57,6 +57,9 @@ set(SOURCE_FILES
 		Watery/Engine/Component/shader.h
 		Watery/Engine/Camera/camera.cpp
 		Watery/Engine/Camera/camera.h
+		Watery/Engine/Sound/sound.cpp
+		Watery/Engine/Sound/sound.h
+		Watery/Engine/Configure/configure.h
 		Watery/Framework/Network/network.cpp
 		Watery/Framework/Network/network.h
 		Watery/Framework/Clock/clock.cpp
@@ -67,8 +70,8 @@ set(SOURCE_FILES
 		Watery/Framework/Image/lodepng.h
 		Watery/Framework/Graphics/graphics.cpp
 		Watery/Framework/Graphics/graphics.h
-		Watery/Framework/Audio/audio.cpp
-		Watery/Framework/Audio/audio.h
+		Watery/Framework/Audio/al_audio.cpp
+		Watery/Framework/Audio/al_audio.h
 		Watery/Framework/Graphics/gl_texture.cpp
 		Watery/Framework/Graphics/gl_texture.h
 		Watery/Framework/Graphics/gl_shader.cpp
@@ -77,8 +80,10 @@ set(SOURCE_FILES
 		Watery/Framework/Graphics/gl_vertex_array.h
 		Watery/Framework/Window/window.cpp
 		Watery/Framework/Window/window.h
+		Watery/Framework/Audio/al_initializer.cpp
+		Watery/Framework/Audio/al_initializer.h
 		Game/Sources/game.cpp
 		Game/Sources/game.h)
 
 add_executable(Watery ${SOURCE_FILES})
-target_link_libraries(${PROJECT_NAME} glfw glew)
+target_link_libraries(${PROJECT_NAME} glfw glew alut)

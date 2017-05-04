@@ -7,11 +7,10 @@
 
 #include "message.h"
 #include "../../Framework/Window/window.h"
+#include "../Configure/configure.h"
 
 namespace watery
 {
-	constexpr Microsecond KEYBOARD_DEFAULT_TIME_OUT = 50000;
-	
 	class KeyboardMessage : public Message
 	{
 	private:

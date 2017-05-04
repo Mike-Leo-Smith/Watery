@@ -45,6 +45,9 @@ namespace watery
 			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_RIGHT);
 			break;
 		
+		case KEY_SPACE:
+			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_SPACE);
+			
 		default:
 			break;
 		}

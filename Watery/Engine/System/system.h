@@ -11,9 +11,6 @@
 
 namespace watery
 {
-	constexpr Microsecond SYSTEM_DEFAULT_UPDATE_INTERVAL = 5000;
-	constexpr int SYSTEM_TIMER_CALIBRATION_FREQUENCY = 10;
-	
 	class System
 	{
 	private:
