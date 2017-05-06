@@ -34,7 +34,6 @@ namespace watery
 	
 	void ALAudio::play(ALboolean loop) const
 	{
-		alSourcei(_source, AL_LOOPING, loop);
 		alSourcePlay(_source);
 	}
 }

@@ -1,34 +1,53 @@
 //
-// Created by Mike Smith on 2017/4/17.
+// Created by Mike Smith on 2017/5/7.
 //
 
-#include <AL/alut.h>
 #include "resource_manager.h"
-#include "../../Framework/Image/lodepng.h"
 
-watery::GLTexture *watery::Resource::load_texture(const std::string &file_name) const
+namespace watery
 {
-	constexpr int depth = 4;
-	unsigned int width, height;
-	std::vector<unsigned char> pixels;
+	const GLShader *ResourceManager::create_shader(const std::string &shader_name, const std::string &vertex_shader_file_name, const std::string &fragment_shader_file_name)
+	{
+		return _resource.create_shader(shader_name, vertex_shader_file_name, fragment_shader_file_name);
+	}
 	
-	lodepng::decode(pixels, width, height, file_name);
+	const GLTexture *ResourceManager::create_texture(const std::string &texture_name, const std::string &file_name)
+	{
+		return _resource.create_texture(texture_name, file_name);
+	}
 	
-	return new GLTexture(pixels.data(), width, height, depth);
-}
-
-watery::ALAudio *watery::Resource::load_audio(const std::string &file_name) const
-{
-	ALenum format;
-	ALsizei size;
-	ALsizei freq;
-	ALvoid *data;
-	ALAudio *audio;
+	const ALAudio *ResourceManager::create_audio(const std::string &audio_name, const std::string &file_name)
+	{
+		return _resource.create_audio(audio_name, file_name);
+	}
 	
-	// alutCreateBufferFromFile dose not work properly here, do we have to use the deprecated methods.
-	alutLoadWAVFile((ALbyte *)file_name.c_str(), &format, &data, &size, &freq);
-	audio = new ALAudio(data, format, size, freq);
-	alutUnloadWAV(format, data, size, freq);
+	const GLShader *ResourceManager::get_shader(const std::string &shader_name) const
+	{
+		return _resource.get_shader(shader_name);
+	}
 	
-	return audio;
+	const GLTexture *ResourceManager::get_texture(const std::string &texture_name) const
+	{
+		return _resource.get_texture(texture_name);
+	}
+	
+	const ALAudio *ResourceManager::get_audio(const std::string &audio_name) const
+	{
+		return _resource.get_audio(audio_name);
+	}
+	
+	void ResourceManager::destroy_texture(const std::string &texture_name)
+	{
+		_resource.destroy_texture(texture_name);
+	}
+	
+	void ResourceManager::destroy_audio(const std::string &audio_name)
+	{
+		_resource.destroy_audio(audio_name);
+	}
+	
+	void ResourceManager::destroy_shader(const std::string &shader_name)
+	{
+		_resource.destroy_shader(shader_name);
+	}
 }

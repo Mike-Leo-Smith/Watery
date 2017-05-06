@@ -5,22 +5,18 @@
 #ifndef WATERY_RENDERER_H
 #define WATERY_RENDERER_H
 
-#include <nameser.h>
 #include "../../Framework/Window/window.h"
 #include "../System/system.h"
 
 namespace watery
 {
-	class Renderer : public System
+	class Renderer
 	{
 	private:
 		Window &_window;
 	
-	protected:
-		virtual void _updating_tasks(void) override;
-	
 	public:
-		Renderer(Microsecond interval = RENDERER_DEFAULT_UPDATE_INTERVAL);
+		Renderer(void) : _window(Window::instance()) {}
 	};
 }
 

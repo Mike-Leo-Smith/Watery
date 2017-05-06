@@ -54,7 +54,7 @@ platform if needed. Everything else in the code calls these. Pass
 -DLODEPNG_NO_COMPILE_ALLOCATORS to the compiler, or comment out
 #define LODEPNG_COMPILE_ALLOCATORS in the header, to disable the ones here and
 define them in your own project's source files without needing to change
-lodepng source code. Don't forget to remove "static" if you copypaste them
+lodepng source code. Don't forget to destroy_texture "static" if you copypaste them
 from here.*/
 
 #ifdef LODEPNG_COMPILE_ALLOCATORS
@@ -595,7 +595,7 @@ static unsigned HuffmanTree_make2DTree(HuffmanTree *tree)
 	
 	for (n = 0; n < tree->numcodes * 2; ++n)
 	{
-		if (tree->tree2d[n] == 32767) tree->tree2d[n] = 0; /*remove possible remaining 32767's*/
+		if (tree->tree2d[n] == 32767) tree->tree2d[n] = 0; /*destroy_texture possible remaining 32767's*/
 	}
 	
 	return 0;
@@ -1909,7 +1909,7 @@ static unsigned deflateDynamic(ucvector *out, size_t *bp, Hash *hash,
 		}
 		while (bitlen_cl.data[bitlen_cl.size - 1] == 0 && bitlen_cl.size > 4)
 		{
-			/*remove zeros at the end, but minimum size must be 4*/
+			/*destroy_texture zeros at the end, but minimum size must be 4*/
 			if (!uivector_resize(&bitlen_cl, bitlen_cl.size - 1)) ERROR_BREAK(83 /*alloc fail*/);
 		}
 		if (error) break;
@@ -3839,7 +3839,7 @@ unsigned lodepng_auto_choose_color(LodePNGColorMode *mode_out,
 	if (palette_ok)
 	{
 		unsigned char *p = prof.palette;
-		lodepng_palette_clear(mode_out); /*remove potential earlier palette*/
+		lodepng_palette_clear(mode_out); /*destroy_texture potential earlier palette*/
 		for (i = 0; i != prof.numcolors; ++i)
 		{
 			error = lodepng_palette_add(mode_out, p[i * 4 + 0], p[i * 4 + 1], p[i * 4 + 2], p[i * 4 + 3]);
@@ -4225,7 +4225,7 @@ static unsigned postProcessScanlines(unsigned char *out, unsigned char *in,
   This function converts the filtered-padded-interlaced data into pure 2D image buffer with the PNG's colortype.
   Steps:
   *) if no Adam7: 1) unfilter 2) remove padding bits (= posible extra bits per scanline if bpp < 8)
-  *) if adam7: 1) 7x unfilter 2) 7x remove padding bits 3) Adam7_deinterlace
+  *) if adam7: 1) 7x unfilter 2) 7x destroy_texture padding bits 3) Adam7_deinterlace
   NOTE: the in buffer will be overwritten with intermediate data!
   */
 	unsigned bpp = lodepng_get_bpp(&info_png->color);
@@ -4256,7 +4256,7 @@ static unsigned postProcessScanlines(unsigned char *out, unsigned char *in,
       move bytes instead of bits or move not at all*/
 			if (bpp < 8)
 			{
-				/*remove padding bits in scanlines; after this there still may be padding
+				/*destroy_texture padding bits in scanlines; after this there still may be padding
         bits between the different reduced images: each reduced image still starts nicely at a byte*/
 				removePaddingBits(&in[passstart[i]], &in[padded_passstart[i]], passw[i] * bpp,
 				                  ((passw[i] * bpp + 7) / 8) * 8, passh[i]);

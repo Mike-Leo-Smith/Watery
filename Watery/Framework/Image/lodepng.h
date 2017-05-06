@@ -936,12 +936,12 @@ LodePNG Documentation
 PNG is a file format to store raster images losslessly with good compression,
 supporting different color types and alpha channel.
 
-LodePNG is a PNG codec according to the Portable Network Graphics (PNG)
+LodePNG is a PNG codec according to the Portable Network GLGraphics (PNG)
 Specification (Second Edition) - W3C Recommendation 10 November 2003.
 
 The specifications used are:
 
-*) Portable Network Graphics (PNG) Specification (Second Edition):
+*) Portable Network GLGraphics (PNG) Specification (Second Edition):
      http://www.w3.org/TR/2003/REC-PNG-20031110
 *) RFC 1950 ZLIB Compressed Data Format version 3.3:
      http://www.gzip.org/zlib/rfc-zlib.html

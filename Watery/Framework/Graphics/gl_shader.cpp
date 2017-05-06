@@ -61,48 +61,45 @@ namespace watery
 		glDeleteProgram(_id);
 	}
 	
-	void GLShader::set_uniform_int(const char *name, int val)
+	void GLShader::set_uniform_int(const char *name, int val) const
 	{
 		GLint uniform = glGetUniformLocation(_id, name);
 		glUniform1i(uniform, val);
 	}
 	
-	void GLShader::set_uniform_float(const char *name, float val)
+	void GLShader::set_uniform_float(const char *name, float val) const
 	{
 		GLint uniform = glGetUniformLocation(_id, name);
 		glUniform1f(uniform, val);
 	}
 	
-	void GLShader::set_uniform_mat4fv(const char *name, const float *mat4fv)
+	void GLShader::set_uniform_mat4fv(const char *name, const float *mat4fv) const
 	{
 		GLint uniform = glGetUniformLocation(_id, name);
 		glUniformMatrix4fv(uniform, 1, GL_FALSE, mat4fv);
 	}
 	
-	void GLShader::set_uniform_vec4fv(const char *name, const float *vec4fv)
+	void GLShader::set_uniform_vec4fv(const char *name, const float *vec4fv) const
 	{
 		GLint uniform = glGetUniformLocation(_id, name);
 		glUniform4fv(uniform, 1, vec4fv);
 	}
 	
-	void GLShader::set_uniform_vec4f(const char *name, float v1, float v2, float v3, float v4)
+	void GLShader::set_uniform_vec4f(const char *name, float v1, float v2, float v3, float v4) const
 	{
 		GLint uniform = glGetUniformLocation(_id, name);
-		//std::cout << uniform << std::endl;
 		glUniform4f(uniform, v1, v2, v3, v4);
 	}
 	
-	void GLShader::set_uniform_vec2f(const char *name, float v1, float v2)
+	void GLShader::set_uniform_vec2f(const char *name, float v1, float v2) const
 	{
 		GLint uniform = glGetUniformLocation(_id, name);
-		//std::cout << uniform << std::endl;
 		glUniform2f(uniform, v1, v2);
 	}
 	
-	void GLShader::set_uniform_vec3f(const char *name, float v1, float v2, float v3)
+	void GLShader::set_uniform_vec3f(const char *name, float v1, float v2, float v3) const
 	{
 		GLint uniform = glGetUniformLocation(_id, name);
-		//std::cout << uniform << std::endl;
 		glUniform3f(uniform, v1, v2, v3);
 	}
 }

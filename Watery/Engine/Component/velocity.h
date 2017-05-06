@@ -18,7 +18,6 @@ namespace watery
 	public:
 		Velocity(const Coord &velocity = Coord()) : Component(COMPONENT_VELOCITY), _velocity(velocity) {}
 		virtual ~Velocity(void) {}
-		virtual Coord &velocity(void) { return _velocity; }
 		virtual const Coord &velocity(void) const { return _velocity; }
 		virtual void set_velocity(const Coord &velocity) { _velocity = velocity; }
 	};

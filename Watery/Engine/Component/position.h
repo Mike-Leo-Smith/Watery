@@ -18,7 +18,6 @@ namespace watery
 	public:
 		Position(const Coord &position = Coord()) : Component(COMPONENT_POSITION), _position(position) {}
 		virtual ~Position(void) {}
-		virtual Coord &position(void) { return _position; }
 		virtual const Coord &position(void) const { return _position; }
 		virtual void set_position(const Coord &position) { _position = position; }
 	};

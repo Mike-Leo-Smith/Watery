@@ -23,6 +23,7 @@ namespace watery
 		virtual void play(ALboolean loop = true) const;
 		virtual void pause(void) const { alSourcePause(_source); }
 		virtual void stop(void) const { alSourceStop(_source); }
+		virtual ALuint id(void) const { return _source; }
 	};
 }
 

@@ -6,12 +6,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL")
 
 set(SOURCE_FILES
 		main.cpp
-		Watery/Data/Bitmap/bitmap.cpp
-		Watery/Data/Bitmap/bitmap.h
 		Watery/Data/Size/size.cpp
 		Watery/Data/Size/size.h
-		Watery/Data/Quaternion/quaternion.cpp
-		Watery/Data/Quaternion/quaternion.h
 		Watery/Data/Color/color.cpp
 		Watery/Data/Color/color.h
 		Watery/Data/Coord/coord.cpp
@@ -20,10 +16,10 @@ set(SOURCE_FILES
 		Watery/Engine/Component/component.h
 		Watery/Engine/Component/position.cpp
 		Watery/Engine/Component/position.h
-		Watery/Engine/Resource/resource_manager.cpp
-		Watery/Engine/Resource/resource_manager.h
-		Watery/Engine/Object/entity.cpp
-		Watery/Engine/Object/entity.h
+		Watery/Engine/Resource/resource.cpp
+		Watery/Engine/Resource/resource.h
+		Watery/Engine/World/entity.cpp
+		Watery/Engine/World/entity.h
 		Watery/Engine/Component/component_node.h
 		Watery/Engine/Message/messenger.cpp
 		Watery/Engine/Message/messenger.h
@@ -51,10 +47,10 @@ set(SOURCE_FILES
 		Watery/Engine/Timer/timer.h
 		Watery/Engine/Component/velocity.cpp
 		Watery/Engine/Component/velocity.h
-		Watery/Engine/Component/texture.cpp
-		Watery/Engine/Component/texture.h
 		Watery/Engine/Component/shader.cpp
 		Watery/Engine/Component/shader.h
+		Watery/Engine/Component/texture.cpp
+		Watery/Engine/Component/texture.h
 		Watery/Engine/Camera/camera.cpp
 		Watery/Engine/Camera/camera.h
 		Watery/Engine/Sound/sound.cpp
@@ -68,8 +64,6 @@ set(SOURCE_FILES
 		Watery/Framework/Physics/physics.h
 		Watery/Framework/Image/lodepng.cpp
 		Watery/Framework/Image/lodepng.h
-		Watery/Framework/Graphics/graphics.cpp
-		Watery/Framework/Graphics/graphics.h
 		Watery/Framework/Audio/al_audio.cpp
 		Watery/Framework/Audio/al_audio.h
 		Watery/Framework/Graphics/gl_texture.cpp
@@ -83,7 +77,7 @@ set(SOURCE_FILES
 		Watery/Framework/Audio/al_initializer.cpp
 		Watery/Framework/Audio/al_initializer.h
 		Game/Sources/game.cpp
-		Game/Sources/game.h)
+		Game/Sources/game.h Watery/Engine/World/world.cpp Watery/Engine/World/world.h Watery/Engine/Component/audio.cpp Watery/Engine/Component/audio.h Watery/Engine/Resource/resource_manager.cpp Watery/Engine/Resource/resource_manager.h Watery/Engine/Component/component_factory.cpp Watery/Engine/Component/component_factory.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)

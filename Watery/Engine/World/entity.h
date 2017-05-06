@@ -22,7 +22,7 @@ namespace watery
 		virtual Component *component(ComponentType type) { return _components[type].component(); }
 		virtual const Component *component(ComponentType type) const { return _components[type].component(); }
 		virtual void bind_component(Component *component) { _components[component->type()].bind(component); }
-		virtual void remove_component(ComponentType type) { _components[type].unbind(); }
+		virtual void unbind_component(ComponentType type) { _components[type].unbind(); }
 		virtual void enable(ComponentType type) { _components[type].enable(); }
 		virtual void disable(ComponentType type) { _components[type].disable(); }
 	};
