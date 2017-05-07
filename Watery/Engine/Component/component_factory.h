@@ -15,10 +15,18 @@ namespace watery
 {
 	class ComponentFactory
 	{
-	public:
+	private:
+		static ComponentFactory *_instance;
+		
+		ComponentFactory(void) {}
+		ComponentFactory(const ComponentFactory &) = delete;
+		ComponentFactory &operator=(const ComponentFactory &) = delete;
 		virtual ~ComponentFactory(void) {}
-		virtual Position *create_position(const Coord &coord) const { return new Position(coord); }
-		virtual Velocity *create_velocity(const Coord &coord) const { return new Velocity(coord); }
+	
+	public:
+		static ComponentFactory &instance(void) { return *_instance; }
+		virtual Position *create_position(const Vector &coord) const { return new Position(coord); }
+		virtual Velocity *create_velocity(const Vector &coord) const { return new Velocity(coord); }
 		virtual Audio *create_audio(const ALAudio *audio) const { return new Audio(audio); }
 		virtual Shader *create_shader(const GLShader *shader) const { return new Shader(shader); }
 		virtual Texture *create_texture(const GLTexture *texture) const { return new Texture(texture); }

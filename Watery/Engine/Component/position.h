@@ -6,20 +6,24 @@
 #define WATERY_POSITION_H
 
 #include "component.h"
-#include "../../Data/Coord/coord.h"
+#include "../../Data/Vector/vector.h"
 
 namespace watery
 {
 	class Position : public Component
 	{
 	private:
-		Coord _position;
+		Vector _position;
 	
 	public:
-		Position(const Coord &position = Coord()) : Component(COMPONENT_POSITION), _position(position) {}
+		Position(const Vector &position = Vector()) : Component(COMPONENT_POSITION), _position(position) {}
 		virtual ~Position(void) {}
-		virtual const Coord &position(void) const { return _position; }
-		virtual void set_position(const Coord &position) { _position = position; }
+		virtual const Vector &position(void) const { return _position; }
+		virtual void set_position(const Vector &position) { _position = position; }
+		virtual void move(const Vector &direction) { _position += direction; }
+		virtual void move_x(const float dx) { _position.set_x(_position.x() + dx); }
+		virtual void move_y(const float dy) { _position.set_y(_position.y() + dy); }
+		virtual void move_z(const float dz) { _position.set_z(_position.z() + dz); }
 	};
 }
 

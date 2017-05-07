@@ -19,8 +19,8 @@ namespace watery
 		
 		Clock(void) {}
 		Clock(const Clock &) = delete;
-		virtual ~Clock(void) {}
 		Clock &operator=(const Clock &) = delete;
+		~Clock(void) {}
 		
 	public:
 		Microsecond time(void) const { return std::chrono::duration_cast<std::chrono::microseconds>(_clock.now().time_since_epoch()).count(); }

@@ -40,6 +40,8 @@ namespace watery
 		virtual bool time_out(void) const { return _timer.time_out(); }
 		virtual void sign(const std::string &system) { _signatures.emplace(system); }
 		virtual bool signed_by(const std::string &system) { return (_signatures.count(system) != 0); }
+		template<typename MESSAGE_TYPE> MESSAGE_TYPE *decode(void) { return static_cast<MESSAGE_TYPE *>(this); }
+		template<typename MESSAGE_TYPE> const MESSAGE_TYPE *decode(void) const { return static_cast<const MESSAGE_TYPE *>(this); }
 	};
 }
 

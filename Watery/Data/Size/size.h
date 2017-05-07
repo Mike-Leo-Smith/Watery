@@ -18,16 +18,16 @@ namespace watery
 	
 	public:
 		Size(size_t width = 0, size_t height = 0, size_t depth = 0) : _width(width), _height(height), _depth(depth) {}
-		virtual ~Size(void) {}
-		virtual size_t width(void) const { return _width; }
-		virtual size_t height(void) const { return _height; }
-		virtual size_t depth(void) const { return _depth; }
-		virtual size_t volume(void) const { return _width * _height * _depth; }
-		virtual size_t area(void) const { return _width * _height; }
-		virtual void set_width(size_t width) { _width = width; }
-		virtual void set_height(size_t height) { _height = height; }
-		virtual void set_depth(size_t depth) { _depth = depth; }
-		virtual void set_size(size_t width, size_t height, size_t depth) { _width = width, _height = height, _depth = depth; }
+		~Size(void) {}
+		size_t width(void) const { return _width; }
+		size_t height(void) const { return _height; }
+		size_t depth(void) const { return _depth; }
+		size_t volume(void) const { return _width * _height * _depth; }
+		size_t area(void) const { return _width * _height; }
+		void set_width(size_t width) { _width = width; }
+		void set_height(size_t height) { _height = height; }
+		void set_depth(size_t depth) { _depth = depth; }
+		void set_size(size_t width, size_t height, size_t depth) { _width = width, _height = height, _depth = depth; }
 	};
 }
 

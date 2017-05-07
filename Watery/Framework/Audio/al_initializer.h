@@ -15,7 +15,7 @@ namespace watery
 		ALInitializer(void);
 		ALInitializer(const ALInitializer &) = delete;
 		ALInitializer &operator=(const ALInitializer &) = delete;
-		virtual ~ALInitializer(void) {}
+		~ALInitializer(void) {}
 	};
 };
 

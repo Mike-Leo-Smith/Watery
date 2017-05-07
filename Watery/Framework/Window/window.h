@@ -31,7 +31,7 @@ namespace watery
 		Window(void) : _handler(nullptr) {}
 		Window(const Window &) = delete;
 		Window &operator=(const Window &) = delete;
-		virtual ~Window(void);
+		~Window(void);
 	
 	public:
 		GLFWwindow *handler(void) { return _handler; }

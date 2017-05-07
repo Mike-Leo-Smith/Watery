@@ -18,12 +18,12 @@ namespace watery
 	public:
 		ALAudio(void);
 		ALAudio(const void *data, ALenum format, ALsizei size, ALsizei freq);
-		virtual ~ALAudio(void);
-		virtual void load(const void *data, ALenum format, ALsizei size, ALsizei freq);
-		virtual void play(ALboolean loop = true) const;
-		virtual void pause(void) const { alSourcePause(_source); }
-		virtual void stop(void) const { alSourceStop(_source); }
-		virtual ALuint id(void) const { return _source; }
+		~ALAudio(void);
+		void load(const void *data, ALenum format, ALsizei size, ALsizei freq);
+		void play(ALboolean loop = true) const;
+		void pause(void) const { alSourcePause(_source); }
+		void stop(void) const { alSourceStop(_source); }
+		ALuint id(void) const { return _source; }
 	};
 }
 

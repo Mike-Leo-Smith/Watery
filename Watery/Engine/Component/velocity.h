@@ -6,20 +6,20 @@
 #define WATERY_VELOCITY_H
 
 #include "component.h"
-#include "../../Data/Coord/coord.h"
+#include "../../Data/Vector/vector.h"
 
 namespace watery
 {
 	class Velocity : public Component
 	{
 	private:
-		Coord _velocity;
+		Vector _velocity;
 	
 	public:
-		Velocity(const Coord &velocity = Coord()) : Component(COMPONENT_VELOCITY), _velocity(velocity) {}
+		Velocity(const Vector &velocity = Vector()) : Component(COMPONENT_VELOCITY), _velocity(velocity) {}
 		virtual ~Velocity(void) {}
-		virtual const Coord &velocity(void) const { return _velocity; }
-		virtual void set_velocity(const Coord &velocity) { _velocity = velocity; }
+		virtual const Vector &velocity(void) const { return _velocity; }
+		virtual void set_velocity(const Vector &velocity) { _velocity = velocity; }
 	};
 };
 

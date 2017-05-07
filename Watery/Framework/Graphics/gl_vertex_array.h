@@ -18,10 +18,10 @@ namespace watery
 	public:
 		GLVertexArray(void) : _vao(0), _vbo(0) {}
 		GLVertexArray(const float *vertices, GLsizei size);
-		virtual ~GLVertexArray(void);
-		virtual void load(const float *vertices, GLsizei size);
-		virtual void activate(void) const;
-		virtual void set_pointers(GLuint index, GLuint size, GLuint stride, GLuint pointer_offset);
+		~GLVertexArray(void);
+		void load(const float *vertices, GLsizei size);
+		void activate(void) const;
+		void set_pointers(GLuint index, GLuint size, GLuint stride, GLuint pointer_offset);
 	};
 }
 
