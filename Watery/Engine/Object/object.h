@@ -6,7 +6,6 @@
 #define WATERY_OBJECT_H
 
 #include "../Component/component_node.h"
-#include "../Component/component_factory.h"
 
 namespace watery
 {
@@ -14,10 +13,9 @@ namespace watery
 	{
 	protected:
 		ComponentNode _components[COMPONENT_TYPE_COUNT];
-		ComponentFactory &_factory;
 		
 	public:
-		Object(void) : _factory(ComponentFactory::instance()) {}
+		Object(void) {}
 		virtual ~Object(void) {}
 		virtual bool bound(ComponentType type) const { return _components[type].bound(); }
 		virtual bool enabled(ComponentType type) const { return _components[type].enabled(); }

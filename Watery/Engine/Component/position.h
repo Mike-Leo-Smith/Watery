@@ -21,9 +21,9 @@ namespace watery
 		virtual const Vector &position(void) const { return _position; }
 		virtual void set_position(const Vector &position) { _position = position; }
 		virtual void move(const Vector &direction) { _position += direction; }
-		virtual void move_x(const float dx) { _position.set_x(_position.x() + dx); }
-		virtual void move_y(const float dy) { _position.set_y(_position.y() + dy); }
-		virtual void move_z(const float dz) { _position.set_z(_position.z() + dz); }
+		virtual void move_x(float dx) { _position.set_x(_position.x() + dx); }
+		virtual void move_y(float dy) { _position.set_y(_position.y() + dy); }
+		virtual void move_z(float dz) { _position.set_z(_position.z() + dz); }
 	};
 }
 

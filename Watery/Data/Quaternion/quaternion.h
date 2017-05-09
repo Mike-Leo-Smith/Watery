@@ -16,7 +16,7 @@ namespace watery
 	
 	public:
 		Quaternion(float w = 0, float x = 0, float y = 0, float z = 0) : _wxyz { w, x, y, z } {}
-		Quaternion(const float *wxyz) { memmove(_wxyz, wxyz, 4); }
+		Quaternion(const float *wxyz) { set_wxyz(wxyz); }
 		~Quaternion(void) {}
 		float length(void) const;
 		void normalize(void);
@@ -29,7 +29,7 @@ namespace watery
 		void set_x(float x) { _wxyz[1] = x; }
 		void set_y(float y) { _wxyz[2] = y; }
 		void set_z(float z) { _wxyz[3] = z; }
-		void set_wxyz(const float *wxyz) { memmove(_wxyz, wxyz, 4); }
+		void set_wxyz(const float *wxyz);
 	};
 }
 

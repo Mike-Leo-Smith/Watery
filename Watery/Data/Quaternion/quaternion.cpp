@@ -21,4 +21,12 @@ namespace watery
 		_wxyz[2] /= len;
 		_wxyz[3] /= len;
 	}
+	
+	void Quaternion::set_wxyz(const float *wxyz)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			_wxyz[i] = wxyz[i];
+		}
+	}
 }

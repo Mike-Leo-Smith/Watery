@@ -30,6 +30,7 @@ namespace watery
 		
 		Window(void) : _handler(nullptr) {}
 		Window(const Window &) = delete;
+		Window(Window &&) = delete;
 		Window &operator=(const Window &) = delete;
 		~Window(void);
 	
@@ -41,6 +42,8 @@ namespace watery
 		bool key_down(KeyCode key) const;
 		bool alive(void) const { return (_handler != nullptr && !glfwWindowShouldClose(_handler)); }
 		void update(void);
+		int width(void) const;
+		int height(void) const;
 		static Window &instance(void) { return *_instance; }
 	};
 }

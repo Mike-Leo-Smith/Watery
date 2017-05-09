@@ -15,9 +15,9 @@ namespace watery
 	{
 	public:
 		virtual ~Mathematics(void) {}
-		virtual const Matrix identity(const Vector &position) const;
+		virtual const Matrix identity(void) const;
 		virtual const Matrix translation(const Vector &position) const;
-		virtual const Matrix scale(const Size &scale) const;
+		virtual const Matrix scale(const Vector &scale) const;
 		virtual const Matrix ortho_proj(const Vector &left_bottom_near, const Vector &right_top_far) const;
 		virtual const Matrix persp_proj(const Vector &left_bottom_near, const Vector &right_top_far) const;
 		virtual const Matrix ortho_proj(float left, float right, float bottom, float top, float near, float far) const;

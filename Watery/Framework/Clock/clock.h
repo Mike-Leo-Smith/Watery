@@ -19,6 +19,7 @@ namespace watery
 		
 		Clock(void) {}
 		Clock(const Clock &) = delete;
+		Clock(Clock &&) = delete;
 		Clock &operator=(const Clock &) = delete;
 		~Clock(void) {}
 		

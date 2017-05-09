@@ -16,7 +16,7 @@ namespace watery
 		
 	public:
 		Color(float red = 0, float green = 0, float blue = 0, float alpha = 0) : _rgba{red, green, blue, alpha} {}
-		Color(const float *rgba) { memmove(_rgba, rgba, 4); }
+		Color(const float *rgba) { set_rgba(rgba); }
 		~Color(void) {}
 		float red(void) const { return _rgba[0]; }
 		float green(void) const { return _rgba[1]; }
@@ -27,7 +27,7 @@ namespace watery
 		void set_green(float green) { _rgba[1] = green; }
 		void set_blue(float blue) { _rgba[2] = blue; }
 		void set_alpha(float alpha) { _rgba[3] = alpha; }
-		void set_rgba(const float *rgba) { memmove(_rgba, rgba, 4); }
+		void set_rgba(const float *rgba);
 	};
 }
 

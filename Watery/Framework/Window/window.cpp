@@ -111,4 +111,26 @@ namespace watery
 			glfwPollEvents();
 		}
 	}
+	
+	int Window::width(void) const
+	{
+		int width = 0, height = 0;
+		
+		if (_handler != nullptr)
+		{
+			glfwGetFramebufferSize(_handler, &width, &height);
+		}
+		return width;
+	}
+	
+	int Window::height(void) const
+	{
+		int width = 0, height = 0;
+		
+		if (_handler != nullptr)
+		{
+			glfwGetFramebufferSize(_handler, &width, &height);
+		}
+		return height;
+	}
 }

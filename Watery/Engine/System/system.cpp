@@ -8,7 +8,7 @@
 
 namespace watery
 {
-	void System::_handle_message(void)
+	void System::handle_message(void)
 	{
 		std::vector<Message *> &messages = _messenger.retrieve();
 		
@@ -27,18 +27,18 @@ namespace watery
 			
 			if (message->signed_by(_name))
 			{
-				_dispatch_message(message);
+				dispatch_message(message);
 				continue;
 			}
 			
 			switch (message->type())
 			{
 			case MESSAGE_KEYBOARD_EVENT:
-				_handle_keyboard_message(message);
+				handle_keyboard_message(static_cast<KeyboardMessage *>(message));
 				break;
 			
 			case MESSAGE_MOUSE_EVENT:
-				_handle_mouse_message(message);
+				handle_mouse_message(static_cast<MouseMessage *>(message));
 				break;
 			
 			default:
@@ -62,7 +62,7 @@ namespace watery
 	{
 		if (!_paused && _timer.time_out())
 		{
-			_updating_tasks();                                              // Do updating tasks.
+			updating_tasks();                                              // Do updating tasks.
 			
 			if (_recoder.size() >= SYSTEM_TIMER_CALIBRATION_FREQUENCY)
 			{

@@ -3,18 +3,19 @@
 //
 
 #include "camera.h"
+#include "../Component/position.h"
 
 namespace watery
 {
 	Camera::Camera(const Vector &position)
 	{
 		// Setting up the position component.
-		bind_component(_factory.create_position(position));
+		bind_component(new Position(position));
 	}
 	
 	void Camera::move(const Vector &direction)
 	{
-		Position *position = component(COMPONENT_POSITION)->decode<Position>();
+		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
 		
 		if (position != nullptr)
 		{
@@ -24,7 +25,7 @@ namespace watery
 	
 	void Camera::move_x(float dx)
 	{
-		Position *position = component(COMPONENT_POSITION)->decode<Position>();
+		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
 		
 		if (position != nullptr)
 		{
@@ -34,7 +35,7 @@ namespace watery
 	
 	void Camera::move_y(float dy)
 	{
-		Position *position = component(COMPONENT_POSITION)->decode<Position>();
+		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
 		
 		if (position != nullptr)
 		{
@@ -44,7 +45,7 @@ namespace watery
 	
 	void Camera::move_z(float dz)
 	{
-		Position *position = component(COMPONENT_POSITION)->decode<Position>();
+		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
 		
 		if (position != nullptr)
 		{
@@ -54,7 +55,7 @@ namespace watery
 	
 	const Vector Camera::position(void) const
 	{
-		const Position *pos = component(COMPONENT_POSITION)->decode<Position>();
+		const Position *pos = static_cast<const Position *>(component(COMPONENT_POSITION));
 		
 		if (pos != nullptr)
 		{

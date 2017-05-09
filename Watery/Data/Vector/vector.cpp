@@ -41,7 +41,7 @@ namespace watery
 	
 	const Vector Vector::operator+(const Vector &rhs) const
 	{
-		return Vector(_xyz[0] + rhs._xyz[1], _xyz[1] + rhs._xyz[1], _xyz[2] + rhs._xyz[2]);
+		return Vector(_xyz[0] + rhs._xyz[0], _xyz[1] + rhs._xyz[1], _xyz[2] + rhs._xyz[2]);
 	}
 	
 	const Vector Vector::operator-(const Vector &rhs) const
@@ -80,5 +80,13 @@ namespace watery
 	const Vector Vector::operator/(float rhs) const
 	{
 		return Vector(_xyz[0] / rhs, _xyz[1] / rhs, _xyz[2] / rhs);
+	}
+	
+	void Vector::set_xyz(const float *xyz)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			_xyz[i] = xyz[i];
+		}
 	}
 }

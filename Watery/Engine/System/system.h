@@ -8,6 +8,8 @@
 #include <string>
 #include <deque>
 #include "../Message/messenger.h"
+#include "../Message/keyboard_message.h"
+#include "../Message/mouse_message.h"
 
 namespace watery
 {
@@ -28,21 +30,18 @@ namespace watery
 		System &operator=(const System &) = delete;
 	
 	protected:
-		// Basic timer functions.
-		virtual Microsecond _elapsed_time(void) const { return _timer.elapsed_time(); }
-		
 		// Basic progresses for message processing.
-		virtual void _dispatch_message(Message *message) { message->sign(_name), _messenger.dispatch(message); }
+		virtual void dispatch_message(Message *message) { message->sign(_name), _messenger.dispatch(message); }
 		
 		// Functions handling specific messages. Pass them on by default.
-		virtual void _handle_keyboard_message(Message *message) { _dispatch_message(message); }
-		virtual void _handle_mouse_message(Message *message) { _dispatch_message(message); }
+		virtual void handle_keyboard_message(KeyboardMessage *message) { dispatch_message(message); }
+		virtual void handle_mouse_message(MouseMessage *message) { dispatch_message(message); }
 		
 		// Updating tasks.
-		virtual void _handle_message(void);
+		virtual void handle_message(void);
 		
 		// Interface for updating.
-		virtual void _updating_tasks(void) { _handle_message(); }
+		virtual void updating_tasks(void) { handle_message(); }
 	
 	public:
 		System(const std::string &name, Microsecond update_interval = SYSTEM_DEFAULT_UPDATE_INTERVAL);

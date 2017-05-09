@@ -7,7 +7,7 @@
 
 namespace watery
 {
-	const Matrix Mathematics::identity(const Vector &position) const
+	const Matrix Mathematics::identity(void) const
 	{
 		const float entries[] =
 				{
@@ -43,11 +43,11 @@ namespace watery
 		return Matrix(entries);
 	}
 	
-	const Matrix Mathematics::scale(const Size &scale) const
+	const Matrix Mathematics::scale(const Vector &scale) const
 	{
-		float w = scale.width();
-		float h = scale.height();
-		float d = scale.depth();
+		float w = scale.x();
+		float h = scale.y();
+		float d = scale.z();
 		
 		float entries[] =
 				{

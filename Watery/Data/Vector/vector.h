@@ -6,6 +6,7 @@
 #define WATERY_VECTOR_H
 
 #include <cstring>
+#include <iostream>
 
 namespace watery
 {
@@ -16,7 +17,7 @@ namespace watery
 	
 	public:
 		Vector(float x = 0, float y = 0, float z = 0) : _xyz { x, y, z } {}
-		Vector(float *xyz) { memmove(_xyz, xyz, 3); }
+		Vector(float *xyz) { set_xyz(xyz); }
 		~Vector(void) {}
 		float length(void) const;
 		void normalize(void);
@@ -27,7 +28,8 @@ namespace watery
 		void set_x(float x) { _xyz[0] = x; }
 		void set_y(float y) { _xyz[1] = y; }
 		void set_z(float z) { _xyz[2] = z; }
-		void set_xyz(const float *xyz) { memmove(_xyz, xyz, 3); }
+		void set(int pos, float x) { _xyz[pos] = x; }
+		void set_xyz(const float *xyz);
 		Vector &operator*=(float rhs);
 		Vector &operator/=(float rhs);
 		Vector &operator+=(const Vector &rhs);
@@ -36,6 +38,7 @@ namespace watery
 		const Vector operator-(const Vector &rhs) const;
 		float operator*(const Vector &rhs) const;
 		const Vector operator*(float rhs) const;
+		friend const Vector operator*(float lhs, const Vector rhs) { return rhs * lhs; }
 		const Vector operator/(float rhs) const;
 		const Vector operator+(void) const { return *this; }
 		const Vector operator-(void) const { return Vector(-_xyz[0], -_xyz[1], -_xyz[2]); }

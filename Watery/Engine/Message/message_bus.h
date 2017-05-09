@@ -22,13 +22,14 @@ namespace watery
 		// Forbidden functions.
 		MessageBus(void) {}
 		MessageBus(const MessageBus &) = delete;
-		virtual ~MessageBus(void) {}
+		MessageBus(MessageBus &&) = delete;
+		~MessageBus(void) {}
 		MessageBus &operator=(const MessageBus &) = delete;
 		
 	public:
-		virtual bool empty(void) const { return _message_queue.empty(); }
-		virtual Message *retrieve(void);
-		virtual void dispatch(Message *message);
+		bool empty(void) const { return _message_queue.empty(); }
+		Message *retrieve(void);
+		void dispatch(Message *message);
 		
 		// Get the singleton instance.
 		static MessageBus &instance(void) { return *_instance; }

@@ -1,24 +1,34 @@
-#include <vector>
-#include <iostream>
-#include "Watery/Engine/Resource/resource_manager.h"
-#include "Watery/Engine/Component/audio.h"
-#include "Watery/Engine/Component/component_factory.h"
+#include <gl/glew.h>
+#include "Watery/Engine/World/world.h"
+#include "Watery/Engine/System/renderer.h"
 #include "Watery/Engine/Mathematics/mathematics.h"
+#include "Watery/Engine/Resource/resource_manager.h"
+#include "Watery/Engine/Component/texture.h"
+#include "Watery/Engine/Component/position.h"
+#include "Watery/Engine/Component/shader.h"
+#include "Watery/Engine/Component/vertex_array.h"
+#include "Watery/Engine/System/logic.h"
+#include "Watery/Engine/System/input.h"
 
 int main(void)
 {
-	watery::ResourceManager manager;
-	watery::ComponentFactory &factory = watery::ComponentFactory::instance();
+	watery::Renderer *renderer = new watery::Renderer;
+	watery::Logic *logic = new watery::Logic;
+	watery::Input *input = new watery::Input;
 	
-	const watery::ALAudio *al_audio_1 = manager.create_audio("Audio 1", "Assets/Sounds/test.wav");
-	watery::Audio *audio_1 = factory.create_audio(al_audio_1);
-	delete al_audio_1;
-	audio_1->audio()->play(true);
+	renderer->init("Test", 800, 600);
+	logic->init();
 	
-	float x = 1.0 / 0;
-	std::cout << x << std::endl;
+	renderer->start();
+	logic->start();
+	input->start();
 	
-	std::cout << sizeof(watery::Mathematics) << std::endl;
-	
-	for (;;) {}
+	while (!glfwWindowShouldClose(watery::Window::instance().handler()))
+	{
+		glfwPollEvents();
+		
+		input->update();
+		logic->update();
+		renderer->update();
+	}
 }

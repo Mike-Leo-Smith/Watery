@@ -30,8 +30,8 @@ set(SOURCE_FILES
 		Watery/Engine/Component/component_node.h
 		Watery/Engine/Component/component_factory.cpp
 		Watery/Engine/Component/component_factory.h
-		Watery/Engine/Resource/resource.cpp
-		Watery/Engine/Resource/resource.h
+		Watery/Engine/Resource/resource_manager.cpp
+		Watery/Engine/Resource/resource_manager.h
 		Watery/Engine/Object/object.cpp
 		Watery/Engine/Object/object.h
 		Watery/Engine/Message/messenger.cpp
@@ -48,8 +48,6 @@ set(SOURCE_FILES
 		Watery/Engine/System/renderer.h
 		Watery/Engine/Sound/sound.cpp
 		Watery/Engine/Sound/sound.h
-		Watery/Engine/Object/animation.cpp
-		Watery/Engine/Object/animation.h
 		Watery/Engine/System/communication.cpp
 		Watery/Engine/System/communication.h
 		Watery/Engine/Message/keyboard_message.cpp
@@ -58,16 +56,14 @@ set(SOURCE_FILES
 		Watery/Engine/Timer/timer.h
 		Watery/Engine/Object/camera.cpp
 		Watery/Engine/Object/camera.h
-		Watery/Engine/Resource/resource_manager.cpp
-		Watery/Engine/Resource/resource_manager.h
 		Watery/Framework/Network/network.cpp
 		Watery/Framework/Network/network.h
 		Watery/Framework/Clock/clock.cpp
 		Watery/Framework/Clock/clock.h
 		Watery/Engine/Physics/physics.cpp
 		Watery/Engine/Physics/physics.h
-		Watery/Framework/Image/lodepng.cpp
-		Watery/Framework/Image/lodepng.h
+		Watery/Framework/3rdParty/lodepng.cpp
+		Watery/Framework/3rdParty/lodepng.h
 		Watery/Framework/Audio/al_audio.cpp
 		Watery/Framework/Audio/al_audio.h
 		Watery/Framework/Graphics/gl_texture.cpp
@@ -79,7 +75,7 @@ set(SOURCE_FILES
 		Watery/Framework/Window/window.cpp
 		Watery/Framework/Window/window.h
 		Watery/Framework/Audio/al_initializer.cpp
-		Watery/Framework/Audio/al_initializer.h Watery/Data/Matrix/matrix.cpp Watery/Data/Matrix/matrix.h Watery/Engine/Mathematics/mathematics.cpp Watery/Engine/Mathematics/mathematics.h Watery/Data/Quaternion/quaternion.cpp Watery/Data/Quaternion/quaternion.h)
+		Watery/Framework/Audio/al_initializer.h Watery/Data/Matrix/matrix.cpp Watery/Data/Matrix/matrix.h Watery/Engine/Mathematics/mathematics.cpp Watery/Engine/Mathematics/mathematics.h Watery/Data/Quaternion/quaternion.cpp Watery/Data/Quaternion/quaternion.h Watery/Engine/World/world.cpp Watery/Engine/World/world.h Watery/Engine/Component/component_manager.cpp Watery/Engine/Component/component_manager.h Watery/Engine/Component/vertex_array.cpp Watery/Engine/Component/vertex_array.h Watery/Framework/Graphics/gl_graphics.cpp Watery/Framework/Graphics/gl_graphics.h Watery/Engine/System/logic.cpp Watery/Engine/System/logic.h Watery/Engine/Message/mouse_message.cpp Watery/Engine/Message/mouse_message.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)

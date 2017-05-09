@@ -20,16 +20,17 @@ namespace watery
 		
 		ComponentFactory(void) {}
 		ComponentFactory(const ComponentFactory &) = delete;
+		ComponentFactory(ComponentFactory &&) = delete;
 		ComponentFactory &operator=(const ComponentFactory &) = delete;
-		virtual ~ComponentFactory(void) {}
+		~ComponentFactory(void) {}
 	
 	public:
+		Position *create_position(const Vector &coord) const { return new Position(coord); }
+		Velocity *create_velocity(const Vector &coord) const { return new Velocity(coord); }
+		Audio *create_audio(const ALAudio *audio) const { return new Audio(audio); }
+		Shader *create_shader(const GLShader *shader) const { return new Shader(shader); }
+		Texture *create_texture(const GLTexture *texture) const { return new Texture(texture); }
 		static ComponentFactory &instance(void) { return *_instance; }
-		virtual Position *create_position(const Vector &coord) const { return new Position(coord); }
-		virtual Velocity *create_velocity(const Vector &coord) const { return new Velocity(coord); }
-		virtual Audio *create_audio(const ALAudio *audio) const { return new Audio(audio); }
-		virtual Shader *create_shader(const GLShader *shader) const { return new Shader(shader); }
-		virtual Texture *create_texture(const GLTexture *texture) const { return new Texture(texture); }
 	};
 }
 

@@ -14,14 +14,16 @@ namespace watery
 	private:
 		GLuint _vbo;
 		GLuint _vao;
+		GLsizei _elements;
 	
 	public:
-		GLVertexArray(void) : _vao(0), _vbo(0) {}
-		GLVertexArray(const float *vertices, GLsizei size);
+		GLVertexArray(void) : _vao(0), _vbo(0), _elements(0) {}
+		GLVertexArray(const float *vertices, GLsizei size, GLsizei elements);
 		~GLVertexArray(void);
-		void load(const float *vertices, GLsizei size);
+		GLsizei elements(void) const { return _elements; }
+		void load(const float *vertices, GLsizei size, GLsizei elements);
 		void activate(void) const;
-		void set_pointers(GLuint index, GLuint size, GLuint stride, GLuint pointer_offset);
+		void set_pointers(GLuint index, GLuint size, GLuint stride, GLuint offset);
 	};
 }
 
