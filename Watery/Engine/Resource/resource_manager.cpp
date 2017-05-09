@@ -171,7 +171,7 @@ namespace watery
 				std::string s;
 				
 				file >> s;
-				while (s != "#")
+				while (s != "#" && !file.eof())
 				{
 					if (s == ">")
 					{
@@ -186,7 +186,7 @@ namespace watery
 					}
 					else if (s == "{")
 					{
-						GLsizei elements = 0;
+						GLsizei count = 0;
 						std::vector<float> vertices;
 						
 						file >> s;
@@ -194,7 +194,7 @@ namespace watery
 						{
 							if (s == ".")
 							{
-								file >> elements;
+								file >> count;
 							}
 							else
 							{
@@ -202,7 +202,9 @@ namespace watery
 							}
 							file >> s;
 						}
-						vertex_array->load(vertices.data(), (GLsizei)vertices.size(), elements);
+						vertex_array->load(vertices.data(), (GLsizei)vertices.size());
+						vertex_array->set_type(GL_TRIANGLE_FAN);
+						vertex_array->set_count(count);
 					}
 					file >> s;
 				}

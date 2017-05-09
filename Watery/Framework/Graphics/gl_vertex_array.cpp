@@ -6,10 +6,10 @@
 
 namespace watery
 {
-	GLVertexArray::GLVertexArray(const float *vertices, GLsizei size, GLsizei elements)
-			: _vao(0), _vbo(0), _elements(elements)
+	GLVertexArray::GLVertexArray(const float *vertices, GLsizei size, GLsizei count, GLenum type)
+			: _vao(0), _vbo(0), _count(count), _type(type)
 	{
-		load(vertices, size, elements);
+		load(vertices, size);
 	}
 	
 	GLVertexArray::~GLVertexArray(void)
@@ -18,15 +18,13 @@ namespace watery
 		glDeleteBuffers(1, &_vbo);
 	}
 	
-	void GLVertexArray::load(const float *vertices, GLsizei size, GLsizei elements)
+	void GLVertexArray::load(const float *vertices, GLsizei size)
 	{
 		glGenBuffers(1, &_vbo);
 		glGenVertexArrays(1, &_vao);
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 		glBufferData(GL_ARRAY_BUFFER, size * sizeof(GLfloat), vertices, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		
-		_elements = elements;
 	}
 	
 	void GLVertexArray::activate(void) const

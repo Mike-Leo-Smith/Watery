@@ -71,4 +71,19 @@ namespace watery
 	{
 		delete component(COMPONENT_POSITION);
 	}
+	
+	float Camera::x(void) const
+	{
+		return static_cast<const Position *>(component(COMPONENT_POSITION))->x();
+	}
+	
+	float Camera::y(void) const
+	{
+		return static_cast<const Position *>(component(COMPONENT_POSITION))->y();
+	}
+	
+	float Camera::z(void) const
+	{
+		return static_cast<const Position *>(component(COMPONENT_POSITION))->z();
+	}
 }

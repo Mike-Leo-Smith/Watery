@@ -4,6 +4,9 @@
 
 #include <gl/glew.h>
 #include <iostream>
+
+#include <glm/glm.hpp>
+
 #include "system.h"
 #include "renderer.h"
 #include "../Mathematics/mathematics.h"
@@ -68,9 +71,15 @@ namespace watery
 	{
 		Mathematics math;
 		
-		Matrix trans = math.translation(Vector(-1, -1));
-		Matrix scale = math.scale(Vector(2.0f / _window.width(), 2.0f / _window.height(), 1.0f));
-		return trans * scale;
+		//Matrix trans = math.translation(Vector(-1, -1));
+		//Matrix scale = math.scale(Vector(2.0f / _window.width(), 2.0f / _window.height(), 1.0f));
+		
+		//glm::mat4 persp = glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 100.0f);
+		//glm::mat4 persp = glm::ortho(0.0f, (float)_window.width(), 0.0f, (float)_window.height());
+		//Matrix pers(glm::value_ptr(persp));
+		Matrix ortho = math.ortho_proj(0, (float)_window.width(), 0.0f, (float)_window.height(), -100, 100);
+		
+		return ortho;
 	}
 	
 	void Renderer::init(const std::string &window_name, int width, int height)

@@ -23,6 +23,7 @@ namespace watery
 	public:
 		Input(const std::string &name = "Input", Microsecond interval = INPUT_DEFAULT_UPDATE_INTERVAL)
 				: System(name, interval), _window(Window::instance()) {}
+		virtual ~Input(void) {}
 	};
 }
 

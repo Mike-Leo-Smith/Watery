@@ -21,6 +21,9 @@ namespace watery
 		virtual void move_x(float dx);
 		virtual void move_y(float dy);
 		virtual void move_z(float dz);
+		virtual float x(void) const;
+		virtual float y(void) const;
+		virtual float z(void) const;
 	};
 }
 

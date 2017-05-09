@@ -171,7 +171,7 @@ static unsigned uivector_resize(uivector *p, size_t size)
 	return 1; /*success*/
 }
 
-/*resize and give all new elements the value*/
+/*resize and give all new count the value*/
 static unsigned uivector_resizev(uivector *p, size_t size, unsigned value)
 {
 	size_t oldsize = p->size, i;

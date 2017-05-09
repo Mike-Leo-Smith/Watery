@@ -24,6 +24,9 @@ namespace watery
 		virtual void move_x(float dx) { _position.set_x(_position.x() + dx); }
 		virtual void move_y(float dy) { _position.set_y(_position.y() + dy); }
 		virtual void move_z(float dz) { _position.set_z(_position.z() + dz); }
+		virtual float x(void) const { return _position.x(); }
+		virtual float y(void) const { return _position.y(); }
+		virtual float z(void) const { return _position.z(); }
 	};
 }
 

@@ -18,6 +18,8 @@ namespace watery
 		KEY_LEFT,
 		KEY_RIGHT,
 		KEY_SPACE,
+		KEY_PLUS,
+		KEY_MINUS,
 		
 		KEY_CODE_COUNT
 	};

@@ -12,10 +12,10 @@ namespace watery
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 	
-	void GLGraphics::draw(const GLVertexArray *vertex_array, DrawType draw_type)
+	void GLGraphics::draw(const GLVertexArray *vertex_array)
 	{
 		vertex_array->activate();
-		glDrawArrays(draw_type, 0, vertex_array->elements());
+		glDrawArrays(vertex_array->type(), 0, vertex_array->count());
 	}
 	
 	void GLGraphics::swap_buffers(void)

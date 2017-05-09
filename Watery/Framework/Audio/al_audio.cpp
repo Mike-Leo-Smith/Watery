@@ -37,4 +37,12 @@ namespace watery
 		alSourcei(_source, AL_LOOPING, loop);
 		alSourcePlay(_source);
 	}
+	
+	bool ALAudio::playing(void) const
+	{
+		ALint state;
+		
+		alGetSourcei(_source, AL_SOURCE_STATE, &state);
+		return (state == AL_PLAYING);
+	}
 }

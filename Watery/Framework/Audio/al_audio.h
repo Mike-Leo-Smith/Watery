@@ -21,6 +21,7 @@ namespace watery
 		~ALAudio(void);
 		void load(const void *data, ALenum format, ALsizei size, ALsizei freq);
 		void play(ALboolean loop = true) const;
+		bool playing(void) const;
 		void pause(void) const { alSourcePause(_source); }
 		void stop(void) const { alSourceStop(_source); }
 		ALuint id(void) const { return _source; }

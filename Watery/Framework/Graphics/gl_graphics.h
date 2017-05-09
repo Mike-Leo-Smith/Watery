@@ -14,12 +14,6 @@
 
 namespace watery
 {
-	enum DrawType
-	{
-		TRIANGLE_FAN = GL_TRIANGLE_FAN,
-		TRIANGLE_STRIPE = GL_TRIANGLE_STRIP,
-	};
-	
 	class GLGraphics
 	{
 	private:
@@ -27,8 +21,8 @@ namespace watery
 	
 	public:
 		GLGraphics(void) : _window(Window::instance()) {}
-		void clear(float red = 0, float green = 0, float blue = 0, float alpha = 1.0);
-		void draw(const GLVertexArray *vertex_array, DrawType draw_type = TRIANGLE_FAN);
+		void clear(float red = 0, float green = 0, float blue = 0, float alpha = 0.0);
+		void draw(const GLVertexArray *vertex_array);
 		void swap_buffers(void);
 	};
 }

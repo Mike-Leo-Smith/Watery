@@ -46,8 +46,6 @@ set(SOURCE_FILES
 		Watery/Engine/System/input.h
 		Watery/Engine/System/renderer.cpp
 		Watery/Engine/System/renderer.h
-		Watery/Engine/Sound/sound.cpp
-		Watery/Engine/Sound/sound.h
 		Watery/Engine/System/communication.cpp
 		Watery/Engine/System/communication.h
 		Watery/Engine/Message/keyboard_message.cpp
@@ -75,7 +73,31 @@ set(SOURCE_FILES
 		Watery/Framework/Window/window.cpp
 		Watery/Framework/Window/window.h
 		Watery/Framework/Audio/al_initializer.cpp
-		Watery/Framework/Audio/al_initializer.h Watery/Data/Matrix/matrix.cpp Watery/Data/Matrix/matrix.h Watery/Engine/Mathematics/mathematics.cpp Watery/Engine/Mathematics/mathematics.h Watery/Data/Quaternion/quaternion.cpp Watery/Data/Quaternion/quaternion.h Watery/Engine/World/world.cpp Watery/Engine/World/world.h Watery/Engine/Component/component_manager.cpp Watery/Engine/Component/component_manager.h Watery/Engine/Component/vertex_array.cpp Watery/Engine/Component/vertex_array.h Watery/Framework/Graphics/gl_graphics.cpp Watery/Framework/Graphics/gl_graphics.h Watery/Engine/System/logic.cpp Watery/Engine/System/logic.h Watery/Engine/Message/mouse_message.cpp Watery/Engine/Message/mouse_message.h)
+		Watery/Framework/Audio/al_initializer.h
+		Watery/Data/Matrix/matrix.cpp
+		Watery/Data/Matrix/matrix.h
+		Watery/Engine/Mathematics/mathematics.cpp
+		Watery/Engine/Mathematics/mathematics.h
+		Watery/Data/Quaternion/quaternion.cpp
+		Watery/Data/Quaternion/quaternion.h
+		Watery/Engine/World/world.cpp
+		Watery/Engine/World/world.h
+		Watery/Engine/Component/component_manager.cpp
+		Watery/Engine/Component/component_manager.h
+		Watery/Engine/Component/vertex_array.cpp
+		Watery/Engine/Component/vertex_array.h
+		Watery/Framework/Graphics/gl_graphics.cpp
+		Watery/Framework/Graphics/gl_graphics.h
+		Watery/Engine/System/logic.cpp
+		Watery/Engine/System/logic.h
+		Watery/Engine/Message/mouse_message.cpp
+		Watery/Engine/Message/mouse_message.h
+		Watery/Engine/System/controller.cpp
+		Watery/Engine/System/controller.h
+		Watery/Engine/System/sound.cpp
+		Watery/Engine/System/sound.h
+		Watery/Framework/XML/xml_parser.cpp
+		Watery/Framework/XML/xml_parser.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)

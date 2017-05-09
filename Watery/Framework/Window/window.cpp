@@ -47,6 +47,15 @@ namespace watery
 		
 		case KEY_SPACE:
 			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_SPACE);
+			break;
+		
+		case KEY_PLUS:
+			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_EQUAL);
+			break;
+		
+		case KEY_MINUS:
+			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_MINUS);
+			break;
 			
 		default:
 			break;
@@ -120,6 +129,7 @@ namespace watery
 		{
 			glfwGetFramebufferSize(_handler, &width, &height);
 		}
+		
 		return width;
 	}
 	

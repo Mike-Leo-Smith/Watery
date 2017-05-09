@@ -16,6 +16,7 @@ namespace watery
 	{
 	private:
 		World &_world;
+		Window &_window;
 		ResourceManager &_manager;
 	
 	protected:
@@ -23,7 +24,7 @@ namespace watery
 	
 	public:
 		Logic(const std::string &name = "Logic", Microsecond interval = LOGIC_DEFAULT_UPDATE_INTERVAL)
-				: System(name, interval), _world(World::instance()), _manager(ResourceManager::instance()) {}
+				: System(name, interval), _world(World::instance()), _window(Window::instance()), _manager(ResourceManager::instance()) {}
 		virtual ~Logic(void) {}
 		virtual void init(void);
 	};
