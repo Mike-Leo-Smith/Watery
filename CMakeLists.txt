@@ -91,7 +91,7 @@ set(SOURCE_FILES
 		Watery/Engine/System/sound.cpp
 		Watery/Engine/System/sound.h
 		Watery/Framework/XML/xml_parser.cpp
-		Watery/Framework/XML/xml_parser.h Watery/Engine/Component/frame_animation.cpp Watery/Engine/Component/frame_animation.h Watery/Engine/Component/health.cpp Watery/Engine/Component/health.h Watery/Engine/Component/position_animation.cpp Watery/Engine/Component/position_animation.h)
+		Watery/Framework/XML/xml_parser.h Watery/Engine/Component/frame_animation.cpp Watery/Engine/Component/frame_animation.h Watery/Engine/Component/health.cpp Watery/Engine/Component/health.h Watery/Engine/Component/position_animation.cpp Watery/Engine/Component/position_animation.h Watery/Engine/Physics/shape.cpp Watery/Engine/Physics/shape.h Watery/Engine/Physics/rectangle.cpp Watery/Engine/Physics/rectangle.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)

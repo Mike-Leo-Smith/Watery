@@ -13,16 +13,15 @@ namespace watery
 	class Mathematics
 	{
 	public:
-		virtual ~Mathematics(void) {}
-		virtual const Matrix identity(void) const;
-		virtual const Matrix translation(const Vector &position) const;
-		virtual const Matrix scale(float s) const;
-		virtual const Matrix scale(const Vector &scale) const;
-		virtual const Matrix ortho_proj(const Vector &left_bottom_near, const Vector &right_top_far) const;
-		virtual const Matrix persp_proj(const Vector &left_bottom_near, const Vector &right_top_far) const;
-		virtual const Matrix ortho_proj(float left, float right, float bottom, float top, float near, float far) const;
-		virtual const Matrix persp_proj(float fov, float aspect, float near, float far) const;
-		virtual const Matrix camera_at(const Vector &position) const;
+		static const Matrix identity(void);
+		static const Matrix translation(const Vector &position);
+		static const Matrix scale(float s);
+		static const Matrix scale(const Vector &scale);
+		static const Matrix ortho_proj(const Vector &left_bottom_near, const Vector &right_top_far);
+		static const Matrix persp_proj(const Vector &left_bottom_near, const Vector &right_top_far);
+		static const Matrix ortho_proj(float left, float right, float bottom, float top, float near, float far);
+		static const Matrix persp_proj(float fov, float aspect, float near, float far);
+		static const Matrix camera_at(const Vector &position);
 	};
 }
 

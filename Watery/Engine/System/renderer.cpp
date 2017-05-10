@@ -22,9 +22,8 @@ namespace watery
 	{
 		handle_message();
 		
-		Mathematics math;
 		Matrix model;
-		Matrix view = math.camera_at(_world.camera().position());
+		Matrix view = Mathematics::camera_at(_world.camera().position());
 		Matrix proj = get_proj_matrix();
 		
 		_graphics.clear(0.3, 0.4, 0.6);
@@ -54,7 +53,7 @@ namespace watery
 						position += static_cast<PositionAnimation *>(object->component(COMPONENT_POSITION_ANIMATION))->offset();
 					}
 					
-					model = math.translation(position);
+					model = Mathematics::translation(position);
 					shader->set_uniform_mat4fv("model", model.entries());
 				}
 				
@@ -77,9 +76,7 @@ namespace watery
 	
 	const Matrix Renderer::get_proj_matrix(void) const
 	{
-		Mathematics math;
-		
-		Matrix ortho = math.ortho_proj(0, _window.logical_width(), 0.0f, _window.logical_height(), -100, 100);
+		Matrix ortho = Mathematics::ortho_proj(0, _window.logical_width(), 0.0f, _window.logical_height(), -100, 100);
 		return ortho;
 	}
 	

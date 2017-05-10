@@ -8,7 +8,7 @@
 #include <fstream>
 #include <sstream>
 #include "resource_manager.h"
-#include "../../Framework/3rdParty/lodepng.h"
+#include "../../Framework/ThirdParty/lodepng.h"
 
 namespace watery
 {

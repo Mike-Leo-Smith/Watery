@@ -7,7 +7,7 @@
 
 namespace watery
 {
-	const Matrix Mathematics::identity(void) const
+	const Matrix Mathematics::identity(void)
 	{
 		const float entries[] =
 				{
@@ -20,7 +20,7 @@ namespace watery
 		return Matrix(entries);
 	}
 	
-	const Matrix Mathematics::translation(const Vector &position) const
+	const Matrix Mathematics::translation(const Vector &position)
 	{
 		float x = position.x();
 		float y = position.y();
@@ -43,7 +43,7 @@ namespace watery
 		return Matrix(entries);
 	}
 	
-	const Matrix Mathematics::scale(const Vector &scale) const
+	const Matrix Mathematics::scale(const Vector &scale)
 	{
 		float w = scale.x();
 		float h = scale.y();
@@ -60,7 +60,7 @@ namespace watery
 		return Matrix(entries);
 	}
 	
-	const Matrix Mathematics::ortho_proj(const Vector &left_bottom_near, const Vector &right_top_far) const
+	const Matrix Mathematics::ortho_proj(const Vector &left_bottom_near, const Vector &right_top_far)
 	{
 		float l = left_bottom_near.x();
 		float b = left_bottom_near.y();
@@ -84,7 +84,7 @@ namespace watery
 		return Matrix(entries);
 	}
 	
-	const Matrix Mathematics::camera_at(const Vector &position) const
+	const Matrix Mathematics::camera_at(const Vector &position)
 	{
 		float x = position.x();
 		float y = position.y();
@@ -105,7 +105,7 @@ namespace watery
 		return Matrix(entries);
 	}
 	
-	const Matrix Mathematics::persp_proj(const Vector &left_bottom_near, const Vector &right_top_far) const
+	const Matrix Mathematics::persp_proj(const Vector &left_bottom_near, const Vector &right_top_far)
 	{
 		float l = left_bottom_near.x();
 		float b = left_bottom_near.y();
@@ -129,12 +129,12 @@ namespace watery
 		return Matrix(entries);
 	}
 	
-	const Matrix Mathematics::ortho_proj(float left, float right, float bottom, float top, float near, float far) const
+	const Matrix Mathematics::ortho_proj(float left, float right, float bottom, float top, float near, float far)
 	{
 		return ortho_proj(Vector(left, bottom, near), Vector(right, top, far));
 	}
 	
-	const Matrix Mathematics::persp_proj(float fov, float aspect, float near, float far) const
+	const Matrix Mathematics::persp_proj(float fov, float aspect, float near, float far)
 	{
 		float tan_half_fov = tanf(fov * (float)M_PI / 180 / 2);
 		float tan_half_aspect = tanf(aspect * (float)M_PI / 180 / 2);
@@ -145,7 +145,7 @@ namespace watery
 		return persp_proj(left_bottom_near, right_top_far);
 	}
 	
-	const Matrix Mathematics::scale(float s) const
+	const Matrix Mathematics::scale(float s)
 	{
 		float entries[] =
 				{
