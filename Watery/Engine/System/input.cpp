@@ -6,7 +6,7 @@
 
 namespace watery
 {
-	void Input::updating_tasks(void)
+	void Input::do_updating_tasks(void)
 	{
 		handle_message();
 		

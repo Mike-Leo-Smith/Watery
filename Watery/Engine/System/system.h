@@ -27,6 +27,7 @@ namespace watery
 		
 		// Forbidden functions.
 		System(const System &) = delete;
+		System(System &&) = delete;
 		System &operator=(const System &) = delete;
 	
 	protected:
@@ -39,9 +40,10 @@ namespace watery
 		
 		// Updating tasks.
 		virtual void handle_message(void);
+		virtual void calibrate_timer(void);
 		
 		// Interface for updating.
-		virtual void updating_tasks(void) { handle_message(); }
+		virtual void do_updating_tasks(void) { handle_message(); }
 	
 	public:
 		System(const std::string &name, Microsecond update_interval = SYSTEM_DEFAULT_UPDATE_INTERVAL);

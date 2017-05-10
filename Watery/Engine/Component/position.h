@@ -6,7 +6,7 @@
 #define WATERY_POSITION_H
 
 #include "component.h"
-#include "../../Data/Vector/vector.h"
+#include "../Mathematics/vector.h"
 
 namespace watery
 {
@@ -27,6 +27,7 @@ namespace watery
 		virtual float x(void) const { return _position.x(); }
 		virtual float y(void) const { return _position.y(); }
 		virtual float z(void) const { return _position.z(); }
+		virtual const float *xyz(void) const { return _position.xyz(); }
 	};
 }
 

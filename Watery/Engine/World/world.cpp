@@ -6,13 +6,17 @@
 
 namespace watery
 {
-	World *World::_instance = new World;
-	
 	World::~World(void)
 	{
 		for (auto &object : _objects)
 		{
 			delete object.second;
 		}
+	}
+	
+	World &World::instance(void)
+	{
+		static World world;
+		return world;
 	}
 }

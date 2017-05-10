@@ -6,8 +6,8 @@
 
 namespace watery
 {
-	GLVertexArray::GLVertexArray(const float *vertices, GLsizei size, GLsizei count, GLenum type)
-			: _vao(0), _vbo(0), _count(count), _type(type)
+	GLVertexArray::GLVertexArray(const float *vertices, GLsizei size, GLsizei count)
+			: _vao(0), _vbo(0), _count(count)
 	{
 		load(vertices, size);
 	}

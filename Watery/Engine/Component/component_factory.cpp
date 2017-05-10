@@ -6,5 +6,9 @@
 
 namespace watery
 {
-	ComponentFactory *ComponentFactory::_instance = new ComponentFactory;
+	ComponentFactory &ComponentFactory::instance(void)
+	{
+		static ComponentFactory factory;
+		return factory;
+	}
 }

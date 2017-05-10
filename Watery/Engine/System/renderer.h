@@ -8,7 +8,7 @@
 #include "../../Framework/Window/window.h"
 #include "system.h"
 #include "../World/world.h"
-#include "../../Data/Matrix/matrix.h"
+#include "../Mathematics/matrix.h"
 #include "../../Framework/Graphics/gl_graphics.h"
 
 namespace watery
@@ -17,11 +17,11 @@ namespace watery
 	{
 	private:
 		Window &_window;
-		const World &_world;
+		World &_world;
 		GLGraphics _graphics;
 	
 	protected:
-		virtual void updating_tasks(void) override;
+		virtual void do_updating_tasks(void) override;
 		virtual const Matrix get_proj_matrix(void) const;
 		
 	public:

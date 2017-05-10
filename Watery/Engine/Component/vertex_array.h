@@ -13,14 +13,15 @@ namespace watery
 	class VertexArray : public Component
 	{
 	private:
-		const GLVertexArray *_vertex_array;
+		GLVertexArray *_vertex_array;
 	
 	public:
-		VertexArray(const GLVertexArray *vertex_array = nullptr)
+		VertexArray(GLVertexArray *vertex_array = nullptr)
 				: Component(COMPONENT_VERTEX_ARRAY), _vertex_array(vertex_array) {}
 		virtual ~VertexArray(void) {}
 		virtual const GLVertexArray *vertex_array(void) const { return _vertex_array; }
-		virtual void bind(const GLVertexArray *vertex_array) { _vertex_array = vertex_array; }
+		virtual GLVertexArray *vertex_array(void) { return _vertex_array; }
+		virtual void bind(GLVertexArray *vertex_array) { _vertex_array = vertex_array; }
 	};
 }
 

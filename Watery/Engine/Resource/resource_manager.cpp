@@ -128,30 +128,21 @@ namespace watery
 		}
 	}
 	
-	ResourceManager::~ResourceManager(void)
+	void ResourceManager::destroy_vertex_array(const std::string &vertex_array_name)
 	{
-		for (auto &texture : _textures)
+		if (_vertex_arrays.count(vertex_array_name))
 		{
-			delete texture.second;
-		}
-		
-		for (auto &audio : _audios)
-		{
-			delete audio.second;
-		}
-		
-		for (auto &shader : _shaders)
-		{
-			delete shader.second;
-		}
-		
-		for (auto &vertex_array : _vertex_arrays)
-		{
-			delete vertex_array.second;
+			delete _vertex_arrays.at(vertex_array_name);
+			_vertex_arrays.erase(vertex_array_name);
 		}
 	}
 	
-	GLVertexArray *ResourceManager::get_vertex_array(const std::string &vertex_array_name, const std::string &vertex_array_file)
+	ResourceManager::~ResourceManager(void)
+	{
+		destroy_all();
+	}
+	
+	GLVertexArray *ResourceManager::get_vertex_array(const std::string &vertex_array_name, const std::string &file_name)
 	{
 		GLVertexArray *vertex_array = nullptr;
 		
@@ -159,9 +150,9 @@ namespace watery
 		{
 			vertex_array = _vertex_arrays.at(vertex_array_name);
 		}
-		else if (vertex_array_file != "")
+		else if (file_name != "")
 		{
-			std::ifstream file(vertex_array_file);
+			std::ifstream file(file_name);
 			
 			if (file.is_open())
 			{
@@ -170,9 +161,15 @@ namespace watery
 				
 				std::string s;
 				
-				file >> s;
-				while (s != "#" && !file.eof())
+				while (!file.eof())
 				{
+					file >> s;
+					
+					if (s == "#")
+					{
+						break;
+					}
+					
 					if (s == ">")
 					{
 						GLuint index;
@@ -203,14 +200,35 @@ namespace watery
 							file >> s;
 						}
 						vertex_array->load(vertices.data(), (GLsizei)vertices.size());
-						vertex_array->set_type(GL_TRIANGLE_FAN);
 						vertex_array->set_count(count);
 					}
-					file >> s;
 				}
 			}
 		}
 		
 		return vertex_array;
+	}
+	
+	void ResourceManager::destroy_all(void)
+	{
+		for (auto &texture : _textures)
+		{
+			delete texture.second;
+		}
+		
+		for (auto &audio : _audios)
+		{
+			delete audio.second;
+		}
+		
+		for (auto &shader : _shaders)
+		{
+			delete shader.second;
+		}
+		
+		for (auto &vertex_array : _vertex_arrays)
+		{
+			delete vertex_array.second;
+		}
 	}
 }

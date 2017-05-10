@@ -19,7 +19,7 @@ int main(void)
 	watery::Input *input = new watery::Input;
 	watery::Sound *sound = new watery::Sound;
 	
-	renderer->init("Test", 800, 600);
+	renderer->init("Test", 1600, 1200);
 	logic->init();
 	
 	renderer->start();

@@ -34,11 +34,13 @@ namespace watery
 		static ResourceManager &instance(void) { return *_instance; }
 		GLShader *get_shader(const std::string &shader_name, const std::string &vertex_shader_file_name = "", const std::string &fragment_shader_file_name = "");
 		GLTexture *get_texture(const std::string &texture_name, const std::string &file_name = "");
-		GLVertexArray *get_vertex_array(const std::string &vertex_array_name, const std::string &vertex_array_file);
+		GLVertexArray *get_vertex_array(const std::string &vertex_array_name, const std::string &file_name = "");
 		ALAudio *get_audio(const std::string &audio_name, const std::string &file_name = "");
 		void destroy_texture(const std::string &texture_name);
 		void destroy_audio(const std::string &audio_name);
 		void destroy_shader(const std::string &shader_name);
+		void destroy_vertex_array(const std::string &vertex_array_name);
+		void destroy_all(void);
 	};
 }
 

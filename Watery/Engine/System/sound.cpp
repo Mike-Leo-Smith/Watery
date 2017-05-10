@@ -7,7 +7,7 @@
 
 namespace watery
 {
-	void Sound::updating_tasks(void)
+	void Sound::do_updating_tasks(void)
 	{
 		handle_message();
 		

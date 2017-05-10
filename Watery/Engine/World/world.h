@@ -18,7 +18,6 @@ namespace watery
 		Camera _camera;
 		std::map<std::string, Object *> _objects;
 		
-		static World *_instance;
 		World(void) {}
 		World(const World &) = delete;
 		World(World &&) = delete;
@@ -26,7 +25,7 @@ namespace watery
 		~World(void);
 	
 	public:
-		static World &instance(void) { return *_instance; }
+		static World &instance(void);
 		void add_object(const std::string &name, Object *object) { _objects.emplace(name, object); }
 		Object *object(const std::string &name) { return (_objects.count(name) ? _objects.at(name) : nullptr); }
 		const Object *object(const std::string &name) const { return (_objects.count(name) ? _objects.at(name) : nullptr); }

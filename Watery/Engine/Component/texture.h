@@ -13,13 +13,14 @@ namespace watery
 	class Texture : public Component
 	{
 	private:
-		const GLTexture *_texture;
+		GLTexture *_texture;
 		
 	public:
-		Texture(const GLTexture *texture = nullptr) : Component(COMPONENT_TEXTURE), _texture(texture) {}
+		Texture(GLTexture *texture = nullptr) : Component(COMPONENT_TEXTURE), _texture(texture) {}
 		virtual ~Texture(void) {}
-		virtual void bind_texture(const GLTexture *texture) { _texture = texture; }
+		virtual void bind_texture(GLTexture *texture) { _texture = texture; }
 		virtual const GLTexture *texture(void) const { return _texture; }
+		virtual GLTexture *texture(void) { return _texture; }
 	};
 }
 

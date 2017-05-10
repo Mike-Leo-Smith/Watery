@@ -28,7 +28,7 @@ namespace watery
 	{
 	private:
 		GLFWwindow *_handler;
-		static Window *_instance;
+		float _logical_height;
 		
 		Window(void) : _handler(nullptr) {}
 		Window(const Window &) = delete;
@@ -38,7 +38,7 @@ namespace watery
 	
 	public:
 		GLFWwindow *handler(void) { return _handler; }
-		void setup(const char *name, int width, int height);
+		void setup(const char *name, float logical_width, float logical_height);
 		void rename(const char *name);
 		void resize(int width, int height);
 		bool key_down(KeyCode key) const;
@@ -46,7 +46,10 @@ namespace watery
 		void update(void);
 		int width(void) const;
 		int height(void) const;
-		static Window &instance(void) { return *_instance; }
+		float logical_width(void) const;
+		float logical_height(void) const { return _logical_height; }
+		float scale(void) const { return height() / _logical_height; }
+		static Window &instance(void);
 	};
 }
 

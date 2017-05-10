@@ -18,15 +18,15 @@ namespace watery
 	public:
 		ComponentNode(bool enabled = true, Component *component = nullptr)
 				: _enabled(enabled && (component != nullptr)), _component(component) {}
-		virtual ~ComponentNode(void) {}
-		virtual bool enabled(void) const { return _enabled; }
-		virtual bool bound(void) const { return (_component != nullptr); }
-		virtual Component *component(void) { return _component; }
-		virtual const Component *component(void) const { return _component; }
-		virtual void bind(Component *component) { _component = component, _enabled = true; }
-		virtual void unbind(void) { _component = nullptr; }
-		virtual void enable(void) { _enabled = (_component != nullptr); }
-		virtual void disable(void) { _enabled = false; }
+		~ComponentNode(void) {}
+		bool enabled(void) const { return _enabled; }
+		bool bound(void) const { return (_component != nullptr); }
+		Component *component(void) { return _component; }
+		const Component *component(void) const { return _component; }
+		void bind(Component *component) { _component = component, _enabled = true; }
+		void unbind(void) { _component = nullptr; }
+		void enable(void) { _enabled = (_component != nullptr); }
+		void disable(void) { _enabled = false; }
 	};
 }
 

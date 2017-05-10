@@ -7,13 +7,14 @@
 
 namespace watery
 {
-	ALAudio::ALAudio(void)
+	ALAudio::ALAudio(void) : _initializer(ALInitializer::instance())
 	{
 		alGenBuffers(1, &_buffer);
 		alGenSources(1, &_source);
 	}
 	
 	ALAudio::ALAudio(const void *data, ALenum format, ALsizei size, ALsizei freq)
+			: _initializer(ALInitializer::instance())
 	{
 		alGenBuffers(1, &_buffer);
 		alGenSources(1, &_source);
@@ -34,6 +35,7 @@ namespace watery
 	
 	void ALAudio::play(ALboolean loop) const
 	{
+		alSourcef(_source, AL_PITCH, 2);
 		alSourcei(_source, AL_LOOPING, loop);
 		alSourcePlay(_source);
 	}

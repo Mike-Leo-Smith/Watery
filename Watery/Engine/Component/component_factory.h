@@ -16,8 +16,6 @@ namespace watery
 	class ComponentFactory
 	{
 	private:
-		static ComponentFactory *_instance;
-		
 		ComponentFactory(void) {}
 		ComponentFactory(const ComponentFactory &) = delete;
 		ComponentFactory(ComponentFactory &&) = delete;
@@ -27,10 +25,10 @@ namespace watery
 	public:
 		Position *create_position(const Vector &coord) const { return new Position(coord); }
 		Velocity *create_velocity(const Vector &coord) const { return new Velocity(coord); }
-		Audio *create_audio(const ALAudio *audio) const { return new Audio(audio); }
-		Shader *create_shader(const GLShader *shader) const { return new Shader(shader); }
-		Texture *create_texture(const GLTexture *texture) const { return new Texture(texture); }
-		static ComponentFactory &instance(void) { return *_instance; }
+		Audio *create_audio(ALAudio *audio) const { return new Audio(audio); }
+		Shader *create_shader(GLShader *shader) const { return new Shader(shader); }
+		Texture *create_texture(GLTexture *texture) const { return new Texture(texture); }
+		static ComponentFactory &instance(void);
 	};
 }
 

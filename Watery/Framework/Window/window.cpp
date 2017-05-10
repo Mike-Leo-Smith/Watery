@@ -8,8 +8,6 @@
 
 namespace watery
 {
-	Window *Window::_instance = new Window;
-	
 	Window::~Window(void)
 	{
 		if (_handler != nullptr)
@@ -56,15 +54,17 @@ namespace watery
 		case KEY_MINUS:
 			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_MINUS);
 			break;
-			
+		
 		default:
 			break;
 		}
 		return is_down;
 	}
 	
-	void Window::setup(const char *name, int width, int height)
+	void Window::setup(const char *name, float logical_width, float logical_height)
 	{
+		_logical_height = logical_height;
+		
 		if (_handler == nullptr)
 		{
 			glfwInit();
@@ -75,7 +75,7 @@ namespace watery
 			glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 			glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 			
-			_handler = glfwCreateWindow(width, height, name, nullptr, nullptr);
+			_handler = glfwCreateWindow((int)logical_width, (int)logical_height, name, nullptr, nullptr);
 			glfwMakeContextCurrent(_handler);
 			
 			int frame_width, frame_height;
@@ -142,5 +142,23 @@ namespace watery
 			glfwGetFramebufferSize(_handler, &width, &height);
 		}
 		return height;
+	}
+	
+	Window &Window::instance(void)
+	{
+		static Window window;
+		return window;
+	}
+	
+	float Window::logical_width(void) const
+	{
+		int width = 0, height = 0;
+		
+		if (_handler != nullptr)
+		{
+			glfwGetFramebufferSize(_handler, &width, &height);
+		}
+		
+		return _logical_height / height * width;
 	}
 }

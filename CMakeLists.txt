@@ -2,18 +2,12 @@ cmake_minimum_required(VERSION 3.7)
 project(Watery)
 
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL -O3")
 
 set(SOURCE_FILES
 		main.cpp
-		Game/Sources/game.cpp
-		Game/Sources/game.h
-		Watery/Data/Size/size.cpp
-		Watery/Data/Size/size.h
-		Watery/Data/Color/color.cpp
-		Watery/Data/Color/color.h
-		Watery/Data/Vector/vector.cpp
-		Watery/Data/Vector/vector.h
+		Watery/Engine/Mathematics/vector.cpp
+		Watery/Engine/Mathematics/vector.h
 		Watery/Engine/Configure/configure.h
 		Watery/Engine/Component/position.cpp
 		Watery/Engine/Component/position.h
@@ -60,8 +54,8 @@ set(SOURCE_FILES
 		Watery/Framework/Clock/clock.h
 		Watery/Engine/Physics/physics.cpp
 		Watery/Engine/Physics/physics.h
-		Watery/Framework/3rdParty/lodepng.cpp
-		Watery/Framework/3rdParty/lodepng.h
+		Watery/Framework/ThirdParty/lodepng.cpp
+		Watery/Framework/ThirdParty/lodepng.h
 		Watery/Framework/Audio/al_audio.cpp
 		Watery/Framework/Audio/al_audio.h
 		Watery/Framework/Graphics/gl_texture.cpp
@@ -74,12 +68,12 @@ set(SOURCE_FILES
 		Watery/Framework/Window/window.h
 		Watery/Framework/Audio/al_initializer.cpp
 		Watery/Framework/Audio/al_initializer.h
-		Watery/Data/Matrix/matrix.cpp
-		Watery/Data/Matrix/matrix.h
+		Watery/Engine/Mathematics/matrix.cpp
+		Watery/Engine/Mathematics/matrix.h
 		Watery/Engine/Mathematics/mathematics.cpp
 		Watery/Engine/Mathematics/mathematics.h
-		Watery/Data/Quaternion/quaternion.cpp
-		Watery/Data/Quaternion/quaternion.h
+		Watery/Engine/Mathematics/quaternion.cpp
+		Watery/Engine/Mathematics/quaternion.h
 		Watery/Engine/World/world.cpp
 		Watery/Engine/World/world.h
 		Watery/Engine/Component/component_manager.cpp
@@ -97,7 +91,7 @@ set(SOURCE_FILES
 		Watery/Engine/System/sound.cpp
 		Watery/Engine/System/sound.h
 		Watery/Framework/XML/xml_parser.cpp
-		Watery/Framework/XML/xml_parser.h)
+		Watery/Framework/XML/xml_parser.h Watery/Engine/Component/frame_animation.cpp Watery/Engine/Component/frame_animation.h Watery/Engine/Component/health.cpp Watery/Engine/Component/health.h Watery/Engine/Component/position_animation.cpp Watery/Engine/Component/position_animation.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)

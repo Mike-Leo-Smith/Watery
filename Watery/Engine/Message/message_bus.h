@@ -16,9 +16,6 @@ namespace watery
 	private:
 		std::queue<Message *>  _message_queue;
 		
-		// The singleton instance.
-		static MessageBus *_instance;
-		
 		// Forbidden functions.
 		MessageBus(void) {}
 		MessageBus(const MessageBus &) = delete;
@@ -32,7 +29,7 @@ namespace watery
 		void dispatch(Message *message);
 		
 		// Get the singleton instance.
-		static MessageBus &instance(void) { return *_instance; }
+		static MessageBus &instance(void);
 	};
 }
 

@@ -2,14 +2,10 @@
 // Created by Mike Smith on 2017/4/17.
 //
 
-#include <iostream>
 #include "message_bus.h"
 
 namespace watery
 {
-	// Create the singleton instance.
-	MessageBus *MessageBus::_instance = new MessageBus;
-	
 	Message *MessageBus::retrieve(void)
 	{
 		if (_message_queue.empty())
@@ -27,6 +23,11 @@ namespace watery
 	void MessageBus::dispatch(Message *message)
 	{
 		_message_queue.push(message);
-		//std::cout << _message_queue.size() << " items" << std::endl;
+	}
+	
+	MessageBus &MessageBus::instance(void)
+	{
+		static MessageBus message_bus;
+		return message_bus;
 	}
 }

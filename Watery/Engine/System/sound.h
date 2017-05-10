@@ -16,7 +16,7 @@ namespace watery
 		const World &_world;
 	
 	protected:
-		virtual void updating_tasks(void) override;
+		virtual void do_updating_tasks(void) override;
 	
 	public:
 		Sound(const std::string &name = "Sound", Microsecond interval = SOUND_DEFAULT_UPDATE_INTERVAL)

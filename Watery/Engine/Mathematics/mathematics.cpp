@@ -144,4 +144,17 @@ namespace watery
 		
 		return persp_proj(left_bottom_near, right_top_far);
 	}
+	
+	const Matrix Mathematics::scale(float s) const
+	{
+		float entries[] =
+				{
+						s, 0, 0, 0,
+						0, s, 0, 0,
+						0, 0, s, 0,
+						0, 0, 0, 1
+				};
+		
+		return Matrix(entries);
+	}
 }

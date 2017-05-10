@@ -16,7 +16,7 @@ namespace watery
 	// System update intervals.
 	constexpr Microsecond SYSTEM_DEFAULT_UPDATE_INTERVAL = 50000;
 	constexpr Microsecond INPUT_DEFAULT_UPDATE_INTERVAL = 50000;
-	constexpr Microsecond RENDERER_DEFAULT_UPDATE_INTERVAL = 16666;
+	constexpr Microsecond RENDERER_DEFAULT_UPDATE_INTERVAL = 16000;
 	constexpr Microsecond LOGIC_DEFAULT_UPDATE_INTERVAL = 33333;
 	constexpr Microsecond SOUND_DEFAULT_UPDATE_INTERVAL = 50000;
 	

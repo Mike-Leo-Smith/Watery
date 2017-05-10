@@ -8,6 +8,9 @@
 
 namespace watery
 {
+	System::System(const std::string &name, Microsecond update_interval)
+			: _interval(update_interval), _timer(update_interval), _paused(true), _name(name) {}
+	
 	void System::handle_message(void)
 	{
 		std::vector<Message *> &messages = _messenger.retrieve();
@@ -62,36 +65,37 @@ namespace watery
 	{
 		if (!_paused && _timer.time_out())
 		{
-			updating_tasks();                                              // Do updating tasks.
-			
-			if (_recoder.size() >= SYSTEM_TIMER_CALIBRATION_FREQUENCY)
-			{
-				_recoder.pop_front();
-			}
-			_recoder.push_back(_timer.elapsed_time());
-			
-			Microsecond accumulated = 0;
-			
-			for (Microsecond time : _recoder)
-			{
-				accumulated += time;
-			}
-			
-			Microsecond average = accumulated / _recoder.size();
-			Microsecond calibrated = 2 * _interval - average;
-			
-			std::cout << _name << ": " << 1000000.0 / average << " fps" << std::endl;
-			
-			if (calibrated <= 0)
-			{
-				calibrated = _interval;
-			}
-			
-			_timer.set_time_out(calibrated);                                // Calibrate the timer.
-			_timer.reset();                                                 // Restart the timer.
+			do_updating_tasks();
+			calibrate_timer();
 		}
 	}
 	
-	System::System(const std::string &name, Microsecond update_interval)
-			: _interval(update_interval), _timer(update_interval), _paused(true), _name(name) {}
+	void System::calibrate_timer(void)
+	{
+		if (_recoder.size() >= SYSTEM_TIMER_CALIBRATION_FREQUENCY)
+		{
+			_recoder.pop_front();
+		}
+		_recoder.push_back(_timer.elapsed_time());
+		
+		Microsecond accumulated = 0;
+		
+		for (Microsecond time : _recoder)
+		{
+			accumulated += time;
+		}
+		
+		Microsecond average = accumulated / _recoder.size();
+		Microsecond calibrated = 2 * _interval - average;
+		
+		if (calibrated <= 0)
+		{
+			calibrated = _interval;
+		}
+		
+		_timer.set_time_out(calibrated);
+		_timer.reset();
+		
+		std::cout << _name << ": " << 1000000.0 / average << " fps" << std::endl;
+	}
 }

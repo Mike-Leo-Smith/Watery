@@ -15,7 +15,7 @@ namespace watery
 	void GLGraphics::draw(const GLVertexArray *vertex_array)
 	{
 		vertex_array->activate();
-		glDrawArrays(vertex_array->type(), 0, vertex_array->count());
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, vertex_array->count());
 	}
 	
 	void GLGraphics::swap_buffers(void)

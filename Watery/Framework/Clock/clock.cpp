@@ -6,5 +6,9 @@
 
 namespace watery
 {
-	Clock *Clock::_instance = new Clock;
+	Clock &Clock::instance(void)
+	{
+		static Clock clock;
+		return clock;
+	}
 }

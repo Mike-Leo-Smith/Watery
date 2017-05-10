@@ -5,8 +5,7 @@
 #ifndef WATERY_CAMERA_H
 #define WATERY_CAMERA_H
 
-#include "../../Data/Vector/vector.h"
-#include "../../Data/Size/size.h"
+#include "../Mathematics/vector.h"
 #include "object.h"
 
 namespace watery

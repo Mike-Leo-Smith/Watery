@@ -5,9 +5,8 @@
 #ifndef WATERY_MATHEMATICS_H
 #define WATERY_MATHEMATICS_H
 
-#include "../../Data/Matrix/matrix.h"
-#include "../../Data/Vector/vector.h"
-#include "../../Data/Size/size.h"
+#include "matrix.h"
+#include "vector.h"
 
 namespace watery
 {
@@ -17,6 +16,7 @@ namespace watery
 		virtual ~Mathematics(void) {}
 		virtual const Matrix identity(void) const;
 		virtual const Matrix translation(const Vector &position) const;
+		virtual const Matrix scale(float s) const;
 		virtual const Matrix scale(const Vector &scale) const;
 		virtual const Matrix ortho_proj(const Vector &left_bottom_near, const Vector &right_top_far) const;
 		virtual const Matrix persp_proj(const Vector &left_bottom_near, const Vector &right_top_far) const;

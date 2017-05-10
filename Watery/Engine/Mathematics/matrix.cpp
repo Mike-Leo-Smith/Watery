@@ -3,7 +3,7 @@
 //
 
 #include "matrix.h"
-#include "../Vector/vector.h"
+#include "vector.h"
 
 namespace watery
 {

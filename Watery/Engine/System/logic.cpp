@@ -9,6 +9,7 @@
 #include "../Component/shader.h"
 #include "../Component/texture.h"
 #include "../Component/audio.h"
+#include "../Component/position_animation.h"
 
 namespace watery
 {
@@ -20,7 +21,7 @@ namespace watery
 		switch (message->code())
 		{
 		case KEY_UP:
-			if (role_pos->y() < _window.height() - 200)
+			if (role_pos->y() < _window.logical_height() - 200)
 			{
 				role_pos->move_y(delta);
 			}
@@ -64,14 +65,14 @@ namespace watery
 			{
 				_world.object("World")->enable(COMPONENT_AUDIO);
 			}
-			
+		
 		default:
 			break;
 		}
 		
-		if (role_pos->x() > _world.camera().x() + _window.width() - 300)
+		if (role_pos->x() > _world.camera().x() + _window.logical_width() - 300)
 		{
-			if (_world.camera().x() + _window.width() < 4200 - delta + 1)
+			if (_world.camera().x() + _window.logical_width() < 4200 - delta + 1)
 			{
 				_world.camera().move_x(delta);
 			}
@@ -96,10 +97,17 @@ namespace watery
 		GLShader *gl_shader = _manager.get_shader("shader", "Scripts/Shaders/sprite.vert", "Scripts/Shaders/sprite.frag");
 		GLVertexArray *gl_vertex_array = _manager.get_vertex_array("vertex array", "Assets/VertexArrays/face.va");
 		
+		auto trans1 = [](void) -> const Vector
+		{
+			return Vector(rand() % 30, rand() % 60);
+		};
+		
 		Component *texture = new Texture(gl_texture);
 		Component *shader = new Shader(gl_shader);
 		Component *vertex_array = new VertexArray(gl_vertex_array);
 		Component *position = new Position(Vector(0, 0, 4));
+		
+		Component *pos_ani = new PositionAnimation(trans1, 200000);
 		
 		Object *object = new Object;
 		
@@ -107,6 +115,7 @@ namespace watery
 		object->bind_component(shader);
 		object->bind_component(vertex_array);
 		object->bind_component(position);
+		object->bind_component(pos_ani);
 		
 		_world.add_object("Role", object);
 		
@@ -114,10 +123,16 @@ namespace watery
 		GLVertexArray *bg_gl_va = _manager.get_vertex_array("back vertex array", "Assets/VertexArrays/background.va");
 		ALAudio *bg_audio = _manager.get_audio("bg audio", "Assets/Sounds/test.wav");
 		
+		auto trans2 = [](void) -> const Vector
+		{
+			return Vector(-(rand() % 30), -(rand() % 30));
+		};
+		
 		Component *bg_texture = new Texture(bg_gl_texture);
 		Component *bg_va = new VertexArray(bg_gl_va);
 		Component *bg_pos = new Position;
 		Component *bg_music = new Audio(bg_audio);
+		Component *pos_ani2 = new PositionAnimation(trans2, 20000);
 		
 		Object *background = new Object;
 		
@@ -126,6 +141,7 @@ namespace watery
 		background->bind_component(bg_va);
 		background->bind_component(bg_pos);
 		background->bind_component(bg_music);
+		background->bind_component(pos_ani2);
 		
 		_world.add_object("World", background);
 		
@@ -134,12 +150,14 @@ namespace watery
 		
 		Component *py_shader = new Shader(gl_sh);
 		Component *py_va = new VertexArray(gl_v);
-		Component *py_position = new Position(Vector(200, 200, 3));
+		//Component *py_position = new Position(Vector(200, 200, 3));
+		//Component *pos_ani3 = new PositionAnimation;
 		
 		Object *py = new Object;
 		py->bind_component(py_shader);
 		py->bind_component(py_va);
 		py->bind_component(position);
+		//py->bind_component(pos_ani3);
 		
 		_world.add_object("ay", py);
 	}

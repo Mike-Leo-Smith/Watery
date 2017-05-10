@@ -14,10 +14,11 @@
 #include "../Component/shader.h"
 #include "../Component/position.h"
 #include "../Component/texture.h"
+#include "../Component/position_animation.h"
 
 namespace watery
 {
-	void Renderer::updating_tasks(void)
+	void Renderer::do_updating_tasks(void)
 	{
 		handle_message();
 		
@@ -28,17 +29,17 @@ namespace watery
 		
 		_graphics.clear(0.3, 0.4, 0.6);
 		
-		for (const auto &item : _world.objects())
+		for (auto &item : _world.objects())
 		{
-			const Object *object = item.second;
+			Object *object = item.second;
 			
-			const GLShader *shader = nullptr;
-			const GLVertexArray *vertex_array = nullptr;
-			const GLTexture *texture = nullptr;
+			GLShader *shader = nullptr;
+			GLVertexArray *vertex_array = nullptr;
+			GLTexture *texture = nullptr;
 			
 			if (object->enabled(COMPONENT_SHADER))
 			{
-				shader = static_cast<const Shader *>(object->component(COMPONENT_SHADER))->shader();
+				shader = static_cast<Shader *>(object->component(COMPONENT_SHADER))->shader();
 				shader->activate();
 				
 				shader->set_uniform_mat4fv("proj", proj.entries());
@@ -46,20 +47,27 @@ namespace watery
 				
 				if (object->enabled(COMPONENT_POSITION))
 				{
-					model = math.translation(static_cast<const Position *>(object->component(COMPONENT_POSITION))->position());
+					Vector position = static_cast<Position *>(object->component(COMPONENT_POSITION))->position();
+					
+					if (object->enabled(COMPONENT_POSITION_ANIMATION))
+					{
+						position += static_cast<PositionAnimation *>(object->component(COMPONENT_POSITION_ANIMATION))->offset();
+					}
+					
+					model = math.translation(position);
 					shader->set_uniform_mat4fv("model", model.entries());
 				}
 				
 				if (object->enabled(COMPONENT_TEXTURE))
 				{
-					texture = static_cast<const Texture *>(object->component(COMPONENT_TEXTURE))->texture();
+					texture = static_cast<Texture *>(object->component(COMPONENT_TEXTURE))->texture();
 					texture->activate(0);
 					shader->set_uniform_int("sampler", 0);
 				}
 				
 				if (object->enabled(COMPONENT_VERTEX_ARRAY))
 				{
-					vertex_array = static_cast<const VertexArray *>(object->component(COMPONENT_VERTEX_ARRAY))->vertex_array();
+					vertex_array = static_cast<VertexArray *>(object->component(COMPONENT_VERTEX_ARRAY))->vertex_array();
 					_graphics.draw(vertex_array);
 				}
 			}
@@ -71,14 +79,7 @@ namespace watery
 	{
 		Mathematics math;
 		
-		//Matrix trans = math.translation(Vector(-1, -1));
-		//Matrix scale = math.scale(Vector(2.0f / _window.width(), 2.0f / _window.height(), 1.0f));
-		
-		//glm::mat4 persp = glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 100.0f);
-		//glm::mat4 persp = glm::ortho(0.0f, (float)_window.width(), 0.0f, (float)_window.height());
-		//Matrix pers(glm::value_ptr(persp));
-		Matrix ortho = math.ortho_proj(0, (float)_window.width(), 0.0f, (float)_window.height(), -100, 100);
-		
+		Matrix ortho = math.ortho_proj(0, _window.logical_width(), 0.0f, _window.logical_height(), -100, 100);
 		return ortho;
 	}
 	

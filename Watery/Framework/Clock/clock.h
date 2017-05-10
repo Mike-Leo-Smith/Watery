@@ -15,7 +15,6 @@ namespace watery
 	{
 	private:
 		std::chrono::high_resolution_clock _clock;
-		static Clock *_instance;
 		
 		Clock(void) {}
 		Clock(const Clock &) = delete;
@@ -25,7 +24,7 @@ namespace watery
 		
 	public:
 		Microsecond time(void) const { return std::chrono::duration_cast<std::chrono::microseconds>(_clock.now().time_since_epoch()).count(); }
-		static Clock &instance(void) { return *_instance; }
+		static Clock &instance(void);
 	};
 }
 

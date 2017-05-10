@@ -13,13 +13,14 @@ namespace watery
 	class Audio : public Component
 	{
 	private:
-		const ALAudio *_audio;
+		ALAudio *_audio;
 	
 	public:
-		Audio(const ALAudio *audio = nullptr) : Component(COMPONENT_AUDIO), _audio(audio) {}
+		Audio(ALAudio *audio = nullptr) : Component(COMPONENT_AUDIO), _audio(audio) {}
 		virtual ~Audio(void) {}
-		virtual void bind_audio(const ALAudio *audio) { _audio = audio; }
+		virtual void bind_audio(ALAudio *audio) { _audio = audio; }
 		virtual const ALAudio *audio(void) const { return _audio; }
+		virtual ALAudio *audio(void) { return _audio; }
 	};
 }
 

@@ -13,13 +13,14 @@ namespace watery
 	class Shader : public Component
 	{
 	private:
-		const GLShader *_shader;
+		GLShader *_shader;
 	
 	public:
-		Shader(const GLShader *shader = nullptr) : Component(COMPONENT_SHADER), _shader(shader) {}
+		Shader(GLShader *shader = nullptr) : Component(COMPONENT_SHADER), _shader(shader) {}
 		virtual ~Shader(void) {}
-		virtual void bind_shader(const GLShader *shader) { _shader = shader; }
+		virtual void bind_shader(GLShader *shader) { _shader = shader; }
 		virtual const GLShader *shader(void) const { return _shader; }
+		virtual GLShader *shader(void) { return _shader; }
 	};
 };
 

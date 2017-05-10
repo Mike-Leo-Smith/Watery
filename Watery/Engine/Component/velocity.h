@@ -6,7 +6,7 @@
 #define WATERY_VELOCITY_H
 
 #include "component.h"
-#include "../../Data/Vector/vector.h"
+#include "../Mathematics/vector.h"
 
 namespace watery
 {
