@@ -16,51 +16,6 @@ namespace watery
 		}
 	}
 	
-	bool Window::key_down(KeyCode key) const
-	{
-		if (_handler == nullptr)
-		{
-			return false;
-		}
-		
-		bool is_down = false;
-		
-		switch (key)
-		{
-		case KEY_UP:
-			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_UP);
-			break;
-		
-		case KEY_DOWN:
-			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_DOWN);
-			break;
-		
-		case KEY_LEFT:
-			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_LEFT);
-			break;
-		
-		case KEY_RIGHT:
-			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_RIGHT);
-			break;
-		
-		case KEY_SPACE:
-			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_SPACE);
-			break;
-		
-		case KEY_PLUS:
-			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_EQUAL);
-			break;
-		
-		case KEY_MINUS:
-			is_down = (bool)glfwGetKey(_handler, GLFW_KEY_MINUS);
-			break;
-		
-		default:
-			break;
-		}
-		return is_down;
-	}
-	
 	void Window::setup(const char *name, float logical_width, float logical_height)
 	{
 		_logical_height = logical_height;

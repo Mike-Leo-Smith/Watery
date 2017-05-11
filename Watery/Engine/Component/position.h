@@ -27,6 +27,9 @@ namespace watery
 		virtual float x(void) const { return _position.x(); }
 		virtual float y(void) const { return _position.y(); }
 		virtual float z(void) const { return _position.z(); }
+		virtual void set_x(float x) { _position.set_x(x); }
+		virtual void set_y(float y) { _position.set_y(y); }
+		virtual void set_z(float z) { _position.set_z(z); }
 		virtual const float *xyz(void) const { return _position.xyz(); }
 	};
 }

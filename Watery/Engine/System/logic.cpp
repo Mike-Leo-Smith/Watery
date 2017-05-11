@@ -10,53 +10,50 @@
 #include "../Component/texture.h"
 #include "../Component/audio.h"
 #include "../Component/position_animation.h"
+#include "../Component/velocity.h"
 
 namespace watery
 {
 	void Logic::handle_keyboard_message(KeyboardMessage *message)
 	{
-		constexpr float delta = 20;
-		Position *role_pos = static_cast<Position *>(_world.object("Role")->component(COMPONENT_POSITION));
+		Object *role = _world.object("Role");
+		Velocity *role_v = static_cast<Velocity *>(role->component(COMPONENT_VELOCITY));
+		Position *role_pos = static_cast<Position *>(role->component(COMPONENT_POSITION));
 		
-		switch (message->code())
+		role_pos->move(role_v->velocity());
+		
+		if (role_pos->y() >= _window.logical_height() - 200)
 		{
-		case KEY_UP:
-			if (role_pos->y() < _window.logical_height() - 200)
-			{
-				role_pos->move_y(delta);
-			}
-			break;
+			role_pos->set_y(_window.logical_height() - 200);
+		}
 		
-		case KEY_DOWN:
-			if (role_pos->y() >= delta - 1)
-			{
-				role_pos->move_y(-delta);
-			}
-			break;
+		if (role_pos->y() < role_v->vy() - 1)
+		{
+			role_pos->set_y(role_v->vy() - 1);
+		}
 		
-		case KEY_LEFT:
-			if (role_pos->x() >= delta - 1)
-			{
-				role_pos->move_x(-delta);
-			}
-			break;
+		if (role_pos->x() < role_v->vx() - 1)
+		{
+			role_pos->set_x(role_v->vx() - 1);
+		}
 		
-		case KEY_RIGHT:
-			if (role_pos->x() < 4000)
-			{
-				role_pos->move_x(delta);
-			}
-			break;
+		if (role_pos->x() >= 4000)
+		{
+			role_pos->set_x(4000);
+		}
 		
-		case KEY_PLUS:
+		if (message->key_down(KEY_EQUAL))
+		{
 			_world.camera().move_z(0.1f);
-			break;
+		}
 		
-		case KEY_MINUS:
+		if (message->key_down(KEY_MINUS))
+		{
 			_world.camera().move_z(-0.1f);
-			break;
+		}
 		
-		case KEY_SPACE:
+		if (message->key_down(KEY_SPACE))
+		{
 			if (_world.object("World")->enabled(COMPONENT_AUDIO))
 			{
 				_world.object("World")->disable(COMPONENT_AUDIO);
@@ -65,29 +62,46 @@ namespace watery
 			{
 				_world.object("World")->enable(COMPONENT_AUDIO);
 			}
-		
-		default:
-			break;
 		}
 		
 		if (role_pos->x() > _world.camera().x() + _window.logical_width() - 300)
 		{
-			if (_world.camera().x() + _window.logical_width() < 4200 - delta + 1)
+			if (_world.camera().x() + _window.logical_width() < 4200 - role_v->vx() + 1)
 			{
-				_world.camera().move_x(delta);
+				_world.camera().move_x(role_v->vx());
 			}
 		}
 		
 		if (role_pos->x() < _world.camera().x() + 120)
 		{
-			_world.camera().move_x(-delta);
+			_world.camera().move_x(-role_v->vx());
 			if (_world.camera().x() < 0)
 			{
 				_world.camera().move_x(-_world.camera().x());
 			}
 		}
-		std::cout << _world.camera().z() << std::endl;
 		
+		if (message->key_down(KEY_UP))
+		{
+			role_v->accelerate_y(0.1f);
+		}
+		
+		if (message->key_down(KEY_DOWN))
+		{
+			role_v->accelerate_y(-0.1f);
+		}
+		
+		if (message->key_down(KEY_LEFT))
+		{
+			role_v->accelerate_x(-0.1f);
+		}
+		
+		if (message->key_down(KEY_RIGHT))
+		{
+			role_v->accelerate_x(0.1f);
+		}
+		std::cout << role_v->vx() << " " << role_v->vy() << std::endl;
+		std::cout << role_pos->x() << " " << role_pos->y() << std::endl;
 		dispatch_message(message);
 	}
 	
@@ -106,7 +120,7 @@ namespace watery
 		Component *shader = new Shader(gl_shader);
 		Component *vertex_array = new VertexArray(gl_vertex_array);
 		Component *position = new Position(Vector(0, 0, 4));
-		
+		Component *velocity = new Velocity;
 		Component *pos_ani = new PositionAnimation(trans1, 200000);
 		
 		Object *object = new Object;
@@ -115,6 +129,7 @@ namespace watery
 		object->bind_component(shader);
 		object->bind_component(vertex_array);
 		object->bind_component(position);
+		object->bind_component(velocity);
 		object->bind_component(pos_ani);
 		
 		_world.add_object("Role", object);

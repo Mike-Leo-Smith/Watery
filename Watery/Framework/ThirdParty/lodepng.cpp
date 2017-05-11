@@ -42,7 +42,7 @@ const char *LODEPNG_VERSION_STRING = "20161127";
 /*
 This source file is built up in the following large parts. The code sections
 with the "LODEPNG_COMPILE_" #defines divide this up further in an intermixed way.
--Tools for C and common code for PNG and Zlib
+-Tools for C and common keyboard_status for PNG and Zlib
 -C Code for Zlib (huffman, deflate, ...)
 -C Code for PNG (file format chunks, adam7, PNG filters, color conversions, ...)
 -The C++ wrapper around all of the above
@@ -54,7 +54,7 @@ platform if needed. Everything else in the code calls these. Pass
 -DLODEPNG_NO_COMPILE_ALLOCATORS to the compiler, or comment out
 #define LODEPNG_COMPILE_ALLOCATORS in the header, to disable the ones here and
 define them in your own project's source files without needing to change
-lodepng source code. Don't forget to destroy_texture "static" if you copypaste them
+lodepng source keyboard_status. Don't forget to destroy_texture "static" if you copypaste them
 from here.*/
 
 #ifdef LODEPNG_COMPILE_ALLOCATORS
@@ -80,14 +80,14 @@ void lodepng_free(void* ptr);
 
 /* ////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////// */
-/* // Tools for C, and common code for PNG and Zlib.                       // */
+/* // Tools for C, and common keyboard_status for PNG and Zlib.                       // */
 /* ////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////// */
 
 /*
 Often in case of an error a value is assigned to a variable and then it breaks
 out of a loop (to go to the cleanup phase of a function). This macro does that.
-It makes the error handling code shorter and more readable.
+It makes the error handling keyboard_status shorter and more readable.
 
 Example: if(!uivector_resizev(&frequencies_ll, 286, 0)) ERROR_BREAK(83);
 */
@@ -100,21 +100,21 @@ Example: if(!uivector_resizev(&frequencies_ll, 286, 0)) ERROR_BREAK(83);
 /*version of CERROR_BREAK that assumes the common case where the error variable is named "error"*/
 #define ERROR_BREAK(code) CERROR_BREAK(error, code)
 
-/*Set error var to the error code, and return it.*/
+/*Set error var to the error keyboard_status, and return it.*/
 #define CERROR_RETURN_ERROR(errorvar, code)\
 {\
   errorvar = code;\
   return code;\
 }
 
-/*Try the code, if it returns error, also return the error.*/
+/*Try the keyboard_status, if it returns error, also return the error.*/
 #define CERROR_TRY_RETURN(call)\
 {\
   unsigned error = call;\
   if(error) return error;\
 }
 
-/*Set error var to the error code, and return from the void function.*/
+/*Set error var to the error keyboard_status, and return from the void function.*/
 #define CERROR_RETURN(errorvar, code)\
 {\
   errorvar = code;\
@@ -367,7 +367,7 @@ static long lodepng_filesize(const char *filename)
 	return size;
 }
 
-/* load file into buffer that already has the correct allocated size. Returns error code.*/
+/* load file into buffer that already has the correct allocated size. Returns error keyboard_status.*/
 static unsigned lodepng_buffer_file(unsigned char *out, size_t size, const char *filename)
 {
 	FILE *file;
@@ -409,7 +409,7 @@ unsigned lodepng_save_file(const unsigned char *buffer, size_t buffersize, const
 
 /* ////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////// */
-/* // End of common code and tools. Begin of Zlib related code.            // */
+/* // End of common code and tools. Begin of Zlib related keyboard_status.            // */
 /* ////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////// */
 
@@ -420,7 +420,7 @@ unsigned lodepng_save_file(const unsigned char *buffer, size_t buffersize, const
 {\
   /*add a new byte at the end*/\
   if(((*bitpointer) & 7) == 0) ucvector_push_back(bitstream, (unsigned char)0);\
-  /*earlier bit of huffman code is in a lesser significant bit of an earlier byte*/\
+  /*earlier bit of huffman keyboard_status is in a lesser significant bit of an earlier byte*/\
   (bitstream->data[bitstream->size - 1]) |= (bit << ((*bitpointer) & 0x7));\
   ++(*bitpointer);\
 }
@@ -467,11 +467,11 @@ static unsigned readBitsFromStream(size_t *bitpointer, const unsigned char *bits
 
 #define FIRST_LENGTH_CODE_INDEX 257
 #define LAST_LENGTH_CODE_INDEX 285
-/*256 literals, the end code, some length codes, and 2 unused codes*/
+/*256 literals, the end keyboard_status, some length codes, and 2 unused codes*/
 #define NUM_DEFLATE_CODE_SYMBOLS 288
 /*the distance codes have their own symbols, 30 used, 2 unused*/
 #define NUM_DISTANCE_SYMBOLS 32
-/*the code length codes. 0-15: code lengths, 16: copy previous 3-6 times, 17: 3-10 zeros, 18: 11-138 zeros*/
+/*the keyboard_status length codes. 0-15: code lengths, 16: copy previous 3-6 times, 17: 3-10 zeros, 18: 11-138 zeros*/
 #define NUM_CODE_LENGTH_CODES 19
 
 /*the base lengths represented by codes 257-285*/
@@ -494,7 +494,7 @@ static const unsigned DISTANCEEXTRA[30]
 		= { 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8,
 		    8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13 };
 
-/*the order in which "code length alphabet code lengths" are stored, out of this
+/*the order in which "code length alphabet keyboard_status lengths" are stored, out of this
 the huffman tree of the dynamic huffman tree lengths is generated*/
 static const unsigned CLCL_ORDER[NUM_CODE_LENGTH_CODES]
 		= { 16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15 };
@@ -509,7 +509,7 @@ typedef struct HuffmanTree
 	unsigned *tree2d;
 	unsigned *tree1d;
 	unsigned *lengths; /*the lengths of the codes of the 1d-tree*/
-	unsigned maxbitlen; /*maximum number of bits a single code can get*/
+	unsigned maxbitlen; /*maximum number of bits a single keyboard_status can get*/
 	unsigned numcodes; /*number of symbols in the alphabet = number of codes*/
 } HuffmanTree;
 
@@ -553,7 +553,7 @@ static unsigned HuffmanTree_make2DTree(HuffmanTree *tree)
 	/*
   convert tree1d[] to tree2d[][]. In the 2D array, a value of 32767 means
   uninited, a value >= numcodes is an address to another bit, a value < numcodes
-  is a code. The 2 rows are the 2 possible bit values (0 or 1), there are as
+  is a keyboard_status. The 2 rows are the 2 possible bit values (0 or 1), there are as
   many columns as codes - 1.
   A good huffman tree has N * 2 - 1 nodes, of which N - 1 are internal nodes.
   Here, the internal nodes are stored (what their 0 and 1 option point to).
@@ -567,7 +567,7 @@ static unsigned HuffmanTree_make2DTree(HuffmanTree *tree)
 	
 	for (n = 0; n < tree->numcodes; ++n) /*the codes*/
 	{
-		for (i = 0; i != tree->lengths[n]; ++i) /*the bits for this code*/
+		for (i = 0; i != tree->lengths[n]; ++i) /*the bits for this keyboard_status*/
 		{
 			unsigned char bit = (unsigned char) ((tree->tree1d[n] >> (tree->lengths[n] - i - 1)) & 1);
 			/*oversubscribed, see comment in lodepng_error_text*/
@@ -576,7 +576,7 @@ static unsigned HuffmanTree_make2DTree(HuffmanTree *tree)
 			{
 				if (i + 1 == tree->lengths[n]) /*last bit*/
 				{
-					tree->tree2d[2 * treepos + bit] = n; /*put the current code in it*/
+					tree->tree2d[2 * treepos + bit] = n; /*put the current keyboard_status in it*/
 					treepos = 0;
 				}
 				else
@@ -627,7 +627,7 @@ static unsigned HuffmanTree_makeFromLengths2(HuffmanTree *tree)
 	
 	if (!error)
 	{
-		/*step 1: count number of instances of each code length*/
+		/*step 1: count number of instances of each keyboard_status length*/
 		for (bits = 0; bits != tree->numcodes; ++bits) ++blcount.data[tree->lengths[bits]];
 		/*step 2: generate the nextcode values*/
 		for (bits = 1; bits <= tree->maxbitlen; ++bits)
@@ -649,7 +649,7 @@ static unsigned HuffmanTree_makeFromLengths2(HuffmanTree *tree)
 }
 
 /*
-given the code lengths (as stored in the PNG file), generate the tree as defined
+given the keyboard_status lengths (as stored in the PNG file), generate the tree as defined
 by Deflate. maxbitlen is the maximum bits that a code in the tree can have.
 return value is error.
 */
@@ -815,7 +815,7 @@ unsigned lodepng_huffman_code_lengths(unsigned *lengths, const unsigned *frequen
 	/*ensure at least two present symbols. There should be at least one symbol
   according to RFC 1951 section 3.2.7. Some decoders incorrectly require two. To
   make these work as well ensure there are at least two symbols. The
-  Package-Merge code below also doesn't work correctly if there's only one
+  Package-Merge keyboard_status below also doesn't work correctly if there's only one
   symbol, it'd give it the theoritical 0 bits but in practice zlib wants 1 bit*/
 	if (numpresent == 0)
 	{
@@ -904,7 +904,7 @@ static unsigned HuffmanTree_getLength(const HuffmanTree *tree, unsigned index)
 }
 #endif /*LODEPNG_COMPILE_ENCODER*/
 
-/*get the literal and length code tree of a deflated block with fixed tree, as per the deflate specification*/
+/*get the literal and length keyboard_status tree of a deflated block with fixed tree, as per the deflate specification*/
 static unsigned generateFixedLitLenTree(HuffmanTree *tree)
 {
 	unsigned i, error = 0;
@@ -923,7 +923,7 @@ static unsigned generateFixedLitLenTree(HuffmanTree *tree)
 	return error;
 }
 
-/*get the distance code tree of a deflated block with fixed tree, as specified in the deflate specification*/
+/*get the distance keyboard_status tree of a deflated block with fixed tree, as specified in the deflate specification*/
 static unsigned generateFixedDistanceTree(HuffmanTree *tree)
 {
 	unsigned i, error = 0;
@@ -941,7 +941,7 @@ static unsigned generateFixedDistanceTree(HuffmanTree *tree)
 #ifdef LODEPNG_COMPILE_DECODER
 
 /*
-returns the code, or (unsigned)(-1) if error happened
+returns the keyboard_status, or (unsigned)(-1) if error happened
 inbitlength is the length of the complete buffer, in bits (so its byte length times 8)
 */
 static unsigned huffmanDecodeSymbol(const unsigned char *in, size_t *bp,
@@ -952,7 +952,7 @@ static unsigned huffmanDecodeSymbol(const unsigned char *in, size_t *bp,
 	{
 		if (*bp >= inbitlength) return (unsigned) (-1); /*error: end of input memory reached without endcode*/
 		/*
-    decode the symbol from the tree. The "readBitFromStream" code is inlined in
+    decode the symbol from the tree. The "readBitFromStream" keyboard_status is inlined in
     the expression below because this is the biggest bottleneck while decoding
     */
 		ct = codetree->tree2d[(treepos << 1) + READBIT(*bp, in)];
@@ -992,11 +992,11 @@ static unsigned getTreeInflateDynamic(HuffmanTree *tree_ll, HuffmanTree *tree_d,
 	size_t inbitlength = inlength * 8;
 	
 	/*see comments in deflateDynamic for explanation of the context and these variables, it is analogous*/
-	unsigned *bitlen_ll = 0; /*lit,len code lengths*/
-	unsigned *bitlen_d = 0; /*dist code lengths*/
-	/*code length code lengths ("clcl"), the bit lengths of the huffman tree used to compress bitlen_ll and bitlen_d*/
+	unsigned *bitlen_ll = 0; /*lit,len keyboard_status lengths*/
+	unsigned *bitlen_d = 0; /*dist keyboard_status lengths*/
+	/*code length keyboard_status lengths ("clcl"), the bit lengths of the huffman tree used to compress bitlen_ll and bitlen_d*/
 	unsigned *bitlen_cl = 0;
-	HuffmanTree tree_cl; /*the code tree for code length codes (the huffman tree for compressed huffman trees)*/
+	HuffmanTree tree_cl; /*the code tree for keyboard_status length codes (the huffman tree for compressed huffman trees)*/
 	
 	if ((*bp) + 14 > (inlength << 3)) return 49; /*error: the bit pointer is or will go past the memory*/
 	
@@ -1004,7 +1004,7 @@ static unsigned getTreeInflateDynamic(HuffmanTree *tree_ll, HuffmanTree *tree_d,
 	HLIT = readBitsFromStream(bp, in, 5) + 257;
 	/*number of distance codes. Unlike the spec, the value 1 is added to it here already*/
 	HDIST = readBitsFromStream(bp, in, 5) + 1;
-	/*number of code length codes. Unlike the spec, the value 4 is added to it here already*/
+	/*number of keyboard_status length codes. Unlike the spec, the value 4 is added to it here already*/
 	HCLEN = readBitsFromStream(bp, in, 4) + 4;
 	
 	if ((*bp) + HCLEN * 3 > (inlength << 3)) return 50; /*error: the bit pointer is or will go past the memory*/
@@ -1013,7 +1013,7 @@ static unsigned getTreeInflateDynamic(HuffmanTree *tree_ll, HuffmanTree *tree_d,
 	
 	while (!error)
 	{
-		/*read the code length codes out of 3 * (amount of code length codes) bits*/
+		/*read the code length codes out of 3 * (amount of keyboard_status length codes) bits*/
 		
 		bitlen_cl = (unsigned *) lodepng_malloc(NUM_CODE_LENGTH_CODES * sizeof(unsigned));
 		if (!bitlen_cl) ERROR_BREAK(83 /*alloc fail*/);
@@ -1034,12 +1034,12 @@ static unsigned getTreeInflateDynamic(HuffmanTree *tree_ll, HuffmanTree *tree_d,
 		for (i = 0; i != NUM_DEFLATE_CODE_SYMBOLS; ++i) bitlen_ll[i] = 0;
 		for (i = 0; i != NUM_DISTANCE_SYMBOLS; ++i) bitlen_d[i] = 0;
 		
-		/*i is the current symbol we're reading in the part that contains the code lengths of lit/len and dist codes*/
+		/*i is the current symbol we're reading in the part that contains the keyboard_status lengths of lit/len and dist codes*/
 		i = 0;
 		while (i < HLIT + HDIST)
 		{
 			unsigned code = huffmanDecodeSymbol(in, bp, &tree_cl, inbitlength);
-			if (code <= 15) /*a length code*/
+			if (code <= 15) /*a length keyboard_status*/
 			{
 				if (i < HLIT) { bitlen_ll[i] = code; }
 				else { bitlen_d[i - HLIT] = code; }
@@ -1048,7 +1048,7 @@ static unsigned getTreeInflateDynamic(HuffmanTree *tree_ll, HuffmanTree *tree_d,
 			else if (code == 16) /*repeat previous*/
 			{
 				unsigned replength = 3; /*read in the 2 bits that indicate repeat length (3-6)*/
-				unsigned value; /*set value to the previous code*/
+				unsigned value; /*set value to the previous keyboard_status*/
 				
 				if (i == 0) ERROR_BREAK(54); /*can't repeat previous if i is 0*/
 				
@@ -1098,23 +1098,23 @@ static unsigned getTreeInflateDynamic(HuffmanTree *tree_ll, HuffmanTree *tree_d,
 					++i;
 				}
 			}
-			else /*if(code == (unsigned)(-1))*/ /*huffmanDecodeSymbol returns (unsigned)(-1) in case of error*/
+			else /*if(keyboard_status == (unsigned)(-1))*/ /*huffmanDecodeSymbol returns (unsigned)(-1) in case of error*/
 			{
 				if (code == (unsigned) (-1))
 				{
-					/*return error code 10 or 11 depending on the situation that happened in huffmanDecodeSymbol
+					/*return error keyboard_status 10 or 11 depending on the situation that happened in huffmanDecodeSymbol
           (10=no endcode, 11=wrong jump outside of tree)*/
 					error = (*bp) > inbitlength ? 10 : 11;
 				}
-				else { error = 16; } /*unexisting code, this can never happen*/
+				else { error = 16; } /*unexisting keyboard_status, this can never happen*/
 				break;
 			}
 		}
 		if (error) break;
 		
-		if (bitlen_ll[256] == 0) ERROR_BREAK(64); /*the length of the end code 256 must be larger than 0*/
+		if (bitlen_ll[256] == 0) ERROR_BREAK(64); /*the length of the end keyboard_status 256 must be larger than 0*/
 		
-		/*now we've finally got HLIT and HDIST, so generate the code trees, and the function is done*/
+		/*now we've finally got HLIT and HDIST, so generate the keyboard_status trees, and the function is done*/
 		error = HuffmanTree_makeFromLengths(tree_ll, bitlen_ll, NUM_DEFLATE_CODE_SYMBOLS, 15);
 		if (error) break;
 		error = HuffmanTree_makeFromLengths(tree_d, bitlen_d, NUM_DISTANCE_SYMBOLS, 15);
@@ -1145,9 +1145,9 @@ static unsigned inflateHuffmanBlock(ucvector *out, const unsigned char *in, size
 	if (btype == 1) { getTreeInflateFixed(&tree_ll, &tree_d); }
 	else if (btype == 2) error = getTreeInflateDynamic(&tree_ll, &tree_d, in, bp, inlength);
 	
-	while (!error) /*decode all symbols until end reached, breaks at end code*/
+	while (!error) /*decode all symbols until end reached, breaks at end keyboard_status*/
 	{
-		/*code_ll is literal, length or end code*/
+		/*code_ll is literal, length or end keyboard_status*/
 		unsigned code_ll = huffmanDecodeSymbol(in, bp, &tree_ll, inbitlength);
 		if (code_ll <= 255) /*literal symbol*/
 		{
@@ -1156,7 +1156,7 @@ static unsigned inflateHuffmanBlock(ucvector *out, const unsigned char *in, size
 			out->data[*pos] = (unsigned char) code_ll;
 			++(*pos);
 		}
-		else if (code_ll >= FIRST_LENGTH_CODE_INDEX && code_ll <= LAST_LENGTH_CODE_INDEX) /*length code*/
+		else if (code_ll >= FIRST_LENGTH_CODE_INDEX && code_ll <= LAST_LENGTH_CODE_INDEX) /*length keyboard_status*/
 		{
 			unsigned code_d, distance;
 			unsigned numextrabits_l, numextrabits_d; /*extra bits for length and distance*/
@@ -1170,17 +1170,17 @@ static unsigned inflateHuffmanBlock(ucvector *out, const unsigned char *in, size
 			if ((*bp + numextrabits_l) > inbitlength) ERROR_BREAK(51); /*error, bit pointer will jump past memory*/
 			length += readBitsFromStream(bp, in, numextrabits_l);
 			
-			/*part 3: get distance code*/
+			/*part 3: get distance keyboard_status*/
 			code_d = huffmanDecodeSymbol(in, bp, &tree_d, inbitlength);
 			if (code_d > 29)
 			{
 				if (code_ll == (unsigned) (-1)) /*huffmanDecodeSymbol returns (unsigned)(-1) in case of error*/
 				{
-					/*return error code 10 or 11 depending on the situation that happened in huffmanDecodeSymbol
+					/*return error keyboard_status 10 or 11 depending on the situation that happened in huffmanDecodeSymbol
           (10=no endcode, 11=wrong jump outside of tree)*/
 					error = (*bp) > inlength * 8 ? 10 : 11;
 				}
-				else { error = 18; } /*error: invalid distance code (30-31 are never used)*/
+				else { error = 18; } /*error: invalid distance keyboard_status (30-31 are never used)*/
 				break;
 			}
 			distance = DISTANCEBASE[code_d];
@@ -1211,11 +1211,11 @@ static unsigned inflateHuffmanBlock(ucvector *out, const unsigned char *in, size
 		}
 		else if (code_ll == 256)
 		{
-			break; /*end code, break the loop*/
+			break; /*end keyboard_status, break the loop*/
 		}
-		else /*if(code == (unsigned)(-1))*/ /*huffmanDecodeSymbol returns (unsigned)(-1) in case of error*/
+		else /*if(keyboard_status == (unsigned)(-1))*/ /*huffmanDecodeSymbol returns (unsigned)(-1) in case of error*/
 		{
-			/*return error code 10 or 11 depending on the situation that happened in huffmanDecodeSymbol
+			/*return error keyboard_status 10 or 11 depending on the situation that happened in huffmanDecodeSymbol
       (10=no endcode, 11=wrong jump outside of tree)*/
 			error = ((*bp) > inlength * 8) ? 10 : 11;
 			break;
@@ -1331,7 +1331,7 @@ static unsigned inflate(unsigned char **out, size_t *outsize,
 
 static const size_t MAX_SUPPORTED_DEFLATE_LENGTH = 258;
 
-/*bitlen is the size in bits of the code*/
+/*bitlen is the size in bits of the keyboard_status*/
 static void addHuffmanSymbol(size_t *bp, ucvector *compressed, unsigned code, unsigned bitlen)
 {
 	addBitsToStreamReversed(bp, compressed, code, bitlen);
@@ -1360,7 +1360,7 @@ static void addLengthDistance(uivector *values, size_t length, size_t distance)
 	/*values in encoded vector are those used by deflate:
   0-255: literal bytes
   256: end
-  257-285: length/distance pair (length code, followed by extra length bits, distance code, extra distance bits)
+  257-285: length/distance pair (length code, followed by extra length bits, distance keyboard_status, extra distance bits)
   286-287: invalid*/
 	
 	unsigned length_code = (unsigned) searchCodeIndex(LENGTHBASE, 29, length);
@@ -1478,7 +1478,7 @@ static void updateHashChain(Hash *hash, size_t wpos, unsigned hashval, unsigned 
 }
 
 /*
-LZ77-encode the data. Return value is error code. The input are raw bytes, the output
+LZ77-encode the data. Return value is error keyboard_status. The input are raw bytes, the output
 is in the form of unsigned integers with codes representing for example literal bytes, or
 length/distance pairs.
 It uses a hash table technique to let it encode faster. When doing LZ77 encoding, a
@@ -1715,7 +1715,7 @@ static void writeLZ77data(size_t *bp, ucvector *out, const uivector *lz77_encode
 	{
 		unsigned val = lz77_encoded->data[i];
 		addHuffmanSymbol(bp, out, HuffmanTree_getCode(tree_ll, val), HuffmanTree_getLength(tree_ll, val));
-		if (val > 256) /*for a length code, 3 more things have to be added*/
+		if (val > 256) /*for a length keyboard_status, 3 more things have to be added*/
 		{
 			unsigned length_index = val - FIRST_LENGTH_CODE_INDEX;
 			unsigned n_length_extra_bits = LENGTHEXTRA[length_index];
@@ -1750,20 +1750,20 @@ static unsigned deflateDynamic(ucvector *out, size_t *bp, Hash *hash,
   stored using their code lengths, and to compress even more these code lengths
   are also start-length encoded and huffman compressed. This gives a huffman tree
   of code lengths "cl". The code lenghts used to describe this third tree are
-  the code length code lengths ("clcl").
+  the code length keyboard_status lengths ("clcl").
   */
 	
 	/*The lz77 encoded data, represented with integers since there will also be length and distance codes in it*/
 	uivector lz77_encoded;
 	HuffmanTree tree_ll; /*tree for lit,len values*/
 	HuffmanTree tree_d; /*tree for distance codes*/
-	HuffmanTree tree_cl; /*tree for encoding the code lengths representing tree_ll and tree_d*/
+	HuffmanTree tree_cl; /*tree for encoding the keyboard_status lengths representing tree_ll and tree_d*/
 	uivector frequencies_ll; /*frequency of lit,len codes*/
 	uivector frequencies_d; /*frequency of dist codes*/
-	uivector frequencies_cl; /*frequency of code length codes*/
-	uivector bitlen_lld; /*lit,len,dist code lenghts (int bits), literally (without repeat codes).*/
+	uivector frequencies_cl; /*frequency of keyboard_status length codes*/
+	uivector bitlen_lld; /*lit,len,dist keyboard_status lenghts (int bits), literally (without repeat codes).*/
 	uivector bitlen_lld_e; /*bitlen_lld encoded with repeat codes (this is a rudemtary start length compression)*/
-	/*bitlen_cl is the code length code lengths ("clcl"). The bit lengths of codes to represent tree_cl
+	/*bitlen_cl is the keyboard_status length code lengths ("clcl"). The bit lengths of codes to represent tree_cl
   (these are written as is in the file, it would be crazy to compress these using yet another huffman
   tree that needs to be represented by yet another set of code lengths)*/
 	uivector bitlen_cl;
@@ -1822,7 +1822,7 @@ static unsigned deflateDynamic(ucvector *out, size_t *bp, Hash *hash,
 				i += 3;
 			}
 		}
-		frequencies_ll.data[256] = 1; /*there will be exactly 1 end code, at the end of the block*/
+		frequencies_ll.data[256] = 1; /*there will be exactly 1 end keyboard_status, at the end of the block*/
 		
 		/*Make both huffman trees, one for the lit and len codes, one for the dist codes*/
 		error = HuffmanTree_makeFromFrequencies(&tree_ll, frequencies_ll.data, 257, frequencies_ll.size, 15);
@@ -1835,7 +1835,7 @@ static unsigned deflateDynamic(ucvector *out, size_t *bp, Hash *hash,
 		if (numcodes_ll > 286) numcodes_ll = 286;
 		numcodes_d = tree_d.numcodes;
 		if (numcodes_d > 30) numcodes_d = 30;
-		/*store the code lengths of both generated trees in bitlen_lld*/
+		/*store the keyboard_status lengths of both generated trees in bitlen_lld*/
 		for (i = 0; i != numcodes_ll; ++i) uivector_push_back(&bitlen_lld, HuffmanTree_getLength(&tree_ll, (unsigned) i));
 		for (i = 0; i != numcodes_d; ++i) uivector_push_back(&bitlen_lld, HuffmanTree_getLength(&tree_d, (unsigned) i));
 		
@@ -1846,15 +1846,15 @@ static unsigned deflateDynamic(ucvector *out, size_t *bp, Hash *hash,
 			unsigned j = 0; /*amount of repititions*/
 			while (i + j + 1 < (unsigned) bitlen_lld.size && bitlen_lld.data[i + j + 1] == bitlen_lld.data[i]) ++j;
 			
-			if (bitlen_lld.data[i] == 0 && j >= 2) /*repeat code for zeroes*/
+			if (bitlen_lld.data[i] == 0 && j >= 2) /*repeat keyboard_status for zeroes*/
 			{
 				++j; /*include the first zero*/
-				if (j <= 10) /*repeat code 17 supports max 10 zeroes*/
+				if (j <= 10) /*repeat keyboard_status 17 supports max 10 zeroes*/
 				{
 					uivector_push_back(&bitlen_lld_e, 17);
 					uivector_push_back(&bitlen_lld_e, j - 3);
 				}
-				else /*repeat code 18 supports max 138 zeroes*/
+				else /*repeat keyboard_status 18 supports max 138 zeroes*/
 				{
 					if (j > 138) j = 138;
 					uivector_push_back(&bitlen_lld_e, 18);
@@ -1862,7 +1862,7 @@ static unsigned deflateDynamic(ucvector *out, size_t *bp, Hash *hash,
 				}
 				i += (j - 1);
 			}
-			else if (j >= 3) /*repeat code for value other than zero*/
+			else if (j >= 3) /*repeat keyboard_status for value other than zero*/
 			{
 				size_t k;
 				unsigned num = j / 6, rest = j % 6;
@@ -1880,7 +1880,7 @@ static unsigned deflateDynamic(ucvector *out, size_t *bp, Hash *hash,
 				else { j -= rest; }
 				i += j;
 			}
-			else /*too short to benefit from repeat code*/
+			else /*too short to benefit from repeat keyboard_status*/
 			{
 				uivector_push_back(&bitlen_lld_e, bitlen_lld.data[i]);
 			}
@@ -1892,7 +1892,7 @@ static unsigned deflateDynamic(ucvector *out, size_t *bp, Hash *hash,
 		for (i = 0; i != bitlen_lld_e.size; ++i)
 		{
 			++frequencies_cl.data[bitlen_lld_e.data[i]];
-			/*after a repeat code come the bits that specify the number of repetitions,
+			/*after a repeat keyboard_status come the bits that specify the number of repetitions,
       those don't need to be in the frequencies_cl calculation*/
 			if (bitlen_lld_e.data[i] >= 16) ++i;
 		}
@@ -1904,7 +1904,7 @@ static unsigned deflateDynamic(ucvector *out, size_t *bp, Hash *hash,
 		if (!uivector_resize(&bitlen_cl, tree_cl.numcodes)) ERROR_BREAK(83 /*alloc fail*/);
 		for (i = 0; i != tree_cl.numcodes; ++i)
 		{
-			/*lenghts of code length tree is in the order as specified by deflate*/
+			/*lenghts of keyboard_status length tree is in the order as specified by deflate*/
 			bitlen_cl.data[i] = HuffmanTree_getLength(&tree_cl, CLCL_ORDER[i]);
 		}
 		while (bitlen_cl.data[bitlen_cl.size - 1] == 0 && bitlen_cl.size > 4)
@@ -1919,7 +1919,7 @@ static unsigned deflateDynamic(ucvector *out, size_t *bp, Hash *hash,
 
     After the BFINAL and BTYPE, the dynamic block consists out of the following:
     - 5 bits HLIT, 5 bits HDIST, 4 bits HCLEN
-    - (HCLEN+4)*3 bits code lengths of code length alphabet
+    - (HCLEN+4)*3 bits code lengths of keyboard_status length alphabet
     - HLIT + 257 code lenghts of lit/length alphabet (encoded using the code length
       alphabet, + possible repetition codes 16, 17, 18)
     - HDIST + 1 code lengths of distance alphabet (encoded using the code length
@@ -1943,7 +1943,7 @@ static unsigned deflateDynamic(ucvector *out, size_t *bp, Hash *hash,
 		addBitsToStream(bp, out, HDIST, 5);
 		addBitsToStream(bp, out, HCLEN, 4);
 		
-		/*write the code lenghts of the code length alphabet*/
+		/*write the code lenghts of the keyboard_status length alphabet*/
 		for (i = 0; i != HCLEN + 4; ++i) addBitsToStream(bp, out, bitlen_cl.data[i], 3);
 		
 		/*write the lenghts of the lit/len AND the dist alphabet*/
@@ -1959,10 +1959,10 @@ static unsigned deflateDynamic(ucvector *out, size_t *bp, Hash *hash,
 		
 		/*write the compressed data symbols*/
 		writeLZ77data(bp, out, &lz77_encoded, &tree_ll, &tree_d);
-		/*error: the length of the end code 256 must be larger than 0*/
+		/*error: the length of the end keyboard_status 256 must be larger than 0*/
 		if (HuffmanTree_getLength(&tree_ll, 256) == 0) ERROR_BREAK(64);
 		
-		/*write the end code*/
+		/*write the end keyboard_status*/
 		addHuffmanSymbol(bp, out, HuffmanTree_getCode(&tree_ll, 256), HuffmanTree_getLength(&tree_ll, 256));
 		
 		break; /*end of error-while*/
@@ -2021,7 +2021,7 @@ static unsigned deflateFixed(ucvector *out, size_t *bp, Hash *hash,
 			addHuffmanSymbol(bp, out, HuffmanTree_getCode(&tree_ll, data[i]), HuffmanTree_getLength(&tree_ll, data[i]));
 		}
 	}
-	/*add END code*/
+	/*add END keyboard_status*/
 	if (!error) addHuffmanSymbol(bp, out, HuffmanTree_getCode(&tree_ll, 256), HuffmanTree_getLength(&tree_ll, 256));
 	
 	/*cleanup*/
@@ -2323,7 +2323,7 @@ const LodePNGDecompressSettings lodepng_default_decompress_settings = { 0, 0, 0,
 
 /* ////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////// */
-/* // End of Zlib related code. Begin of PNG related code.                 // */
+/* // End of Zlib related keyboard_status. Begin of PNG related code.                 // */
 /* ////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////// */
 
@@ -2415,7 +2415,7 @@ static void setBitOfReversedStream0(size_t *bitpointer, unsigned char *bitstream
 	/*the current bit in bitstream must be 0 for this to work*/
 	if (bit)
 	{
-		/*earlier bit of huffman code is in a lesser significant bit of an earlier byte*/
+		/*earlier bit of huffman keyboard_status is in a lesser significant bit of an earlier byte*/
 		bitstream[(*bitpointer) >> 3] |= (bit << (7 - ((*bitpointer) & 0x7)));
 	}
 	++(*bitpointer);
@@ -2560,7 +2560,7 @@ unsigned lodepng_chunk_create(unsigned char **out, size_t *outlength, unsigned l
 /* / Color types and such                                                   / */
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/*return type is a LodePNG error code*/
+/*return type is a LodePNG error keyboard_status*/
 static unsigned checkColorValidity(LodePNGColorType colortype, unsigned bd) /*bd = bitdepth*/
 {
 	switch ((int)colortype)
@@ -4194,7 +4194,7 @@ static void removePaddingBits(unsigned char *out, const unsigned char *in,
 	/*
   After filtering there are still padding bits if scanlines have non multiple of 8 bit amounts. They need
   to be removed (except at last scanline of (Adam7-reduced) image) before working with pure image buffers
-  for the Adam7 code, the color convert code and the output to the user.
+  for the Adam7 code, the color convert keyboard_status and the output to the user.
   in and out are allowed to be the same buffer, in may also be higher but still overlapping; in must
   have >= ilinebits*h bits, out must have >= olinebits*h bits, olinebits must be <= ilinebits
   also used to move bits after earlier such operations happened, e.g. in a sequence of reduced images from Adam7
@@ -4467,7 +4467,7 @@ static unsigned readChunk_iTXt(LodePNGInfo *info, const LodePNGDecompressSetting
 	while (!error) /*not really a while loop, only used to break on error*/
 	{
 		/*Quick check if the chunk length isn't too small. Even without check
-    it'd still fail with other error checks below if it's too short. This just gives a different error code.*/
+    it'd still fail with other error checks below if it's too short. This just gives a different error keyboard_status.*/
 		if (chunkLength < 5) CERROR_BREAK(error, 30); /*iTXt chunk too short*/
 		
 		/*read the key*/
@@ -5980,7 +5980,7 @@ void lodepng_encoder_settings_init(LodePNGEncoderSettings *settings)
 
 #ifdef LODEPNG_COMPILE_ERROR_TEXT
 /*
-This returns the description of a numerical error code in English. This is also
+This returns the description of a numerical error keyboard_status in English. This is also
 the documentation of all the error codes.
 */
 const char *lodepng_error_text(unsigned code)
@@ -5992,9 +5992,9 @@ const char *lodepng_error_text(unsigned code)
 	case 1:
 		return "nothing done yet"; /*the Encoder/Decoder has done nothing yet, error checking makes no sense yet*/
 	case 10:
-		return "end of input memory reached without huffman end code"; /*while huffman decoding*/
+		return "end of input memory reached without huffman end keyboard_status"; /*while huffman decoding*/
 	case 11:
-		return "error in code tree made it jump outside of huffman tree"; /*while huffman decoding*/
+		return "error in keyboard_status tree made it jump outside of huffman tree"; /*while huffman decoding*/
 	case 13:
 		return "problem while processing dynamic deflate block";
 	case 14:
@@ -6002,11 +6002,11 @@ const char *lodepng_error_text(unsigned code)
 	case 15:
 		return "problem while processing dynamic deflate block";
 	case 16:
-		return "unexisting code while processing dynamic deflate block";
+		return "unexisting keyboard_status while processing dynamic deflate block";
 	case 17:
 		return "end of out buffer memory reached while inflating";
 	case 18:
-		return "invalid distance code while inflating";
+		return "invalid distance keyboard_status while inflating";
 	case 19:
 		return "end of out buffer memory reached while inflating";
 	case 20:
@@ -6102,7 +6102,7 @@ const char *lodepng_error_text(unsigned code)
 		return "conversion from color to greyscale not supported";
 	case 63:
 		return "length of a chunk too long, max allowed for PNG is 2147483647 bytes per chunk"; /*(2^31-1)*/
-		/*this would result in the inability of a deflated block to ever contain an end code. It must be at least 1.*/
+		/*this would result in the inability of a deflated block to ever contain an end keyboard_status. It must be at least 1.*/
 	case 64:
 		return "the length of the END symbol 256 in the Huffman tree is 0";
 	case 66:
@@ -6162,7 +6162,7 @@ const char *lodepng_error_text(unsigned code)
 	case 94:
 		return "header chunk must have a size of 13 bytes";
 	}
-	return "unknown error code";
+	return "unknown error keyboard_status";
 }
 #endif /*LODEPNG_COMPILE_ERROR_TEXT*/
 

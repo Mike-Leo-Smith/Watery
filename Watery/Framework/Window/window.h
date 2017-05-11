@@ -9,21 +9,6 @@
 
 namespace watery
 {
-	enum KeyCode
-	{
-		KEY_UNDEFINED,
-		
-		KEY_UP,
-		KEY_DOWN,
-		KEY_LEFT,
-		KEY_RIGHT,
-		KEY_SPACE,
-		KEY_PLUS,
-		KEY_MINUS,
-		
-		KEY_CODE_COUNT
-	};
-	
 	class Window
 	{
 	private:
@@ -41,7 +26,6 @@ namespace watery
 		void setup(const char *name, float logical_width, float logical_height);
 		void rename(const char *name);
 		void resize(int width, int height);
-		bool key_down(KeyCode key) const;
 		bool alive(void) const { return (_handler != nullptr && !glfwWindowShouldClose(_handler)); }
 		void update(void);
 		int width(void) const;

@@ -32,7 +32,7 @@ extern const char *LODEPNG_VERSION_STRING;
 
 /*
 The following #defines are used to create code sections. They can be disabled
-to disable code sections, which can give faster compile time and smaller binary.
+to disable keyboard_status sections, which can give faster compile time and smaller binary.
 The "NO_COMPILE" defines are designed to be used to pass as defines to the
 compiler command to disable them without modifying this header, e.g.
 -DLODEPNG_NO_COMPILE_ZLIB for gcc.
@@ -113,7 +113,7 @@ in: Memory buffer with the PNG file.
 insize: size of the in buffer.
 colortype: the desired color type for the raw output image. See explanation on PNG color types.
 bitdepth: the desired bit depth for the raw output image. See explanation on PNG color types.
-Return value: LodePNG error code (0 means no error).
+Return value: LodePNG error keyboard_status (0 means no error).
 */
 unsigned lodepng_decode_memory(unsigned char **out, unsigned *w, unsigned *h,
                                const unsigned char *in, size_t insize,
@@ -161,7 +161,7 @@ w: width of the raw pixel data in pixels.
 h: height of the raw pixel data in pixels.
 colortype: the color type of the raw input image. See explanation on PNG color types.
 bitdepth: the bit depth of the raw input image. See explanation on PNG color types.
-Return value: LodePNG error code (0 means no error).
+Return value: LodePNG error keyboard_status (0 means no error).
 */
 unsigned lodepng_encode_memory(unsigned char **out, size_t *outsize,
                                const unsigned char *image, unsigned w, unsigned h,
@@ -246,7 +246,7 @@ NOTE: This overwrites existing files without warning!
 #endif /*LODEPNG_COMPILE_PNG*/
 
 #ifdef LODEPNG_COMPILE_ERROR_TEXT
-/*Returns an English description of the numerical error code.*/
+/*Returns an English description of the numerical error keyboard_status.*/
 const char *lodepng_error_text(unsigned code);
 #endif /*LODEPNG_COMPILE_ERROR_TEXT*/
 
@@ -357,7 +357,7 @@ typedef struct LodePNGColorMode
 /*init, cleanup and copy functions to active with this struct*/
 void lodepng_color_mode_init(LodePNGColorMode *info);
 void lodepng_color_mode_cleanup(LodePNGColorMode *info);
-/*return value is error code (0 means no error)*/
+/*return value is error keyboard_status (0 means no error)*/
 unsigned lodepng_color_mode_copy(LodePNGColorMode *dest, const LodePNGColorMode *source);
 
 void lodepng_palette_clear(LodePNGColorMode *info);
@@ -484,7 +484,7 @@ typedef struct LodePNGInfo
 /*init, cleanup and copy functions to active with this struct*/
 void lodepng_info_init(LodePNGInfo *info);
 void lodepng_info_cleanup(LodePNGInfo *info);
-/*return value is error code (0 means no error)*/
+/*return value is error keyboard_status (0 means no error)*/
 unsigned lodepng_info_copy(LodePNGInfo *dest, const LodePNGInfo *source);
 
 #ifdef LODEPNG_COMPILE_ANCILLARY_CHUNKS
@@ -505,7 +505,7 @@ The out buffer must have size (w * h * bpp + 7) / 8, where bpp is the bits per p
 of the output color type (lodepng_get_bpp).
 For < 8 bpp images, there should not be padding bits at the end of scanlines.
 For 16-bit per channel colors, uses big endian format like PNG does.
-Return value is LodePNG error code
+Return value is LodePNG error keyboard_status
 */
 unsigned lodepng_convert(unsigned char *out, const unsigned char *in,
                          const LodePNGColorMode *mode_out, const LodePNGColorMode *mode_in,
@@ -718,7 +718,7 @@ const unsigned char *lodepng_chunk_next_const(const unsigned char *chunk);
 /*
 Appends chunk to the data in out. The given chunk should already have its chunk header.
 The out variable and outlength are updated to reflect the new reallocated buffer.
-Returns error code (0 if it went ok)
+Returns error keyboard_status (0 if it went ok)
 */
 unsigned lodepng_chunk_append(unsigned char **out, size_t *outlength, const unsigned char *chunk);
 
@@ -726,7 +726,7 @@ unsigned lodepng_chunk_append(unsigned char **out, size_t *outlength, const unsi
 Appends new chunk to out. The chunk to append is given by giving its length, type
 and data separately. The type is a 4-letter string.
 The out variable and outlength are updated to reflect the new reallocated buffer.
-Returne error code (0 if it went ok)
+Returne error keyboard_status (0 if it went ok)
 */
 unsigned lodepng_chunk_create(unsigned char **out, size_t *outlength, unsigned length,
                               const char *type, const unsigned char *data);
@@ -772,7 +772,7 @@ unsigned lodepng_zlib_compress(unsigned char **out, size_t *outsize,
                                const LodePNGCompressSettings *settings);
 
 /*
-Find length-limited Huffman code for given frequencies. This function is in the
+Find length-limited Huffman keyboard_status for given frequencies. This function is in the
 public interface only for tests, it's used internally by lodepng_deflate.
 */
 unsigned lodepng_huffman_code_lengths(unsigned *lengths, const unsigned *frequencies,
@@ -793,7 +793,7 @@ after usage you should free it.
 out: output parameter, contains pointer to loaded buffer.
 outsize: output parameter, size of the allocated out buffer
 filename: the path to the file to load
-return value: error code (0 means ok)
+return value: error keyboard_status (0 means ok)
 */
 unsigned lodepng_load_file(unsigned char **out, size_t *outsize, const char *filename);
 
@@ -803,7 +803,7 @@ the file without warning!
 buffer: the buffer to write
 buffersize: size of the buffer to write
 filename: the path to the file to save to
-return value: error code (0 means ok)
+return value: error keyboard_status (0 means ok)
 */
 unsigned lodepng_save_file(const unsigned char *buffer, size_t buffersize, const char *filename);
 #endif /*LODEPNG_COMPILE_DISK*/
@@ -845,7 +845,7 @@ namespace lodepng
 #ifdef LODEPNG_COMPILE_DISK
 /*
 Load a file from disk into an std::vector.
-return value: error code (0 means ok)
+return value: error keyboard_status (0 means ok)
 */
 	unsigned load_file(std::vector<unsigned char> &buffer, const std::string &filename);
 
@@ -1335,7 +1335,7 @@ The meaning of the LodePNG error values can be retrieved with the function
 lodepng_error_text: given the numerical error code, it returns a description
 of the error in English as a string.
 
-Check the implementation of lodepng_error_text to see the meaning of each code.
+Check the implementation of lodepng_error_text to see the meaning of each keyboard_status.
 
 
 8. chunks and PNG editing
