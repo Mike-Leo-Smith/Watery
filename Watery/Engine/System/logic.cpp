@@ -134,7 +134,7 @@ namespace watery
 		
 		_world.add_object("Role", object);
 		
-		GLTexture *bg_gl_texture = _manager.get_texture("background", "Assets/Images/background.png");
+		GLTexture *bg_gl_texture = _manager.get_texture("background", "Assets/Images/The-Starry-Night.png");
 		GLVertexArray *bg_gl_va = _manager.get_vertex_array("back vertex array", "Assets/VertexArrays/background.va");
 		ALAudio *bg_audio = _manager.get_audio("bg audio", "Assets/Sounds/test.wav");
 		

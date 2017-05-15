@@ -1,0 +1,45 @@
+<game name="Contra">
+	<!-- Window -->
+	<window title="Demo" width="1600" height="1000"/>
+	<!-- Level 1 -->
+	<level id="1">
+		<!-- Assets -->
+		<asset>
+			<gl_texture name="face_image" path="Assets/Images/face.png"/>
+			<gl_texture name="bg_image" path="Assets/Images/background.png"/>
+			<gl_shader name="sprite_shader" path="Scripts/Shaders/sprite.vert:Scripts/Shaders/sprite.frag"/>
+			<gl_vertex_array name="face_rect" path="Assets/VertexArrays/face.va"/>
+			<gl_vertex_array name="bg_rect" path="Assets/VertexArray/background.va"/>
+			<al_audio name="bg_music" path="Assets/Sounds/test.wav"/>
+		</asset>
+		<!-- World -->
+		<world>
+			<!-- Camera -->
+			<camera>
+				<position x="0" y="0" z="0"/>
+			</camera>
+			<!-- Background -->
+			<object name="background">
+				<position x="0" y="0" z="0"/>
+				<shader res="sprite_shader"/>
+				<vertex_array res="bg_rect"/>
+				<texture res="bg_image"/>
+				<audio res="bg_music"/>
+			</object>
+			<!-- Object Role -->
+			<object name="Role">
+				<position x="0" y="0" z="0"/>
+				<velocity vx="0" vy="0" vz="0"/>
+				<shader res="sprite_shader"/>
+				<texture res="face_image"/>
+				<vertex_array res="face_rect"/>
+			</object>
+			<object name="">
+			
+			</object>
+		</world>
+	</level>
+	<!-- Level 2 -->
+	<level id="2">
+	</level>
+</game>

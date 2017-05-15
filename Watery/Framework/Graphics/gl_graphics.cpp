@@ -22,4 +22,9 @@ namespace watery
 	{
 		glfwSwapBuffers(_window.handler());
 	}
+	
+	void GLGraphics::poll_events(void)
+	{
+		glfwPollEvents();
+	}
 }

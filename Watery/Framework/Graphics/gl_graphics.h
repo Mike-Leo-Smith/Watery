@@ -23,6 +23,7 @@ namespace watery
 		GLGraphics(void) : _window(Window::instance()) {}
 		void clear(float red = 0, float green = 0, float blue = 0, float alpha = 0.0);
 		void draw(const GLVertexArray *vertex_array);
+		void poll_events(void);
 		void swap_buffers(void);
 	};
 }

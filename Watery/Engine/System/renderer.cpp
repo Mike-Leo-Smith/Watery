@@ -26,6 +26,7 @@ namespace watery
 		Matrix view = Mathematics::camera_at(_world.camera().position());
 		Matrix proj = get_proj_matrix();
 		
+		_graphics.poll_events();
 		_graphics.clear(0.3, 0.4, 0.6);
 		
 		for (auto &item : _world.objects())

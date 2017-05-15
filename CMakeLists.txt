@@ -84,12 +84,8 @@ set(SOURCE_FILES
 		Watery/Engine/System/logic.h
 		Watery/Engine/Message/mouse_message.cpp
 		Watery/Engine/Message/mouse_message.h
-		Watery/Engine/System/controller.cpp
-		Watery/Engine/System/controller.h
 		Watery/Engine/System/sound.cpp
 		Watery/Engine/System/sound.h
-		Watery/Framework/XML/xml_parser.cpp
-		Watery/Framework/XML/xml_parser.h
 		Watery/Engine/Component/frame_animation.cpp
 		Watery/Engine/Component/frame_animation.h
 		Watery/Engine/Component/health.cpp
@@ -99,7 +95,7 @@ set(SOURCE_FILES
 		Watery/Engine/Physics/shape.cpp
 		Watery/Engine/Physics/shape.h
 		Watery/Engine/Physics/rectangle.cpp
-		Watery/Engine/Physics/rectangle.h Watery/Engine/Physics/circle.cpp Watery/Engine/Physics/circle.h Watery/Framework/HID/keyboard.cpp Watery/Framework/HID/keyboard.h)
+		Watery/Engine/Physics/rectangle.h Watery/Engine/Physics/circle.cpp Watery/Engine/Physics/circle.h Watery/Framework/HID/keyboard.cpp Watery/Framework/HID/keyboard.h Watery/Engine/Game/game.cpp Watery/Engine/Game/game.h Game/Sources/plane.cpp Game/Sources/plane.h Watery/Framework/XML/xml_element.cpp Watery/Framework/XML/xml_element.h Watery/Framework/XML/xml_document.cpp Watery/Framework/XML/xml_document.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)
