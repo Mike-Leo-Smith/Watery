@@ -35,6 +35,7 @@ namespace watery
 		Audio *create_audio(ALAudio *al_audio);
 		Shader *create_shader(GLShader *gl_shader);
 		Texture *create_texture(GLTexture *gl_texture);
+		VertexArray *create_vertex_array(GLVertexArray *gl_vertex_array);
 		void destroy(Component *component);
 		void destroy_all(void);
 		static ComponentFactory &instance(void);

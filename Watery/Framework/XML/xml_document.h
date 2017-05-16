@@ -16,11 +16,13 @@ namespace watery
 	
 	public:
 		XMLDocument(void) : _root(nullptr) {}
+		XMLDocument(const std::string &file_name) : _root(nullptr) { load(file_name); }
 		~XMLDocument(void);
 		void load(const std::string &file_name);
 		XMLElement *root(void) { return _root; }
 		const XMLElement *root(void) const { return _root; }
 		void print(int depth) { _root->print(depth); };
+		bool empty(void) const { return (_root == nullptr); }
 	};
 }
 

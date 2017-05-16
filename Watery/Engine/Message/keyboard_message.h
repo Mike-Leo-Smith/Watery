@@ -7,7 +7,6 @@
 
 #include "message.h"
 #include "../../Framework/Window/window.h"
-#include "../Configure/configure.h"
 #include "../../Framework/HID/keyboard.h"
 
 namespace watery

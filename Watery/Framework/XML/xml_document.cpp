@@ -24,9 +24,6 @@ namespace watery
 		
 		if (file.is_open())
 		{
-			_root = new XMLElement;
-			
-			element_stack.push(_root);
 			while (!file.eof())
 			{
 				int c = file.get();
@@ -51,6 +48,7 @@ namespace watery
 						if (element_stack.empty() || element_stack.top()->tag() != close_tag)
 						{
 							delete _root;
+							_root = nullptr;
 							return;
 						}
 						

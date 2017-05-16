@@ -12,15 +12,13 @@
 
 namespace watery
 {
-	ResourceManager *ResourceManager::_instance = new ResourceManager;
-	
 	GLTexture *ResourceManager::get_texture(const std::string &texture_name, const std::string &file_name)
 	{
 		GLTexture *texture = nullptr;
 		
 		if (_textures.count(texture_name))
 		{
-			texture = _textures.at(file_name);
+			texture = _textures.at(texture_name);
 		}
 		else if (file_name != "")
 		{
@@ -37,9 +35,13 @@ namespace watery
 		return texture;
 	}
 	
-	GLShader *ResourceManager::get_shader(const std::string &shader_name, const std::string &vertex_shader_file_name, const std::string &fragment_shader_file_name)
+	GLShader *ResourceManager::get_shader(const std::string &shader_name, const std::string &file_name)
 	{
 		GLShader *shader = nullptr;
+		size_t colon_pos = file_name.find(':');
+		
+		std::string vertex_shader_file_name = file_name.substr(0, colon_pos);
+		std::string fragment_shader_file_name = file_name.substr(colon_pos + 1);
 		
 		if (_shaders.count(shader_name))
 		{
@@ -81,7 +83,7 @@ namespace watery
 		
 		if (_audios.count(audio_name))
 		{
-			audio = _audios.at(file_name);
+			audio = _audios.at(audio_name);
 		}
 		else if (file_name != "")
 		{
@@ -230,5 +232,16 @@ namespace watery
 		{
 			delete vertex_array.second;
 		}
+		
+		_textures.clear();
+		_audios.clear();
+		_shaders.clear();
+		_vertex_arrays.clear();
+	}
+	
+	ResourceManager &ResourceManager::instance(void)
+	{
+		static ResourceManager manager;
+		return manager;
 	}
 }

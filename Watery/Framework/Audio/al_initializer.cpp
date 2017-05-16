@@ -7,14 +7,10 @@
 
 namespace watery
 {
+	ALInitializer *ALInitializer::_instance = new ALInitializer;
+	
 	ALInitializer::ALInitializer(void)
 	{
 		alutInit(nullptr, nullptr);
-	}
-	
-	ALInitializer &ALInitializer::instance(void)
-	{
-		static ALInitializer initializer;
-		return initializer;
 	}
 }

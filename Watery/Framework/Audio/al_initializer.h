@@ -10,14 +10,12 @@ namespace watery
 	class ALInitializer
 	{
 	private:
+		static ALInitializer *_instance;
 		ALInitializer(void);
 		ALInitializer(const ALInitializer &) = delete;
 		ALInitializer(ALInitializer &&) = delete;
 		ALInitializer &operator=(const ALInitializer &) = delete;
 		~ALInitializer(void) {}
-	
-	public:
-		static ALInitializer &instance(void);
 	};
 };
 

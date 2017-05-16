@@ -11,16 +11,22 @@
 #include "Watery/Engine/System/logic.h"
 #include "Watery/Engine/System/input.h"
 #include "Watery/Engine/System/sound.h"
+#include "Watery/Engine/Loader/loader.h"
 
 int main(void)
 {
+	watery::Loader &loader = watery::Loader::instance();
+	
+	loader.configure("Scripts/Levels/demo.xml");
+	loader.load_level("1");
+	
 	watery::Renderer *renderer = new watery::Renderer;
 	watery::Logic *logic = new watery::Logic;
 	watery::Input *input = new watery::Input;
 	watery::Sound *sound = new watery::Sound;
 	
-	renderer->init("Test", 1600, 1200);
-	logic->init();
+	// renderer->init("Test", 1600, 1200);
+	// logic->init();
 	
 	renderer->start();
 	logic->start();

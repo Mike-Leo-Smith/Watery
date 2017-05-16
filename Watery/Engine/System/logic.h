@@ -9,6 +9,7 @@
 #include "../World/world.h"
 #include "../Message/keyboard_message.h"
 #include "../Resource/resource_manager.h"
+#include "../Configuration/default.h"
 
 namespace watery
 {

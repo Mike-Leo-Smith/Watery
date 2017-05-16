@@ -8,10 +8,11 @@ namespace watery
 {
 	void ComponentFactory::destroy_all(void)
 	{
-		for (auto &item : _components)
+		for (auto &component : _components)
 		{
-			destroy(item);
+			delete component;
 		}
+		_components.clear();
 	}
 	
 	void ComponentFactory::destroy(Component *component)
@@ -63,5 +64,13 @@ namespace watery
 		
 		_components.insert((Texture *)texture);
 		return texture;
+	}
+	
+	VertexArray *ComponentFactory::create_vertex_array(GLVertexArray *gl_vertex_array)
+	{
+		VertexArray *vertex_array = new VertexArray(gl_vertex_array);
+		
+		_components.insert((VertexArray *)vertex_array);
+		return vertex_array;
 	}
 }

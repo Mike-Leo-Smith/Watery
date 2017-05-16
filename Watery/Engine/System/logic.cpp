@@ -66,7 +66,7 @@ namespace watery
 		
 		if (role_pos->x() > _world.camera().x() + _window.logical_width() - 300)
 		{
-			if (_world.camera().x() + _window.logical_width() < 4200 - role_v->vx() + 1)
+			if (_world.camera().x() + _window.logical_width() >= 4200 - role_v->vx() + 1)
 			{
 				_world.camera().move_x(role_v->vx());
 			}
@@ -74,7 +74,7 @@ namespace watery
 		
 		if (role_pos->x() < _world.camera().x() + 120)
 		{
-			_world.camera().move_x(-role_v->vx());
+			_world.camera().move_x(role_v->vx());
 			if (_world.camera().x() < 0)
 			{
 				_world.camera().move_x(-_world.camera().x());
@@ -108,7 +108,7 @@ namespace watery
 	void Logic::init(void)
 	{
 		GLTexture *gl_texture = _manager.get_texture("texture", "Assets/Images/face.png");
-		GLShader *gl_shader = _manager.get_shader("shader", "Scripts/Shaders/sprite.vert", "Scripts/Shaders/sprite.frag");
+		GLShader *gl_shader = _manager.get_shader("shader", "Scripts/Shaders/sprite.vert:Scripts/Shaders/sprite.frag");
 		GLVertexArray *gl_vertex_array = _manager.get_vertex_array("vertex array", "Assets/VertexArrays/face.va");
 		
 		auto trans1 = [](void) -> const Vector
@@ -123,7 +123,7 @@ namespace watery
 		Component *velocity = new Velocity;
 		Component *pos_ani = new PositionAnimation(trans1, 200000);
 		
-		Object *object = new Object;
+		Object *object = _world.create_object("Role");
 		
 		object->bind_component(texture);
 		object->bind_component(shader);
@@ -131,8 +131,6 @@ namespace watery
 		object->bind_component(position);
 		object->bind_component(velocity);
 		object->bind_component(pos_ani);
-		
-		_world.add_object("Role", object);
 		
 		GLTexture *bg_gl_texture = _manager.get_texture("background", "Assets/Images/The-Starry-Night.png");
 		GLVertexArray *bg_gl_va = _manager.get_vertex_array("back vertex array", "Assets/VertexArrays/background.va");
@@ -149,7 +147,7 @@ namespace watery
 		Component *bg_music = new Audio(bg_audio);
 		Component *pos_ani2 = new PositionAnimation(trans2, 20000);
 		
-		Object *background = new Object;
+		Object *background = _world.create_object("World");
 		
 		background->bind_component(bg_texture);
 		background->bind_component(shader);
@@ -158,9 +156,7 @@ namespace watery
 		background->bind_component(bg_music);
 		background->bind_component(pos_ani2);
 		
-		_world.add_object("World", background);
-		
-		GLShader *gl_sh = _manager.get_shader("standard", "Scripts/Shaders/standard.vert", "Scripts/Shaders/standard.frag");
+		GLShader *gl_sh = _manager.get_shader("standard", "Scripts/Shaders/standard.vert:Scripts/Shaders/standard.frag");
 		GLVertexArray *gl_v = _manager.get_vertex_array("std", "Assets/VertexArrays/pyramid.va");
 		
 		Component *py_shader = new Shader(gl_sh);
@@ -168,12 +164,10 @@ namespace watery
 		//Component *py_position = new Position(Vector(200, 200, 3));
 		//Component *pos_ani3 = new PositionAnimation;
 		
-		Object *py = new Object;
+		Object *py = _world.create_object("ay");
 		py->bind_component(py_shader);
 		py->bind_component(py_va);
 		py->bind_component(position);
 		//py->bind_component(pos_ani3);
-		
-		_world.add_object("ay", py);
 	}
 }

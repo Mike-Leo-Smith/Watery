@@ -16,6 +16,7 @@ namespace watery
 		Camera(const Vector &position = Vector());
 		virtual ~Camera(void);
 		virtual const Vector position(void) const;
+		virtual void set_position(const Vector &pos);
 		virtual void move(const Vector &direction);
 		virtual void move_x(float dx);
 		virtual void move_y(float dy);
@@ -23,6 +24,9 @@ namespace watery
 		virtual float x(void) const;
 		virtual float y(void) const;
 		virtual float z(void) const;
+		virtual void set_x(float x);
+		virtual void set_y(float y);
+		virtual void set_z(float z);
 	};
 }
 

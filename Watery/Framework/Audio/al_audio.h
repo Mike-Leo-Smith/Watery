@@ -13,7 +13,6 @@ namespace watery
 	class ALAudio
 	{
 	private:
-		ALInitializer &_initializer;
 		ALuint _source;
 		ALuint _buffer;
 	

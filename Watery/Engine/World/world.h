@@ -7,11 +7,12 @@
 
 #include <string>
 #include <map>
-#include "../Object/object.h"
-#include "../Object/camera.h"
+#include "object.h"
+#include "camera.h"
 
 namespace watery
 {
+	// Objects are created and managed by World.
 	class World
 	{
 	private:
@@ -26,14 +27,15 @@ namespace watery
 	
 	public:
 		static World &instance(void);
-		void add_object(const std::string &name, Object *object) { _objects.emplace(name, object); }
+		Object *create_object(const std::string &name);
 		Object *object(const std::string &name) { return (_objects.count(name) ? _objects.at(name) : nullptr); }
 		const Object *object(const std::string &name) const { return (_objects.count(name) ? _objects.at(name) : nullptr); }
 		std::map<std::string, Object *> &objects(void) { return _objects; };
 		const std::map<std::string, Object *> &objects(void) const { return _objects; };
 		Camera &camera(void) { return _camera; }
 		const Camera &camera(void) const { return _camera; }
-		void remove_object(const std::string &name) { _objects.erase(name); }
+		void destroy_object(const std::string &name) { _objects.erase(name); }
+		void destroy_all(void);
 	};
 }
 

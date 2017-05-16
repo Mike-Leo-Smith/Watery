@@ -86,4 +86,44 @@ namespace watery
 	{
 		return static_cast<const Position *>(component(COMPONENT_POSITION))->z();
 	}
+	
+	void Camera::set_position(const Vector &pos)
+	{
+		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
+		
+		if (position != nullptr)
+		{
+			position->set_position(pos);
+		}
+	}
+	
+	void Camera::set_x(float x)
+	{
+		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
+		
+		if (position != nullptr)
+		{
+			position->set_x(x);
+		}
+	}
+	
+	void Camera::set_y(float y)
+	{
+		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
+		
+		if (position != nullptr)
+		{
+			position->set_y(y);
+		}
+	}
+	
+	void Camera::set_z(float z)
+	{
+		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
+		
+		if (position != nullptr)
+		{
+			position->set_z(z);
+		}
+	}
 }

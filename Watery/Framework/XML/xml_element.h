@@ -32,6 +32,7 @@ namespace watery
 		void set_text(const std::string &text) { _text = text; }
 		void set_attribute(const std::string &name, const std::string &value);
 		XMLElement *create_child(const std::string &child_tag);
+		const std::map<std::string, std::vector<XMLElement *>> children(void) const { return _children; };
 		
 		void print(int depth);
 	};

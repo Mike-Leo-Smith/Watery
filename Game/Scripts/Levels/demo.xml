@@ -9,7 +9,7 @@
 			<gl_texture name="bg_image" path="Assets/Images/background.png"/>
 			<gl_shader name="sprite_shader" path="Scripts/Shaders/sprite.vert:Scripts/Shaders/sprite.frag"/>
 			<gl_vertex_array name="face_rect" path="Assets/VertexArrays/face.va"/>
-			<gl_vertex_array name="bg_rect" path="Assets/VertexArray/background.va"/>
+			<gl_vertex_array name="bg_rect" path="Assets/VertexArrays/background.va"/>
 			<al_audio name="bg_music" path="Assets/Sounds/test.wav"/>
 		</asset>
 		<!-- World -->
@@ -34,12 +34,6 @@
 				<texture res="face_image"/>
 				<vertex_array res="face_rect"/>
 			</object>
-			<object name="">
-			
-			</object>
 		</world>
-	</level>
-	<!-- Level 2 -->
-	<level id="2">
 	</level>
 </game>

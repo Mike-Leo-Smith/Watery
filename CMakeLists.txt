@@ -2,13 +2,39 @@ cmake_minimum_required(VERSION 3.7)
 project(Watery)
 
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL -O3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL")
 
 set(SOURCE_FILES
 		main.cpp
+		Watery/Framework/Network/network.cpp
+		Watery/Framework/Network/network.h
+		Watery/Framework/Clock/clock.cpp
+		Watery/Framework/Clock/clock.h
+		Watery/Framework/ThirdParty/lodepng.cpp
+		Watery/Framework/ThirdParty/lodepng.h
+		Watery/Framework/Audio/al_audio.cpp
+		Watery/Framework/Audio/al_audio.h
+		Watery/Framework/Graphics/gl_texture.cpp
+		Watery/Framework/Graphics/gl_texture.h
+		Watery/Framework/Graphics/gl_shader.cpp
+		Watery/Framework/Graphics/gl_shader.h
+		Watery/Framework/Graphics/gl_vertex_array.cpp
+		Watery/Framework/Graphics/gl_vertex_array.h
+		Watery/Framework/Window/window.cpp
+		Watery/Framework/Window/window.h
+		Watery/Framework/Audio/al_initializer.cpp
+		Watery/Framework/Audio/al_initializer.h
+		Watery/Framework/HID/keyboard.cpp
+		Watery/Framework/HID/keyboard.h
+		Watery/Framework/XML/xml_element.cpp
+		Watery/Framework/XML/xml_element.h
+		Watery/Framework/XML/xml_document.cpp
+		Watery/Framework/XML/xml_document.h
+		Watery/Framework/Graphics/gl_graphics.cpp
+		Watery/Framework/Graphics/gl_graphics.h
 		Watery/Engine/Mathematics/vector.cpp
 		Watery/Engine/Mathematics/vector.h
-		Watery/Engine/Configure/configure.h
+		Watery/Engine/Configuration/default.h
 		Watery/Engine/Component/position.cpp
 		Watery/Engine/Component/position.h
 		Watery/Engine/Component/velocity.cpp
@@ -26,8 +52,8 @@ set(SOURCE_FILES
 		Watery/Engine/Component/component_factory.h
 		Watery/Engine/Resource/resource_manager.cpp
 		Watery/Engine/Resource/resource_manager.h
-		Watery/Engine/Object/object.cpp
-		Watery/Engine/Object/object.h
+		Watery/Engine/World/object.cpp
+		Watery/Engine/World/object.h
 		Watery/Engine/Message/messenger.cpp
 		Watery/Engine/Message/messenger.h
 		Watery/Engine/Message/message_bus.cpp
@@ -46,28 +72,10 @@ set(SOURCE_FILES
 		Watery/Engine/Message/keyboard_message.h
 		Watery/Engine/Timer/timer.cpp
 		Watery/Engine/Timer/timer.h
-		Watery/Engine/Object/camera.cpp
-		Watery/Engine/Object/camera.h
-		Watery/Framework/Network/network.cpp
-		Watery/Framework/Network/network.h
-		Watery/Framework/Clock/clock.cpp
-		Watery/Framework/Clock/clock.h
+		Watery/Engine/World/camera.cpp
+		Watery/Engine/World/camera.h
 		Watery/Engine/Physics/physics.cpp
 		Watery/Engine/Physics/physics.h
-		Watery/Framework/ThirdParty/lodepng.cpp
-		Watery/Framework/ThirdParty/lodepng.h
-		Watery/Framework/Audio/al_audio.cpp
-		Watery/Framework/Audio/al_audio.h
-		Watery/Framework/Graphics/gl_texture.cpp
-		Watery/Framework/Graphics/gl_texture.h
-		Watery/Framework/Graphics/gl_shader.cpp
-		Watery/Framework/Graphics/gl_shader.h
-		Watery/Framework/Graphics/gl_vertex_array.cpp
-		Watery/Framework/Graphics/gl_vertex_array.h
-		Watery/Framework/Window/window.cpp
-		Watery/Framework/Window/window.h
-		Watery/Framework/Audio/al_initializer.cpp
-		Watery/Framework/Audio/al_initializer.h
 		Watery/Engine/Mathematics/matrix.cpp
 		Watery/Engine/Mathematics/matrix.h
 		Watery/Engine/Mathematics/mathematics.cpp
@@ -78,8 +86,6 @@ set(SOURCE_FILES
 		Watery/Engine/World/world.h
 		Watery/Engine/Component/vertex_array.cpp
 		Watery/Engine/Component/vertex_array.h
-		Watery/Framework/Graphics/gl_graphics.cpp
-		Watery/Framework/Graphics/gl_graphics.h
 		Watery/Engine/System/logic.cpp
 		Watery/Engine/System/logic.h
 		Watery/Engine/Message/mouse_message.cpp
@@ -95,7 +101,15 @@ set(SOURCE_FILES
 		Watery/Engine/Physics/shape.cpp
 		Watery/Engine/Physics/shape.h
 		Watery/Engine/Physics/rectangle.cpp
-		Watery/Engine/Physics/rectangle.h Watery/Engine/Physics/circle.cpp Watery/Engine/Physics/circle.h Watery/Framework/HID/keyboard.cpp Watery/Framework/HID/keyboard.h Watery/Engine/Game/game.cpp Watery/Engine/Game/game.h Game/Sources/plane.cpp Game/Sources/plane.h Watery/Framework/XML/xml_element.cpp Watery/Framework/XML/xml_element.h Watery/Framework/XML/xml_document.cpp Watery/Framework/XML/xml_document.h)
+		Watery/Engine/Physics/rectangle.h
+		Watery/Engine/Physics/circle.cpp
+		Watery/Engine/Physics/circle.h
+		Watery/Engine/Game/game.cpp
+		Watery/Engine/Game/game.h
+		Watery/Engine/Loader/loader.cpp
+		Watery/Engine/Loader/loader.h
+		Game/Sources/plane.cpp
+		Game/Sources/plane.h Watery/Engine/Resource/resource.cpp Watery/Engine/Resource/resource.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)

@@ -10,7 +10,7 @@
 #include <set>
 #include "../Timer/timer.h"
 #include "../../Framework/Clock/clock.h"
-#include "../Configure/configure.h"
+#include "../Configuration/default.h"
 
 namespace watery
 {
