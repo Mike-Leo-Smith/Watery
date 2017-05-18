@@ -109,7 +109,7 @@ set(SOURCE_FILES
 		Watery/Engine/Loader/loader.cpp
 		Watery/Engine/Loader/loader.h
 		Game/Sources/plane.cpp
-		Game/Sources/plane.h Watery/Engine/Resource/resource.cpp Watery/Engine/Resource/resource.h)
+		Game/Sources/plane.h Watery/Engine/Resource/resource.cpp Watery/Engine/Resource/resource.h Watery/Engine/Component/text.cpp Watery/Engine/Component/text.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)

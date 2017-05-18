@@ -5,8 +5,6 @@
 #include <gl/glew.h>
 #include <iostream>
 
-#include <glm/glm.hpp>
-
 #include "system.h"
 #include "renderer.h"
 #include "../Mathematics/mathematics.h"
@@ -79,10 +77,5 @@ namespace watery
 	{
 		Matrix ortho = Mathematics::ortho_proj(0, _window.logical_width(), 0.0f, _window.logical_height(), -100, 100);
 		return ortho;
-	}
-	
-	void Renderer::init(const std::string &window_name, int width, int height)
-	{
-		_window.setup(window_name.c_str(), width, height);
 	}
 }

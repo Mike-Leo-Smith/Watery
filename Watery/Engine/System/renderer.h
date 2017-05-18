@@ -28,7 +28,6 @@ namespace watery
 		Renderer(const std::string &name = "Render", Microsecond interval = RENDERER_DEFAULT_UPDATE_INTERVAL)
 				: System(name, interval), _window(Window::instance()), _world(World::instance()) {}
 		virtual ~Renderer(void) {}
-		virtual void init(const std::string &window_name, int width, int height);
 	};
 }
 

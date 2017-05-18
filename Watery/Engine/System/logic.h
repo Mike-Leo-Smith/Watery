@@ -27,7 +27,6 @@ namespace watery
 		Logic(const std::string &name = "Logic", Microsecond interval = LOGIC_DEFAULT_UPDATE_INTERVAL)
 				: System(name, interval), _world(World::instance()), _window(Window::instance()), _manager(ResourceManager::instance()) {}
 		virtual ~Logic(void) {}
-		virtual void init(void);
 	};
 }
 
