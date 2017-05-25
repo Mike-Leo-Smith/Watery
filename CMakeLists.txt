@@ -32,6 +32,8 @@ set(SOURCE_FILES
 		Watery/Framework/XML/xml_document.h
 		Watery/Framework/Graphics/gl_graphics.cpp
 		Watery/Framework/Graphics/gl_graphics.h
+		Watery/Framework/Graphics/gl_text.cpp
+		Watery/Framework/Graphics/gl_text.h
 		Watery/Engine/Mathematics/vector.cpp
 		Watery/Engine/Mathematics/vector.h
 		Watery/Engine/Configuration/default.h
@@ -91,12 +93,12 @@ set(SOURCE_FILES
 		Watery/Engine/Loader/loader.cpp
 		Watery/Engine/Loader/loader.h
 		Watery/Engine/Component/text.h
-		Game/Sources/plane.cpp
-		Game/Sources/plane.h
-		Watery/Framework/Graphics/gl_text.cpp
-		Watery/Framework/Graphics/gl_text.h
 		Watery/Engine/System/scene.cpp
-		Watery/Engine/System/scene.h Watery/Engine/Resource/resource.cpp Watery/Engine/Resource/resource.h)
+		Watery/Engine/System/scene.h
+		Watery/Engine/Resource/resource_wrapper.cpp
+		Watery/Engine/Resource/resource_wrapper.h
+		Game/Sources/plane.cpp
+		Game/Sources/plane.h Watery/Engine/Component/animation.cpp Watery/Engine/Component/animation.h Watery/Engine/Resource/gl_texture_wrapper.cpp Watery/Engine/Resource/gl_texture_wrapper.h Watery/Engine/Resource/gl_shader_wrapper.cpp Watery/Engine/Resource/gl_shader_wrapper.h Watery/Engine/Resource/gl_vertex_array_wrapper.cpp Watery/Engine/Resource/gl_vertex_array_wrapper.h Watery/Engine/Resource/al_audio_wrapper.cpp Watery/Engine/Resource/al_audio_wrapper.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)

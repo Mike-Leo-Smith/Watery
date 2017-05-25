@@ -6,6 +6,7 @@
 #define WATERY_VECTOR_H
 
 #include <cstring>
+#include <string>
 
 namespace watery
 {
@@ -17,6 +18,7 @@ namespace watery
 	public:
 		Vector(float x = 0, float y = 0, float z = 0) : _xyz { x, y, z } {}
 		Vector(float *xyz) { set_xyz(xyz); }
+		Vector(const std::string &coord_str);
 		~Vector(void) {}
 		float length(void) const;
 		void normalize(void);

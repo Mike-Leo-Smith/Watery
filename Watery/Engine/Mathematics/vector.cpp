@@ -3,6 +3,8 @@
 //
 
 #include <cmath>
+#include <cstdlib>
+#include <sstream>
 #include "vector.h"
 
 namespace watery
@@ -88,5 +90,13 @@ namespace watery
 		{
 			_xyz[i] = xyz[i];
 		}
+	}
+	
+	Vector::Vector(const std::string &coord_str)
+	{
+		std::stringstream buffer;
+		
+		buffer << coord_str;
+		buffer >> _xyz[0] >> _xyz[1] >> _xyz[2];
 	}
 }

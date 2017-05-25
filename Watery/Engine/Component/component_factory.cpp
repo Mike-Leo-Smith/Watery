@@ -15,7 +15,7 @@ namespace watery
 		_components.clear();
 	}
 	
-	void ComponentFactory::destroy(Component *component)
+	void ComponentFactory::destroy_component(Component *component)
 	{
 		delete component;
 		_components.erase(component);
@@ -72,5 +72,32 @@ namespace watery
 		
 		_components.insert((VertexArray *)vertex_array);
 		return vertex_array;
+	}
+	
+	Component *ComponentFactory::create_component(const std::string &type, const std::string &arg)
+	{
+		Component *component = nullptr;
+		
+		if (type == "position")
+		{
+			component = new Position(arg);
+		}
+		else if (type == "velocity")
+		{
+			component = new Velocity(arg);
+		}
+		else if (type == "audio")
+		{
+			ALAudio *al_audio = static_cast<ALAudio *>(_resource.get_resource("al_audio", arg)->data());
+			
+			if (al_audio != nullptr)
+			{
+				component = new Audio();
+			}
+		}
+		else if (type == "")
+		{
+		
+		}
 	}
 }

@@ -7,22 +7,14 @@
 
 #include <map>
 #include <string>
-#include "../System/system.h"
-#include "../../Framework/Audio/al_audio.h"
-#include "../../Framework/Graphics/gl_texture.h"
-#include "../../Framework/Graphics/gl_shader.h"
-#include "../../Framework/Graphics/gl_vertex_array.h"
-#include "../../Framework/XML/xml_document.h"
+#include "resource_wrapper.h"
 
 namespace watery
 {
 	class ResourceManager
 	{
 	private:
-		std::map<std::string, ALAudio *> _audios;
-		std::map<std::string, GLTexture *> _textures;
-		std::map<std::string, GLShader *> _shaders;
-		std::map<std::string, GLVertexArray *> _vertex_arrays;
+		std::map<std::string, ResourceWrapper *> _resources;
 		
 		ResourceManager(void) {}
 		ResourceManager(const ResourceManager &) = delete;
@@ -32,14 +24,8 @@ namespace watery
 	
 	public:
 		static ResourceManager &instance(void);
-		GLShader *get_shader(const std::string &shader_name, const std::string &file_name = "");
-		GLTexture *get_texture(const std::string &texture_name, const std::string &file_name = "");
-		GLVertexArray *get_vertex_array(const std::string &vertex_array_name, const std::string &file_name = "");
-		ALAudio *get_audio(const std::string &audio_name, const std::string &file_name = "");
-		void destroy_texture(const std::string &texture_name);
-		void destroy_audio(const std::string &audio_name);
-		void destroy_shader(const std::string &shader_name);
-		void destroy_vertex_array(const std::string &vertex_array_name);
+		ResourceWrapper *get_resource(const std::string &type, const std::string &name, const std::string &file_name = "");
+		void destroy_resource(const std::string &name);
 		void destroy_all(void);
 	};
 }
