@@ -64,8 +64,8 @@ set(SOURCE_FILES
 		Watery/Engine/System/system.h
 		Watery/Engine/System/input.cpp
 		Watery/Engine/System/input.h
-		Watery/Engine/System/renderer.cpp
-		Watery/Engine/System/renderer.h
+		Watery/Engine/System/render.cpp
+		Watery/Engine/System/render.h
 		Watery/Engine/System/communication.cpp
 		Watery/Engine/System/communication.h
 		Watery/Engine/Message/keyboard_message.cpp
@@ -108,8 +108,16 @@ set(SOURCE_FILES
 		Watery/Engine/Game/game.h
 		Watery/Engine/Loader/loader.cpp
 		Watery/Engine/Loader/loader.h
+		Watery/Engine/Resource/resource.cpp
+		Watery/Engine/Resource/resource.h
+		Watery/Engine/Component/text.cpp
+		Watery/Engine/Component/text.h
 		Game/Sources/plane.cpp
-		Game/Sources/plane.h Watery/Engine/Resource/resource.cpp Watery/Engine/Resource/resource.h Watery/Engine/Component/text.cpp Watery/Engine/Component/text.h)
+		Game/Sources/plane.h
+		Watery/Framework/Graphics/gl_text.cpp
+		Watery/Framework/Graphics/gl_text.h
+		Watery/Engine/System/scene.cpp
+		Watery/Engine/System/scene.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)

@@ -6,7 +6,7 @@
 #include <iostream>
 
 #include "system.h"
-#include "renderer.h"
+#include "render.h"
 #include "../Mathematics/mathematics.h"
 #include "../Component/vertex_array.h"
 #include "../Component/shader.h"
@@ -16,7 +16,7 @@
 
 namespace watery
 {
-	void Renderer::do_updating_tasks(void)
+	void Render::do_updating_tasks(void)
 	{
 		handle_message();
 		
@@ -73,7 +73,7 @@ namespace watery
 		_graphics.swap_buffers();
 	}
 	
-	const Matrix Renderer::get_proj_matrix(void) const
+	const Matrix Render::get_proj_matrix(void) const
 	{
 		Matrix ortho = Mathematics::ortho_proj(0, _window.logical_width(), 0.0f, _window.logical_height(), -100, 100);
 		return ortho;

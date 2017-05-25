@@ -5107,7 +5107,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "Renderer",
+											"text": "Render",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -27848,7 +27848,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Renderer",
+					"name": "Render",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",

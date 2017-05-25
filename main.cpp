@@ -1,7 +1,7 @@
 #include <gl/glew.h>
 #include <thread>
 #include "Watery/Engine/World/world.h"
-#include "Watery/Engine/System/renderer.h"
+#include "Watery/Engine/System/render.h"
 #include "Watery/Engine/Mathematics/mathematics.h"
 #include "Watery/Engine/Resource/resource_manager.h"
 #include "Watery/Engine/Component/texture.h"
@@ -20,7 +20,7 @@ int main(void)
 	loader.configure("Scripts/Levels/demo.xml");
 	loader.load_level("1");
 	
-	watery::Renderer *renderer = new watery::Renderer;
+	watery::Render *renderer = new watery::Render;
 	watery::Logic *logic = new watery::Logic;
 	watery::Input *input = new watery::Input;
 	watery::Sound *sound = new watery::Sound;

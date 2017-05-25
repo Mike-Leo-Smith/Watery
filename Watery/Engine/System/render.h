@@ -2,8 +2,8 @@
 // Created by Mike Smith on 2017/4/17.
 //
 
-#ifndef WATERY_RENDERER_H
-#define WATERY_RENDERER_H
+#ifndef WATERY_RENDER_H
+#define WATERY_RENDER_H
 
 #include "../../Framework/Window/window.h"
 #include "system.h"
@@ -13,7 +13,7 @@
 
 namespace watery
 {
-	class Renderer : public System
+	class Render : public System
 	{
 	private:
 		Window &_window;
@@ -25,10 +25,10 @@ namespace watery
 		virtual const Matrix get_proj_matrix(void) const;
 		
 	public:
-		Renderer(const std::string &name = "Render", Microsecond interval = RENDERER_DEFAULT_UPDATE_INTERVAL)
+		Render(const std::string &name = "Render", Microsecond interval = RENDERER_DEFAULT_UPDATE_INTERVAL)
 				: System(name, interval), _window(Window::instance()), _world(World::instance()) {}
-		virtual ~Renderer(void) {}
+		virtual ~Render(void) {}
 	};
 }
 
-#endif  // WATERY_RENDERER_H
+#endif  // WATERY_RENDER_H
