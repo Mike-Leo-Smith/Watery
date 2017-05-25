@@ -95,8 +95,6 @@ namespace watery
 		{
 			role_v->accelerate_x(0.1f);
 		}
-		std::cout << role_v->vx() << " " << role_v->vy() << std::endl;
-		std::cout << role_pos->x() << " " << role_pos->y() << std::endl;
 		dispatch_message(message);
 	}
 }

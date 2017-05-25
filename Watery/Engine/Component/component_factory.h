@@ -30,13 +30,7 @@ namespace watery
 		~ComponentFactory(void) { destroy_all(); }
 	
 	public:
-		Position *create_position(const Vector &coord);
-		Velocity *create_velocity(const Vector &coord);
-		Audio *create_audio(ALAudio *al_audio);
-		Shader *create_shader(GLShader *gl_shader);
-		Texture *create_texture(GLTexture *gl_texture);
-		VertexArray *create_vertex_array(GLVertexArray *gl_vertex_array);
-		Component *create_component(const std::string &type, const std::string &arg);
+		Component *create_component(const std::string &type, const std::string &res);
 		void destroy_component(Component *component);
 		void destroy_all(void);
 		static ComponentFactory &instance(void);

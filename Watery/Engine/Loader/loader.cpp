@@ -39,120 +39,69 @@ namespace watery
 		
 		if (!_config.empty())
 		{
-			XMLElement *level_info = nullptr;
-			auto &levels = _config.root()->child("level");
+			XMLElement *expected_level_tag = nullptr;
+			auto &level_tags = _config.root()->child("level");
 			
 			// Find the required level information.
-			for (auto &level : levels)
+			for (auto &level_tag : level_tags)
 			{
-				if (level->attribute("id") == id)
+				if (level_tag->attribute("id") == id)
 				{
-					level_info = level;
+					expected_level_tag = level_tag;
 					break;
 				}
 			}
 			
 			// Load the level if it is found.
-			if (level_info != nullptr)
+			if (expected_level_tag != nullptr)
 			{
 				// Load assets.
-				for (auto asset : level_info->child("asset"))
+				for (auto asset_tag : expected_level_tag->child("asset"))
 				{
-					for (auto shader : asset->child("gl_shader"))
+					for (auto child_tags : asset_tag->children())
 					{
-						_manager.get_shader(shader->attribute("name"), shader->attribute("path"));
-					}
-					
-					for (auto vertex_array : asset->child("gl_vertex_array"))
-					{
-						_manager.get_vertex_array(vertex_array->attribute("name"), vertex_array->attribute("path"));
-					}
-					
-					for (auto texture : asset->child("gl_texture"))
-					{
-						_manager.get_texture(texture->attribute("name"), texture->attribute("path"));
-					}
-					
-					for (auto audio : asset->child(("al_audio")))
-					{
-						_manager.get_audio(audio->attribute("name"), audio->attribute("path"));
+						for (auto child_tag : child_tags.second)
+						{
+							_manager.get_resource(child_tag->tag(), child_tag->attribute("name"), child_tag->attribute("path"));
+						}
 					}
 				}
 				
 				// Configure the camera.
-				for (auto world : level_info->child("world"))
+				for (auto world_tag : expected_level_tag->child("world"))
 				{
-					for (auto camera : world->child("camera"))
+					for (auto camera_tag : world_tag->child("camera"))
 					{
-						float x = (float)atof(camera->attribute("x").c_str());
-						float y = (float)atof(camera->attribute("y").c_str());
-						float z = (float)atof(camera->attribute("z").c_str());
-						
-						_world.camera().set_position(Vector(x, y, z));
+						for (auto position_tag : camera_tag->child("position"))
+						{
+							_world.camera().set_position(position_tag->attribute("res"));
+						}
 					}
 				}
 				
 				// Create the objects.
-				for (auto world : level_info->child("world"))
+				for (auto world_tag : expected_level_tag->child("world"))       // Traverse all world tags.
 				{
-					for (auto object : world->child("object"))
+					for (auto object_tags : world_tag->child("object"))      // Traverse all object tags in a world tag.
 					{
-						Object *obj = _world.create_object(object->attribute("name"));
+						Object *object = _world.create_object(object_tags->attribute("name"));
 						
-						// Create the components.
-						for (auto shader : object->child("shader"))
+						// Create the components and bind it to the object.
+						for (auto component_tags : object_tags->children())   // Traverse all component tags in a object tag.
 						{
-							obj->bind_component(_factory.create_shader(_manager.get_shader(shader->attribute("res"))));
-						}
-						
-						for (auto vertex_array : object->child("vertex_array"))
-						{
-							obj->bind_component(_factory.create_vertex_array(_manager.get_vertex_array(vertex_array->attribute("res"))));
-						}
-						
-						for (auto texture : object->child("texture"))
-						{
-							obj->bind_component(_factory.create_texture(_manager.get_texture(texture->attribute("res"))));
-						}
-						
-						for (auto audio : object->child("audio"))
-						{
-							obj->bind_component(_factory.create_audio(_manager.get_audio(audio->attribute("res"))));
-						}
-						
-						for (auto position : object->child("position"))
-						{
-							float x = (float)atof(position->attribute("x").c_str());
-							float y = (float)atof(position->attribute("y").c_str());
-							float z = (float)atof(position->attribute("z").c_str());
-							
-							obj->bind_component(_factory.create_position(Vector(x, y, z)));
-						}
-						
-						for (auto velocity : object->child("velocity"))
-						{
-							float vx = (float)atof(velocity->attribute("vx").c_str());
-							float vy = (float)atof(velocity->attribute("vy").c_str());
-							float vz = (float)atof(velocity->attribute("vz").c_str());
-							
-							obj->bind_component(_factory.create_velocity(Vector(vx, vy, vz)));
-						}
-						
-						for (auto audio : object->child("audio"))
-						{
-							obj->bind_component(_factory.create_audio(_manager.get_audio(audio->attribute("res"))));
+							for (auto component_tag : component_tags.second)
+							{
+								Component *component = _factory.create_component(component_tag->tag(), component_tag->attribute("res"));
+								
+								if (component != nullptr)
+								{
+									object->bind_component(component);
+								}
+							}
 						}
 					}
 				}
 			}
 		}
-	}
-	
-	void Loader::load_assets(const std::string &type, const std::string &name, const std::string &path)
-	{
-		if (type == "gl_shader") { _manager.get_shader(name, path); }
-		else if (type == "gl_texture") { _manager.get_texture(name, path); }
-		else if (type == "gl_vertex_array") { _manager.get_vertex_array(name, path); }
-		else if (type == "al_audio") { _manager.get_audio(name, path); }
 	}
 }
