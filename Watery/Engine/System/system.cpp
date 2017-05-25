@@ -24,8 +24,8 @@ namespace watery
 				continue;
 			}
 			
-			if (message->type() == "keyboard_event") { handle_keyboard_message(static_cast<KeyboardMessage *>(message)); }
-			else if (message->type() == "mouse_event") { handle_mouse_message(static_cast<MouseMessage *>(message)); }
+			if (message->type() == "keyboard_event") { handle_keyboard_message(static_cast<KeyboardEvent *>(message)); }
+			else if (message->type() == "mouse_event") { handle_mouse_message(static_cast<MouseEvent *>(message)); }
 			else { delete message; }
 		}
 	}

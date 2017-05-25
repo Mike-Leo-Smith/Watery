@@ -6,7 +6,7 @@
 #define WATERY_SOUND_H
 
 #include "system.h"
-#include "../World/world.h"
+#include "../Scene/world.h"
 
 namespace watery
 {
@@ -19,7 +19,7 @@ namespace watery
 		virtual void do_updating_tasks(void) override;
 	
 	public:
-		Sound(const std::string &name = "Sound", Microsecond interval = SOUND_DEFAULT_UPDATE_INTERVAL)
+		Sound(const std::string &name = "sound", Microsecond interval = SOUND_DEFAULT_UPDATE_INTERVAL)
 				: System(name, interval), _world(World::instance()) {}
 		virtual ~Sound(void) {}
 	};

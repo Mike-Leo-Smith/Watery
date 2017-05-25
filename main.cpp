@@ -1,6 +1,6 @@
 #include <gl/glew.h>
 #include <thread>
-#include "Watery/Engine/World/world.h"
+#include "Watery/Engine/Scene/world.h"
 #include "Watery/Engine/System/render.h"
 #include "Watery/Engine/Mathematics/mathematics.h"
 #include "Watery/Engine/Resource/resource_manager.h"

@@ -5,10 +5,10 @@
 #ifndef WATERY_RENDER_H
 #define WATERY_RENDER_H
 
-#include "../../Framework/Window/window.h"
 #include "system.h"
-#include "../World/world.h"
+#include "../Scene/world.h"
 #include "../Mathematics/matrix.h"
+#include "../../Framework/Window/window.h"
 #include "../../Framework/Graphics/gl_graphics.h"
 
 namespace watery
@@ -25,7 +25,7 @@ namespace watery
 		virtual const Matrix get_proj_matrix(void) const;
 		
 	public:
-		Render(const std::string &name = "Render", Microsecond interval = RENDERER_DEFAULT_UPDATE_INTERVAL)
+		Render(const std::string &name = "render", Microsecond interval = RENDERER_DEFAULT_UPDATE_INTERVAL)
 				: System(name, interval), _window(Window::instance()), _world(World::instance()) {}
 		virtual ~Render(void) {}
 	};

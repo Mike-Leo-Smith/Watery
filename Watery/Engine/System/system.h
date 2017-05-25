@@ -8,8 +8,8 @@
 #include <string>
 #include <deque>
 #include "../Message/messenger.h"
-#include "../Message/keyboard_message.h"
-#include "../Message/mouse_message.h"
+#include "../Message/keyboard_event.h"
+#include "../Message/mouse_event.h"
 
 namespace watery
 {
@@ -35,8 +35,8 @@ namespace watery
 		virtual void dispatch_message(Message *message) { message->sign(_name), _messenger.dispatch(message); }
 		
 		// Functions handling specific messages. Pass them on by default.
-		virtual void handle_keyboard_message(KeyboardMessage *message) { dispatch_message(message); }
-		virtual void handle_mouse_message(MouseMessage *message) { dispatch_message(message); }
+		virtual void handle_keyboard_message(KeyboardEvent *message) { dispatch_message(message); }
+		virtual void handle_mouse_message(MouseEvent *message) { dispatch_message(message); }
 		
 		// Updating tasks.
 		virtual void handle_message(void);

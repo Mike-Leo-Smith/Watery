@@ -6,8 +6,8 @@
 #define WATERY_LOGIC_H
 
 #include "system.h"
-#include "../World/world.h"
-#include "../Message/keyboard_message.h"
+#include "../Scene/world.h"
+#include "../Message/keyboard_event.h"
 #include "../Resource/resource_manager.h"
 #include "../Configuration/default.h"
 
@@ -21,10 +21,10 @@ namespace watery
 		ResourceManager &_manager;
 	
 	protected:
-		virtual void handle_keyboard_message(KeyboardMessage *message) override;
+		virtual void handle_keyboard_message(KeyboardEvent *message) override;
 	
 	public:
-		Logic(const std::string &name = "Logic", Microsecond interval = LOGIC_DEFAULT_UPDATE_INTERVAL)
+		Logic(const std::string &name = "logic", Microsecond interval = LOGIC_DEFAULT_UPDATE_INTERVAL)
 				: System(name, interval), _world(World::instance()), _window(Window::instance()), _manager(ResourceManager::instance()) {}
 		virtual ~Logic(void) {}
 	};

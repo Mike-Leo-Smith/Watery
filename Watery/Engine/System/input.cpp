@@ -9,6 +9,6 @@ namespace watery
 	void Input::do_updating_tasks(void)
 	{
 		handle_message();
-		dispatch_message(new KeyboardMessage(_keyboard.status()));
+		dispatch_message(new KeyboardEvent(_keyboard.status()));
 	}
 }

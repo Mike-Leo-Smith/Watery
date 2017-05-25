@@ -9,7 +9,7 @@
 #include "../System/system.h"
 #include "../../Framework/XML/xml_document.h"
 #include "../Resource/resource_manager.h"
-#include "../World/world.h"
+#include "../Scene/world.h"
 #include "../Component/component_factory.h"
 
 namespace watery
@@ -31,7 +31,6 @@ namespace watery
 		~Loader(void) { clear(); }
 		
 		void clear(void);
-		void load_assets(const std::string &type, const std::string &name, const std::string &path);
 	
 	public:
 		void configure(const std::string &file_name);

@@ -6,6 +6,7 @@
 #define WATERY_SCENE_H
 
 #include "system.h"
+#include "../Scene/world.h"
 
 namespace watery
 {
@@ -13,15 +14,17 @@ namespace watery
 	class Scene : public System
 	{
 	private:
-		virtual void detect_collisions(void) {}
-		virtual void advance_status(void) {}
+		World &_world;
+		
+		virtual void detect_collisions(void);
+		virtual void advance_status(void);
 	
 	protected:
 		virtual void do_updating_tasks(void) override;
 	
 	public:
 		Scene(const std::string &name = "scene", Microsecond update_interval = SCENE_DEFAULT_UPDATA_INTERVAL)
-				: System(name, update_interval) {}
+				: System(name, update_interval), _world(World::instance()) {}
 		virtual ~Scene(void) override {}
 	};
 }

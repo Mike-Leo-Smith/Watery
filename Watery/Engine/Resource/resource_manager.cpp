@@ -11,6 +11,7 @@
 #include "gl_shader_wrapper.h"
 #include "gl_vertex_array_wrapper.h"
 #include "al_audio_wrapper.h"
+#include "shape_wrapper.h"
 
 namespace watery
 {
@@ -49,6 +50,7 @@ namespace watery
 			else if (type == "gl_shader") { resource = new GLShaderWrapper(file_name); }
 			else if (type == "gl_vertex_array") { resource = new GLVertexArrayWrapper(file_name); }
 			else if (type == "al_audio") { resource = new ALAudioWrapper(file_name); }
+			else if (type == "shape") { resource = new ShapeWrapper(file_name); }
 			
 			if (resource != nullptr)
 			{

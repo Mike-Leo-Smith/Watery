@@ -11,15 +11,17 @@
 			<gl_vertex_array name="face_rect" path="Assets/VertexArrays/face.va"/>
 			<gl_vertex_array name="bg_rect" path="Assets/VertexArrays/background.va"/>
 			<al_audio name="bg_music" path="Assets/Sounds/test.wav"/>
+			<shape name="" path=""/>
 		</asset>
-		<!-- World -->
+		<Sceneorld
+		-->
 		<world>
 			<!-- Camera -->
 			<camera>
 				<position res="0 0 0"/>
 			</camera>
 			<!-- Background -->
-			<object name="background">
+			<object name="Background">
 				<position res="0 0 0"/>
 				<shader res="sprite_shader"/>
 				<vertex_array res="bg_rect"/>
@@ -33,6 +35,7 @@
 				<shader res="sprite_shader"/>
 				<texture res="face_image"/>
 				<vertex_array res="face_rect"/>
+				<bound_shape res=""/>
 			</object>
 		</world>
 	</level>

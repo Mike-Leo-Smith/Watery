@@ -12,6 +12,7 @@ namespace watery
 	// Message time outs.
 	constexpr Microsecond KEYBOARD_DEFAULT_TIME_OUT = 50000;
 	constexpr Microsecond MESSAGE_DEFAULT_TIME_OUT = 50000;
+	constexpr Microsecond COLLISION_DEFAULT_TIME_OUT = 0;       // Collision events must be disposed.
 	
 	// System update intervals.
 	constexpr Microsecond SYSTEM_DEFAULT_UPDATE_INTERVAL = 50000;

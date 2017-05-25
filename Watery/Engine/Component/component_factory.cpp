@@ -2,7 +2,10 @@
 // Created by Mike Smith on 2017/5/7.
 //
 
+#include <cstdlib>
 #include "component_factory.h"
+#include "../Physics/shape.h"
+#include "bounding_shape.h"
 
 namespace watery
 {
@@ -74,6 +77,19 @@ namespace watery
 			{
 				component = new VertexArray(gl_vertex_array);
 			}
+		}
+		else if (type == "bounding_box")
+		{
+			Shape *shape = static_cast<Shape *>(_resource.get_resource("shape", res)->data());
+			
+			if (shape != nullptr)
+			{
+				component = new BoundingShape(shape);
+			}
+		}
+		else if (type == "health")
+		{
+			component = new Health((float)atof(res.c_str()));
 		}
 		
 		if (component != nullptr)

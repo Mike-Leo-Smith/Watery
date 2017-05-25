@@ -47,7 +47,7 @@ set(SOURCE_FILES
 		Watery/Engine/Component/component_factory.h
 		Watery/Engine/Resource/resource_manager.cpp
 		Watery/Engine/Resource/resource_manager.h
-		Watery/Engine/World/object.h
+		Watery/Engine/Scene/object.h
 		Watery/Engine/Message/messenger.cpp
 		Watery/Engine/Message/messenger.h
 		Watery/Engine/Message/message_bus.cpp
@@ -61,10 +61,10 @@ set(SOURCE_FILES
 		Watery/Engine/System/render.h
 		Watery/Engine/System/communication.cpp
 		Watery/Engine/System/communication.h
-		Watery/Engine/Message/keyboard_message.h
+		Watery/Engine/Message/keyboard_event.h
 		Watery/Engine/Timer/timer.h
-		Watery/Engine/World/camera.cpp
-		Watery/Engine/World/camera.h
+		Watery/Engine/Scene/camera.cpp
+		Watery/Engine/Scene/camera.h
 		Watery/Engine/Physics/physics.cpp
 		Watery/Engine/Physics/physics.h
 		Watery/Engine/Mathematics/matrix.cpp
@@ -73,13 +73,13 @@ set(SOURCE_FILES
 		Watery/Engine/Mathematics/mathematics.h
 		Watery/Engine/Mathematics/quaternion.cpp
 		Watery/Engine/Mathematics/quaternion.h
-		Watery/Engine/World/world.cpp
-		Watery/Engine/World/world.h
+		Watery/Engine/Scene/world.cpp
+		Watery/Engine/Scene/world.h
 		Watery/Engine/Component/vertex_array.h
 		Watery/Engine/System/logic.cpp
 		Watery/Engine/System/logic.h
-		Watery/Engine/Message/mouse_message.cpp
-		Watery/Engine/Message/mouse_message.h
+		Watery/Engine/Message/mouse_event.cpp
+		Watery/Engine/Message/mouse_event.h
 		Watery/Engine/System/sound.cpp
 		Watery/Engine/System/sound.h
 		Watery/Engine/Component/health.h
@@ -98,7 +98,7 @@ set(SOURCE_FILES
 		Watery/Engine/Resource/resource_wrapper.cpp
 		Watery/Engine/Resource/resource_wrapper.h
 		Game/Sources/plane.cpp
-		Game/Sources/plane.h Watery/Engine/Component/animation.cpp Watery/Engine/Component/animation.h Watery/Engine/Resource/gl_texture_wrapper.cpp Watery/Engine/Resource/gl_texture_wrapper.h Watery/Engine/Resource/gl_shader_wrapper.cpp Watery/Engine/Resource/gl_shader_wrapper.h Watery/Engine/Resource/gl_vertex_array_wrapper.cpp Watery/Engine/Resource/gl_vertex_array_wrapper.h Watery/Engine/Resource/al_audio_wrapper.cpp Watery/Engine/Resource/al_audio_wrapper.h)
+		Game/Sources/plane.h Watery/Engine/Component/animation.cpp Watery/Engine/Component/animation.h Watery/Engine/Resource/gl_texture_wrapper.cpp Watery/Engine/Resource/gl_texture_wrapper.h Watery/Engine/Resource/gl_shader_wrapper.cpp Watery/Engine/Resource/gl_shader_wrapper.h Watery/Engine/Resource/gl_vertex_array_wrapper.cpp Watery/Engine/Resource/gl_vertex_array_wrapper.h Watery/Engine/Resource/al_audio_wrapper.cpp Watery/Engine/Resource/al_audio_wrapper.h Watery/Engine/Component/bounding_shape.h Watery/Engine/Resource/shape_wrapper.cpp Watery/Engine/Resource/shape_wrapper.h Watery/Engine/Message/collision_event.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)

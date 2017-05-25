@@ -12,7 +12,7 @@
 
 namespace watery
 {
-	// Objects are created and managed by World.
+	// Objects are created and managed by Scene.
 	class World
 	{
 	private:
