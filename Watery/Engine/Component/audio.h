@@ -16,8 +16,8 @@ namespace watery
 		ALAudio *_audio;
 	
 	public:
-		Audio(ALAudio *audio = nullptr) : Component(COMPONENT_AUDIO), _audio(audio) {}
-		virtual ~Audio(void) {}
+		Audio(ALAudio *audio = nullptr) : Component("audio"), _audio(audio) {}
+		virtual ~Audio(void) override {}
 		virtual void bind_audio(ALAudio *audio) { _audio = audio; }
 		virtual const ALAudio *audio(void) const { return _audio; }
 		virtual ALAudio *audio(void) { return _audio; }

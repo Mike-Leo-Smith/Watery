@@ -5,26 +5,20 @@
 #ifndef WATERY_SHAPE_H
 #define WATERY_SHAPE_H
 
+#include <string>
 #include "../Mathematics/vector.h"
 
 namespace watery
 {
-	enum ShapeType
-	{
-		SHAPE_UNDEFINED,
-		SHAPE_RECTANGLE,
-		SHAPE_CIRCLE
-	};
-	
 	class Shape
 	{
 	private:
-		ShapeType _type;
+		std::string _type;
 	
 	public:
-		Shape(ShapeType type = SHAPE_UNDEFINED) : _type(SHAPE_UNDEFINED) {}
+		Shape(const std::string &type = "undefined") : _type(type) {}
 		virtual ~Shape(void) {}
-		virtual ShapeType type(void) const { return _type; }
+		virtual const std::string &type(void) const { return _type; }
 		virtual bool collided_with(const Vector &p1, const Shape &s2, const Vector &p2) const = 0;
 	};
 }

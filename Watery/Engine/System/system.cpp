@@ -17,37 +17,16 @@ namespace watery
 		
 		for (Message *message : messages)
 		{
-			if (message == nullptr)
-			{
-				continue;
-			}
-			
-			if (message->time_out())
-			{
-				delete message;   // Delete expiring messages.
-				continue;
-			}
-			
+			// Ignore disposed messages.
 			if (message->signed_by(_name))
 			{
 				dispatch_message(message);
 				continue;
 			}
 			
-			switch (message->type())
-			{
-			case MESSAGE_KEYBOARD_EVENT:
-				handle_keyboard_message(static_cast<KeyboardMessage *>(message));
-				break;
-			
-			case MESSAGE_MOUSE_EVENT:
-				handle_mouse_message(static_cast<MouseMessage *>(message));
-				break;
-			
-			default:
-				delete message;     // Delete useless messages.
-				break;
-			}
+			if (message->type() == "keyboard_event") { handle_keyboard_message(static_cast<KeyboardMessage *>(message)); }
+			else if (message->type() == "mouse_event") { handle_mouse_message(static_cast<MouseMessage *>(message)); }
+			else { delete message; }
 		}
 	}
 	

@@ -5,9 +5,12 @@
 #ifndef WATERY_COMMUNICATION_H
 #define WATERY_COMMUNICATION_H
 
-class communication
+namespace watery
 {
-
-};
+	class Communication
+	{
+	
+	};
+}
 
 #endif  // WATERY_COMMUNICATION_H

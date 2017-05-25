@@ -15,11 +15,11 @@ namespace watery
 		{
 			const Object *object = item.second;
 			
-			if (object->bound(COMPONENT_AUDIO))
+			if (object->bound("audio"))
 			{
-				const ALAudio *audio = static_cast<const Audio *>(object->component(COMPONENT_AUDIO))->audio();
+				const ALAudio *audio = static_cast<const Audio *>(object->component("audio"))->audio();
 				
-				if (object->enabled(COMPONENT_AUDIO))
+				if (object->enabled("audio"))
 				{
 					if (!audio->playing())
 					{

@@ -5,26 +5,27 @@
 #ifndef WATERY_OBJECT_H
 #define WATERY_OBJECT_H
 
-#include "../Component/component_node.h"
+#include <map>
+#include "../Component/component.h"
 
 namespace watery
 {
 	class Object
 	{
 	protected:
-		ComponentNode _components[COMPONENT_TYPE_COUNT];
-		
+		std::map<std::string, Component *> _components;
+	
 	public:
 		Object(void) {}
 		virtual ~Object(void) {}
-		virtual bool bound(ComponentType type) const { return _components[type].bound(); }
-		virtual bool enabled(ComponentType type) const { return _components[type].enabled(); }
-		virtual Component *component(ComponentType type) { return _components[type].component(); }
-		virtual const Component *component(ComponentType type) const { return _components[type].component(); }
-		virtual void bind_component(Component *component) { _components[component->type()].bind(component); }
-		virtual void unbind_component(ComponentType type) { _components[type].unbind(); }
-		virtual void enable(ComponentType type) { _components[type].enable(); }
-		virtual void disable(ComponentType type) { _components[type].disable(); }
+		virtual bool bound(const std::string &type) const { return (_components.count(type) != 0); }
+		virtual bool enabled(const std::string &type) const { return (_components.count(type) && _components.at(type)->enabled()); }
+		virtual Component *component(const std::string &type) { return _components.count(type) ? _components.at(type) : nullptr; }
+		virtual const Component *component(const std::string &type) const { return _components.count(type) ? _components.at(type) : nullptr; }
+		virtual void bind_component(Component *component) { _components.emplace(component->type(), component); }
+		virtual void unbind_component(const std::string &type) { _components.erase(type); }
+		virtual void enable(const std::string &type) { if (_components.count(type) != 0) _components.at(type)->enable(); }
+		virtual void disable(const std::string &type) { if (_components.count(type) != 0) _components.at(type)->disable(); }
 	};
 }
 

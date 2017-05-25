@@ -16,8 +16,8 @@ namespace watery
 		Vector _position;
 	
 	public:
-		Position(const Vector &position = Vector()) : Component(COMPONENT_POSITION), _position(position) {}
-		virtual ~Position(void) {}
+		Position(const Vector &position = Vector()) : Component("position"), _position(position) {}
+		virtual ~Position(void) override {}
 		virtual const Vector &position(void) const { return _position; }
 		virtual void set_position(const Vector &position) { _position = position; }
 		virtual void move(const Vector &direction) { _position += direction; }

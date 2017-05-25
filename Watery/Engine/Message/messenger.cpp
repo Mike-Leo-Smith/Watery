@@ -12,7 +12,21 @@ namespace watery
 		
 		while (!_message_bus.empty())
 		{
-			_messages.push_back(_message_bus.retrieve());
+			Message *message = _message_bus.retrieve();
+			
+			if (message == nullptr)
+			{
+				continue;                       // Ignore null pointers (if exists).
+			}
+			else if (message->time_out())
+			{
+				delete message;                 // Delete expiring messages.
+				continue;
+			}
+			else
+			{
+				_messages.push_back(message);   // Collect this piece of message.
+			}
 		}
 		return _messages;
 	}

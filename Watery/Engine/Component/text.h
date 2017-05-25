@@ -20,7 +20,8 @@ namespace watery
 		Vector _position;
 	
 	public:
-		Text(const std::string &content) : Component(COMPONENT_TEXT) {}
+		Text(const std::string &content) : Component("text") {}
+		virtual ~Text(void) override {}
 		virtual const std::string &content(void) const { return _content; }
 		virtual const std::string &font(void) const { return _font; }
 		virtual float size(void) const { return _size; }

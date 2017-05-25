@@ -16,8 +16,8 @@ namespace watery
 		GLShader *_shader;
 	
 	public:
-		Shader(GLShader *shader = nullptr) : Component(COMPONENT_SHADER), _shader(shader) {}
-		virtual ~Shader(void) {}
+		Shader(GLShader *shader = nullptr) : Component("shader"), _shader(shader) {}
+		virtual ~Shader(void) override {}
 		virtual void bind_shader(GLShader *shader) { _shader = shader; }
 		virtual const GLShader *shader(void) const { return _shader; }
 		virtual GLShader *shader(void) { return _shader; }

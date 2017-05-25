@@ -17,8 +17,8 @@ namespace watery
 	
 	public:
 		VertexArray(GLVertexArray *vertex_array = nullptr)
-				: Component(COMPONENT_VERTEX_ARRAY), _vertex_array(vertex_array) {}
-		virtual ~VertexArray(void) {}
+				: Component("vertex_array"), _vertex_array(vertex_array) {}
+		virtual ~VertexArray(void) override {}
 		virtual const GLVertexArray *vertex_array(void) const { return _vertex_array; }
 		virtual GLVertexArray *vertex_array(void) { return _vertex_array; }
 		virtual void bind(GLVertexArray *vertex_array) { _vertex_array = vertex_array; }

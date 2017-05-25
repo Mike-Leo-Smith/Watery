@@ -12,8 +12,8 @@ namespace watery
 	class MouseMessage : public Message
 	{
 	public:
-		MouseMessage(Microsecond time_out = KEYBOARD_DEFAULT_TIME_OUT)
-				: Message(MESSAGE_MOUSE_EVENT, time_out) {}
+		MouseMessage(Microsecond time_out = KEYBOARD_DEFAULT_TIME_OUT) : Message("mouse_event", time_out) {}
+		~MouseMessage(void) override {}
 	};
 }
 

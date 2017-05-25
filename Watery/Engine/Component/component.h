@@ -5,36 +5,23 @@
 #ifndef WATERY_COMPONENT_H
 #define WATERY_COMPONENT_H
 
+#include <string>
+
 namespace watery
 {
-	enum ComponentType
-	{
-		COMPONENT_UNDEFINED,
-		COMPONENT_POSITION,
-		COMPONENT_VELOCITY,
-		COMPONENT_SHADER,
-		COMPONENT_TEXTURE,
-		COMPONENT_VERTEX_ARRAY,
-		COMPONENT_AUDIO,
-		COMPONENT_HEALTH,
-		COMPONENT_TEXT,
-		COMPONENT_FRAME_ANIMATION,
-		COMPONENT_POSITION_ANIMATION,
-		COMPONENT_ROTATION_ANIMATION,
-		COMPONENT_SHAPE_ANIMATION,
-		
-		COMPONENT_TYPE_COUNT    // This item has to be placed at last.
-	};
-	
 	class Component
 	{
 	private:
-		ComponentType _type;
+		std::string _type;
+		bool _enabled;
 	
 	public:
-		Component(ComponentType type = COMPONENT_UNDEFINED) : _type(type) {}
+		Component(const std::string &type = "undefined") : _type(type), _enabled(true) {}
 		virtual ~Component(void) {}
-		virtual ComponentType type(void) const { return _type; }
+		virtual const std::string &type(void) const { return _type; }
+		virtual void disable(void) { _enabled = false; }
+		virtual void enable(void) { _enabled = true; }
+		virtual bool enabled(void) const { return _enabled; }
 	};
 }
 

@@ -12,7 +12,6 @@
 #include "../Component/shader.h"
 #include "../Component/position.h"
 #include "../Component/texture.h"
-#include "../Component/position_animation.h"
 
 namespace watery
 {
@@ -35,37 +34,32 @@ namespace watery
 			GLVertexArray *vertex_array = nullptr;
 			GLTexture *texture = nullptr;
 			
-			if (object->enabled(COMPONENT_SHADER))
+			if (object->enabled("shader"))
 			{
-				shader = static_cast<Shader *>(object->component(COMPONENT_SHADER))->shader();
+				shader = static_cast<Shader *>(object->component("shader"))->shader();
 				shader->activate();
 				
 				shader->set_uniform_mat4fv("proj", proj.entries());
 				shader->set_uniform_mat4fv("view", view.entries());
 				
-				if (object->enabled(COMPONENT_POSITION))
+				if (object->enabled("position"))
 				{
-					Vector position = static_cast<Position *>(object->component(COMPONENT_POSITION))->position();
-					
-					if (object->enabled(COMPONENT_POSITION_ANIMATION))
-					{
-						position += static_cast<PositionAnimation *>(object->component(COMPONENT_POSITION_ANIMATION))->offset();
-					}
+					Vector position = static_cast<Position *>(object->component("position"))->position();
 					
 					model = Mathematics::translation(position);
 					shader->set_uniform_mat4fv("model", model.entries());
 				}
 				
-				if (object->enabled(COMPONENT_TEXTURE))
+				if (object->enabled("texture"))
 				{
-					texture = static_cast<Texture *>(object->component(COMPONENT_TEXTURE))->texture();
+					texture = static_cast<Texture *>(object->component("texture"))->texture();
 					texture->activate(0);
 					shader->set_uniform_int("sampler", 0);
 				}
 				
-				if (object->enabled(COMPONENT_VERTEX_ARRAY))
+				if (object->enabled("vertex_array"))
 				{
-					vertex_array = static_cast<VertexArray *>(object->component(COMPONENT_VERTEX_ARRAY))->vertex_array();
+					vertex_array = static_cast<VertexArray *>(object->component("vertex_array"))->vertex_array();
 					_graphics.draw(vertex_array);
 				}
 			}

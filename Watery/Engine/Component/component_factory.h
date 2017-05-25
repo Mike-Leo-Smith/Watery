@@ -13,8 +13,6 @@
 #include "texture.h"
 #include "vertex_array.h"
 #include "health.h"
-#include "frame_animation.h"
-#include "position_animation.h"
 
 namespace watery
 {

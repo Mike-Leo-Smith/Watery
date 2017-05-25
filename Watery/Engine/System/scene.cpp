@@ -4,9 +4,6 @@
 
 #include "scene.h"
 
-watery::Scene::Scene(const std::string &name, watery::Microsecond update_interval)
-		: System(name, update_interval) {}
-
 void watery::Scene::do_updating_tasks(void)
 {
 	handle_message();

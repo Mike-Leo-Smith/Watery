@@ -15,7 +15,8 @@ namespace watery
 		double _health;
 	
 	public:
-		Health(double initial) : Component(COMPONENT_HEALTH), _health(initial) {}
+		Health(double initial) : Component("health"), _health(initial) {}
+		virtual ~Health(void) override {}
 	};
 }
 

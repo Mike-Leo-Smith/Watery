@@ -1,5 +1,5 @@
 //
-// Created by Mike Smith on 2017/5/16.
+// Created by Mike Smith on 2017/5/25.
 //
 
 #ifndef WATERY_RESOURCE_H
@@ -9,14 +9,14 @@
 
 namespace watery
 {
+	// Adapter for low-level data.
 	class Resource
 	{
 	private:
-		std::string _type;
-		virtual void *get_data(void) = 0;
+		std::string _type
 	
 	public:
-		template<typename DATA_TYPE> DATA_TYPE data(void) { return static_cast<DATA_TYPE>(get_data()); }
+		Resource(const std::string &type = "undefined") : _type(type) {}
 	};
 }
 

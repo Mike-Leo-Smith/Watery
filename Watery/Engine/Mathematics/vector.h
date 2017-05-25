@@ -6,7 +6,6 @@
 #define WATERY_VECTOR_H
 
 #include <cstring>
-#include <iostream>
 
 namespace watery
 {

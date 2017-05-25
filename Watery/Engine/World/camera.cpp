@@ -15,7 +15,7 @@ namespace watery
 	
 	void Camera::move(const Vector &direction)
 	{
-		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
+		Position *position = static_cast<Position *>(component("position"));
 		
 		if (position != nullptr)
 		{
@@ -25,7 +25,7 @@ namespace watery
 	
 	void Camera::move_x(float dx)
 	{
-		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
+		Position *position = static_cast<Position *>(component("position"));
 		
 		if (position != nullptr)
 		{
@@ -35,7 +35,7 @@ namespace watery
 	
 	void Camera::move_y(float dy)
 	{
-		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
+		Position *position = static_cast<Position *>(component("position"));
 		
 		if (position != nullptr)
 		{
@@ -45,7 +45,7 @@ namespace watery
 	
 	void Camera::move_z(float dz)
 	{
-		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
+		Position *position = static_cast<Position *>(component("position"));
 		
 		if (position != nullptr)
 		{
@@ -55,7 +55,7 @@ namespace watery
 	
 	const Vector Camera::position(void) const
 	{
-		const Position *pos = static_cast<const Position *>(component(COMPONENT_POSITION));
+		const Position *pos = static_cast<const Position *>(component("position"));
 		
 		if (pos != nullptr)
 		{
@@ -69,27 +69,27 @@ namespace watery
 	
 	Camera::~Camera(void)
 	{
-		delete component(COMPONENT_POSITION);
+		delete component("position");
 	}
 	
 	float Camera::x(void) const
 	{
-		return static_cast<const Position *>(component(COMPONENT_POSITION))->x();
+		return static_cast<const Position *>(component("position"))->x();
 	}
 	
 	float Camera::y(void) const
 	{
-		return static_cast<const Position *>(component(COMPONENT_POSITION))->y();
+		return static_cast<const Position *>(component("position"))->y();
 	}
 	
 	float Camera::z(void) const
 	{
-		return static_cast<const Position *>(component(COMPONENT_POSITION))->z();
+		return static_cast<const Position *>(component("position"))->z();
 	}
 	
 	void Camera::set_position(const Vector &pos)
 	{
-		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
+		Position *position = static_cast<Position *>(component("position"));
 		
 		if (position != nullptr)
 		{
@@ -99,7 +99,7 @@ namespace watery
 	
 	void Camera::set_x(float x)
 	{
-		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
+		Position *position = static_cast<Position *>(component("position"));
 		
 		if (position != nullptr)
 		{
@@ -109,7 +109,7 @@ namespace watery
 	
 	void Camera::set_y(float y)
 	{
-		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
+		Position *position = static_cast<Position *>(component("position"));
 		
 		if (position != nullptr)
 		{
@@ -119,7 +119,7 @@ namespace watery
 	
 	void Camera::set_z(float z)
 	{
-		Position *position = static_cast<Position *>(component(COMPONENT_POSITION));
+		Position *position = static_cast<Position *>(component("position"));
 		
 		if (position != nullptr)
 		{

@@ -12,8 +12,8 @@ namespace watery
 	void Logic::handle_keyboard_message(KeyboardMessage *message)
 	{
 		Object *role = _world.object("Role");
-		Velocity *role_v = static_cast<Velocity *>(role->component(COMPONENT_VELOCITY));
-		Position *role_pos = static_cast<Position *>(role->component(COMPONENT_POSITION));
+		Velocity *role_v = static_cast<Velocity *>(role->component("velocity"));
+		Position *role_pos = static_cast<Position *>(role->component("position"));
 		
 		role_pos->move(role_v->velocity());
 		
@@ -49,13 +49,13 @@ namespace watery
 		
 		if (message->key_down(KEY_SPACE))
 		{
-			if (_world.object("World")->enabled(COMPONENT_AUDIO))
+			if (_world.object("World")->enabled("audio"))
 			{
-				_world.object("World")->disable(COMPONENT_AUDIO);
+				_world.object("World")->disable("audio");
 			}
 			else
 			{
-				_world.object("World")->enable(COMPONENT_AUDIO);
+				_world.object("World")->enable("audio");
 			}
 		}
 		

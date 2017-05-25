@@ -13,14 +13,15 @@ namespace watery
 	class Scene : public System
 	{
 	private:
-		virtual void detect_collisions(void);
-		virtual void advance_status(void);
+		virtual void detect_collisions(void) {}
+		virtual void advance_status(void) {}
 	
 	protected:
 		virtual void do_updating_tasks(void) override;
 	
 	public:
-		Scene(const std::string &name = "scene", Microsecond update_interval = SCENE_DEFAULT_UPDATA_INTERVAL);
+		Scene(const std::string &name = "scene", Microsecond update_interval = SCENE_DEFAULT_UPDATA_INTERVAL)
+				: System(name, update_interval) {}
 		virtual ~Scene(void) override {}
 	};
 }

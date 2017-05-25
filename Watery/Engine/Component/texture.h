@@ -16,8 +16,8 @@ namespace watery
 		GLTexture *_texture;
 		
 	public:
-		Texture(GLTexture *texture = nullptr) : Component(COMPONENT_TEXTURE), _texture(texture) {}
-		virtual ~Texture(void) {}
+		Texture(GLTexture *texture = nullptr) : Component("texture"), _texture(texture) {}
+		virtual ~Texture(void) override {}
 		virtual void bind_texture(GLTexture *texture) { _texture = texture; }
 		virtual const GLTexture *texture(void) const { return _texture; }
 		virtual GLTexture *texture(void) { return _texture; }

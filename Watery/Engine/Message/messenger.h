@@ -18,7 +18,6 @@ namespace watery
 	public:
 		Messenger(void) : _message_bus(MessageBus::instance()) {}
 		virtual ~Messenger(void) {}
-		virtual Message *retrieve_(void) { return _message_bus.retrieve(); }
 		virtual std::vector<Message *> &retrieve(void);
 		virtual void dispatch(Message *message) { _message_bus.dispatch(message); }
 	};

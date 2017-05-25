@@ -35,30 +35,21 @@ set(SOURCE_FILES
 		Watery/Engine/Mathematics/vector.cpp
 		Watery/Engine/Mathematics/vector.h
 		Watery/Engine/Configuration/default.h
-		Watery/Engine/Component/position.cpp
 		Watery/Engine/Component/position.h
-		Watery/Engine/Component/velocity.cpp
 		Watery/Engine/Component/velocity.h
-		Watery/Engine/Component/shader.cpp
 		Watery/Engine/Component/shader.h
-		Watery/Engine/Component/texture.cpp
 		Watery/Engine/Component/texture.h
-		Watery/Engine/Component/audio.cpp
 		Watery/Engine/Component/audio.h
-		Watery/Engine/Component/component.cpp
 		Watery/Engine/Component/component.h
-		Watery/Engine/Component/component_node.h
 		Watery/Engine/Component/component_factory.cpp
 		Watery/Engine/Component/component_factory.h
 		Watery/Engine/Resource/resource_manager.cpp
 		Watery/Engine/Resource/resource_manager.h
-		Watery/Engine/World/object.cpp
 		Watery/Engine/World/object.h
 		Watery/Engine/Message/messenger.cpp
 		Watery/Engine/Message/messenger.h
 		Watery/Engine/Message/message_bus.cpp
 		Watery/Engine/Message/message_bus.h
-		Watery/Engine/Message/message.cpp
 		Watery/Engine/Message/message.h
 		Watery/Engine/System/system.cpp
 		Watery/Engine/System/system.h
@@ -68,9 +59,7 @@ set(SOURCE_FILES
 		Watery/Engine/System/render.h
 		Watery/Engine/System/communication.cpp
 		Watery/Engine/System/communication.h
-		Watery/Engine/Message/keyboard_message.cpp
 		Watery/Engine/Message/keyboard_message.h
-		Watery/Engine/Timer/timer.cpp
 		Watery/Engine/Timer/timer.h
 		Watery/Engine/World/camera.cpp
 		Watery/Engine/World/camera.h
@@ -84,7 +73,6 @@ set(SOURCE_FILES
 		Watery/Engine/Mathematics/quaternion.h
 		Watery/Engine/World/world.cpp
 		Watery/Engine/World/world.h
-		Watery/Engine/Component/vertex_array.cpp
 		Watery/Engine/Component/vertex_array.h
 		Watery/Engine/System/logic.cpp
 		Watery/Engine/System/logic.h
@@ -92,13 +80,7 @@ set(SOURCE_FILES
 		Watery/Engine/Message/mouse_message.h
 		Watery/Engine/System/sound.cpp
 		Watery/Engine/System/sound.h
-		Watery/Engine/Component/frame_animation.cpp
-		Watery/Engine/Component/frame_animation.h
-		Watery/Engine/Component/health.cpp
 		Watery/Engine/Component/health.h
-		Watery/Engine/Component/position_animation.cpp
-		Watery/Engine/Component/position_animation.h
-		Watery/Engine/Physics/shape.cpp
 		Watery/Engine/Physics/shape.h
 		Watery/Engine/Physics/rectangle.cpp
 		Watery/Engine/Physics/rectangle.h
@@ -108,16 +90,13 @@ set(SOURCE_FILES
 		Watery/Engine/Game/game.h
 		Watery/Engine/Loader/loader.cpp
 		Watery/Engine/Loader/loader.h
-		Watery/Engine/Resource/resource.cpp
-		Watery/Engine/Resource/resource.h
-		Watery/Engine/Component/text.cpp
 		Watery/Engine/Component/text.h
 		Game/Sources/plane.cpp
 		Game/Sources/plane.h
 		Watery/Framework/Graphics/gl_text.cpp
 		Watery/Framework/Graphics/gl_text.h
 		Watery/Engine/System/scene.cpp
-		Watery/Engine/System/scene.h)
+		Watery/Engine/System/scene.h Watery/Engine/Resource/resource.cpp Watery/Engine/Resource/resource.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)
