@@ -77,4 +77,9 @@ namespace watery
 		
 		std::cout << _name << ": " << 1000000.0 / average << " fps" << std::endl;
 	}
+	
+	Microsecond System::delta_time(void) const
+	{
+		return _timer.elapsed_time();
+	}
 }

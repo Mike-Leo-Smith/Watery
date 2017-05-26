@@ -7,6 +7,7 @@
 
 #include "matrix.h"
 #include "vector.h"
+#include "quaternion.h"
 
 namespace watery
 {
@@ -15,6 +16,7 @@ namespace watery
 	public:
 		static const Matrix identity(void);
 		static const Matrix translation(const Vector &position);
+		static const Matrix rotation(const Vector &axis, const Vector &angle);
 		static const Matrix scale(float s);
 		static const Matrix scale(const Vector &scale);
 		static const Matrix ortho_proj(const Vector &left_bottom_near, const Vector &right_top_far);

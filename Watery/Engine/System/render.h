@@ -19,10 +19,12 @@ namespace watery
 		Window &_window;
 		World &_world;
 		GLGraphics _graphics;
+		
+		virtual const Matrix get_proj_matrix(void) const;
+		virtual void render_scene(void);
 	
 	protected:
 		virtual void do_updating_tasks(void) override;
-		virtual const Matrix get_proj_matrix(void) const;
 		
 	public:
 		Render(const std::string &name = "render", Microsecond interval = RENDERER_DEFAULT_UPDATE_INTERVAL)

@@ -18,7 +18,17 @@ namespace watery
 	void Render::do_updating_tasks(void)
 	{
 		handle_message();
-		
+		render_scene();
+	}
+	
+	const Matrix Render::get_proj_matrix(void) const
+	{
+		Matrix ortho = Mathematics::ortho_proj(0, _window.logical_width(), 0.0f, _window.logical_height(), -100, 100);
+		return ortho;
+	}
+	
+	void Render::render_scene(void)
+	{
 		Matrix model;
 		Matrix view = Mathematics::camera_at(_world.camera().position());
 		Matrix proj = get_proj_matrix();
@@ -65,11 +75,5 @@ namespace watery
 			}
 		}
 		_graphics.swap_buffers();
-	}
-	
-	const Matrix Render::get_proj_matrix(void) const
-	{
-		Matrix ortho = Mathematics::ortho_proj(0, _window.logical_width(), 0.0f, _window.logical_height(), -100, 100);
-		return ortho;
 	}
 }

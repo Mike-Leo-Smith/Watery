@@ -157,4 +157,9 @@ namespace watery
 		
 		return Matrix(entries);
 	}
+	
+	const Matrix Mathematics::rotation(const Vector &axis, const Vector &angle)
+	{
+		return Matrix();
+	}
 }

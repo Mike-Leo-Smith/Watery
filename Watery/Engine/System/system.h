@@ -34,6 +34,9 @@ namespace watery
 		// Basic progresses for message processing.
 		virtual void dispatch_message(Message *message) { message->sign(_name), _messenger.dispatch(message); }
 		
+		// Delta time from last frame.
+		virtual Microsecond delta_time(void) const;
+		
 		// Functions handling specific messages. Pass them on by default.
 		virtual void handle_keyboard_message(KeyboardEvent *message) { dispatch_message(message); }
 		virtual void handle_mouse_message(MouseEvent *message) { dispatch_message(message); }

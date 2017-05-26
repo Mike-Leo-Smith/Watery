@@ -8,6 +8,8 @@
 #include "../Component/position.h"
 #include "../Physics/physics.h"
 #include "../Message/collision_event.h"
+#include "../Component/velocity.h"
+#include "../Component/animation.h"
 
 void watery::Scene::do_updating_tasks(void)
 {
@@ -55,6 +57,22 @@ void watery::Scene::advance_status(void)
 {
 	for (auto &object_item : _world.objects())
 	{
-	
+		Object *object = object_item.second;
+		
+		// Update position by velocity.
+		if (object->enabled("velocity"))
+		{
+			Vector position = static_cast<Position *>(object->component("position"))->position();
+			Vector velocity = static_cast<Velocity *>(object->component("velocity"))->velocity();
+			
+			position += velocity * delta_time();
+			static_cast<Position *>(object->component("position"))->set_position(position);
+		}
+		
+		// Animate.
+		if (object->enabled("animation"))
+		{
+			static_cast<Animation *>(object->component("animation"))->animate(object);
+		}
 	}
 }
