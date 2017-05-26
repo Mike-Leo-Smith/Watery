@@ -52,7 +52,7 @@ namespace watery
 				}
 			}
 			
-			// Load the level if it is found.
+			// Load the level if found.
 			if (expected_level_tag != nullptr)
 			{
 				// Load assets.
@@ -67,7 +67,7 @@ namespace watery
 					}
 				}
 				
-				// Create the objects.
+				// Create the objects (kind of dirty here).
 				for (auto world_tag : expected_level_tag->child("world"))       // Traverse all world tags.
 				{
 					for (auto object_tags : world_tag->child("object"))      // Traverse all object tags in a world tag.
