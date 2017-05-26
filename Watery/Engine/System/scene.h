@@ -5,6 +5,7 @@
 #ifndef WATERY_SCENE_H
 #define WATERY_SCENE_H
 
+#include <gl/glew.h>
 #include "system.h"
 #include "../Scene/world.h"
 

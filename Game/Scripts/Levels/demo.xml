@@ -13,8 +13,7 @@
 			<al_audio name="bg_music" path="Assets/Sounds/test.wav"/>
 			<shape name="" path=""/>
 		</asset>
-		<Sceneorld
-		-->
+		<!-- World -->
 		<world>
 			<!-- Camera -->
 			<camera>
@@ -30,12 +29,11 @@
 			</object>
 			<!-- Object Role -->
 			<object name="Role">
-				<position res="0 0 0"/>
+				<position res="0 0 1"/>
 				<velocity res="0 0 0"/>
 				<shader res="sprite_shader"/>
 				<texture res="face_image"/>
 				<vertex_array res="face_rect"/>
-				<bound_shape res=""/>
 			</object>
 		</world>
 	</level>

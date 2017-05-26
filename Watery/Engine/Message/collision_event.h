@@ -17,7 +17,7 @@ namespace watery
 		Object *_object2;
 	
 	public:
-		CollisionEvent(Object *object1, Object *object2, Microsecond time_out = COLLISION_DEFAULT_TIME_OUT)
+		CollisionEvent(Object *object1, Object *object2, Microsecond time_out = COLLISION_EVENT_DEFAULT_TIME_OUT)
 				: Message("collision_event", time_out) {}
 		virtual ~CollisionEvent(void) override {}
 		virtual Object *object1(void) { return _object1; }

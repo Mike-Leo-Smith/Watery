@@ -74,7 +74,7 @@ namespace watery
 					{
 						for (auto position_tag : camera_tag->child("position"))
 						{
-							_world.camera().set_position(position_tag->attribute("res"));
+							_world.camera().create_component("position", position_tag->attribute("res"));
 						}
 					}
 				}
@@ -91,12 +91,7 @@ namespace watery
 						{
 							for (auto component_tag : component_tags.second)
 							{
-								Component *component = _factory.create_component(component_tag->tag(), component_tag->attribute("res"));
-								
-								if (component != nullptr)
-								{
-									object->bind_component(component);
-								}
+								object->create_component(component_tag->tag(), component_tag->attribute("res"));
 							}
 						}
 					}

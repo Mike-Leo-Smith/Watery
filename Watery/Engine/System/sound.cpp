@@ -3,7 +3,6 @@
 //
 
 #include "sound.h"
-#include "../Component/audio.h"
 
 namespace watery
 {

@@ -20,7 +20,6 @@ namespace watery
 		}
 		
 		_objects.clear();
-		_camera.set_position(Vector());
 	}
 	
 	Object *World::create_object(const std::string &name)
@@ -29,7 +28,7 @@ namespace watery
 		
 		if (!_objects.count(name))
 		{
-			object = new Object;
+			object = new Object(name);
 			_objects.emplace(name, object);
 		}
 		

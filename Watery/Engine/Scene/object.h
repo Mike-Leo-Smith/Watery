@@ -7,23 +7,30 @@
 
 #include <map>
 #include "../Component/component.h"
+#include "../Component/component_factory.h"
 
 namespace watery
 {
 	class Object
 	{
+	private:
+		std::string _name;
+		ComponentFactory &_factory;
+		
 	protected:
 		std::map<std::string, Component *> _components;
 	
 	public:
-		Object(void) {}
-		virtual ~Object(void) {}
+		Object(const std::string &name) : _name(name), _factory(ComponentFactory::instance()) {}
+		virtual ~Object(void) { destroy_all_components(); }
+		virtual const std::string &name(void) const { return _name; }
 		virtual bool bound(const std::string &type) const { return (_components.count(type) != 0); }
 		virtual bool enabled(const std::string &type) const { return (_components.count(type) && _components.at(type)->enabled()); }
 		virtual Component *component(const std::string &type) { return _components.count(type) ? _components.at(type) : nullptr; }
 		virtual const Component *component(const std::string &type) const { return _components.count(type) ? _components.at(type) : nullptr; }
-		virtual void bind_component(Component *component) { _components.emplace(component->type(), component); }
-		virtual void unbind_component(const std::string &type) { _components.erase(type); }
+		virtual void create_component(const std::string &type, const std::string &res);
+		virtual void destroy_component(const std::string &type);
+		virtual void destroy_all_components(void);
 		virtual void enable(const std::string &type) { if (_components.count(type) != 0) _components.at(type)->enable(); }
 		virtual void disable(const std::string &type) { if (_components.count(type) != 0) _components.at(type)->disable(); }
 	};

@@ -5,6 +5,7 @@
 #ifndef WATERY_SOUND_H
 #define WATERY_SOUND_H
 
+#include <gl/glew.h>
 #include "system.h"
 #include "../Scene/world.h"
 

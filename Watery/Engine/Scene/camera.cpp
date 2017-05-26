@@ -3,16 +3,9 @@
 //
 
 #include "camera.h"
-#include "../Component/position.h"
 
 namespace watery
 {
-	Camera::Camera(const Vector &position)
-	{
-		// Setting up the position component.
-		bind_component(new Position(position));
-	}
-	
 	void Camera::move(const Vector &direction)
 	{
 		Position *position = static_cast<Position *>(component("position"));
@@ -65,11 +58,6 @@ namespace watery
 		{
 			return Vector();
 		}
-	}
-	
-	Camera::~Camera(void)
-	{
-		delete component("position");
 	}
 	
 	float Camera::x(void) const

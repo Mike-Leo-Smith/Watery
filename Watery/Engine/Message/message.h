@@ -22,7 +22,7 @@ namespace watery
 		std::set<std::string> _signatures;
 		
 	public:
-		Message(const std::string &type = "undefined", Microsecond time_out = MESSAGE_DEFAULT_TIME_OUT)
+		Message(const std::string &type = "undefined", Microsecond time_out = MESSAGE_EVENT_DEFAULT_TIME_OUT)
 				: _type(type), _timer(time_out) { _timer.reset(); }
 		virtual ~Message(void) {}
 		virtual const std::string &type(void) const { return _type; }

@@ -6,7 +6,7 @@
 #define WATERY_ANIMATION_H
 
 #include "component.h"
-#include "../World/object.h"
+#include "../Scene/object.h"
 
 namespace watery
 {

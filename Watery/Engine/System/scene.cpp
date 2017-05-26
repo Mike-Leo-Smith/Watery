@@ -5,11 +5,11 @@
 #include "scene.h"
 #include "../Physics/shape.h"
 #include "../Component/bounding_shape.h"
-#include "../Component/position.h"
 #include "../Physics/physics.h"
 #include "../Message/collision_event.h"
-#include "../Component/velocity.h"
 #include "../Component/animation.h"
+#include "../Message/dying_event.h"
+#include "../Component/lifetime.h"
 
 void watery::Scene::do_updating_tasks(void)
 {
@@ -58,6 +58,24 @@ void watery::Scene::advance_status(void)
 	for (auto &object_item : _world.objects())
 	{
 		Object *object = object_item.second;
+		
+		// Updating health.
+		if (object->enabled("health"))
+		{
+			if (static_cast<Health *>(object->component("health"))->dying())
+			{
+				dispatch_message(new DyingEvent(object));
+			}
+		}
+		
+		// Removing dead objects (typically used with particles).
+		if (object->enabled("lifetime"))
+		{
+			if (static_cast<Lifetime *>(object->component("lifetime"))->dead())
+			{
+				_world.destroy_object(object->name());
+			}
+		}
 		
 		// Update position by velocity.
 		if (object->enabled("velocity"))

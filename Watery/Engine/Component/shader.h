@@ -5,8 +5,8 @@
 #ifndef WATERY_SHADER_H
 #define WATERY_SHADER_H
 
-#include "../../Framework/Graphics/gl_shader.h"
 #include "component.h"
+#include "../../Framework/Graphics/gl_shader.h"
 
 namespace watery
 {

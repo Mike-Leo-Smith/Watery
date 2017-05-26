@@ -13,8 +13,8 @@ namespace watery
 	class Camera : public Object
 	{
 	public:
-		Camera(const Vector &position = Vector());
-		virtual ~Camera(void);
+		Camera(void) : Object("camera") {}
+		virtual ~Camera(void) { _components.erase("position"); }
 		virtual const Vector position(void) const;
 		virtual void set_position(const Vector &pos);
 		virtual void move(const Vector &direction);

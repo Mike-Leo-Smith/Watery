@@ -3,6 +3,7 @@
 //
 
 #include <cstdlib>
+#include <sstream>
 #include "component_factory.h"
 #include "../Physics/shape.h"
 #include "bounding_shape.h"
@@ -89,7 +90,13 @@ namespace watery
 		}
 		else if (type == "health")
 		{
-			component = new Health((float)atof(res.c_str()));
+			float initial, maximum;
+			std::stringstream buffer;
+			
+			buffer << res;
+			buffer >> initial >> maximum;
+			
+			component = new Health(initial, maximum);
 		}
 		
 		if (component != nullptr)

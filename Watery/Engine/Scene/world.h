@@ -5,8 +5,9 @@
 #ifndef WATERY_WORLD_H
 #define WATERY_WORLD_H
 
-#include <string>
 #include <map>
+#include <string>
+#include <gl/glew.h>
 #include "object.h"
 #include "camera.h"
 
