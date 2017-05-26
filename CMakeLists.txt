@@ -97,8 +97,22 @@ set(SOURCE_FILES
 		Watery/Engine/System/scene.h
 		Watery/Engine/Resource/resource_wrapper.cpp
 		Watery/Engine/Resource/resource_wrapper.h
+		Watery/Engine/Component/animation.cpp
+		Watery/Engine/Component/animation.h
+		Watery/Engine/Resource/gl_texture_wrapper.cpp
+		Watery/Engine/Resource/gl_texture_wrapper.h
+		Watery/Engine/Resource/gl_shader_wrapper.cpp
+		Watery/Engine/Resource/gl_shader_wrapper.h
+		Watery/Engine/Resource/gl_vertex_array_wrapper.cpp
+		Watery/Engine/Resource/gl_vertex_array_wrapper.h
+		Watery/Engine/Resource/al_audio_wrapper.cpp
+		Watery/Engine/Resource/al_audio_wrapper.h
+		Watery/Engine/Component/bounding_shape.h
+		Watery/Engine/Resource/shape_wrapper.cpp
+		Watery/Engine/Resource/shape_wrapper.h
+		Watery/Engine/Message/collision_event.h
 		Game/Sources/plane.cpp
-		Game/Sources/plane.h Watery/Engine/Component/animation.cpp Watery/Engine/Component/animation.h Watery/Engine/Resource/gl_texture_wrapper.cpp Watery/Engine/Resource/gl_texture_wrapper.h Watery/Engine/Resource/gl_shader_wrapper.cpp Watery/Engine/Resource/gl_shader_wrapper.h Watery/Engine/Resource/gl_vertex_array_wrapper.cpp Watery/Engine/Resource/gl_vertex_array_wrapper.h Watery/Engine/Resource/al_audio_wrapper.cpp Watery/Engine/Resource/al_audio_wrapper.h Watery/Engine/Component/bounding_shape.h Watery/Engine/Resource/shape_wrapper.cpp Watery/Engine/Resource/shape_wrapper.h Watery/Engine/Message/collision_event.h)
+		Game/Sources/plane.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)
