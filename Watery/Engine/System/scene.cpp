@@ -12,6 +12,7 @@
 #include "../Component/lifetime.h"
 #include "../Component/angular_velocity.h"
 #include "../Component/rotation.h"
+#include "../Component/constraint.h"
 
 void watery::Scene::do_updating_tasks(void)
 {
@@ -83,20 +84,26 @@ void watery::Scene::advance_status(void)
 		if (object->enabled("velocity") && object->enabled("position"))
 		{
 			Vector velocity = static_cast<Velocity *>(object->component("velocity"))->vector();
-			static_cast<Position *>(object->component("position"))->move(velocity * delta_time() * 1e-3f);
+			static_cast<Position *>(object->component("position"))->move(velocity * delta_time() * 1e-6f);
 		}
 		
 		// Update rotation by angular velocity.
 		if (object->enabled("angular_velocity") && object->enabled("rotation"))
 		{
 			float angular_velocity = static_cast<AngularVelocity *>(object->component("angular_velocity"))->omega();
-			static_cast<Rotation *>(object->component("rotation"))->rotate(angular_velocity * delta_time() * 1e-3f);
+			static_cast<Rotation *>(object->component("rotation"))->rotate(angular_velocity * delta_time() * 1e-6f);
 		}
 		
 		// Animate.
 		if (object->enabled("animation"))
 		{
 			static_cast<Animation *>(object->component("animation"))->animate(object);
+		}
+		
+		// Constrain.
+		if (object->enabled("constraint"))
+		{
+			static_cast<Constraint *>(object->component("constraint"))->constrain(object);
 		}
 	}
 }

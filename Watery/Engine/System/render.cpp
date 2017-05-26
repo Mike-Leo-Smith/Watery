@@ -51,6 +51,8 @@ namespace watery
 				shader->set_uniform_mat4fv("proj", proj.entries());
 				shader->set_uniform_mat4fv("view", view.entries());
 				
+				shader->set_uniform_float("pixelsizex", static_cast<Velocity *>(_world.object("camera")->component("velocity"))->vx() * 2e-6f);
+				
 				if (object->enabled("position"))
 				{
 					Vector position = static_cast<Position *>(object->component("position"))->vector();

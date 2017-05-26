@@ -18,9 +18,10 @@
 			<!-- Camera -->
 			<object name="camera">
 				<position arg="0 0 0"/>
+				<velocity arg="0 0 0"/>
 			</object>
 			<!-- Background -->
-			<object name="Background">
+			<object name="background">
 				<position arg="0 0 0"/>
 				<shader arg="sprite_shader"/>
 				<vertex_array arg="bg_rect"/>
@@ -28,7 +29,7 @@
 				<audio arg="bg_music"/>
 			</object>
 			<!-- Object Role -->
-			<object name="Role">
+			<object name="role">
 				<position arg="100 100 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
