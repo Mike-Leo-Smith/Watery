@@ -31,7 +31,7 @@ namespace watery
 		const Matrix operator*(const Matrix &rhs) const;
 		const Matrix operator*(float rhs) const;
 		const Matrix operator/(float rhs) const;
-		// 友元为了把rhs放在前面
+		// 友元为了把标量放在前面
 		friend const Matrix operator*(float lhs, const Matrix &rhs) { return rhs * lhs; }
 		// 形如+=
 		Matrix &operator+=(const Matrix &rhs);

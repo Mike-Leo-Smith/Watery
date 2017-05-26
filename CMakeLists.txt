@@ -95,7 +95,6 @@ set(SOURCE_FILES
 		Watery/Engine/System/scene.h
 		Watery/Engine/Resource/resource_wrapper.cpp
 		Watery/Engine/Resource/resource_wrapper.h
-		Watery/Engine/Component/animation.cpp
 		Watery/Engine/Component/animation.h
 		Watery/Engine/Resource/gl_texture_wrapper.cpp
 		Watery/Engine/Resource/gl_texture_wrapper.h
