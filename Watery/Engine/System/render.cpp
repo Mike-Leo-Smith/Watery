@@ -8,10 +8,6 @@
 #include "system.h"
 #include "render.h"
 #include "../Mathematics/mathematics.h"
-#include "../Component/vertex_array.h"
-#include "../Component/shader.h"
-#include "../Component/position.h"
-#include "../Component/texture.h"
 
 namespace watery
 {
@@ -29,8 +25,10 @@ namespace watery
 	
 	void Render::render_scene(void)
 	{
+		Vector camera_position = static_cast<Position *>(_world.object("camera")->component("position"))->position();
+		
 		Matrix model;
-		Matrix view = Mathematics::camera_at(_world.camera().position());
+		Matrix view = Mathematics::camera_at(camera_position);
 		Matrix proj = get_proj_matrix();
 		
 		_graphics.poll_events();

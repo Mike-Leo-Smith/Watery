@@ -63,8 +63,6 @@ set(SOURCE_FILES
 		Watery/Engine/System/communication.h
 		Watery/Engine/Message/keyboard_event.h
 		Watery/Engine/Timer/timer.h
-		Watery/Engine/Scene/camera.cpp
-		Watery/Engine/Scene/camera.h
 		Watery/Engine/Physics/physics.cpp
 		Watery/Engine/Physics/physics.h
 		Watery/Engine/Mathematics/matrix.cpp

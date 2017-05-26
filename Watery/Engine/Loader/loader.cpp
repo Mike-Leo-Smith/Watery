@@ -67,18 +67,6 @@ namespace watery
 					}
 				}
 				
-				// Configure the camera.
-				for (auto world_tag : expected_level_tag->child("world"))
-				{
-					for (auto camera_tag : world_tag->child("camera"))
-					{
-						for (auto position_tag : camera_tag->child("position"))
-						{
-							_world.camera().create_component("position", position_tag->attribute("res"));
-						}
-					}
-				}
-				
 				// Create the objects.
 				for (auto world_tag : expected_level_tag->child("world"))       // Traverse all world tags.
 				{

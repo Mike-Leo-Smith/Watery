@@ -4,8 +4,6 @@
 
 #include <gl/glew.h>
 #include "logic.h"
-#include "../Component/position.h"
-#include "../Component/velocity.h"
 
 namespace watery
 {
@@ -14,6 +12,9 @@ namespace watery
 		Object *role = _world.object("Role");
 		Velocity *role_v = static_cast<Velocity *>(role->component("velocity"));
 		Position *role_pos = static_cast<Position *>(role->component("position"));
+		
+		Object *camera = _world.object("camera");
+		Position *camera_position = static_cast<Position *>(camera->component("position"));
 		
 		role_pos->move(role_v->velocity());
 		
@@ -39,12 +40,12 @@ namespace watery
 		
 		if (message->key_down(KEY_EQUAL))
 		{
-			_world.camera().move_z(0.1f);
+			camera_position->move_z(0.1f);
 		}
 		
 		if (message->key_down(KEY_MINUS))
 		{
-			_world.camera().move_z(-0.1f);
+			camera_position->move_z(-0.1f);
 		}
 		
 		if (message->key_down(KEY_SPACE))
@@ -59,20 +60,20 @@ namespace watery
 			}
 		}
 		
-		if (role_pos->x() > _world.camera().x() + _window.logical_width() - 300)
+		if (role_pos->x() > camera_position->x() + _window.logical_width() - 300)
 		{
-			if (_world.camera().x() + _window.logical_width() >= 4200 - role_v->vx() + 1)
+			if (camera_position->x() + _window.logical_width() >= 4200 - role_v->vx() + 1)
 			{
-				_world.camera().move_x(role_v->vx());
+				camera_position->move_x(role_v->vx());
 			}
 		}
 		
-		if (role_pos->x() < _world.camera().x() + 120)
+		if (role_pos->x() < camera_position->x() + 120)
 		{
-			_world.camera().move_x(role_v->vx());
-			if (_world.camera().x() < 0)
+			camera_position->move_x(role_v->vx());
+			if (camera_position->x() < 0)
 			{
-				_world.camera().move_x(-_world.camera().x());
+				camera_position->move_x(-camera_position->x());
 			}
 		}
 		
