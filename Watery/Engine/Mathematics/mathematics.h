@@ -14,9 +14,12 @@ namespace watery
 	class Mathematics
 	{
 	public:
+		static float radians(float degrees);
+		static float degree(float radians);
 		static const Matrix identity(void);
 		static const Matrix translation(const Vector &position);
-		static const Matrix rotation(const Vector &axis, const Vector &angle);
+		static const Matrix rotation(Quaternion q);
+		static const Matrix rotation(const Vector &axis, float angle);      // In degrees.
 		static const Matrix scale(float s);
 		static const Matrix scale(const Vector &scale);
 		static const Matrix ortho_proj(const Vector &left_bottom_near, const Vector &right_top_far);

@@ -30,7 +30,7 @@ namespace watery
 		~ComponentFactory(void) { destroy_all(); }
 	
 	public:
-		Component *create_component(const std::string &type, const std::string &res);
+		Component *create_component(const std::string &type, const std::string &arg);
 		void destroy_component(Component *component);
 		void destroy_all(void);
 		static ComponentFactory &instance(void);

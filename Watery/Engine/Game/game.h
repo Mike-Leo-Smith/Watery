@@ -19,7 +19,7 @@ namespace watery
 	public:
 		Game(void) : _window(Window::instance()) {}
 		virtual ~Game(void) {}
-		virtual void add_system(const std::string &name, System *system) { _systems.emplace(name, system); }
+		virtual void add_system(System *system) { _systems.emplace(system->name(), system); }
 		virtual void remove_system(const std::string &name) { _systems.erase(name); }
 		virtual void run(void);
 	};

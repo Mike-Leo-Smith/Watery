@@ -109,7 +109,7 @@ set(SOURCE_FILES
 		Watery/Engine/Resource/shape_wrapper.h
 		Watery/Engine/Message/collision_event.h
 		Game/Sources/plane.cpp
-		Game/Sources/plane.h Watery/Engine/Message/dying_event.h Watery/Engine/Component/lifetime.h Watery/Engine/Scene/object.cpp Watery/Engine/Component/constraint.h)
+		Game/Sources/plane.h Watery/Engine/Message/dying_event.h Watery/Engine/Component/lifetime.h Watery/Engine/Scene/object.cpp Watery/Engine/Component/constraint.h Watery/Engine/Component/rotation.h Watery/Engine/Component/angular_velocity.cpp Watery/Engine/Component/angular_velocity.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)

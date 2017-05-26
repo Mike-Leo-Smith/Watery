@@ -3,7 +3,6 @@
 //
 
 #include "matrix.h"
-#include "vector.h"
 
 namespace watery
 {
@@ -19,6 +18,7 @@ namespace watery
 			{
 				_entries[i] = 0;
 			}
+			_entries[0] = _entries[5] = _entries[10] = _entries[15] = 1;
 		}
 	}
 	
@@ -53,14 +53,17 @@ namespace watery
 	{
 		Matrix temp;
 		
-		for (int i = 0; i < 4; i++)
+		for (int row = 0; row < 4; row++)
 		{
-			for (int j = 0; j < 4; j++)
+			for (int col = 0; col < 4; col++)
 			{
-				for (int k = 0; k < 4; k++)
+				float e = 0;
+				
+				for (int i = 0; i < 4; i++)
 				{
-					temp.set_entry(i, j, temp.entry(i, j) + entry(i, k) * rhs.entry(k, j));
+					e += entry(row, i) * rhs.entry(i, col);
 				}
+				temp.set_entry(row, col, e);
 			}
 		}
 		return temp;
@@ -133,9 +136,27 @@ namespace watery
 		for (int i = 0; i < 3; i++)
 		{
 			float sum = 0;
-			for (int j = 0; j < 4; j++)sum += entry(i, j) * (j == 3 ? 1 : rhs.xyz()[j]);
+			
+			for (int j = 0; j < 4; j++)
+			{
+				sum += entry(i, j) * (j == 3 ? 1 : rhs.xyz()[j]);
+			}
 			temp.set(i, sum);
 		}
 		return temp;
+	}
+	
+	const Matrix Matrix::transpose(void) const
+	{
+		Matrix matrix;
+		
+		for (int row = 0; row < 4; row++)
+		{
+			for (int col = 0; col < 4; col++)
+			{
+				matrix.set_entry(col, row, entry(row, col));
+			}
+		}
+		return matrix;
 	}
 }

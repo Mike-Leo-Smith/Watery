@@ -8,6 +8,7 @@
 #include "system.h"
 #include "render.h"
 #include "../Mathematics/mathematics.h"
+#include "../Component/rotation.h"
 
 namespace watery
 {
@@ -25,7 +26,7 @@ namespace watery
 	
 	void Render::render_scene(void)
 	{
-		Vector camera_position = static_cast<Position *>(_world.object("camera")->component("position"))->position();
+		Vector camera_position = static_cast<Position *>(_world.object("camera")->component("position"))->vector();
 		
 		Matrix model;
 		Matrix view = Mathematics::camera_at(camera_position);
@@ -52,11 +53,17 @@ namespace watery
 				
 				if (object->enabled("position"))
 				{
-					Vector position = static_cast<Position *>(object->component("position"))->position();
-					
-					model = Mathematics::translation(position);
-					shader->set_uniform_mat4fv("model", model.entries());
+					Vector position = static_cast<Position *>(object->component("position"))->vector();
+					model *= Mathematics::translation(position);
 				}
+				
+				if (object->enabled("rotation"))
+				{
+					Quaternion rotation = static_cast<Rotation *>(object->component("rotation"))->quaternion();
+					model *= Mathematics::rotation(rotation);
+				}
+				
+				shader->set_uniform_mat4fv("model", model.entries());
 				
 				if (object->enabled("texture"))
 				{

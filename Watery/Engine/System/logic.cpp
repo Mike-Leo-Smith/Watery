@@ -16,27 +16,7 @@ namespace watery
 		Object *camera = _world.object("camera");
 		Position *camera_position = static_cast<Position *>(camera->component("position"));
 		
-		role_pos->move(role_v->velocity());
-		
-		if (role_pos->y() >= _window.logical_height() - 200)
-		{
-			role_pos->set_y(_window.logical_height() - 200);
-		}
-		
-		if (role_pos->y() < role_v->vy() - 1)
-		{
-			role_pos->set_y(role_v->vy() - 1);
-		}
-		
-		if (role_pos->x() < role_v->vx() - 1)
-		{
-			role_pos->set_x(role_v->vx() - 1);
-		}
-		
-		if (role_pos->x() >= 4000)
-		{
-			role_pos->set_x(4000);
-		}
+		role_pos->move(role_v->vector());
 		
 		if (message->key_down(KEY_EQUAL))
 		{

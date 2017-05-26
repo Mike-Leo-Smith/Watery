@@ -18,10 +18,11 @@ namespace watery
 	public:
 		Vector(float x = 0, float y = 0, float z = 0) : _xyz { x, y, z } {}
 		Vector(float *xyz) { set_xyz(xyz); }
-		Vector(const std::string &coord_str);
 		~Vector(void) {}
 		float length(void) const;
 		void normalize(void);
+		const Vector cross(const Vector &rhs) const;
+		float dot(const Vector &rhs) const;
 		float x(void) const { return _xyz[0]; }
 		float y(void) const { return _xyz[1]; }
 		float z(void) const { return _xyz[2]; }
@@ -31,6 +32,7 @@ namespace watery
 		void set_z(float z) { _xyz[2] = z; }
 		void set(int pos, float x) { _xyz[pos] = x; }
 		void set_xyz(const float *xyz);
+		
 		Vector &operator*=(float rhs);
 		Vector &operator/=(float rhs);
 		Vector &operator+=(const Vector &rhs);

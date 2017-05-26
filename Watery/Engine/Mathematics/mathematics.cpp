@@ -158,8 +158,42 @@ namespace watery
 		return Matrix(entries);
 	}
 	
-	const Matrix Mathematics::rotation(const Vector &axis, const Vector &angle)
+	const Matrix Mathematics::rotation(const Vector &axis, float angle)
 	{
-		return Matrix();
+		return rotation(Quaternion(axis, angle));
+	}
+	
+	float Mathematics::radians(float degrees)
+	{
+		return (float)(degrees / 180.0 * M_PI);
+	}
+	
+	float Mathematics::degree(float radians)
+	{
+		return (float)(radians * M_1_PI * 180);
+	}
+	
+	const Matrix Mathematics::rotation(Quaternion q)
+	{
+		q.normalize();
+		
+		float w = q.w();
+		float x = q.x();
+		float y = q.y();
+		float z = q.z();
+		
+		// [ 1-2*y*y-2*z*z    2*x*y+2*w*z    2*x*z-2*w*y  0 ]
+		// {   2*x*y-2*w*z  1-2*x*x-2*z*z    2*y*z+2*w*x  0 ]
+		// {   2*x*z+2*w*y    2*y*z-2*w*x  1-2*x*x-2*y*y  0 ]
+		// [             0              0              0  1 ]
+		float entries[] =
+				{
+						1 - 2 * y * y - 2 * z * z, 2 * x * y + 2 * w * z, 2 * x * z - 2 * w * y, 0,
+						2 * x * y - 2 * w * z, 1 - 2 * x * x - 2 * z * z, 2 * y * z + 2 * w * x, 0,
+						2 * x * z + 2 * w * y, 2 * y * z - 2 * w * x, 1 - 2 * x * x - 2 * y * y, 0,
+						0, 0, 0, 1
+				};
+		
+		return Matrix(entries);
 	}
 }

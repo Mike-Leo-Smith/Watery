@@ -17,23 +17,25 @@
 		<world>
 			<!-- Camera -->
 			<object name="camera">
-				<position res="0 0 0"/>
+				<position arg="0 0 0"/>
 			</object>
 			<!-- Background -->
 			<object name="Background">
-				<position res="0 0 0"/>
-				<shader res="sprite_shader"/>
-				<vertex_array res="bg_rect"/>
-				<texture res="bg_image"/>
-				<audio res="bg_music"/>
+				<position arg="0 0 0"/>
+				<shader arg="sprite_shader"/>
+				<vertex_array arg="bg_rect"/>
+				<texture arg="bg_image"/>
+				<audio arg="bg_music"/>
 			</object>
 			<!-- Object Role -->
 			<object name="Role">
-				<position res="0 0 1"/>
-				<velocity res="0 0 0"/>
-				<shader res="sprite_shader"/>
-				<texture res="face_image"/>
-				<vertex_array res="face_rect"/>
+				<position arg="100 100 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
 			</object>
 		</world>
 	</level>

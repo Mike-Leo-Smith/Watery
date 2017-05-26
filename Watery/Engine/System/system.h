@@ -54,6 +54,7 @@ namespace watery
 		virtual void update(void);
 		virtual void start(void);
 		virtual void pause(void) { _paused = true; }
+		virtual const std::string &name(void) const { return _name; }
 	};
 }
 

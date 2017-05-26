@@ -10,6 +10,8 @@
 #include "../Component/animation.h"
 #include "../Message/dying_event.h"
 #include "../Component/lifetime.h"
+#include "../Component/angular_velocity.h"
+#include "../Component/rotation.h"
 
 void watery::Scene::do_updating_tasks(void)
 {
@@ -40,8 +42,8 @@ void watery::Scene::detect_collisions(void)
 				{
 					Shape *s1 = static_cast<BoundingShape *>(object->component("bounding_shape"))->shape();
 					Shape *s2 = static_cast<BoundingShape *>(another->component("bounding_shape"))->shape();
-					Vector p1 = static_cast<Position *>(object->component("position"))->position();
-					Vector p2 = static_cast<Position *>(another->component("position"))->position();
+					Vector p1 = static_cast<Position *>(object->component("position"))->vector();
+					Vector p2 = static_cast<Position *>(another->component("position"))->vector();
 					
 					if (Physics::collision(*s1, p1, *s2, p2))
 					{
@@ -78,13 +80,17 @@ void watery::Scene::advance_status(void)
 		}
 		
 		// Update position by velocity.
-		if (object->enabled("velocity"))
+		if (object->enabled("velocity") && object->enabled("position"))
 		{
-			Vector position = static_cast<Position *>(object->component("position"))->position();
-			Vector velocity = static_cast<Velocity *>(object->component("velocity"))->velocity();
-			
-			position += velocity * delta_time();
-			static_cast<Position *>(object->component("position"))->set_position(position);
+			Vector velocity = static_cast<Velocity *>(object->component("velocity"))->vector();
+			static_cast<Position *>(object->component("position"))->move(velocity * delta_time() * 1e-3f);
+		}
+		
+		// Update rotation by angular velocity.
+		if (object->enabled("angular_velocity") && object->enabled("rotation"))
+		{
+			float angular_velocity = static_cast<AngularVelocity *>(object->component("angular_velocity"))->omega();
+			static_cast<Rotation *>(object->component("rotation"))->rotate(angular_velocity * delta_time() * 1e-3f);
 		}
 		
 		// Animate.

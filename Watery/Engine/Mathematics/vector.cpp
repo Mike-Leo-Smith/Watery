@@ -3,8 +3,6 @@
 //
 
 #include <cmath>
-#include <cstdlib>
-#include <sstream>
 #include "vector.h"
 
 namespace watery
@@ -92,11 +90,24 @@ namespace watery
 		}
 	}
 	
-	Vector::Vector(const std::string &coord_str)
+	const Vector Vector::cross(const Vector &rhs) const
 	{
-		std::stringstream buffer;
+		float x1 = _xyz[0];
+		float y1 = _xyz[1];
+		float z1 = _xyz[2];
+		float x2 = rhs._xyz[0];
+		float y2 = rhs._xyz[1];
+		float z2 = rhs._xyz[2];
 		
-		buffer << coord_str;
-		buffer >> _xyz[0] >> _xyz[1] >> _xyz[2];
+		float i = y1 * z2 - z1 * y2;
+		float j = z1 * x2 - x1 * z2;
+		float k = x1 * y2 - y1 * x2;
+		
+		return Vector(i, j, k);
+	}
+	
+	float Vector::dot(const Vector &rhs) const
+	{
+		return *this * rhs;
 	}
 }

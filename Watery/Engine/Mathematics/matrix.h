@@ -6,6 +6,7 @@
 #define WATERY_MATRIX_H
 
 #include <cstring>
+#include "quaternion.h"
 
 namespace watery
 {
@@ -24,7 +25,7 @@ namespace watery
 		void set_entry(int row, int col, float val) { _entries[col * 4 + row] = val; }
 		const float *entries(void) const { return (float *)_entries; }
 		void set_entries(const float *entries);
-		
+		const Matrix transpose(void) const;
 		// ¾ØÕóÄÚ²¿ÔËËã
 		const Matrix operator+(const Matrix &rhs) const;
 		const Matrix operator-(const Matrix &rhs) const;

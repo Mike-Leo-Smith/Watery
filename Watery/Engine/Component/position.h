@@ -18,8 +18,8 @@ namespace watery
 	public:
 		Position(const Vector &position = Vector()) : Component("position"), _position(position) {}
 		virtual ~Position(void) override {}
-		virtual const Vector &position(void) const { return _position; }
-		virtual void set_position(const Vector &position) { _position = position; }
+		virtual const Vector &vector(void) const { return _position; }
+		virtual void set(const Vector &position) { _position = position; }
 		virtual void move(const Vector &direction) { _position += direction; }
 		virtual void move_x(float dx) { _position.set_x(_position.x() + dx); }
 		virtual void move_y(float dy) { _position.set_y(_position.y() + dy); }

@@ -18,8 +18,8 @@ namespace watery
 	public:
 		Velocity(const Vector &velocity = Vector()) : Component("velocity"), _velocity(velocity) {}
 		virtual ~Velocity(void) override {}
-		virtual const Vector &velocity(void) const { return _velocity; }
-		virtual void set_velocity(const Vector &velocity) { _velocity = velocity; }
+		virtual const Vector &vector(void) const { return _velocity; }
+		virtual void set(const Vector &velocity) { _velocity = velocity; }
 		virtual float vx(void) const { return _velocity.x(); }
 		virtual float vy(void) const { return _velocity.y(); }
 		virtual float vz(void) const { return _velocity.z(); }

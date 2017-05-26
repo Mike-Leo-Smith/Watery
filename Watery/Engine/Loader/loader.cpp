@@ -79,7 +79,7 @@ namespace watery
 						{
 							for (auto component_tag : component_tags.second)
 							{
-								object->create_component(component_tag->tag(), component_tag->attribute("res"));
+								object->create_component(component_tag->tag(), component_tag->attribute("arg"));
 							}
 						}
 					}
