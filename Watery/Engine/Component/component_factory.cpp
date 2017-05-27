@@ -71,6 +71,7 @@ namespace watery
 		{
 			component = new AngularVelocity((float)atof(arg.c_str()));
 		}
+#ifndef _WIN32
 		else if (type == "audio")
 		{
 			ALAudio *al_audio = static_cast<ALAudio *>(_resource.get_resource("al_audio", arg)->data());
@@ -80,6 +81,7 @@ namespace watery
 				component = new Audio(al_audio);
 			}
 		}
+#endif
 		else if (type == "shader")
 		{
 			GLShader *gl_shader = static_cast<GLShader *>(_resource.get_resource("gl_shader", arg)->data());

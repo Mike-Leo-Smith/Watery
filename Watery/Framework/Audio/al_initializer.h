@@ -5,6 +5,8 @@
 #ifndef WATERY_AL_INITIALIZER_H
 #define WATERY_AL_INITIALIZER_H
 
+#ifndef _WIN32
+
 namespace watery
 {
 	class ALInitializer
@@ -18,5 +20,7 @@ namespace watery
 		~ALInitializer(void) {}
 	};
 };
+
+#endif
 
 #endif  // WATERY_AL_INITIALIZER_H

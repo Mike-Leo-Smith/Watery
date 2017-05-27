@@ -9,7 +9,7 @@ namespace watery
 	void Sound::do_updating_tasks(void)
 	{
 		handle_message();
-		
+#ifndef _WIN32
 		for (const auto &item : _world.objects())
 		{
 			const Object *object = item.second;
@@ -31,5 +31,6 @@ namespace watery
 				}
 			}
 		}
+#endif
 	}
 }

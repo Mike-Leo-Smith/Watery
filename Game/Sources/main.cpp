@@ -7,9 +7,9 @@
 #include "../../Watery/Engine/Loader/loader.h"
 #include "../../Watery/Engine/System/scene.h"
 #include "../../Watery/Engine/Game/game.h"
-#include "logic.h"
 #include "../../Watery/Engine/Physics/rectangle.h"
 #include "../../Watery/Engine/Physics/circle.h"
+#include "logic.h"
 
 int main(void)
 {

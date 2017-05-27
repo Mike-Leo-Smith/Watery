@@ -5,7 +5,10 @@
 #ifndef WATERY_AL_AUDIO_H
 #define WATERY_AL_AUDIO_H
 
+#ifndef _WIN32
+
 #include <OpenAL/al.h>
+
 #include "al_initializer.h"
 
 namespace watery
@@ -28,5 +31,7 @@ namespace watery
 		ALuint id(void) const { return _source; }
 	};
 }
+
+#endif
 
 #endif  // WATERY_AL_AUDIO_H

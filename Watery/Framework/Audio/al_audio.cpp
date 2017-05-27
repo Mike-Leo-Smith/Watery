@@ -2,6 +2,8 @@
 // Created by Mike Smith on 2017/4/17.
 //
 
+#ifndef _WIN32
+
 #include <al/alut.h>
 #include "al_audio.h"
 
@@ -47,3 +49,5 @@ namespace watery
 		return (state == AL_PLAYING);
 	}
 }
+
+#endif

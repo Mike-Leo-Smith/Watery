@@ -9,9 +9,11 @@
 			<gl_texture name="bg_image" path="Assets/Images/background.png"/>
 			<gl_shader name="sprite_shader" path="Scripts/Shaders/sprite.vert:Scripts/Shaders/sprite.frag"/>
 			<gl_vertex_array name="face_rect" path="Assets/VertexArrays/face.va"/>
+			<gl_vertex_array name="big_face_rect" path="Assets/VertexArrays/big_face.va"/>
 			<gl_vertex_array name="bg_rect" path="Assets/VertexArrays/background.va"/>
 			<al_audio name="bg_music" path="Assets/Sounds/test.wav"/>
 			<shape name="role_bounding" path="Assets/Shapes/role.shp"/>
+			<shape name="big_role_shape" path="Assets/Shapes/big_role.shp"/>
 		</asset>
 		<!-- World -->
 		<world>
@@ -30,18 +32,18 @@
 			</object>
 			<!-- Object Role -->
 			<object name="role">
-				<position arg="100 100 1"/>
+				<position arg="200 200 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
 				<angular_velocity arg="0"/>
 				<shader arg="sprite_shader"/>
 				<texture arg="face_image"/>
-				<vertex_array arg="face_rect"/>
-				<bounding_shape arg="role_bounding"/>
+				<vertex_array arg="big_face_rect"/>
+				<bounding_shape arg="big_role_shape"/>
 			</object>
 			<!-- Object Enemy -->
 			<object name="enemy1">
-				<position arg="300 300 1"/>
+				<position arg="3000 300 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
 				<angular_velocity arg="30"/>

@@ -5,6 +5,8 @@
 #ifndef WATERY_AUDIO_H
 #define WATERY_AUDIO_H
 
+#ifndef _WIN32
+
 #include "../../Framework/Audio/al_audio.h"
 #include "component.h"
 
@@ -23,5 +25,7 @@ namespace watery
 		virtual ALAudio *audio(void) { return _audio; }
 	};
 }
+
+#endif
 
 #endif  // WATERY_AUDIO_H

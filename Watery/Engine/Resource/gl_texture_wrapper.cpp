@@ -3,7 +3,7 @@
 //
 
 #include "gl_texture_wrapper.h"
-#include "../../Framework/ThirdParty/lodepng.h"
+#include "../../ThirdParty/LodePNG/lodepng.h"
 
 namespace watery
 {

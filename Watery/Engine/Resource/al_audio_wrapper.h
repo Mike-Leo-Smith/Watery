@@ -5,6 +5,8 @@
 #ifndef WATERY_AL_AUDIO_WRAPPER_H
 #define WATERY_AL_AUDIO_WRAPPER_H
 
+#ifndef _WIN32
+
 #include "../../Framework/Audio/al_audio.h"
 #include "resource_wrapper.h"
 
@@ -21,5 +23,7 @@ namespace watery
 		virtual void *data(void) override { return _audio; }
 	};
 }
+
+#endif
 
 #endif  // WATERY_AL_AUDIO_WRAPPER_H

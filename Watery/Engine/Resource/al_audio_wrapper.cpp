@@ -2,7 +2,9 @@
 // Created by Mike Smith on 2017/5/25.
 //
 
-#include <AL/alut.h>
+#ifndef _WIN32
+
+#include <al/alut.h>
 #include "al_audio_wrapper.h"
 
 namespace watery
@@ -20,3 +22,5 @@ namespace watery
 		alutUnloadWAV(format, data, size, freq);
 	}
 }
+
+#endif

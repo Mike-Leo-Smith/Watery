@@ -2,6 +2,8 @@
 // Created by Mike Smith on 2017/5/5.
 //
 
+#ifndef _WIN32
+
 #include <al/alut.h>
 #include "al_initializer.h"
 
@@ -14,3 +16,5 @@ namespace watery
 		alutInit(nullptr, nullptr);
 	}
 }
+
+#endif

@@ -8,6 +8,7 @@
 #include "../../Watery/Engine/Physics/circle.h"
 #include "../../Watery/Engine/Component/bounding_shape.h"
 #include "../../Watery/Engine/Physics/physics.h"
+#include "../../Watery/Engine/Mathematics/mathematics.h"
 
 void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 {
@@ -36,42 +37,42 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 		role_v->set_vy(0);
 	}
 	
-	if (role_pos->x() <= 100)
+	if (role_pos->x() <= 200)
 	{
 		if (role_v->vx() < 0)
 		{
 			role_v->set_vx(-0.8f * role_v->vx());
 			role_v->set_vy(0.95f * role_v->vy());
 		}
-		role_pos->set_x(100);
+		role_pos->set_x(200);
 	}
-	else if (role_pos->x() >= 4100)
+	else if (role_pos->x() >= 4000)
 	{
 		if (role_v->vx() > 0)
 		{
 			role_v->set_vx(-0.8f * role_v->vx());
 			role_v->set_vy(0.95f * role_v->vy());
 		}
-		role_pos->set_x(4100);
+		role_pos->set_x(4000);
 	}
 	
-	if (role_pos->y() <= 100)
+	if (role_pos->y() <= 200)
 	{
 		if (role_v->vy() < 0)
 		{
 			role_v->set_vx(0.95f * role_v->vx());
 			role_v->set_vy(-0.8f * role_v->vy());
 		}
-		role_pos->set_y(100);
+		role_pos->set_y(200);
 	}
-	else if (role_pos->y() >= _window.logical_height() - 100)
+	else if (role_pos->y() >= _window.logical_height() - 200)
 	{
 		if (role_v->vy() > 0)
 		{
 			role_v->set_vx(0.95f * role_v->vx());
 			role_v->set_vy(-0.8f * role_v->vy());
 		}
-		role_pos->set_y(_window.logical_height() - 100);
+		role_pos->set_y(_window.logical_height() - 200);
 	}
 	
 	role_v->accelerate_y(-40.0f);
@@ -97,7 +98,7 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 	}
 	
 	dispatch_message(message);
-	static_cast<watery::AngularVelocity *>(role->component("angular_velocity"))->set_omega(-role_v->vx());
+	static_cast<watery::AngularVelocity *>(role->component("angular_velocity"))->set_omega(-watery::Mathematics::degree(role_v->vx() / 200));
 }
 
 void Logic::handle_collision_event(watery::CollisionEvent *message)
@@ -162,7 +163,7 @@ void Logic::handle_dying_event(watery::DyingEvent *message)
 
 void Logic::update_camera(void)
 {
-	constexpr float border = 400;
+	constexpr float border = 600;
 	
 	watery::Object *role = _world.object("role");
 	watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));

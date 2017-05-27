@@ -49,7 +49,9 @@ namespace watery
 			if (type == "gl_texture") { resource = new GLTextureWrapper(file_name); }
 			else if (type == "gl_shader") { resource = new GLShaderWrapper(file_name); }
 			else if (type == "gl_vertex_array") { resource = new GLVertexArrayWrapper(file_name); }
+#ifndef _WIN32
 			else if (type == "al_audio") { resource = new ALAudioWrapper(file_name); }
+#endif
 			else if (type == "shape") { resource = new ShapeWrapper(file_name); }
 			
 			if (resource != nullptr)

@@ -34,7 +34,15 @@ namespace watery
 			glfwMakeContextCurrent(_handler);
 			
 			int frame_width, frame_height;
+			
+			auto resize_callback = [](GLFWwindow *win, int width, int height)->void
+			{
+				glfwGetFramebufferSize(win, &width, &height);
+				glViewport(0, 0, width, height);
+			};
+			
 			glfwGetFramebufferSize(_handler, &frame_width, &frame_height);
+			glfwSetWindowSizeCallback(_handler, resize_callback);
 			
 			glewExperimental = GL_TRUE;
 			glewInit();
