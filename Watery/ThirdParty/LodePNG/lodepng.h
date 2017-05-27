@@ -241,7 +241,7 @@ NOTE: This overwrites existing files without warning!
 	                LodePNGColorType colortype = LCT_RGBA, unsigned bitdepth = 8);
 #endif /* LODEPNG_COMPILE_DISK */
 #endif /* LODEPNG_COMPILE_ENCODER */
-} /* namespace lodepng */
+} /* namespace LodePNG */
 #endif /*LODEPNG_COMPILE_CPP*/
 #endif /*LODEPNG_COMPILE_PNG*/
 
@@ -630,7 +630,7 @@ typedef struct LodePNGState
 	LodePNGInfo info_png; /*info of the PNG image obtained after decoding*/
 	unsigned error;
 #ifdef LODEPNG_COMPILE_CPP
-	/* For the lodepng::State subclass. */
+	/* For the LodePNG::State subclass. */
 	virtual ~LodePNGState() {}
 #endif
 } LodePNGState;
@@ -823,7 +823,7 @@ namespace lodepng
 	};
 
 #ifdef LODEPNG_COMPILE_DECODER
-/* Same as other lodepng::decode, but using a State for more settings and information. */
+/* Same as other LodePNG::decode, but using a State for more settings and information. */
 	unsigned decode(std::vector<unsigned char> &out, unsigned &w, unsigned &h,
 	                State &state,
 	                const unsigned char *in, size_t insize);
@@ -833,7 +833,7 @@ namespace lodepng
 #endif /*LODEPNG_COMPILE_DECODER*/
 
 #ifdef LODEPNG_COMPILE_ENCODER
-/* Same as other lodepng::encode, but using a State for more settings and information. */
+/* Same as other LodePNG::encode, but using a State for more settings and information. */
 	unsigned encode(std::vector<unsigned char> &out,
 	                const unsigned char *in, unsigned w, unsigned h,
 	                State &state);
@@ -878,7 +878,7 @@ without warning.
 	                  const LodePNGCompressSettings &settings = lodepng_default_compress_settings);
 #endif /* LODEPNG_COMPILE_ENCODER */
 #endif /* LODEPNG_COMPILE_ZLIB */
-} /* namespace lodepng */
+} /* namespace LodePNG */
 #endif /*LODEPNG_COMPILE_CPP*/
 
 /*
@@ -955,8 +955,8 @@ LodePNG works both in C (ISO C90) and C++, with a C++ wrapper that adds
 extra functionality.
 
 LodePNG exists out of two files:
--lodepng.h: the header file for both C and C++
--lodepng.c(pp): give it the name lodepng.c or lodepng.cpp (or .cc) depending on your usage
+-LodePNG.h: the header file for both C and C++
+-LodePNG.c(pp): give it the name LodePNG.c or LodePNG.cpp (or .cc) depending on your usage
 
 If you want to start using LodePNG right away without reading this doc, get the
 examples from the LodePNG website to see how to use it in code, or check the
@@ -1025,17 +1025,17 @@ yourself. You need to use init and cleanup functions for each struct whenever
 using a struct from the C version to avoid exploits and memory leaks.
 
 The C++ version has extra functions with std::vectors in the interface and the
-lodepng::State class which is a LodePNGState with constructor and destructor.
+LodePNG::State class which is a LodePNGState with constructor and destructor.
 
 These files work without modification for both C and C++ compilers because all
 the additional C++ code is in "#ifdef __cplusplus" blocks that make C-compilers
 ignore it, and the C code is made to compile both with strict ISO C90 and C++.
 
-To use the C++ version, you need to rename the source file to lodepng.cpp
-(instead of lodepng.c), and compile it with a C++ compiler.
+To use the C++ version, you need to rename the source file to LodePNG.cpp
+(instead of LodePNG.c), and compile it with a C++ compiler.
 
-To use the C version, you need to rename the source file to lodepng.c (instead
-of lodepng.cpp), and compile it with a C compiler.
+To use the C version, you need to rename the source file to LodePNG.c (instead
+of LodePNG.cpp), and compile it with a C compiler.
 
 
 3. Security
@@ -1063,7 +1063,7 @@ Most documentation on using the decoder is at its declarations in the header
 above. For C, simple decoding can be done with functions such as
 lodepng_decode32, and more advanced decoding can be done with the struct
 LodePNGState and lodepng_decode. For C++, all decoding can be done with the
-various lodepng::decode functions, and lodepng::State can be used for advanced
+various LodePNG::decode functions, and LodePNG::State can be used for advanced
 features.
 
 When using the LodePNGState, it uses the following fields for decoding:
@@ -1114,7 +1114,7 @@ Most documentation on using the encoder is at its declarations in the header
 above. For C, simple encoding can be done with functions such as
 lodepng_encode32, and more advanced decoding can be done with the struct
 LodePNGState and lodepng_encode. For C++, all encoding can be done with the
-various lodepng::encode functions, and lodepng::State can be used for advanced
+various LodePNG::encode functions, and LodePNG::State can be used for advanced
 features.
 
 Like the decoder, the encoder can also give errors. However it gives less errors
@@ -1448,8 +1448,8 @@ parameters there instead.
 
 No libraries other than the current standard C library are needed to compile
 LodePNG. For the C++ version, only the standard C++ library is needed on top.
-Add the files lodepng.c(pp) and lodepng.h to your project, include
-lodepng.h where needed, and your program can read/write PNG files.
+Add the files LodePNG.c(pp) and LodePNG.h to your project, include
+LodePNG.h where needed, and your program can read/write PNG files.
 
 It is compatible with C90 and up, and C++03 and up.
 
@@ -1487,7 +1487,7 @@ fopen.
 Visual Studio may want "stdafx.h" files to be included in each source file and
 give an error "unexpected end of file while looking for precompiled header".
 This is not standard C++ and will not be added to the stock LodePNG. You can
-disable it for lodepng.cpp only by right clicking it, Properties, C/C++,
+disable it for LodePNG.cpp only by right clicking it, Properties, C/C++,
 Precompiled Headers, and set it to Not Using Precompiled Headers there.
 
 NOTE: Modern versions of VS should be fully supported, but old versions, e.g.
@@ -1513,7 +1513,7 @@ examples can be found on the LodePNG website.
 10.1. decoder C++ example
 -------------------------
 
-#include "lodepng.h"
+#include "LodePNG.h"
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -1523,7 +1523,7 @@ int main(int argc, char *argv[])
   //load and decode
   std::vector<unsigned char> image;
   unsigned width, height;
-  unsigned error = lodepng::decode(image, width, height, filename);
+  unsigned error = LodePNG::decode(image, width, height, filename);
 
   //if there's an error, display it
   if(error) std::cout << "decoder error " << error << ": " << lodepng_error_text(error) << std::endl;
@@ -1534,7 +1534,7 @@ int main(int argc, char *argv[])
 10.2. decoder C example
 -----------------------
 
-#include "lodepng.h"
+#include "LodePNG.h"
 
 int main(int argc, char *argv[])
 {
@@ -1620,7 +1620,7 @@ symbol.
 *) 25 mar 2013: Added an optional feature to ignore some PNG errors (fix_png).
 *) 11 mar 2013 (!): Bugfix with custom free. Changed from "my" to "lodepng_"
     prefix for the custom allocators and made it possible with a new #define to
-    use custom ones in your project without needing to change lodepng's code.
+    use custom ones in your project without needing to change LodePNG's code.
 *) 28 jan 2013: Bugfix with color key.
 *) 27 okt 2012: Tweaks in text chunk keyword length error handling.
 *) 8 okt 2012 (!): Added new filter strategy (entropy) and new auto color mode.
@@ -1735,7 +1735,7 @@ symbol.
     needed, and performed some optimizations.
 *) 07 jun 2006: (!) Renamed functions to decodePNG and placed them
     in LodePNG namespace. Changed the order of the parameters. Rewrote the
-    documentation in the header. Renamed files to lodepng.cpp and lodepng.h
+    documentation in the header. Renamed files to LodePNG.cpp and LodePNG.h
 *) 22 apr 2006: Optimized and improved some code
 *) 07 sep 2005: (!) Changed to std::vector interface
 *) 12 aug 2005: Initial release (C++, decoder only)

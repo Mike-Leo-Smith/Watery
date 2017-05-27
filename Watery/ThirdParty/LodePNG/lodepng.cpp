@@ -24,14 +24,13 @@ freely, subject to the following restrictions:
 */
 
 /*
-The manual and changelog are in the header file "lodepng.h"
-Rename this file to lodepng.cpp to use it for C++, or to lodepng.c to active it for C.
+The manual and changelog are in the header file "LodePNG.h"
+Rename this file to LodePNG.cpp to use it for C++, or to LodePNG.c to active it for C.
 */
 
 #include "lodepng.h"
 
 #include <stdlib.h>
-#include <climits>
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1310) /*Visual Studio: A few warning types are not desired here.*/
 																														#pragma warning( disable : 4244 ) /*implicit conversions: not warned by gcc -Wall -Wextra and requires too much casts*/
@@ -55,7 +54,7 @@ platform if needed. Everything else in the code calls these. Pass
 -DLODEPNG_NO_COMPILE_ALLOCATORS to the compiler, or comment out
 #define LODEPNG_COMPILE_ALLOCATORS in the header, to disable the ones here and
 define them in your own project's source files without needing to change
-lodepng source keyboard_status. Don't forget to destroy_texture "static" if you copypaste them
+LodePNG source keyboard_status. Don't forget to destroy_texture "static" if you copypaste them
 from here.*/
 
 #ifdef LODEPNG_COMPILE_ALLOCATORS
@@ -2762,7 +2761,7 @@ size_t lodepng_get_raw_size_lct(unsigned w, unsigned h, LodePNGColorType colorty
 
 #ifdef LODEPNG_COMPILE_PNG
 #ifdef LODEPNG_COMPILE_DECODER
-/*in an idat chunk, each scanline is a multiple of 8 bits, unlike the lodepng output buffer*/
+/*in an idat chunk, each scanline is a multiple of 8 bits, unlike the LodePNG output buffer*/
 static size_t lodepng_get_raw_size_idat(unsigned w, unsigned h, const LodePNGColorMode *color)
 {
 	/*will not overflow for any color type if roughly w * h < 268435455*/
@@ -6389,5 +6388,5 @@ namespace lodepng
 #endif /* LODEPNG_COMPILE_DISK */
 #endif /* LODEPNG_COMPILE_ENCODER */
 #endif /* LODEPNG_COMPILE_PNG */
-} /* namespace lodepng */
+} /* namespace LodePNG */
 #endif /*LODEPNG_COMPILE_CPP*/

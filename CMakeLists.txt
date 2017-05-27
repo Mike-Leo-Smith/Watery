@@ -111,8 +111,8 @@ set(SOURCE_FILES
         Watery/Framework/HID/keyboard.h
         Watery/Framework/Network/network.cpp
         Watery/Framework/Network/network.h
-        Watery/ThirdParty/LodePNG/lodepng.cpp
-        Watery/ThirdParty/LodePNG/lodepng.h
+		Watery/ThirdParty/LodePNG/lodepng.cpp
+		Watery/ThirdParty/LodePNG/lodepng.h
         Watery/Framework/Window/window.cpp
         Watery/Framework/Window/window.h
         Watery/Framework/XML/xml_document.cpp

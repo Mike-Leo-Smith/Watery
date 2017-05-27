@@ -168,7 +168,7 @@ namespace watery
 		return (float)(degrees / 180.0 * M_PI);
 	}
 	
-	float Mathematics::degree(float radians)
+	float Mathematics::degrees(float radians)
 	{
 		return (float)(radians * M_1_PI * 180);
 	}
@@ -195,5 +195,10 @@ namespace watery
 				};
 		
 		return Matrix(entries);
+	}
+	
+	Vector Mathematics::cartesian(float r, float latitude, float longitude)
+	{
+		return Vector(r * cosf(latitude) * cosf(longitude), r * sinf(latitude), r * cosf(latitude) * sinf(longitude));
 	}
 }

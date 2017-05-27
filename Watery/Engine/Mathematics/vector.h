@@ -20,6 +20,8 @@ namespace watery
 		Vector(float *xyz) { set_xyz(xyz); }
 		~Vector(void) {}
 		float length(void) const;
+		float longitude(void) const;
+		float latitude(void) const;
 		void normalize(void);
 		const Vector cross(const Vector &rhs) const;
 		float dot(const Vector &rhs) const;

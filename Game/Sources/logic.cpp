@@ -98,7 +98,7 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 	}
 	
 	dispatch_message(message);
-	static_cast<watery::AngularVelocity *>(role->component("angular_velocity"))->set_omega(-watery::Mathematics::degree(role_v->vx() / 200));
+	static_cast<watery::AngularVelocity *>(role->component("angular_velocity"))->set_omega(-watery::Mathematics::degrees(role_v->vx() / 200));
 }
 
 void Logic::handle_collision_event(watery::CollisionEvent *message)
@@ -196,6 +196,16 @@ void Logic::update_camera(void)
 			camera_v->set_vx(0);
 			camera_pos->set_x(0);
 		}
+	}
+	
+	if (camera_pos->x() > 4200 - _window.logical_width())
+	{
+		camera_pos->set_x(4200 - _window.logical_width());
+	}
+	
+	if (camera_pos->x() < 0)
+	{
+		camera_pos->set_x(0);
 	}
 }
 

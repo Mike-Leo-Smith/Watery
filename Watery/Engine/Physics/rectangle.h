@@ -23,6 +23,10 @@ namespace watery
 				: _left_bottom(left, bottom), _right_top(right, top), Shape("rectangle") {}
 		virtual ~Rectangle(void) override {}
 		virtual bool collided_with(const Shape &s2, const Vector &p1, const Vector &p2) const override;
+		virtual const Vector &left_bottom(void) const { return _left_bottom; }
+		virtual const Vector &right_top(void) const { return _right_top; }
+		virtual const Vector left_top(void) const { return Vector(_left_bottom.x(), _right_top.y()); }
+		virtual const Vector right_bottom(void) const { return Vector(_right_top.x(), _left_bottom.y()); }
 	};
 }
 

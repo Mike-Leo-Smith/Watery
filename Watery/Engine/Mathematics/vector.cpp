@@ -4,6 +4,7 @@
 
 #include <cmath>
 #include "vector.h"
+#include "mathematics.h"
 
 namespace watery
 {
@@ -109,5 +110,15 @@ namespace watery
 	float Vector::dot(const Vector &rhs) const
 	{
 		return *this * rhs;
+	}
+	
+	float Vector::longitude(void) const
+	{
+		return Mathematics::degrees(atanf(_xyz[2] / _xyz[0]);
+	}
+	
+	float Vector::latitude(void) const
+	{
+		return Mathematics::degrees(asinf(_xyz[1] / length()));
 	}
 }

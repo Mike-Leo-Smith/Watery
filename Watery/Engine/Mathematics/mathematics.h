@@ -15,7 +15,8 @@ namespace watery
 	{
 	public:
 		static float radians(float degrees);
-		static float degree(float radians);
+		static float degrees(float radians);
+		static Vector cartesian(float r, float latitude, float longitude);
 		static const Matrix identity(void);
 		static const Matrix translation(const Vector &position);
 		static const Matrix rotation(Quaternion q);
