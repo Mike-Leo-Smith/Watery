@@ -21,7 +21,6 @@ namespace watery
 		void load(const std::string &file_name);
 		XMLElement *root(void) { return _root; }
 		const XMLElement *root(void) const { return _root; }
-		void print(int depth) { _root->print(depth); };
 		bool empty(void) const { return (_root == nullptr); }
 	};
 }

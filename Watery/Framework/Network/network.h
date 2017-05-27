@@ -5,9 +5,12 @@
 #ifndef WATERY_NETWORK_H
 #define WATERY_NETWORK_H
 
-class network
+namespace watery
 {
-
-};
+	class Network
+	{
+	
+	};
+}
 
 #endif  // WATERY_NETWORK_H

@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL")
 
 set(SOURCE_FILES
-		main.cpp
+		Game/Sources/main.cpp
 		Watery/Engine/Component/angular_velocity.cpp
 		Watery/Engine/Component/angular_velocity.h
 		Watery/Engine/Component/animation.h
@@ -76,8 +76,6 @@ set(SOURCE_FILES
 		Watery/Engine/System/communication.h
 		Watery/Engine/System/input.cpp
 		Watery/Engine/System/input.h
-		Watery/Engine/System/logic.cpp
-		Watery/Engine/System/logic.h
 		Watery/Engine/System/render.cpp
 		Watery/Engine/System/render.h
 		Watery/Engine/System/scene.cpp
@@ -114,7 +112,7 @@ set(SOURCE_FILES
 		Watery/Framework/XML/xml_document.cpp
 		Watery/Framework/XML/xml_document.h
 		Watery/Framework/XML/xml_element.cpp
-		Watery/Framework/XML/xml_element.h)
+		Watery/Framework/XML/xml_element.h Game/Sources/logic.cpp Game/Sources/logic.h)
 
 add_executable(Watery ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} glfw glew alut)

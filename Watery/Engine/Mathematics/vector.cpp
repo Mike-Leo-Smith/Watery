@@ -14,11 +14,11 @@ namespace watery
 	
 	void Vector::normalize(void)
 	{
-		float len = length();
+		float len_inv = 1.0f / length();
 		
-		_xyz[0] /= len;
-		_xyz[1] /= len;
-		_xyz[2] /= len;
+		_xyz[0] *= len_inv;
+		_xyz[1] *= len_inv;
+		_xyz[2] *= len_inv;
 	}
 	
 	Vector &Vector::operator+=(const Vector &rhs)
@@ -46,7 +46,7 @@ namespace watery
 	
 	const Vector Vector::operator-(const Vector &rhs) const
 	{
-		return Vector(_xyz[0] - rhs._xyz[1], _xyz[1] - rhs._xyz[1], _xyz[2] - rhs._xyz[2]);
+		return Vector(_xyz[0] - rhs._xyz[0], _xyz[1] - rhs._xyz[1], _xyz[2] - rhs._xyz[2]);
 	}
 	
 	Vector &Vector::operator*=(float rhs)

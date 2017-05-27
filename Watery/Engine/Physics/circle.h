@@ -19,7 +19,9 @@ namespace watery
 		Circle(const Vector &center, float radius) : _center(center), _radius(radius), Shape("circle") {}
 		Circle(float cx, float cy, float radius) : _center(cx, cy), _radius(radius), Shape("circle") {}
 		virtual ~Circle(void) override {}
-		virtual bool collided_with(const Vector &p1, const Shape &s2, const Vector &p2) const override;
+		virtual const Vector &center(void) const { return _center; }
+		virtual float radius(void) const { return _radius; }
+		virtual bool collided_with(const Shape &s2, const Vector &p1, const Vector &p2) const override;
 	};
 }
 

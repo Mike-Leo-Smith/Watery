@@ -22,7 +22,7 @@ namespace watery
 		Rectangle(float left, float bottom, float right, float top)
 				: _left_bottom(left, bottom), _right_top(right, top), Shape("rectangle") {}
 		virtual ~Rectangle(void) override {}
-		virtual bool collided_with(const Vector &p1, const Shape &s2, const Vector &p2) const override;
+		virtual bool collided_with(const Shape &s2, const Vector &p1, const Vector &p2) const override;
 	};
 }
 

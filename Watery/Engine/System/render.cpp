@@ -24,12 +24,32 @@ namespace watery
 		return ortho;
 	}
 	
+	const Matrix Render::get_view_matrix(void) const
+	{
+		Matrix view;
+		Object *camera = _world.object("camera");
+		
+		if (camera != nullptr)
+		{
+			if (camera->enabled("position"))
+			{
+				Position *camera_pos = static_cast<Position *>(camera->component("position"));
+				view *= Mathematics::translation(-camera_pos->vector());
+			}
+			
+			if (camera->enabled("rotation"))
+			{
+				Rotation *camera_rot = static_cast<Rotation *>(camera->component("rotation"));
+				view *= Mathematics::rotation(camera_rot->axis(), -camera_rot->angle());
+			}
+		}
+		
+		return view;
+	}
+	
 	void Render::render_scene(void)
 	{
-		Vector camera_position = static_cast<Position *>(_world.object("camera")->component("position"))->vector();
-		
-		Matrix model;
-		Matrix view = Mathematics::camera_at(camera_position);
+		Matrix view = get_view_matrix();
 		Matrix proj = get_proj_matrix();
 		
 		_graphics.poll_events();
@@ -37,6 +57,7 @@ namespace watery
 		
 		for (auto &item : _world.objects())
 		{
+			Matrix model;
 			Object *object = item.second;
 			
 			GLShader *shader = nullptr;

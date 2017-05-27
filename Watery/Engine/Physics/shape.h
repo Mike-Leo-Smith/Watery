@@ -19,7 +19,7 @@ namespace watery
 		Shape(const std::string &type = "undefined") : _type(type) {}
 		virtual ~Shape(void) {}
 		virtual const std::string &type(void) const { return _type; }
-		virtual bool collided_with(const Vector &p1, const Shape &s2, const Vector &p2) const = 0;
+		virtual bool collided_with(const Shape &s2, const Vector &p1, const Vector &p2) const = 0;
 	};
 }
 

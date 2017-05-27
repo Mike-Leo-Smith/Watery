@@ -11,7 +11,7 @@
 			<gl_vertex_array name="face_rect" path="Assets/VertexArrays/face.va"/>
 			<gl_vertex_array name="bg_rect" path="Assets/VertexArrays/background.va"/>
 			<al_audio name="bg_music" path="Assets/Sounds/test.wav"/>
-			<shape name="" path=""/>
+			<shape name="role_bounding" path="Assets/Shapes/role.shp"/>
 		</asset>
 		<!-- World -->
 		<world>
@@ -37,6 +37,138 @@
 				<shader arg="sprite_shader"/>
 				<texture arg="face_image"/>
 				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<!-- Object Enemy -->
+			<object name="enemy1">
+				<position arg="300 300 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<object name="enemy2">
+				<position arg="700 300 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<object name="enemy3">
+				<position arg="1100 300 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<object name="enemy4">
+				<position arg="1500 300 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<object name="enemy5">
+				<position arg="1900 300 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<object name="enemy6">
+				<position arg="2300 300 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<object name="enemy7">
+				<position arg="2700 300 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<object name="enemy8">
+				<position arg="500 600 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="-30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<object name="enemy9">
+				<position arg="900 600 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="-30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<object name="enemy10">
+				<position arg="1300 600 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="-30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<object name="enemy11">
+				<position arg="1700 600 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="-30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<object name="enemy12">
+				<position arg="2100 600 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="-30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+			</object>
+			<object name="enemy13">
+				<position arg="2500 600 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<angular_velocity arg="-30"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="face_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
 			</object>
 		</world>
 	</level>

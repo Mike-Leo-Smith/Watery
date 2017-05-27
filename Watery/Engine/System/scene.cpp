@@ -6,9 +6,7 @@
 #include "../Physics/shape.h"
 #include "../Component/bounding_shape.h"
 #include "../Physics/physics.h"
-#include "../Message/collision_event.h"
 #include "../Component/animation.h"
-#include "../Message/dying_event.h"
 #include "../Component/lifetime.h"
 #include "../Component/angular_velocity.h"
 #include "../Component/rotation.h"
@@ -30,7 +28,7 @@ void watery::Scene::detect_collisions(void)
 	{
 		Object *object = i->second;
 		
-		if (object->enabled("bounding_box"))
+		if (object->enabled("bounding_shape"))
 		{
 			// Detect collisions with brute force.
 			for (auto j = i; j != _world.objects().end(); j++)
@@ -39,7 +37,7 @@ void watery::Scene::detect_collisions(void)
 				
 				Object *another = j->second;
 				
-				if (another->enabled("bounding_box"))
+				if (another->enabled("bounding_shape"))
 				{
 					Shape *s1 = static_cast<BoundingShape *>(object->component("bounding_shape"))->shape();
 					Shape *s2 = static_cast<BoundingShape *>(another->component("bounding_shape"))->shape();

@@ -5,11 +5,14 @@
 #ifndef WATERY_SYSTEM_H
 #define WATERY_SYSTEM_H
 
+#include <gl/glew.h>
 #include <string>
 #include <deque>
 #include "../Message/messenger.h"
 #include "../Message/keyboard_event.h"
 #include "../Message/mouse_event.h"
+#include "../Message/collision_event.h"
+#include "../Message/dying_event.h"
 
 namespace watery
 {
@@ -38,8 +41,10 @@ namespace watery
 		virtual Microsecond delta_time(void) const;
 		
 		// Functions handling specific messages. Pass them on by default.
-		virtual void handle_keyboard_message(KeyboardEvent *message) { dispatch_message(message); }
-		virtual void handle_mouse_message(MouseEvent *message) { dispatch_message(message); }
+		virtual void handle_keyboard_event(KeyboardEvent *message) { dispatch_message(message); }
+		virtual void handle_mouse_event(MouseEvent *message) { dispatch_message(message); }
+		virtual void handle_collision_event(CollisionEvent *message) { dispatch_message(message); }
+		virtual void handle_dying_event(DyingEvent *message) { dispatch_message(message); }
 		
 		// Updating tasks.
 		virtual void handle_message(void);

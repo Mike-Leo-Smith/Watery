@@ -107,7 +107,7 @@ namespace watery
 				component = new VertexArray(gl_vertex_array);
 			}
 		}
-		else if (type == "bounding_box")
+		else if (type == "bounding_shape")
 		{
 			Shape *shape = static_cast<Shape *>(_resource.get_resource("shape", arg)->data());
 			

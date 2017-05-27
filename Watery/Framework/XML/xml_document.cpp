@@ -146,11 +146,3 @@ namespace watery
 		}
 	}
 }
-
-int test(void)
-{
-	watery::XMLDocument xml;
-	xml.load("demo.xml");
-	xml.print(-4);
-	return 0;
-}

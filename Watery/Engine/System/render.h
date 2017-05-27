@@ -21,6 +21,7 @@ namespace watery
 		GLGraphics _graphics;
 		
 		virtual const Matrix get_proj_matrix(void) const;
+		virtual const Matrix get_view_matrix(void) const;
 		virtual void render_scene(void);
 	
 	protected:

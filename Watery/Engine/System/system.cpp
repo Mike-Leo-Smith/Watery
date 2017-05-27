@@ -24,8 +24,10 @@ namespace watery
 				continue;
 			}
 			
-			if (message->type() == "keyboard_event") { handle_keyboard_message(static_cast<KeyboardEvent *>(message)); }
-			else if (message->type() == "mouse_event") { handle_mouse_message(static_cast<MouseEvent *>(message)); }
+			if (message->type() == "keyboard_event") { handle_keyboard_event(static_cast<KeyboardEvent *>(message)); }
+			else if (message->type() == "mouse_event") { handle_mouse_event(static_cast<MouseEvent *>(message)); }
+			else if (message->type() == "collision_event") { handle_collision_event(static_cast<CollisionEvent *>(message)); }
+			else if (message->type() == "dying_event") { handle_dying_event(static_cast<DyingEvent *>(message)); }
 			else { delete message; }
 		}
 	}
