@@ -6,9 +6,9 @@
 
 namespace watery
 {
-	void Object::create_component(const std::string &type, const std::string &res)
+	void Object::create_component(const std::string &type, const std::string &arg)
 	{
-		Component *component = _factory.create_component(type, res);
+		Component *component = _factory.create_component(type, arg);
 		
 		if (component != nullptr)
 		{
