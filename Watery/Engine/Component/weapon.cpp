@@ -45,7 +45,7 @@ namespace watery
 				
 				object->create_component("vertex_array", "small_bullet_va");
 				object->create_component("bounding_shape", "small_bullet_shape");
-				object->create_component("lifetime", "10000000");
+				object->create_component("lifetime", "5000000");
 				object->create_component("animation", "");
 			}
 			else if (_weapon_type == "shotgun")
@@ -75,6 +75,7 @@ namespace watery
 					
 					object->create_component("vertex_array", "small_bullet_va");
 					object->create_component("bounding_shape", "small_bullet_shape");
+					object->create_component("lifetime", "5000000");
 				}
 			}
 		}
