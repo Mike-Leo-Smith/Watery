@@ -7,6 +7,7 @@
 		<asset>
 			<gl_texture name="face_image" path="Assets/Images/face.png"/>
 			<gl_texture name="bg_image" path="Assets/Images/background.png"/>
+			<gl_texture name="enemy1_image" path="Assets/Images/enemy1.png"/>
 			<gl_shader name="sprite_shader" path="Scripts/Shaders/sprite.vert:Scripts/Shaders/sprite.frag"/>
 			<gl_vertex_array name="face_rect" path="Assets/VertexArrays/face.va"/>
 			<gl_vertex_array name="bg_rect" path="Assets/VertexArrays/background.va"/>
@@ -40,7 +41,7 @@
 				<texture arg="face_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
-				<weapon arg="shotgun"/>
+				<weapon arg="shotgun 0"/>
 			</object>
 			<!-- Object Enemy -->
 			<object name="enemy1">
@@ -67,11 +68,11 @@
 				<position arg="1100 300 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
-				<angular_velocity arg="30"/>
 				<shader arg="sprite_shader"/>
-				<texture arg="face_image"/>
+				<texture arg="enemy1_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
+				<weapon arg="normal 1"/>
 			</object>
 			<object name="enemy4">
 				<position arg="1500 300 1"/>

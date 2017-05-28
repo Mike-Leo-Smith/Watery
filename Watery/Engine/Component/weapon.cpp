@@ -5,6 +5,7 @@
 #include <sstream>
 #include <cmath>
 #include <iostream>
+#include <algorithm>
 #include "weapon.h"
 #include "rotation.h"
 #include "../Mathematics/mathematics.h"
@@ -20,7 +21,9 @@ namespace watery
 			_timer.reset();
 			if (_weapon_type == "normal")
 			{
-				Object *object = _world.create_object("bullet" + std::to_string(_bullet_count++));
+				std::string  name=owner->name();
+				std::reverse(name.begin(),name.end());
+				Object *object = _world.create_object(name+"bullet" + std::to_string(_bullet_count++));
 				std::cout << object->name() << std::endl;
 				float angle = static_cast<Rotation *>(owner->component("rotation"))->angle();
 				
@@ -50,7 +53,9 @@ namespace watery
 			{
 				for(int angle=-60;angle<=60;angle+=30)
 				{
-					Object *object = _world.create_object("bullet" + std::to_string(_bullet_count++));
+					std::string  name=owner->name();
+					std::reverse(name.begin(),name.end());
+					Object *object = _world.create_object(name+"bullet" + std::to_string(_bullet_count++));
 					
 					Vector v = Mathematics::cartesian(500, angle);
 					object->create_component("velocity", std::to_string(v.x()) + " " + std::to_string(v.y())+" 0");

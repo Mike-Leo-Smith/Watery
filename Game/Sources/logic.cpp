@@ -9,6 +9,7 @@
 #include "../../Watery/Engine/Component/bounding_shape.h"
 #include "../../Watery/Engine/Physics/physics.h"
 #include "../../Watery/Engine/Component/weapon.h"
+#include "../../Watery/Engine/Component/lifetime.h"
 
 constexpr float ACCELERATION = 100.0f;
 constexpr float RESISTANCE = 50.f;
@@ -72,9 +73,14 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 	// Resistance.
 	float speed = role_v->vector().length();
 	
-	if (speed >= 10)
+	if (speed > 30)
 	{
+		std::cout << speed << std::endl;
 		role_v->accelerate(-RESISTANCE / speed * role_v->vector());
+	}
+	else
+	{
+		role_v->set(watery::Vector(0, 0, 0));
 	}
 	
 	if (message->key_down(watery::KEY_UP) || message->key_down(watery::KEY_W))
@@ -109,6 +115,38 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 
 void Logic::handle_collision_event(watery::CollisionEvent *message)
 {
+	watery::Object *object1=message->object1();
+	watery::Object *object2=message->object2();
+	
+	if((is_type(object1->name(),"role")&&is_type(object2->name(),"elor_bullet"))||
+	   (is_type(object1->name(),"elor_bullet")&&is_type(object2->name(),"role")))
+	{
+		//role and his bullet
+	}
+	else if((is_type(object1->name(),"enemy")&&is_type(object2->name(),"ymene_bullet"))||
+	        (is_type(object1->name(),"ymene_bullet")&&is_type(object2->name(),"emeny")))
+	{
+		//enemy and its bullet
+	}
+	else if((is_type(object1->name(),"ymene_bullet")&&is_type(object2->name(),"elor_bullet"))||
+	        (is_type(object1->name(),"elor_bullet")&&is_type(object2->name(),"ymene_bullet")))
+	{
+		//bullet
+		static_cast<watery::Lifetime *>(object1->component("lifetime"))->set_lifetime(1);
+		static_cast<watery::Lifetime *>(object2->component("lifetime"))->set_lifetime(1);
+		
+	}
+	else if((is_type(object1->name(),"ymene_bullet")&&is_type(object2->name(),"role"))||
+	        (is_type(object1->name(),"role")&&is_type(object2->name(),"ymene_bullet")))
+	{
+	
+	}
+	else if((is_type(object1->name(),"emeny")&&is_type(object2->name(),"elor_bullet"))||
+	        (is_type(object1->name(),"elor_bullet")&&is_type(object2->name(),"emeny")))
+	{
+	
+	}
+	/*
 	watery::Object *role = nullptr;
 	watery::Object *collider = nullptr;
 	
@@ -150,7 +188,7 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 			
 			role_pos->set(coll_pos->vector() + norm * (role_shape->radius() + coll_shape->radius() + 1));
 		}
-	}
+	}*/
 	
 	delete message;
 }

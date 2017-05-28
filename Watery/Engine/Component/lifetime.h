@@ -18,6 +18,7 @@ namespace watery
 	public:
 		Lifetime(Microsecond life) : Component("lifetime"), _timer(life) {}
 		virtual ~Lifetime(void) override {}
+		virtual void set_lifetime(Microsecond life) { _timer.set_time_out(life), _timer.reset(); }
 		virtual void born(void) { _timer.reset(); }
 		virtual bool dead(void) { return _timer.time_out(); }
 	};
