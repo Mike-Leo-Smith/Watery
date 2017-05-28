@@ -11,6 +11,7 @@
 #include "../Component/angular_velocity.h"
 #include "../Component/rotation.h"
 #include "../Component/constraint.h"
+#include "../Component/weapon.h"
 
 void watery::Scene::do_updating_tasks(void)
 {
@@ -81,6 +82,17 @@ void watery::Scene::advance_status(void)
 		{
 			float angular_velocity = static_cast<AngularVelocity *>(object->component("angular_velocity"))->omega();
 			static_cast<Rotation *>(object->component("rotation"))->rotate(angular_velocity * delta_time() * 1e-6f);
+		}
+		
+		// Weapon.
+		if (object->enabled("weapon"))
+		{
+			Weapon *weapon = static_cast<Weapon *>(object->component("weapon"));
+			
+			if (weapon->is_auto())
+			{
+				weapon->fire(object);
+			}
 		}
 		
 		// Animate.
