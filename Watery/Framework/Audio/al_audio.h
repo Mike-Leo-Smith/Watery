@@ -8,7 +8,6 @@
 #ifndef _WIN32
 
 #include <OpenAL/al.h>
-
 #include "al_initializer.h"
 
 namespace watery
@@ -28,7 +27,6 @@ namespace watery
 		bool playing(void) const;
 		void pause(void) const { alSourcePause(_source); }
 		void stop(void) const { alSourceStop(_source); }
-		ALuint id(void) const { return _source; }
 	};
 }
 
