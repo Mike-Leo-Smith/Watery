@@ -9,7 +9,7 @@
 #include "../../Watery/Engine/Component/bounding_shape.h"
 #include "../../Watery/Engine/Physics/physics.h"
 #include "../../Watery/Engine/Component/weapon.h"
-
+#define ACCELERATION 40.0f
 void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 {
 	watery::Object *role = _world.object("role");
@@ -29,12 +29,12 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 			_world.object("background")->enable("audio");
 		}
 	}
-	
-	if (role_v->vy() > -30 && role_v->vy() < 30)
-	{
-		role_v->set_vy(0);
-	}
-	
+//
+//	if (role_v->vy() > -30 && role_v->vy() < 30)
+//	{
+//		role_v->set_vy(0);
+//	}
+//
 	if (role_pos->x() <= 100)
 	{
 		if (role_v->vx() < 0)
@@ -73,26 +73,26 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 		role_pos->set_y(_window.logical_height() - 100);
 	}
 	
-	role_v->accelerate_y(-40.0f);
+//	role_v->accelerate_y(-40.0f);
 	
 	if (message->key_down(watery::KEY_UP) || message->key_down(watery::KEY_W))
 	{
-		role_v->accelerate_y(80.0f);
+		role_v->accelerate_y(ACCELERATION);
 	}
 	
 	if (message->key_down(watery::KEY_DOWN) || message->key_down(watery::KEY_S))
 	{
-		role_v->accelerate_y(-10.0f);
+		role_v->accelerate_y(-ACCELERATION);
 	}
 	
 	if (message->key_down(watery::KEY_LEFT) || message->key_down(watery::KEY_A))
 	{
-		role_v->accelerate_x(-10.0f);
+		role_v->accelerate_x(-ACCELERATION);
 	}
 	
 	if (message->key_down(watery::KEY_RIGHT) || message->key_down(watery::KEY_D))
 	{
-		role_v->accelerate_x(10.0f);
+		role_v->accelerate_x(ACCELERATION);
 	}
 	
 	if (message->key_down(watery::KEY_J))
@@ -101,9 +101,8 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 		weapon->fire(role);
 	}
 	
-	if (message->key_down(watery::KEY_J) && message->key_down(watery::KEY_DOWN))
 	dispatch_message(message);
-	static_cast<watery::AngularVelocity *>(role->component("angular_velocity"))->set_omega(-role_v->vx());
+//	static_cast<watery::AngularVelocity *>(role->component("angular_velocity"))->set_omega(-role_v->vx());
 }
 
 void Logic::handle_collision_event(watery::CollisionEvent *message)
