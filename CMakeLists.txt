@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 if (WIN32)
     add_definitions(-DGLEW_STATIC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static -O3")
 elseif (APPLE)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL -O3")
 endif ()

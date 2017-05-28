@@ -127,6 +127,7 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 	        (is_type(object1->name(),"ymene_bullet")&&is_type(object2->name(),"emeny")))
 	{
 		//enemy and its bullet
+		std::cout<<"fuck you this man"<<std::endl;
 	}
 	else if((is_type(object1->name(),"ymene_bullet")&&is_type(object2->name(),"elor_bullet"))||
 	        (is_type(object1->name(),"elor_bullet")&&is_type(object2->name(),"ymene_bullet")))
