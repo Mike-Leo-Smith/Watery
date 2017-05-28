@@ -20,6 +20,11 @@ namespace watery
 			keyboard_status |= glfwGetKey(window, GLFW_KEY_CODE(KEY_SPACE)) ? KEY_SPACE : 0;
 			keyboard_status |= glfwGetKey(window, GLFW_KEY_CODE(KEY_EQUAL)) ? KEY_EQUAL : 0;
 			keyboard_status |= glfwGetKey(window, GLFW_KEY_CODE(KEY_MINUS)) ? KEY_MINUS : 0;
+			keyboard_status |= glfwGetKey(window, GLFW_KEY_CODE(KEY_J)) ? KEY_J : 0;
+			keyboard_status |= glfwGetKey(window, GLFW_KEY_CODE(KEY_A)) ? KEY_A : 0;
+			keyboard_status |= glfwGetKey(window, GLFW_KEY_CODE(KEY_S)) ? KEY_S : 0;
+			keyboard_status |= glfwGetKey(window, GLFW_KEY_CODE(KEY_D)) ? KEY_D : 0;
+			keyboard_status |= glfwGetKey(window, GLFW_KEY_CODE(KEY_W)) ? KEY_W : 0;
 		}
 		
 		return keyboard_status;

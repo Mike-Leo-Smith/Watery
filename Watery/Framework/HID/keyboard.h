@@ -22,6 +22,11 @@ namespace watery
 		KEY_SPACE = 1 << 4,
 		KEY_EQUAL = 1 << 5,
 		KEY_MINUS = 1 << 6,
+		KEY_J = 1 << 7,
+		KEY_W = 1 << 8,
+		KEY_A = 1 << 9,
+		KEY_S = 1 << 10,
+		KEY_D = 1 << 11,
 	};
 	
 	class Keyboard

@@ -114,7 +114,7 @@ namespace watery
 	
 	float Vector::longitude(void) const
 	{
-		return Mathematics::degrees(atanf(_xyz[2] / _xyz[0]);
+		return Mathematics::degrees(atanf(_xyz[2] / _xyz[0]));
 	}
 	
 	float Vector::latitude(void) const

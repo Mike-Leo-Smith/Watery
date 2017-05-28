@@ -5,12 +5,14 @@ set(CMAKE_CXX_STANDARD 14)
 
 if (WIN32)
     add_definitions(-DGLEW_STATIC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static -O3")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
 elseif (APPLE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL -O3")
 endif ()
 
 set(SOURCE_FILES
+		Game/Sources/logic.cpp
+		Game/Sources/logic.h
         Game/Sources/main.cpp
         Watery/Engine/Component/angular_velocity.cpp
         Watery/Engine/Component/angular_velocity.h
@@ -30,6 +32,8 @@ set(SOURCE_FILES
         Watery/Engine/Component/texture.h
         Watery/Engine/Component/velocity.h
         Watery/Engine/Component/vertex_array.h
+		Watery/Engine/Component/weapon.cpp
+		Watery/Engine/Component/weapon.h
         Watery/Engine/Configuration/default.h
         Watery/Engine/Game/game.cpp
         Watery/Engine/Game/game.h
@@ -111,28 +115,14 @@ set(SOURCE_FILES
         Watery/Framework/HID/keyboard.h
         Watery/Framework/Network/network.cpp
         Watery/Framework/Network/network.h
-		Watery/ThirdParty/LodePNG/lodepng.cpp
-		Watery/ThirdParty/LodePNG/lodepng.h
         Watery/Framework/Window/window.cpp
         Watery/Framework/Window/window.h
         Watery/Framework/XML/xml_document.cpp
         Watery/Framework/XML/xml_document.h
         Watery/Framework/XML/xml_element.cpp
-        Watery/Framework/XML/xml_element.h Game/Sources/logic.cpp Game/Sources/logic.h)
-
-set(FREEALUT_FILES
-        Watery/ThirdParty/FreeALUT/alut.h
-        Watery/ThirdParty/FreeALUT/alutBufferData.c
-        Watery/ThirdParty/FreeALUT/alutCodec.c
-        Watery/ThirdParty/FreeALUT/alutError.c
-        Watery/ThirdParty/FreeALUT/alutInit.c
-        Watery/ThirdParty/FreeALUT/alutInputStream.c
-        Watery/ThirdParty/FreeALUT/alutInternal.h
-        Watery/ThirdParty/FreeALUT/alutLoader.c
-        Watery/ThirdParty/FreeALUT/alutOutputStream.c
-        Watery/ThirdParty/FreeALUT/alutUtil.c
-        Watery/ThirdParty/FreeALUT/alutVersion.c
-        Watery/ThirdParty/FreeALUT/alutWaveform.c)
+		Watery/Framework/XML/xml_element.h
+		Watery/ThirdParty/LodePNG/lodepng.cpp
+		Watery/ThirdParty/LodePNG/lodepng.h)
 
 add_executable(Watery ${SOURCE_FILES})
 

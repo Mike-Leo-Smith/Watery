@@ -77,7 +77,7 @@ namespace watery
 		_timer.set_time_out(calibrated);
 		_timer.reset();
 		
-		//std::cout << _name << ": " << 1000000.0 / average << " fps" << std::endl;
+		std::cout << _name << ": " << 1000000.0 / average << " fps" << std::endl;
 	}
 	
 	Microsecond System::delta_time(void) const

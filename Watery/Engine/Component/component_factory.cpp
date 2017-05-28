@@ -9,6 +9,8 @@
 #include "bounding_shape.h"
 #include "rotation.h"
 #include "angular_velocity.h"
+#include "weapon.h"
+#include "lifetime.h"
 
 namespace watery
 {
@@ -128,7 +130,20 @@ namespace watery
 			
 			component = new Health(initial, maximum);
 		}
-		
+		else if (type == "lifetime")
+		{
+			std::stringstream buffer;
+			Microsecond lifetime;
+			
+			buffer << arg;
+			buffer >> lifetime;
+			
+			component = new Lifetime(lifetime);
+		}
+		else if (type == "weapon")
+		{
+			component = new Weapon(arg);
+		}
 		if (component != nullptr)
 		{
 			_components.insert(component);

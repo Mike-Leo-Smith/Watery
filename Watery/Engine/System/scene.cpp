@@ -69,15 +69,6 @@ void watery::Scene::advance_status(void)
 			}
 		}
 		
-		// Removing dead objects (typically used with particles).
-		if (object->enabled("lifetime"))
-		{
-			if (static_cast<Lifetime *>(object->component("lifetime"))->dead())
-			{
-				_world.destroy_object(object->name());
-			}
-		}
-		
 		// Update position by velocity.
 		if (object->enabled("velocity") && object->enabled("position"))
 		{
@@ -102,6 +93,15 @@ void watery::Scene::advance_status(void)
 		if (object->enabled("constraint"))
 		{
 			static_cast<Constraint *>(object->component("constraint"))->constrain(object);
+		}
+		
+		// Removing dead objects (typically used with particles). Make sure it is placed at the last.
+		if (object->enabled("lifetime"))
+		{
+			if (static_cast<Lifetime *>(object->component("lifetime"))->dead())
+			{
+				_world.destroy_object(object->name());
+			}
 		}
 	}
 }
