@@ -11,6 +11,7 @@
 #include "angular_velocity.h"
 #include "weapon.h"
 #include "lifetime.h"
+#include "helix_animation.h"
 
 namespace watery
 {
@@ -149,6 +150,11 @@ namespace watery
 			buffer>>weapon_type>>is_auto;
 			component = new Weapon(weapon_type,is_auto);
 		}
+		else if (type == "animation")
+		{
+			component = new HelixAnimation();
+		}
+		
 		if (component != nullptr)
 		{
 			_components.insert(component);

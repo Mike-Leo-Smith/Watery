@@ -7,13 +7,15 @@ if (WIN32)
     add_definitions(-DGLEW_STATIC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
 elseif (APPLE)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL -O3")
 endif ()
 
 set(SOURCE_FILES
 		Game/Sources/logic.cpp
 		Game/Sources/logic.h
         Game/Sources/main.cpp
+		Watery/Engine/Component/helix_animation.cpp
+		Watery/Engine/Component/helix_animation.h
         Watery/Engine/Component/angular_velocity.cpp
         Watery/Engine/Component/angular_velocity.h
         Watery/Engine/Component/animation.h

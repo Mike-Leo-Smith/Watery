@@ -5,7 +5,6 @@
 #include <sstream>
 #include <cmath>
 #include <iostream>
-#include <algorithm>
 #include "weapon.h"
 #include "rotation.h"
 #include "../Mathematics/mathematics.h"
@@ -21,14 +20,14 @@ namespace watery
 			_timer.reset();
 			if (_weapon_type == "normal")
 			{
-				std::string  name=owner->name();
-				std::reverse(name.begin(),name.end());
-				Object *object = _world.create_object(name+"bullet" + std::to_string(_bullet_count++));
+				std::string name = owner->name();
+				std::reverse(name.begin(), name.end());
+				Object *object = _world.create_object(name + "bullet" + std::to_string(_bullet_count++));
 				std::cout << object->name() << std::endl;
 				float angle = static_cast<Rotation *>(owner->component("rotation"))->angle();
 				
 				Vector v = Mathematics::cartesian(500, angle);
-				object->create_component("velocity", std::to_string(v.x()) + " " + std::to_string(v.y())+" 0");
+				object->create_component("velocity", std::to_string(v.x()) + " " + std::to_string(v.y()) + " 0");
 				
 				Vector pos = static_cast<Position *>(owner->component("position"))->vector() + Vector(v.x(), v.y()) * 0.3;
 				std::stringstream buffer;
@@ -46,19 +45,19 @@ namespace watery
 				
 				object->create_component("vertex_array", "small_bullet_va");
 				object->create_component("bounding_shape", "small_bullet_shape");
-				object->create_component("lifetime", "3000000");
-				
+				object->create_component("lifetime", "10000000");
+				object->create_component("animation", "");
 			}
-			else if(_weapon_type=="shotgun")
+			else if (_weapon_type == "shotgun")
 			{
-				for(int angle=-60;angle<=60;angle+=30)
+				for (int angle = -60; angle <= 60; angle += 30)
 				{
-					std::string  name=owner->name();
-					std::reverse(name.begin(),name.end());
-					Object *object = _world.create_object(name+"bullet" + std::to_string(_bullet_count++));
+					std::string name = owner->name();
+					std::reverse(name.begin(), name.end());
+					Object *object = _world.create_object(name + "bullet" + std::to_string(_bullet_count++));
 					
 					Vector v = Mathematics::cartesian(500, angle);
-					object->create_component("velocity", std::to_string(v.x()) + " " + std::to_string(v.y())+" 0");
+					object->create_component("velocity", std::to_string(v.x()) + " " + std::to_string(v.y()) + " 0");
 					
 					Vector pos = static_cast<Position *>(owner->component("position"))->vector() + Vector(v.x(), v.y()) * 0.3;
 					std::stringstream buffer;
@@ -76,7 +75,6 @@ namespace watery
 					
 					object->create_component("vertex_array", "small_bullet_va");
 					object->create_component("bounding_shape", "small_bullet_shape");
-					object->create_component("lifetime", "3000000");
 				}
 			}
 		}
