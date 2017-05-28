@@ -22,7 +22,7 @@ namespace watery
 	
 	public:
 		Weapon(const std::string &weapon_type)
-				: Component("weapon"), _world(World::instance()), _timer(3), _weapon_type(weapon_type) {}
+				: Component("weapon"), _world(World::instance()), _timer(200000), _weapon_type(weapon_type) {}
 		void fire(Object *owner);
 		virtual ~Weapon(void) override {}
 	};

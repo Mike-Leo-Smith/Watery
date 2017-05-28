@@ -40,7 +40,7 @@
 				<texture arg="face_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
-				<weapon arg="normal"/>
+				<weapon arg="shotgun"/>
 			</object>
 			<!-- Object Enemy -->
 			<object name="enemy1">

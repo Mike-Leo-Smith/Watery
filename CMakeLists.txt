@@ -7,7 +7,7 @@ if (WIN32)
     add_definitions(-DGLEW_STATIC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
 elseif (APPLE)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL -O3")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL")
 endif ()
 
 set(SOURCE_FILES

@@ -199,6 +199,10 @@ namespace watery
 	
 	Vector Mathematics::cartesian(float r, float latitude, float longitude)
 	{
+		// Convert to radians.
+		latitude =  radians(latitude);
+		longitude = radians(longitude);
+		
 		return Vector(r * cosf(latitude) * cosf(longitude), r * sinf(latitude), r * cosf(latitude) * sinf(longitude));
 	}
 }
