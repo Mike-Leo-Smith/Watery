@@ -4,11 +4,10 @@
 
 #include <sstream>
 #include <cmath>
+#include <iostream>
 #include "weapon.h"
 #include "rotation.h"
 #include "../Mathematics/mathematics.h"
-
-#define BULLET_SPEED std::to_string(500)
 
 namespace watery
 {
@@ -22,12 +21,13 @@ namespace watery
 			if (_weapon_type == "normal")
 			{
 				Object *object = _world.create_object("bullet" + std::to_string(_bullet_count++));
+				std::cout << object->name() << std::endl;
 				float angle = Mathematics::radians(static_cast<Rotation *>(owner->component("rotation"))->angle());
 				
 				Vector v = Mathematics::cartesian(500, angle);
 				object->create_component("velocity", std::to_string(v.x()) + " " + std::to_string(v.y()));
 				
-				Vector pos = static_cast<Position *>(owner->component("position"))->vector() + Vector(v.x(), v.y()) * 0.25;
+				Vector pos = static_cast<Position *>(owner->component("position"))->vector() + Vector(v.x(), v.y()) * 0.3;
 				std::stringstream buffer;
 				std::string pos_str;
 				
@@ -38,8 +38,8 @@ namespace watery
 				object->create_component("shader", "sprite_shader");
 				
 				object->create_component("texture", "face_image");
-				GLTexture *gl_texture = static_cast<Texture *>(owner->component("texture"))->texture();
-				static_cast<Texture *>(object->component("texture"))->bind_texture(gl_texture);
+				//GLTexture *gl_texture = static_cast<Texture *>(owner->component("texture"))->texture();
+				//static_cast<Texture *>(object->component("texture"))->bind_texture(gl_texture);
 				
 				object->create_component("vertex_array", "small_bullet_va");
 				object->create_component("bounding_shape", "small_bullet_shape");

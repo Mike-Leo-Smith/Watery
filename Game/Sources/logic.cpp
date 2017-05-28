@@ -17,8 +17,6 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 	watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
 	
 	watery::Object *camera = _world.object("camera");
-	watery::Position *camera_pos = static_cast<watery::Position *>(camera->component("position"));
-	watery::Velocity *camera_v = static_cast<watery::Velocity *>(camera->component("velocity"));
 
 	if (message->key_down(watery::KEY_SPACE))
 	{
@@ -97,7 +95,7 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 		role_v->accelerate_x(10.0f);
 	}
 	
-	if (message->key_down(watery::KEY_J) || true)
+	if (message->key_down(watery::KEY_J))
 	{
 		watery::Weapon *weapon = static_cast<watery::Weapon *>(role->component("weapon"));
 		weapon->fire(role);

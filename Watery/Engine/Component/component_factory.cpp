@@ -41,7 +41,7 @@ namespace watery
 		
 		if (type == "position")
 		{
-			float x, y, z;
+			float x = 0, y = 0, z = 0;
 			std::stringstream buffer;
 			
 			buffer << arg;
@@ -51,7 +51,7 @@ namespace watery
 		}
 		else if (type == "velocity")
 		{
-			float vx, vy, vz;
+			float vx = 0, vy = 0, vz = 0;
 			std::stringstream buffer;
 			
 			buffer << arg;
@@ -61,7 +61,7 @@ namespace watery
 		}
 		else if (type == "rotation")
 		{
-			float axis_x, axis_y, axis_z, angle;
+			float axis_x = 0, axis_y = 0, axis_z = 1, angle = 0;
 			std::stringstream buffer;
 			
 			buffer << arg;
@@ -122,7 +122,7 @@ namespace watery
 		}
 		else if (type == "health")
 		{
-			float initial, maximum;
+			float initial = 0, maximum = 0;
 			std::stringstream buffer;
 			
 			buffer << arg;
@@ -133,7 +133,7 @@ namespace watery
 		else if (type == "lifetime")
 		{
 			std::stringstream buffer;
-			Microsecond lifetime;
+			Microsecond lifetime = 1;
 			
 			buffer << arg;
 			buffer >> lifetime;
