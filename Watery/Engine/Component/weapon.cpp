@@ -5,6 +5,7 @@
 #include <sstream>
 #include <cmath>
 #include <iostream>
+#include <algorithm>
 #include "weapon.h"
 #include "rotation.h"
 #include "../Mathematics/mathematics.h"
@@ -22,10 +23,10 @@ namespace watery
 			{
 				std::string name = owner->name();
 				std::reverse(name.begin(), name.end());
-				Object *object = _world.create_object(name + "bullet" + std::to_string(_bullet_count++));
+				Object *object = _world.create_object(name + "_bullet" + std::to_string(_bullet_count++), owner->type());
 				std::cout << object->name() << std::endl;
 				float angle = static_cast<Rotation *>(owner->component("rotation"))->angle();
-				
+				if(owner->type()=="enemy")angle+=180;
 				Vector v = Mathematics::cartesian(500, angle);
 				object->create_component("velocity", std::to_string(v.x()) + " " + std::to_string(v.y()) + " 0");
 				
@@ -45,8 +46,8 @@ namespace watery
 				
 				object->create_component("vertex_array", "small_bullet_va");
 				object->create_component("bounding_shape", "small_bullet_shape");
-				object->create_component("lifetime", "5000000");
-				object->create_component("animation", "");
+				object->create_component("lifetime", "3000000");
+				//object->create_component("animation", "");
 			}
 			else if (_weapon_type == "shotgun")
 			{
@@ -54,9 +55,11 @@ namespace watery
 				{
 					std::string name = owner->name();
 					std::reverse(name.begin(), name.end());
-					Object *object = _world.create_object(name + "bullet" + std::to_string(_bullet_count++));
+					Object *object = _world.create_object(name + "_bullet" + std::to_string(_bullet_count++),"enemy");
 					
+					if(owner->type()=="enemy")angle+=180;
 					Vector v = Mathematics::cartesian(500, angle);
+					if(owner->type()=="enemy")angle-=180;
 					object->create_component("velocity", std::to_string(v.x()) + " " + std::to_string(v.y()) + " 0");
 					
 					Vector pos = static_cast<Position *>(owner->component("position"))->vector() + Vector(v.x(), v.y()) * 0.3;
@@ -75,7 +78,7 @@ namespace watery
 					
 					object->create_component("vertex_array", "small_bullet_va");
 					object->create_component("bounding_shape", "small_bullet_shape");
-					object->create_component("lifetime", "5000000");
+					object->create_component("lifetime", "3000000");
 				}
 			}
 		}
