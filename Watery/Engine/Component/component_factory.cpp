@@ -142,7 +142,12 @@ namespace watery
 		}
 		else if (type == "weapon")
 		{
-			component = new Weapon(arg);
+			std::stringstream buffer;
+			buffer<<arg;
+			std::string weapon_type;
+			bool is_auto;
+			buffer>>weapon_type>>is_auto;
+			component = new Weapon(weapon_type,is_auto);
 		}
 		if (component != nullptr)
 		{

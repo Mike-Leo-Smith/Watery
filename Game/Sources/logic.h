@@ -10,7 +10,6 @@
 #include "../../Watery/Engine/Scene/world.h"
 
 constexpr watery::Microsecond LOGIC_UPDATE_INTERVAL = 15000;
-
 class Logic : public watery::System
 {
 private:
@@ -28,6 +27,7 @@ protected:
 public:
 	Logic(watery::Microsecond update_interval = LOGIC_UPDATE_INTERVAL)
 			: System("logic", update_interval), _world(watery::World::instance()), _window(watery::Window::instance()) {}
+	bool is_type(const std::string &name,const std::string &type) { return name.find(type)!=-1; }
 	virtual ~Logic(void) override {}
 };
 
