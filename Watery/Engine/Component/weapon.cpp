@@ -59,6 +59,7 @@ namespace watery
 					
 					if(owner->type()=="enemy")angle+=180;
 					Vector v = Mathematics::cartesian(500, angle);
+					if(owner->type()=="enemy")angle-=180;
 					object->create_component("velocity", std::to_string(v.x()) + " " + std::to_string(v.y()) + " 0");
 					
 					Vector pos = static_cast<Position *>(owner->component("position"))->vector() + Vector(v.x(), v.y()) * 0.3;
