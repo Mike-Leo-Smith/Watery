@@ -9,14 +9,15 @@
 #include "../../Watery/Engine/Component/bounding_shape.h"
 #include "../../Watery/Engine/Physics/physics.h"
 #include "../../Watery/Engine/Component/weapon.h"
-#define ACCELERATION 40.0f
+
+constexpr float ACCELERATION = 100.0f;
+constexpr float RESISTANCE = 50.f;
+
 void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 {
 	watery::Object *role = _world.object("role");
 	watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
 	watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
-	
-	watery::Object *camera = _world.object("camera");
 
 	if (message->key_down(watery::KEY_SPACE))
 	{
@@ -29,12 +30,7 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 			_world.object("background")->enable("audio");
 		}
 	}
-//
-//	if (role_v->vy() > -30 && role_v->vy() < 30)
-//	{
-//		role_v->set_vy(0);
-//	}
-//
+	
 	if (role_pos->x() <= 100)
 	{
 		if (role_v->vx() < 0)
@@ -73,7 +69,13 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 		role_pos->set_y(_window.logical_height() - 100);
 	}
 	
-//	role_v->accelerate_y(-40.0f);
+	// Resistance.
+	float speed = role_v->vector().length();
+	
+	if (speed >= 10)
+	{
+		role_v->accelerate(-RESISTANCE / speed * role_v->vector());
+	}
 	
 	if (message->key_down(watery::KEY_UP) || message->key_down(watery::KEY_W))
 	{
