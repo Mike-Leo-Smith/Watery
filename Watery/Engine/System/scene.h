@@ -24,7 +24,7 @@ namespace watery
 		virtual void do_updating_tasks(void) override;
 	
 	public:
-		Scene(const std::string &name = "scene", Microsecond update_interval = SCENE_DEFAULT_UPDATA_INTERVAL)
+		Scene(const std::string &name = "scene", Microsecond update_interval = SCENE_DEFAULT_UPDATE_INTERVAL)
 				: System(name, update_interval), _world(World::instance()) {}
 		virtual ~Scene(void) override {}
 	};

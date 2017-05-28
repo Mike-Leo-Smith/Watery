@@ -28,7 +28,7 @@ namespace watery
 		virtual void do_updating_tasks(void) override;
 		
 	public:
-		Render(const std::string &name = "render", Microsecond interval = RENDERER_DEFAULT_UPDATE_INTERVAL)
+		Render(const std::string &name = "render", Microsecond interval = RENDER_DEFAULT_UPDATE_INTERVAL)
 				: System(name, interval), _window(Window::instance()), _world(World::instance()) {}
 		virtual ~Render(void) {}
 	};

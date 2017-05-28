@@ -1,6 +1,14 @@
 <game name="Contra">
 	<!-- Window -->
 	<window title="Demo" width="1600" height="1000"/>
+	<!-- Systems -->
+	<system>
+		<input name="input" interval="50000"/>
+		<render name="render" interval="16000"/>
+		<sound name="sound" interval="50000"/>
+		<scene name="scene" interval="20000"/>
+		<logic name="logic" interval="15000"/>
+	</system>
 	<!-- Level 1 -->
 	<level id="1">
 		<!-- Assets -->
@@ -19,12 +27,12 @@
 		<!-- World -->
 		<world>
 			<!-- Camera -->
-			<object name="camera">
+			<object name="camera" type="camera">
 				<position arg="0 0 0"/>
 				<velocity arg="0 0 0"/>
 			</object>
 			<!-- Background -->
-			<object name="background">
+			<object name="background" type="background">
 				<position arg="0 0 0"/>
 				<shader arg="sprite_shader"/>
 				<vertex_array arg="bg_rect"/>
@@ -32,7 +40,7 @@
 				<audio arg="bg_music"/>
 			</object>
 			<!-- Object Role -->
-			<object name="role">
+			<object name="role" type="role">
 				<position arg="100 100 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -44,7 +52,7 @@
 				<weapon arg="shotgun 0"/>
 			</object>
 			<!-- Object Enemy -->
-			<object name="enemy1">
+			<object name="enemy1" type="enemy">
 				<position arg="300 300 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -54,7 +62,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>
-			<object name="enemy2">
+			<object name="enemy2" type="enemy">
 				<position arg="700 300 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -64,7 +72,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>
-			<object name="enemy3">
+			<object name="enemy3" type="enemy">
 				<position arg="1100 300 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -74,7 +82,7 @@
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
 			</object>
-			<object name="enemy4">
+			<object name="enemy4" type="enemy">
 				<position arg="1500 300 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -84,7 +92,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>
-			<object name="enemy5">
+			<object name="enemy5" type="enemy">
 				<position arg="1900 300 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -94,7 +102,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>
-			<object name="enemy6">
+			<object name="enemy6" type="enemy">
 				<position arg="2300 300 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -104,7 +112,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>
-			<object name="enemy7">
+			<object name="enemy7" type="enemy">
 				<position arg="2700 300 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -114,7 +122,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>
-			<object name="enemy8">
+			<object name="enemy8" type="enemy">
 				<position arg="500 600 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -124,7 +132,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>
-			<object name="enemy9">
+			<object name="enemy9" type="enemy">
 				<position arg="900 600 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -134,7 +142,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>
-			<object name="enemy10">
+			<object name="enemy10" type="enemy">
 				<position arg="1300 600 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -144,7 +152,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>
-			<object name="enemy11">
+			<object name="enemy11" type="enemy">
 				<position arg="1700 600 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -154,7 +162,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>
-			<object name="enemy12">
+			<object name="enemy12" type="enemy">
 				<position arg="2100 600 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -164,7 +172,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>
-			<object name="enemy13">
+			<object name="enemy13" type="enemy">
 				<position arg="2500 600 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>

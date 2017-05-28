@@ -10,17 +10,16 @@
 
 namespace watery
 {
-	class Game
+	class Game : public System
 	{
 	private:
 		Window &_window;
 		std::map<std::string, System *> _systems;
 	
 	public:
-		Game(void) : _window(Window::instance()) {}
+		Game(void) : _window(Window::instance()), System("game") {}
 		virtual ~Game(void) {}
 		virtual void add_system(System *system) { _systems.emplace(system->name(), system); }
-		virtual void remove_system(const std::string &name) { _systems.erase(name); }
 		virtual void run(void);
 	};
 }

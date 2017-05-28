@@ -15,15 +15,18 @@ namespace watery
 	{
 	private:
 		std::string _name;
+		std::string _type;
 		ComponentFactory &_factory;
 		
 	protected:
 		std::map<std::string, Component *> _components;
 	
 	public:
-		Object(const std::string &name) : _name(name), _factory(ComponentFactory::instance()) {}
+		Object(const std::string &name, const std::string &type)
+				: _name(name), _type(type), _factory(ComponentFactory::instance()) {}
 		virtual ~Object(void) { destroy_all_components(); }
 		virtual const std::string &name(void) const { return _name; }
+		virtual const std::string &type(void) const { return _type; }
 		virtual bool bound(const std::string &type) const { return (_components.count(type) != 0); }
 		virtual bool enabled(const std::string &type) const { return (_components.count(type) && _components.at(type)->enabled()); }
 		virtual Component *component(const std::string &type) { return _components.count(type) ? _components.at(type) : nullptr; }

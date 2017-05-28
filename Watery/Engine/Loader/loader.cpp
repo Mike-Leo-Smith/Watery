@@ -70,12 +70,12 @@ namespace watery
 				// Create the objects (kind of dirty here).
 				for (auto world_tag : expected_level_tag->child("world"))       // Traverse all world tags.
 				{
-					for (auto object_tags : world_tag->child("object"))      // Traverse all object tags in a world tag.
+					for (auto object_tag : world_tag->child("object"))      // Traverse all object tags in a world tag.
 					{
-						Object *object = _world.create_object(object_tags->attribute("name"));
+						Object *object = _world.create_object(object_tag->attribute("name"), object_tag->attribute("type"));
 						
 						// Create the components and bind it to the object.
-						for (auto component_tags : object_tags->children())   // Traverse all component tags in a object tag.
+						for (auto component_tags : object_tag->children())   // Traverse all component tags in a object tag.
 						{
 							for (auto component_tag : component_tags.second)
 							{

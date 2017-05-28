@@ -26,7 +26,7 @@ namespace watery
 	
 	public:
 		static World &instance(void);
-		Object *create_object(const std::string &name);
+		Object *create_object(const std::string &name, const std::string &type = "undefined");
 		Object *object(const std::string &name) { return (_objects.count(name) ? _objects.at(name) : nullptr); }
 		const Object *object(const std::string &name) const { return (_objects.count(name) ? _objects.at(name) : nullptr); }
 		std::map<std::string, Object *> &objects(void) { return _objects; };

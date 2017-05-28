@@ -14,8 +14,6 @@ set(SOURCE_FILES
 		Game/Sources/logic.cpp
 		Game/Sources/logic.h
         Game/Sources/main.cpp
-		Watery/Engine/Component/helix_animation.cpp
-		Watery/Engine/Component/helix_animation.h
         Watery/Engine/Component/angular_velocity.cpp
         Watery/Engine/Component/angular_velocity.h
         Watery/Engine/Component/animation.h
@@ -26,6 +24,8 @@ set(SOURCE_FILES
         Watery/Engine/Component/component_factory.h
         Watery/Engine/Component/constraint.h
         Watery/Engine/Component/health.h
+		Watery/Engine/Component/helix_animation.cpp
+		Watery/Engine/Component/helix_animation.h
         Watery/Engine/Component/lifetime.h
         Watery/Engine/Component/position.h
         Watery/Engine/Component/rotation.h

@@ -22,13 +22,13 @@ namespace watery
 		_objects.clear();
 	}
 	
-	Object *World::create_object(const std::string &name)
+	Object *World::create_object(const std::string &name, const std::string &type)
 	{
 		Object *object = nullptr;
 		
 		if (!_objects.count(name))
 		{
-			object = new Object(name);
+			object = new Object(name, type);
 			_objects.emplace(name, object);
 		}
 		

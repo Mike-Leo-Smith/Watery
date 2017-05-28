@@ -18,9 +18,9 @@ namespace watery
 	// System update intervals.
 	constexpr Microsecond SYSTEM_DEFAULT_UPDATE_INTERVAL = 50000;
 	constexpr Microsecond INPUT_DEFAULT_UPDATE_INTERVAL = 50000;
-	constexpr Microsecond RENDERER_DEFAULT_UPDATE_INTERVAL = 16000;
+	constexpr Microsecond RENDER_DEFAULT_UPDATE_INTERVAL = 16000;
 	constexpr Microsecond SOUND_DEFAULT_UPDATE_INTERVAL = 50000;
-	constexpr Microsecond SCENE_DEFAULT_UPDATA_INTERVAL = 20000;
+	constexpr Microsecond SCENE_DEFAULT_UPDATE_INTERVAL = 20000;
 	
 	// System timer calibration frequency.
 	constexpr int SYSTEM_TIMER_CALIBRATION_FREQUENCY = 10;
