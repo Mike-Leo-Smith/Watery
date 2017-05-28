@@ -28,7 +28,7 @@ namespace watery
 		virtual bool enabled(const std::string &type) const { return (_components.count(type) && _components.at(type)->enabled()); }
 		virtual Component *component(const std::string &type) { return _components.count(type) ? _components.at(type) : nullptr; }
 		virtual const Component *component(const std::string &type) const { return _components.count(type) ? _components.at(type) : nullptr; }
-		virtual void create_component(const std::string &type, const std::string &res);
+		virtual void create_component(const std::string &type, const std::string &arg);
 		virtual void destroy_component(const std::string &type);
 		virtual void destroy_all_components(void);
 		virtual void enable(const std::string &type) { if (_components.count(type) != 0) _components.at(type)->enable(); }

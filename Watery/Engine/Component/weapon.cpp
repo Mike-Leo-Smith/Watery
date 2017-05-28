@@ -4,11 +4,10 @@
 
 #include <sstream>
 #include <cmath>
+#include <iostream>
 #include "weapon.h"
 #include "rotation.h"
 #include "../Mathematics/mathematics.h"
-
-#define BULLET_SPEED std::to_string(500)
 
 namespace watery
 {
@@ -22,7 +21,8 @@ namespace watery
 			if (_weapon_type == "normal")
 			{
 				Object *object = _world.create_object("bullet" + std::to_string(_bullet_count++));
-				float angle = Mathematics::radians(static_cast<Rotation *>(owner->component("rotation"))->angle());
+				std::cout << object->name() << std::endl;
+				float angle = static_cast<Rotation *>(owner->component("rotation"))->angle();
 				
 				Vector v = Mathematics::cartesian(500, angle);
 				object->create_component("velocity", std::to_string(v.x()) + " " + std::to_string(v.y())+" 0");
@@ -75,6 +75,5 @@ namespace watery
 				}
 			}
 		}
-		
 	}
 }
