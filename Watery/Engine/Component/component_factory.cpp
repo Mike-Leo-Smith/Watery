@@ -12,6 +12,7 @@
 #include "weapon.h"
 #include "lifetime.h"
 #include "helix_animation.h"
+#include "AI_position_animation.h"
 
 namespace watery
 {
@@ -152,7 +153,14 @@ namespace watery
 		}
 		else if (type == "animation")
 		{
-			component = new HelixAnimation();
+			if(arg=="helix_animation")
+			{
+				component = new HelixAnimation();
+			}
+			else
+			{
+				component=new AI_position_animation();
+			}
 		}
 		
 		if (component != nullptr)

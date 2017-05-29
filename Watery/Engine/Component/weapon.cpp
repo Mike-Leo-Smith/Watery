@@ -51,7 +51,7 @@ namespace watery
 			}
 			else if (_weapon_type == "shotgun")
 			{
-				for (int angle = -60; angle <= 60; angle += 30)
+				for (int angle = -60; angle <= 60; angle += 60)
 				{
 					std::string name = owner->name();
 					std::reverse(name.begin(), name.end());
@@ -82,12 +82,7 @@ namespace watery
 				}
 			}else if(_weapon_type=="shotgun2")
 			{
-				if(_life.time_out())
-				{
-					_weapon_type="normal";
-					_is_auto=0;
-				}
-				for (int angle = -180; angle < 180; angle += 45)
+				for (int angle = -180; angle < 180; angle += 30)
 				{
 					std::string name = owner->name();
 					std::reverse(name.begin(), name.end());
@@ -115,6 +110,12 @@ namespace watery
 					object->create_component("vertex_array", "small_bullet_va");
 					object->create_component("bounding_shape", "small_bullet_shape");
 					object->create_component("lifetime", "3000000");
+				}
+				if(_life.time_out())
+				{
+					set_type("normal",0);
+					owner->create_component("texture","face_image");
+					owner->create_component("vertex_array","face_rect");
 				}
 			}
 		}
