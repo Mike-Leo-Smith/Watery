@@ -20,6 +20,7 @@
 			<gl_texture name="enemy3_image" path="Assets/Images/enemy3.png"/>
 			<gl_texture name="enemy4_image" path="Assets/Images/enemy4.png"/>
 			<gl_texture name="enemy5_image" path="Assets/Images/enemy5.png"/>
+			<gl_texture name="pepper_image" path="Assets/Images/pepper.png"/>
 			<gl_shader name="sprite_shader" path="Scripts/Shaders/sprite.vert:Scripts/Shaders/sprite.frag"/>
 			<gl_vertex_array name="face_rect" path="Assets/VertexArrays/face.va"/>
 			<gl_vertex_array name="bg_rect" path="Assets/VertexArrays/background.va"/>
@@ -136,13 +137,12 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>
-			<object name="enemy9" type="enemy">
+			<object name="pepper" type="enemy">
 				<position arg="900 600 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
-				<angular_velocity arg="-30"/>
 				<shader arg="sprite_shader"/>
-				<texture arg="face_image"/>
+				<texture arg="pepper_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 			</object>

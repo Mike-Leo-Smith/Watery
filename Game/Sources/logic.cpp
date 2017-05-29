@@ -148,9 +148,13 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 	
 	}
 	else if((is_type(object1->name(),"role")&&is_type(object2->name(),"pepper"))||
-	        (is_type(object1->name(),"elor_bullet")&&is_type(object2->name(),"emeny")))
+	        (is_type(object1->name(),"pepper")&&is_type(object2->name(),"role")))
 	{
-	
+		watery::Object *role= is_type(object1->name(),"pepper")?object2:object1;
+		watery::Object *pepper= is_type(object1->name(),"role")?object1:object2;
+		static_cast<watery::Lifetime *>(pepper->component("lifetime"))->set_lifetime(1);
+		static_cast<watery::Weapon *>(role->component("weapon"))->set_auto(1);
+		static_cast<watery::Weapon *>(role->component("weapon"))->set_type("shotgun2");
 	}
 	/*
 	watery::Object *role = nullptr;
