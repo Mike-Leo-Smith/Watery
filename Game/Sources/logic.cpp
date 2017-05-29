@@ -147,6 +147,11 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 	{
 	
 	}
+	else if((is_type(object1->name(),"role")&&is_type(object2->name(),"pepper"))||
+	        (is_type(object1->name(),"elor_bullet")&&is_type(object2->name(),"emeny")))
+	{
+	
+	}
 	/*
 	watery::Object *role = nullptr;
 	watery::Object *collider = nullptr;
