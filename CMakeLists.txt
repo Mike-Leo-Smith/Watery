@@ -4,7 +4,7 @@ project(Watery)
 set(CMAKE_CXX_STANDARD 14)
 
 if (WIN32)
-    add_definitions(-DGLEW_STATIC)
+	add_definitions(-DGLEW_STATIC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static -O3")
 elseif (APPLE)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL -O3")
@@ -14,8 +14,7 @@ set(SOURCE_FILES
 		Game/Sources/logic.cpp
 		Game/Sources/logic.h
         Game/Sources/main.cpp
-        Watery/Engine/Component/angular_velocity.cpp
-        Watery/Engine/Component/angular_velocity.h
+		Watery/Engine/Component/angular_velocity.h
         Watery/Engine/Component/animation.h
         Watery/Engine/Component/audio.h
         Watery/Engine/Component/bounding_shape.h
