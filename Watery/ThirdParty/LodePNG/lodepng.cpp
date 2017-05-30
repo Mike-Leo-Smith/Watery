@@ -28,6 +28,7 @@ The manual and changelog are in the header file "LodePNG.h"
 Rename this file to LodePNG.cpp to use it for C++, or to LodePNG.c to active it for C.
 */
 
+#include <cstdlib>
 #include "lodepng.h"
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1310) /*Visual Studio: A few warning types are not desired here.*/
