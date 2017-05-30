@@ -23,7 +23,7 @@ namespace watery
 		bool _is_auto;
 	public:
 		Weapon(const std::string &weapon_type,bool is_auto)
-				: Component("weapon"), _world(World::instance()), _timer(is_auto?400000:150000),_life(5000000), _weapon_type(weapon_type),_is_auto(is_auto){}
+				: Component("weapon"), _world(World::instance()), _timer(is_auto?600000:200000),_life(3000000), _weapon_type(weapon_type),_is_auto(is_auto){}
 		virtual bool is_auto(void){return _is_auto;}
 		virtual void set_type(const std::string &weapon_type,bool is_auto)
 		{

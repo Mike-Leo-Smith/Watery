@@ -361,7 +361,7 @@ static long lodepng_filesize(const char *filename)
 	
 	size = ftell(file);
 	/* It may give LONG_MAX as directory size, this is invalid for us. */
-	if (size == LONG_MAX) size = -1;
+	
 	
 	fclose(file);
 	return size;
