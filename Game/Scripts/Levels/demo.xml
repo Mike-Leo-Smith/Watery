@@ -64,7 +64,7 @@
 			</object>
 			<!-- Object Enemy -->
 			<object name="enemy2" type="enemy">
-				<position arg="1000 600 1"/>
+				<position arg="800 600 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
 				<shader arg="sprite_shader"/>
@@ -76,7 +76,7 @@
 				<health arg="5 5"/>
 			</object>
 			<object name="enemy21" type="enemy">
-				<position arg="800 300 1"/>
+				<position arg="1200 300 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
 				<shader arg="sprite_shader"/>
@@ -88,7 +88,7 @@
 				<health arg="5 5"/>
 			</object>
 			<object name="enemy22" type="enemy">
-				<position arg="1200 800 1"/>
+				<position arg="1000 800 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
 				<shader arg="sprite_shader"/>

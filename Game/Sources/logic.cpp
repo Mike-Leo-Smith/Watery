@@ -185,8 +185,8 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 		role->create_component("texture", "laji_image");
 		role->create_component("vertex_array", "laji_va");
 	}
-	else if ((is_type(object1->name(), "role") && is_type(object2->name(), "enemy")) ||
-	         (is_type(object1->name(), "enemy") && is_type(object2->name(), "role")))
+	else if ((is_type(object1->name(), "role") && is_type(object2->name(), "enemy"))
+	         || (is_type(object1->name(), "enemy") && is_type(object2->name(), "role")))
 	{
 		watery::Object *role = nullptr;
 		watery::Object *collider = nullptr;
@@ -217,18 +217,15 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 			float role_vp = norm * role_v->vector();
 			float coll_vp = norm * coll_v->vector();
 			
-			//if (role_vp < 0)
-			{
-				watery::Vector role_vn = role_vp * norm;
-				watery::Vector role_vt = role_v->vector() - role_vn;
-				watery::Vector coll_vn = coll_vp * norm;
-				watery::Vector coll_vt = coll_v->vector() - coll_vn;
-				
-				role_v->set(role_vt + coll_vn);
-				coll_v->set(coll_vt + role_vn);
-				
-				role_pos->set(coll_pos->vector() + norm * (role_shape->radius() + coll_shape->radius() + 1));
-			}
+			watery::Vector role_vn = role_vp * norm;
+			watery::Vector role_vt = role_v->vector() - role_vn;
+			watery::Vector coll_vn = coll_vp * norm;
+			watery::Vector coll_vt = coll_v->vector() - coll_vn;
+			
+			role_v->set(role_vt + coll_vn);
+			coll_v->set(coll_vt + role_vn);
+			
+			role_pos->set(coll_pos->vector() + norm * (role_shape->radius() + coll_shape->radius() + 1));
 		}
 	}
 	/*

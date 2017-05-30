@@ -44,7 +44,7 @@ namespace watery
 				GLTexture *gl_texture = static_cast<Texture *>(owner->component("texture"))->texture();
 				static_cast<Texture *>(object->component("texture"))->bind_texture(gl_texture);
 				
-				if(owner->name()=="enemy3")
+				if (owner->name().find("enemy3") == 0)
 				{
 					object->create_component("texture","xuming_image");
 				}
@@ -148,7 +148,8 @@ namespace watery
 				GLTexture *gl_texture = static_cast<Texture *>(owner->component("texture"))->texture();
 				static_cast<Texture *>(object->component("texture"))->bind_texture(gl_texture);
 				
-				if(owner->name()=="enemy3")
+				if (owner->name() == "enemy3" || owner->name() == "enemy31" || owner->name() == "enemy32" || owner->name() == "enemy33"
+				    || owner->name() == "enemy301" || owner->name() == "enemy302")
 				{
 					object->create_component("texture","xuming_image");
 				}

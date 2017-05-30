@@ -9,8 +9,8 @@ namespace watery
 	void AI_position_animation::animate(Object *parent)
 	{
 		watery::Velocity *velocity = static_cast<Velocity *>(parent->component("velocity"));
-		Microsecond time = _timer.elapsed_time();
-		
+		//Microsecond time = _timer.elapsed_time();
+		//
 		//if (rand() * 1000 < time)
 		//{
 		//	_acceleration_x = rand() % 500 - 250;
