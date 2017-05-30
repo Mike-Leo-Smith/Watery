@@ -16,9 +16,6 @@ constexpr float RESISTANCE = 50.f;
 
 void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 {
-	watery::Object *role = _world.object("role");
-	watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
-	watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
 
 	if (message->key_down(watery::KEY_SPACE))
 	{
@@ -31,44 +28,53 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 			_world.object("background")->enable("audio");
 		}
 	}
-	
-	if (role_pos->x() <= 100)
+	for(auto &role_item: _world.objects())
 	{
-		if (role_v->vx() < 0)
+		watery::Object *role = role_item.second;
+		if(role->type()!="role"&&role->type()!="enemy")continue;
+		watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
+		watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
+		if (role_pos->x() <= 100)
 		{
-			role_v->set_vx(-0.8f * role_v->vx());
-			role_v->set_vy(0.95f * role_v->vy());
+			if (role_v->vx() < 0)
+			{
+				role_v->set_vx(-0.8f * role_v->vx());
+				role_v->set_vy(0.95f * role_v->vy());
+			}
+			role_pos->set_x(100);
 		}
-		role_pos->set_x(100);
-	}
-	else if (role_pos->x() >= 4100)
-	{
-		if (role_v->vx() > 0)
+		else if (role_pos->x() >= 4100)
 		{
-			role_v->set_vx(-0.8f * role_v->vx());
-			role_v->set_vy(0.95f * role_v->vy());
+			if (role_v->vx() > 0)
+			{
+				role_v->set_vx(-0.8f * role_v->vx());
+				role_v->set_vy(0.95f * role_v->vy());
+			}
+			role_pos->set_x(4100);
 		}
-		role_pos->set_x(4100);
-	}
-	
-	if (role_pos->y() <= 100)
-	{
-		if (role_v->vy() < 0)
+		
+		if (role_pos->y() <= 100)
 		{
-			role_v->set_vx(0.95f * role_v->vx());
-			role_v->set_vy(-0.8f * role_v->vy());
+			if (role_v->vy() < 0)
+			{
+				role_v->set_vx(0.95f * role_v->vx());
+				role_v->set_vy(-0.8f * role_v->vy());
+			}
+			role_pos->set_y(100);
 		}
-		role_pos->set_y(100);
-	}
-	else if (role_pos->y() >= _window.logical_height() - 100)
-	{
-		if (role_v->vy() > 0)
+		else if (role_pos->y() >= _window.logical_height() - 100)
 		{
-			role_v->set_vx(0.95f * role_v->vx());
-			role_v->set_vy(-0.8f * role_v->vy());
+			if (role_v->vy() > 0)
+			{
+				role_v->set_vx(0.95f * role_v->vx());
+				role_v->set_vy(-0.8f * role_v->vy());
+			}
+			role_pos->set_y(_window.logical_height() - 100);
 		}
-		role_pos->set_y(_window.logical_height() - 100);
 	}
+	watery::Object *role = _world.object("role");
+	watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
+	watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
 	
 	// Resistance.
 	float speed = role_v->vector().length();
@@ -151,10 +157,11 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 	        (is_type(object1->name(),"pepper")&&is_type(object2->name(),"role")))
 	{
 		watery::Object *role= is_type(object1->name(),"pepper")?object2:object1;
-		watery::Object *pepper= is_type(object1->name(),"role")?object1:object2;
+		watery::Object *pepper= is_type(object1->name(),"role")?object2:object1;
 		static_cast<watery::Lifetime *>(pepper->component("lifetime"))->set_lifetime(1);
-		static_cast<watery::Weapon *>(role->component("weapon"))->set_auto(1);
-		static_cast<watery::Weapon *>(role->component("weapon"))->set_type("shotgun2");
+		static_cast<watery::Weapon *>(role->component("weapon"))->set_type("shotgun2",1);
+		role->create_component("texture", "laji_image");
+		role->create_component("vertex_array","laji_va");
 	}
 	/*
 	watery::Object *role = nullptr;

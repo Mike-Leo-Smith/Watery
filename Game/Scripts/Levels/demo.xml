@@ -21,12 +21,16 @@
 			<gl_texture name="enemy4_image" path="Assets/Images/enemy4.png"/>
 			<gl_texture name="enemy5_image" path="Assets/Images/enemy5.png"/>
 			<gl_texture name="pepper_image" path="Assets/Images/pepper.png"/>
+			<gl_texture name="laji_image" path="Assets/Images/laji.png"/>
 			<gl_shader name="sprite_shader" path="Scripts/Shaders/sprite.vert:Scripts/Shaders/sprite.frag"/>
 			<gl_vertex_array name="face_rect" path="Assets/VertexArrays/face.va"/>
 			<gl_vertex_array name="bg_rect" path="Assets/VertexArrays/background.va"/>
 			<gl_vertex_array name="small_bullet_va" path="Assets/VertexArrays/small_bullet.va"/>
+			<gl_vertex_array name="pepper_va" path="Assets/VertexArrays/pepper.va"/>
+			<gl_vertex_array name="laji_va" path="Assets/VertexArrays/laji.va"/>
 			<al_audio name="bg_music" path="Assets/Sounds/test.wav"/>
 			<shape name="role_bounding" path="Assets/Shapes/role.shp"/>
+			<shape name="pepper_bounding" path="Assets/Shapes/pepper.shp"/>
 			<shape name="small_bullet_shape" path="Assets/Shapes/small_bullet.shp"/>
 		</asset>
 		<!-- World -->
@@ -66,6 +70,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 			<object name="enemy2" type="enemy">
 				<position arg="500 600 1"/>
@@ -76,6 +81,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 			<object name="enemy3" type="enemy">
 				<position arg="1700 600 1"/>
@@ -86,6 +92,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 			<object name="enemy4" type="enemy">
 				<position arg="1500 300 1"/>
@@ -96,6 +103,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="shotgun 1"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 			<object name="enemy5" type="enemy">
 				<position arg="1900 300 1"/>
@@ -106,6 +114,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 			<object name="enemy6" type="enemy">
 				<position arg="2300 300 1"/>
@@ -116,6 +125,7 @@
 				<texture arg="face_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 			<object name="enemy7" type="enemy">
 				<position arg="2700 300 1"/>
@@ -126,6 +136,7 @@
 				<texture arg="face_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 			<object name="enemy8" type="enemy">
 				<position arg="700 300 1"/>
@@ -136,6 +147,7 @@
 				<texture arg="face_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 			<object name="pepper" type="enemy">
 				<position arg="900 600 1"/>
@@ -143,8 +155,10 @@
 				<rotation arg="0 0 1 0"/>
 				<shader arg="sprite_shader"/>
 				<texture arg="pepper_image"/>
-				<vertex_array arg="face_rect"/>
-				<bounding_shape arg="role_bounding"/>
+				<vertex_array arg="pepper_va"/>
+				<bounding_shape arg="pepper_bounding"/>
+				<lifetime arg="100000000"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 			<object name="enemy10" type="enemy">
 				<position arg="1300 600 1"/>
@@ -155,6 +169,7 @@
 				<texture arg="face_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 			<object name="enemy11" type="enemy">
 				<position arg="1100 300 1"/>
@@ -165,6 +180,7 @@
 				<texture arg="face_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 			<object name="enemy12" type="enemy">
 				<position arg="2100 600 1"/>
@@ -175,6 +191,7 @@
 				<texture arg="face_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 			<object name="enemy13" type="enemy">
 				<position arg="2500 600 1"/>
@@ -185,6 +202,7 @@
 				<texture arg="face_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
+				<animation arg="AI_position_animation"/>
 			</object>
 		</world>
 	</level>
