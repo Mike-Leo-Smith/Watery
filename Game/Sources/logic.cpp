@@ -13,6 +13,7 @@
 
 constexpr float ACCELERATION = 100.0f;
 constexpr float RESISTANCE = 50.f;
+constexpr int SCENE_WIDTH = 10000;
 
 void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 {
@@ -43,14 +44,14 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 			}
 			role_pos->set_x(100);
 		}
-		else if (role_pos->x() >= 4100)
+		else if (role_pos->x() >= SCENE_WIDTH - 100)
 		{
 			if (role_v->vx() > 0)
 			{
 				role_v->set_vx(-0.8f * role_v->vx());
 				role_v->set_vy(0.95f * role_v->vy());
 			}
-			role_pos->set_x(4100);
+			role_pos->set_x(SCENE_WIDTH - 100);
 		}
 		
 		if (role_pos->y() <= 100)
@@ -229,14 +230,14 @@ void Logic::update_camera(void)
 	
 	if (role_pos->x() - camera_pos->x() >= _window.logical_width() - border)
 	{
-		if (camera_pos->x() + _window.logical_width() < 4200)
+		if (camera_pos->x() + _window.logical_width() < SCENE_WIDTH)
 		{
 			camera_v->set_vx(role_v->vx());
 		}
 		else
 		{
 			camera_v->set_vx(0);
-			camera_pos->set_x(4200 - _window.logical_width());
+			camera_pos->set_x(SCENE_WIDTH - _window.logical_width());
 		}
 	}
 	else if (role_pos->x() <= camera_pos->x() + border)
@@ -252,9 +253,9 @@ void Logic::update_camera(void)
 		}
 	}
 	
-	if (camera_pos->x() > 4200 - _window.logical_width())
+	if (camera_pos->x() > SCENE_WIDTH - _window.logical_width())
 	{
-		camera_pos->set_x(4200 - _window.logical_width());
+		camera_pos->set_x(SCENE_WIDTH - _window.logical_width());
 	}
 	
 	if (camera_pos->x() < 0)

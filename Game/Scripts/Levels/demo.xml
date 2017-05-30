@@ -23,6 +23,7 @@
 			<gl_texture name="pepper_image" path="Assets/Images/pepper.png"/>
 			<gl_texture name="laji_image" path="Assets/Images/laji.png"/>
 			<gl_shader name="sprite_shader" path="Scripts/Shaders/sprite.vert:Scripts/Shaders/sprite.frag"/>
+			<gl_shader name="background_shader" path="Scripts/Shaders/background.vert:Scripts/Shaders/background.frag"/>
 			<gl_vertex_array name="face_rect" path="Assets/VertexArrays/face.va"/>
 			<gl_vertex_array name="bg_rect" path="Assets/VertexArrays/background.va"/>
 			<gl_vertex_array name="small_bullet_va" path="Assets/VertexArrays/small_bullet.va"/>
@@ -43,7 +44,7 @@
 			<!-- Background -->
 			<object name="background" type="background">
 				<position arg="0 0 0"/>
-				<shader arg="sprite_shader"/>
+				<shader arg="background_shader"/>
 				<vertex_array arg="bg_rect"/>
 				<texture arg="bg_image"/>
 				<audio arg="bg_music"/>
