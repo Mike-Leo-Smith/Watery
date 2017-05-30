@@ -145,21 +145,23 @@ namespace watery
 		else if (type == "weapon")
 		{
 			std::stringstream buffer;
-			buffer<<arg;
 			std::string weapon_type;
 			bool is_auto;
-			buffer>>weapon_type>>is_auto;
-			component = new Weapon(weapon_type,is_auto);
+			
+			buffer << arg;
+			buffer >> weapon_type >> is_auto;
+			
+			component = new Weapon(weapon_type, is_auto);
 		}
 		else if (type == "animation")
 		{
-			if(arg=="helix_animation")
+			if (arg == "helix_animation")
 			{
 				component = new HelixAnimation();
 			}
-			else
+			else if (arg == "AI_position_animation")
 			{
-				component=new AI_position_animation();
+				component = new AI_position_animation();
 			}
 		}
 		

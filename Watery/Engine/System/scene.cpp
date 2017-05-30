@@ -57,6 +57,8 @@ void watery::Scene::detect_collisions(void)
 
 void watery::Scene::advance_status(void)
 {
+	std::vector<std::string> dead_objects;
+	
 	for (auto &object_item : _world.objects())
 	{
 		Object *object = object_item.second;
@@ -112,8 +114,13 @@ void watery::Scene::advance_status(void)
 		{
 			if (static_cast<Lifetime *>(object->component("lifetime"))->dead())
 			{
-				_world.destroy_object(object->name());
+				dead_objects.push_back(object->name());
 			}
 		}
+	}
+	
+	for (auto &name : dead_objects)
+	{
+		_world.destroy_object(name);
 	}
 }

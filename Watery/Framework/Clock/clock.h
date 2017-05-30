@@ -9,7 +9,7 @@
 
 namespace watery
 {
-	typedef time_t Microsecond;
+	typedef long long Microsecond;
 	
 	class Clock
 	{

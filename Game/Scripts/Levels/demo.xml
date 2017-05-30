@@ -61,7 +61,6 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="shotgun 0"/>
-				<health arg="10"/>
 			</object>
 			<!-- Object Enemy -->
 			<object name="enemy2" type="enemy">
@@ -74,7 +73,33 @@
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
 				<animation arg="AI_position_animation"/>
+				<health arg="5 5"/>
 			</object>
+			<object name="enemy21" type="enemy">
+				<position arg="800 300 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy2_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="5 5"/>
+			</object>
+			<object name="enemy22" type="enemy">
+				<position arg="1200 800 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy2_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="5 5"/>
+			</object>
+			
 			<object name="enemy3" type="enemy">
 				<position arg="3000 500 1"/>
 				<velocity arg="0 0 0"/>
@@ -85,8 +110,58 @@
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
 				<animation arg="AI_position_animation"/>
+				<health arg="7 7"/>
 			</object>
+			<object name="enemy31" type="enemy">
+				<position arg="2500 200 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy3_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="7 7"/>
+			</object>
+			<object name="enemy32" type="enemy">
+				<position arg="2700 800 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy3_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="7 7"/>
+			</object>
+			<object name="enemy33" type="enemy">
+				<position arg="3300 500 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy3_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="7 7"/>
+			</object>
+			
 			<object name="enemy4" type="enemy">
+				<position arg="4500 300 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy4_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="shotgun 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="9 9"/>
+			</object>
+			<object name="enemy41" type="enemy">
 				<position arg="5000 400 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
@@ -96,19 +171,49 @@
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="shotgun 1"/>
 				<animation arg="AI_position_animation"/>
+				<health arg="9 9"/>
 			</object>
+			<object name="enemy43" type="enemy">
+				<position arg="5000 800 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy4_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="shotgun 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="9 9"/>
+			</object>
+			
+			
 			<object name="enemy5" type="enemy">
-				<position arg="7000 550 1"/>
+				<position arg="7000 350 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
 				<shader arg="sprite_shader"/>
 				<texture arg="enemy5_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
+				<animation arg="AI_position_animation"/>
 				<weapon arg="helix 1"/>
+				<health arg="11 11"/>
 			</object>
+			<object name="enemy51" type="enemy">
+				<position arg="7200 000 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy5_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<animation arg="AI_position_animation"/>
+				<weapon arg="helix 1"/>
+				<health arg="11 11"/>
+			</object>
+			
 			<object name="pepper" type="enemy">
-				<position arg="9000 600 1"/>
+				<position arg="8900 600 1"/>
 				<velocity arg="0 0 0"/>
 				<rotation arg="0 0 1 0"/>
 				<shader arg="sprite_shader"/>
@@ -117,6 +222,139 @@
 				<bounding_shape arg="pepper_bounding"/>
 				<lifetime arg="100000000"/>
 				<animation arg="AI_position_animation"/>
+				<health arg="13 13"/>
+			</object>
+			<object name="pepper2" type="enemy">
+				<position arg="7600 200 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="pepper_image"/>
+				<vertex_array arg="pepper_va"/>
+				<bounding_shape arg="pepper_bounding"/>
+				<lifetime arg="100000000"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="13 13"/>
+			</object>
+			<object name="enemy501" type="enemy">
+				<position arg="9200 200 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy5_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<animation arg="AI_position_animation"/>
+				<weapon arg="helix 1"/>
+				<health arg="11 11"/>
+			</object>
+			<object name="enemy502" type="enemy">
+				<position arg="9200 400 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy5_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<animation arg="AI_position_animation"/>
+				<weapon arg="helix 1"/>
+				<health arg="11 11"/>
+			</object>
+			<object name="enemy401" type="enemy">
+				<position arg="9500 800 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy4_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="shotgun 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="9 9"/>
+			</object>
+			<object name="enemy402" type="enemy">
+				<position arg="9700 200 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy4_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="shotgun 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="9 9"/>
+			</object>
+			<object name="enemy301" type="enemy">
+				<position arg="8500 900 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy3_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="7 7"/>
+			</object>
+			<object name="enemy302" type="enemy">
+				<position arg="9000 100 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy3_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="7 7"/>
+			</object>
+			<object name="enemy303" type="enemy">
+				<position arg="8700 500 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy3_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="7 7"/>
+			</object>
+			<object name="enemy200" type="enemy">
+				<position arg="8100 200 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy2_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="5 5"/>
+			</object>
+			<object name="enemy201" type="enemy">
+				<position arg="7300 600 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy2_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="5 5"/>
+			</object>
+			<object name="enemy202" type="enemy">
+				<position arg="7200 300 1"/>
+				<velocity arg="0 0 0"/>
+				<rotation arg="0 0 1 0"/>
+				<shader arg="sprite_shader"/>
+				<texture arg="enemy2_image"/>
+				<vertex_array arg="face_rect"/>
+				<bounding_shape arg="role_bounding"/>
+				<weapon arg="normal 1"/>
+				<animation arg="AI_position_animation"/>
+				<health arg="5 5"/>
 			</object>
 		</world>
 	</level>

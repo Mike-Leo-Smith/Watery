@@ -3,23 +3,30 @@
 //
 
 #include "AI_position_animation.h"
-#include <cmath>
-
 
 namespace watery
 {
 	void AI_position_animation::animate(Object *parent)
 	{
-		watery::Velocity *velocity = static_cast<watery::Velocity *>(parent->component("velocity"));
-		int time = _timer.elapsed_time();
-		if(rand()*100<time)
+		watery::Velocity *velocity = static_cast<Velocity *>(parent->component("velocity"));
+		Microsecond time = _timer.elapsed_time();
+		
+		//if (rand() * 1000 < time)
+		//{
+		//	_acceleration_x = rand() % 500 - 250;
+		//	_acceleration_y = rand() % 500 - 250;
+		//	velocity->set_vx(_acceleration_x);
+		//	velocity->set_vy(_acceleration_y);
+		//	_timer.reset();
+		//}
+		
+		if (_timer.time_out())
 		{
-			_acceleration_x=rand()%400-200;
-			_acceleration_y=rand()%400-200;
-			_timer.reset();
+			_acceleration_x = rand() % 500 - 250;
+			_acceleration_y = rand() % 500 - 250;
 			velocity->set_vx(_acceleration_x);
 			velocity->set_vy(_acceleration_y);
+			_timer.reset();
 		}
-		
 	}
 }

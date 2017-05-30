@@ -5,7 +5,6 @@
 #include <sstream>
 #include <cmath>
 #include <iostream>
-#include <algorithm>
 #include "weapon.h"
 #include "rotation.h"
 #include "../Mathematics/mathematics.h"
@@ -52,7 +51,7 @@ namespace watery
 				
 				object->create_component("vertex_array", "small_bullet_va");
 				object->create_component("bounding_shape", "small_bullet_shape");
-				object->create_component("lifetime", "3000000");
+				object->create_component("lifetime", "1000000");
 				//object->create_component("animation", "");
 			}
 			else if (_weapon_type == "shotgun")
@@ -84,7 +83,7 @@ namespace watery
 					
 					object->create_component("vertex_array", "small_bullet_va");
 					object->create_component("bounding_shape", "small_bullet_shape");
-					object->create_component("lifetime", "3000000");
+					object->create_component("lifetime", "1000000");
 				}
 			}else if(_weapon_type=="shotgun2")
 			{
@@ -115,7 +114,7 @@ namespace watery
 					
 					object->create_component("vertex_array", "small_bullet_va");
 					object->create_component("bounding_shape", "small_bullet_shape");
-					object->create_component("lifetime", "3000000");
+					object->create_component("lifetime", "1000000");
 				}
 				if(_life.time_out())
 				{
@@ -156,7 +155,7 @@ namespace watery
 				
 				object->create_component("vertex_array", "small_bullet_va");
 				object->create_component("bounding_shape", "small_bullet_shape");
-				object->create_component("lifetime", "3000000");
+				object->create_component("lifetime", "1000000");
 				object->create_component("animation", "helix_animation");
 			}
 		}
