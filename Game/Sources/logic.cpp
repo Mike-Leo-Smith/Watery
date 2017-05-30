@@ -12,6 +12,7 @@
 #include "../../Watery/Engine/Component/lifetime.h"
 
 constexpr float ACCELERATION = 100.0f;
+constexpr float SPEED_CONSTRAINT = 850.0f;
 constexpr float RESISTANCE = 50.f;
 constexpr int SCENE_WIDTH = 10000;
 
@@ -32,6 +33,7 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 	for(auto &role_item: _world.objects())
 	{
 		watery::Object *role = role_item.second;
+		if(is_type(role->name(),"bullet"))continue;
 		if(role->type()!="role"&&role->type()!="enemy")continue;
 		watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
 		watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
@@ -90,22 +92,22 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 		role_v->set(watery::Vector(0, 0, 0));
 	}
 	
-	if (message->key_down(watery::KEY_UP) || message->key_down(watery::KEY_W))
+	if ((message->key_down(watery::KEY_UP) || message->key_down(watery::KEY_W)) && role_v->vy() < SPEED_CONSTRAINT)
 	{
 		role_v->accelerate_y(ACCELERATION);
 	}
 	
-	if (message->key_down(watery::KEY_DOWN) || message->key_down(watery::KEY_S))
+	if ((message->key_down(watery::KEY_DOWN) || message->key_down(watery::KEY_S)) && role_v->vy() > -SPEED_CONSTRAINT)
 	{
 		role_v->accelerate_y(-ACCELERATION);
 	}
 	
-	if (message->key_down(watery::KEY_LEFT) || message->key_down(watery::KEY_A))
+	if ((message->key_down(watery::KEY_LEFT) || message->key_down(watery::KEY_A)) && role_v->vx() > -SPEED_CONSTRAINT)
 	{
 		role_v->accelerate_x(-ACCELERATION);
 	}
 	
-	if (message->key_down(watery::KEY_RIGHT) || message->key_down(watery::KEY_D))
+	if ((message->key_down(watery::KEY_RIGHT) || message->key_down(watery::KEY_D)) && role_v->vx() < SPEED_CONSTRAINT)
 	{
 		role_v->accelerate_x(ACCELERATION);
 	}
@@ -147,12 +149,26 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 	else if((is_type(object1->name(),"ymene_bullet")&&is_type(object2->name(),"role"))||
 	        (is_type(object1->name(),"role")&&is_type(object2->name(),"ymene_bullet")))
 	{
-	
+		if(is_type(object1->name(),"role"))
+		{
+			static_cast<watery::Lifetime *>(object2->component("lifetime"))->set_lifetime(1);
+		}
+		else
+		{
+			static_cast<watery::Lifetime *>(object1->component("lifetime"))->set_lifetime(1);
+		}
 	}
-	else if((is_type(object1->name(),"emeny")&&is_type(object2->name(),"elor_bullet"))||
-	        (is_type(object1->name(),"elor_bullet")&&is_type(object2->name(),"emeny")))
+	else if((is_type(object1->name(),"enemy")&&is_type(object2->name(),"elor_bullet"))||
+	        (is_type(object1->name(),"elor_bullet")&&is_type(object2->name(),"enemy")))
 	{
-	
+		if(is_type(object1->name(),"enemy"))
+		{
+			static_cast<watery::Lifetime *>(object2->component("lifetime"))->set_lifetime(1);
+		}
+		else
+		{
+			static_cast<watery::Lifetime *>(object1->component("lifetime"))->set_lifetime(1);
+		}
 	}
 	else if((is_type(object1->name(),"role")&&is_type(object2->name(),"pepper"))||
 	        (is_type(object1->name(),"pepper")&&is_type(object2->name(),"role")))
@@ -164,49 +180,54 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 		role->create_component("texture", "laji_image");
 		role->create_component("vertex_array","laji_va");
 	}
-	/*
-	watery::Object *role = nullptr;
-	watery::Object *collider = nullptr;
-	
-	if (message->object1()->name() == "role")
+	else if((is_type(object1->name(),"role")&&is_type(object2->name(),"enemy"))||
+	        (is_type(object1->name(),"enemy")&&is_type(object2->name(),"role")))
 	{
-		role = message->object1();
-		collider = message->object2();
-	}
-	else //if (message->object2()->name() == "role")
-	{
-		role = message->object2();
-		collider = message->object1();
-	}
-	
-	if (role != nullptr)
-	{
-		watery::Circle *role_shape = static_cast<watery::Circle *>(static_cast<watery::BoundingShape *>(role->component("bounding_shape"))->shape());
-		watery::Circle *coll_shape = static_cast<watery::Circle *>(static_cast<watery::BoundingShape *>(collider->component("bounding_shape"))->shape());
-		watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
-		watery::Position *coll_pos = static_cast<watery::Position *>(collider->component("position"));
-		watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
-		watery::Velocity *coll_v = static_cast<watery::Velocity *>(collider->component("velocity"));
-		watery::Vector norm = (role_shape->center() + role_pos->vector()) - (coll_shape->center() + coll_pos->vector());
+		watery::Object *role = nullptr;
+		watery::Object *collider = nullptr;
 		
-		norm.normalize();
-		
-		float role_vp = norm * role_v->vector();
-		float coll_vp = norm * coll_v->vector();
-		
-		//if (role_vp < 0)
+		if (message->object1()->name() == "role")
 		{
-			watery::Vector role_vn = role_vp * norm;
-			watery::Vector role_vt = role_v->vector() - role_vn;
-			watery::Vector coll_vn = coll_vp * norm;
-			watery::Vector coll_vt = coll_v->vector() - coll_vn;
-			
-			role_v->set(role_vt + coll_vn);
-			coll_v->set(coll_vt + role_vn);
-			
-			role_pos->set(coll_pos->vector() + norm * (role_shape->radius() + coll_shape->radius() + 1));
+			role = message->object1();
+			collider = message->object2();
 		}
-	}*/
+		else //if (message->object2()->name() == "role")
+		{
+			role = message->object2();
+			collider = message->object1();
+		}
+		
+		if (role != nullptr)
+		{
+			watery::Circle *role_shape = static_cast<watery::Circle *>(static_cast<watery::BoundingShape *>(role->component("bounding_shape"))->shape());
+			watery::Circle *coll_shape = static_cast<watery::Circle *>(static_cast<watery::BoundingShape *>(collider->component("bounding_shape"))->shape());
+			watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
+			watery::Position *coll_pos = static_cast<watery::Position *>(collider->component("position"));
+			watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
+			watery::Velocity *coll_v = static_cast<watery::Velocity *>(collider->component("velocity"));
+			watery::Vector norm = (role_shape->center() + role_pos->vector()) - (coll_shape->center() + coll_pos->vector());
+			
+			norm.normalize();
+			
+			float role_vp = norm * role_v->vector();
+			float coll_vp = norm * coll_v->vector();
+			
+			//if (role_vp < 0)
+			{
+				watery::Vector role_vn = role_vp * norm;
+				watery::Vector role_vt = role_v->vector() - role_vn;
+				watery::Vector coll_vn = coll_vp * norm;
+				watery::Vector coll_vt = coll_v->vector() - coll_vn;
+				
+				role_v->set(role_vt + coll_vn);
+				coll_v->set(coll_vt + role_vn);
+				
+				role_pos->set(coll_pos->vector() + norm * (role_shape->radius() + coll_shape->radius() + 1));
+			}
+		}
+	}
+	/*
+	*/
 	
 	delete message;
 }
