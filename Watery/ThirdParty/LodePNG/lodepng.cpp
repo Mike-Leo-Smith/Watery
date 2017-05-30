@@ -30,8 +30,6 @@ Rename this file to LodePNG.cpp to use it for C++, or to LodePNG.c to active it 
 
 #include "lodepng.h"
 
-#include <stdlib.h>
-
 #if defined(_MSC_VER) && (_MSC_VER >= 1310) /*Visual Studio: A few warning types are not desired here.*/
 																														#pragma warning( disable : 4244 ) /*implicit conversions: not warned by gcc -Wall -Wextra and requires too much casts*/
 #pragma warning( disable : 4996 ) /*VS does not like fopen, but fopen_s is not standard C so unusable here*/
@@ -360,9 +358,6 @@ static long lodepng_filesize(const char *filename)
 	}
 	
 	size = ftell(file);
-	/* It may give LONG_MAX as directory size, this is invalid for us. */
-	if (size == LONG_MAX) size = -1;
-	
 	fclose(file);
 	return size;
 }
