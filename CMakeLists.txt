@@ -14,6 +14,8 @@ set(SOURCE_FILES
 		Game/Sources/logic.cpp
 		Game/Sources/logic.h
         Game/Sources/main.cpp
+		Watery/Engine/Component/AI_position_animation.cpp
+		Watery/Engine/Component/AI_position_animation.h
 		Watery/Engine/Component/angular_velocity.h
         Watery/Engine/Component/animation.h
         Watery/Engine/Component/audio.h
@@ -28,7 +30,10 @@ set(SOURCE_FILES
         Watery/Engine/Component/lifetime.h
         Watery/Engine/Component/position.h
         Watery/Engine/Component/rotation.h
+		Watery/Engine/Component/scale.h
         Watery/Engine/Component/shader.h
+		Watery/Engine/Component/shrink_animation.cpp
+		Watery/Engine/Component/shrink_animation.h
         Watery/Engine/Component/text.h
         Watery/Engine/Component/texture.h
         Watery/Engine/Component/velocity.h
@@ -123,7 +128,7 @@ set(SOURCE_FILES
         Watery/Framework/XML/xml_element.cpp
 		Watery/Framework/XML/xml_element.h
 		Watery/ThirdParty/LodePNG/lodepng.cpp
-		Watery/ThirdParty/LodePNG/lodepng.h Watery/Engine/Component/AI_position_animation.cpp Watery/Engine/Component/AI_position_animation.h Watery/Engine/Component/scale.h Watery/Engine/Component/shrink_animation.cpp Watery/Engine/Component/shrink_animation.h)
+		Watery/ThirdParty/LodePNG/lodepng.h)
 
 add_executable(Watery ${SOURCE_FILES})
 

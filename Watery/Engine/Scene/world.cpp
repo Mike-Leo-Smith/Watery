@@ -18,7 +18,6 @@ namespace watery
 		{
 			delete item.second;
 		}
-		
 		_objects.clear();
 	}
 	

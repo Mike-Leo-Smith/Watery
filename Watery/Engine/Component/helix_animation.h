@@ -17,6 +17,7 @@ namespace watery
 	
 	public:
 		virtual void animate(Object *parent) override;
+		virtual ~HelixAnimation(void) override {}
 	};
 }
 

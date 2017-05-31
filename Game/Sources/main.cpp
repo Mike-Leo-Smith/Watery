@@ -13,14 +13,6 @@
 
 int main(void)
 {
-	watery::Rectangle rect1(-1, -1, 1, 1);
-	watery::Rectangle rect2(-2, -2, 2, 2);
-	watery::Circle cir1(0, 0, 0.5);
-	watery::Circle cir2(1, 1, 0.5);
-	
-	std::cout << rect2.collided_with(cir2, watery::Vector(0, 0), watery::Vector(0, 0));
-	std::cout << cir1.collided_with(cir2, watery::Vector(0, 0), watery::Vector(0, 0));
-	
 	watery::Loader &loader = watery::Loader::instance();
 	
 	loader.configure("Scripts/Levels/demo.xml");

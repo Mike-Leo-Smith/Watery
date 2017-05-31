@@ -18,7 +18,6 @@ constexpr int SCENE_WIDTH = 10000;
 
 void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 {
-	
 	if (message->key_down(watery::KEY_SPACE))
 	{
 		if (_world.object("background")->enabled("audio"))
@@ -122,7 +121,6 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 	}
 	
 	dispatch_message(message);
-//	static_cast<watery::AngularVelocity *>(role->component("angular_velocity"))->set_omega(-role_v->vx());
 }
 
 void Logic::handle_collision_event(watery::CollisionEvent *message)
@@ -196,7 +194,7 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 			role = message->object1();
 			collider = message->object2();
 		}
-		else //if (message->object2()->name() == "role")
+		else
 		{
 			role = message->object2();
 			collider = message->object1();
@@ -228,8 +226,6 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 			role_pos->set(coll_pos->vector() + norm * (role_shape->radius() + coll_shape->radius() + 1));
 		}
 	}
-	/*
-	*/
 	
 	delete message;
 }
@@ -243,7 +239,6 @@ void Logic::handle_dying_event(watery::DyingEvent *message)
 	object->destroy_component("animation");
 	object->destroy_component("bounding_shape");
 	object->destroy_component("health");
-	//object->create_component("lifetime", "300000");
 	object->create_component("animation", "shrink_animation");
 	object->create_component("shader", "sprite_mono_shader");
 	
