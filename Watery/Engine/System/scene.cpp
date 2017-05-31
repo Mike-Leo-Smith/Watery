@@ -16,8 +16,8 @@
 void watery::Scene::do_updating_tasks(void)
 {
 	handle_message();
-	detect_collisions();
 	advance_status();
+	detect_collisions();    // This should be placed after status being advanced, so that dead objects will not be detected.
 }
 
 void watery::Scene::detect_collisions(void)
@@ -59,6 +59,25 @@ void watery::Scene::advance_status(void)
 {
 	std::vector<std::string> dead_objects;
 	
+	// Prune dead objects first. Note that it should be placed at the top, so that they will not be sent in a message.
+	for (auto &object_item : _world.objects())
+	{
+		Object *object = object_item.second;
+		
+		if (object->enabled("lifetime"))
+		{
+			if (static_cast<Lifetime *>(object->component("lifetime"))->dead())
+			{
+				dead_objects.push_back(object->name());
+			}
+		}
+	}
+	
+	for (auto &name : dead_objects)
+	{
+		_world.destroy_object(name);
+	}
+	
 	for (auto &object_item : _world.objects())
 	{
 		Object *object = object_item.second;
@@ -69,6 +88,7 @@ void watery::Scene::advance_status(void)
 			if (static_cast<Health *>(object->component("health"))->dying())
 			{
 				dispatch_message(new DyingEvent(object));
+				object->disable("bounding_shape");
 			}
 		}
 		
@@ -108,19 +128,5 @@ void watery::Scene::advance_status(void)
 		{
 			static_cast<Constraint *>(object->component("constraint"))->constrain(object);
 		}
-		
-		// Removing dead objects (typically used with particles). Make sure it is placed at the last.
-		if (object->enabled("lifetime"))
-		{
-			if (static_cast<Lifetime *>(object->component("lifetime"))->dead())
-			{
-				dead_objects.push_back(object->name());
-			}
-		}
-	}
-	
-	for (auto &name : dead_objects)
-	{
-		_world.destroy_object(name);
 	}
 }

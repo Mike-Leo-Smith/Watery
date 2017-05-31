@@ -18,14 +18,13 @@ int main(void)
 	loader.configure("Scripts/Levels/demo.xml");
 	loader.load_level("1");
 	
+	watery::Game *game = new watery::Game;
 	watery::Input *input = new watery::Input;
 	watery::Sound *sound = new watery::Sound;
 	watery::Scene *scene = new watery::Scene;
 	watery::Render *render = new watery::Render;
 	
 	Logic *logic = new Logic;
-	
-	watery::Game *game = new watery::Game;
 	
 	game->add_system(logic);
 	game->add_system(input);
@@ -34,4 +33,13 @@ int main(void)
 	game->add_system(render);
 	
 	game->run();
+	
+	delete game;
+	delete logic;
+	delete render;
+	delete scene;
+	delete sound;
+	delete input;
+	
+	return 0;
 }

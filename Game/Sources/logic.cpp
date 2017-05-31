@@ -29,12 +29,20 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 			_world.object("background")->enable("audio");
 		}
 	}
+	
 	for (auto &role_item: _world.objects())
 	{
 		watery::Object *role = role_item.second;
 		
-		if (is_type(role->name(), "bullet"))continue;
-		if (role->type() != "role" && role->type() != "enemy")continue;
+		if (is_type(role->name(), "bullet"))
+		{
+			continue;
+		}
+		
+		if (role->type() != "role" && role->type() != "enemy")
+		{
+			continue;
+		}
 		
 		watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
 		watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
@@ -77,9 +85,9 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 			role_pos->set_y(_window.logical_height() - 100);
 		}
 	}
+	
 	watery::Object *role = _world.object("role");
 	watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
-	watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
 	
 	// Resistance.
 	float speed = role_v->vector().length();
@@ -128,13 +136,8 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 	watery::Object *object1 = message->object1();
 	watery::Object *object2 = message->object2();
 	
-	if ((is_type(object1->name(), "role") && is_type(object2->name(), "elor_bullet")) ||
-	    (is_type(object1->name(), "elor_bullet") && is_type(object2->name(), "role")))
-	{
-		//role and his bullet
-	}
-	else if ((is_type(object1->name(), "enemy") && is_type(object2->name(), "ymene_bullet")) ||
-	         (is_type(object1->name(), "ymene_bullet") && is_type(object2->name(), "emeny")))
+	if ((is_type(object1->name(), "enemy") && is_type(object2->name(), "ymene_bullet")) ||
+	    (is_type(object1->name(), "ymene_bullet") && is_type(object2->name(), "emeny")))
 	{
 		//enemy and its bullet
 		std::cout << "fuck you this man" << std::endl;

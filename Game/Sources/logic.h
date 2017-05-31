@@ -27,7 +27,7 @@ protected:
 public:
 	Logic(watery::Microsecond update_interval = LOGIC_UPDATE_INTERVAL)
 			: System("logic", update_interval), _world(watery::World::instance()), _window(watery::Window::instance()) {}
-	bool is_type(const std::string &name,const std::string &type) { return name.find(type)!=-1; }
+	bool is_type(const std::string &name, const std::string &type) { return name.find(type) != -1; }
 	virtual ~Logic(void) override {}
 };
 

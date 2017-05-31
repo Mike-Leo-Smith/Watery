@@ -25,11 +25,14 @@ namespace watery
 	{
 		Object *object = nullptr;
 		
-		if (!_objects.count(name))
+		if (_objects.count(name))
 		{
-			object = new Object(name, type);
-			_objects.emplace(name, object);
+			delete _objects.at(name);
+			_objects.erase(name);
 		}
+		
+		object = new Object(name, type);
+		_objects.emplace(name, object);
 		
 		return object;
 	}
@@ -37,5 +40,11 @@ namespace watery
 	World::~World(void)
 	{
 		destroy_all();
+	}
+	
+	void World::destroy_object(const std::string &name)
+	{
+		delete _objects.at(name);
+		_objects.erase(name);
 	}
 }

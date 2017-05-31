@@ -31,7 +31,7 @@ namespace watery
 		const Object *object(const std::string &name) const { return (_objects.count(name) ? _objects.at(name) : nullptr); }
 		std::map<std::string, Object *> &objects(void) { return _objects; };
 		const std::map<std::string, Object *> &objects(void) const { return _objects; };
-		void destroy_object(const std::string &name) { _objects.erase(name); }
+		void destroy_object(const std::string &name);
 		void destroy_all(void);
 	};
 }
