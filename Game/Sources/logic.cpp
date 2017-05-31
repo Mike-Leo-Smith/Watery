@@ -238,12 +238,14 @@ void Logic::handle_dying_event(watery::DyingEvent *message)
 {
 	watery::Object *object = message->object();
 	
-	object->disable("velocity");
-	object->disable("rotation");
-	object->disable("weapon");
-	object->disable("animation");
-	object->disable("bounding_shape");
-	object->create_component("lifetime", "1000");
+	object->destroy_component("velocity");
+	object->destroy_component("weapon");
+	object->destroy_component("animation");
+	object->destroy_component("bounding_shape");
+	object->destroy_component("health");
+	//object->create_component("lifetime", "300000");
+	object->create_component("animation", "shrink_animation");
+	object->create_component("shader", "sprite_mono_shader");
 	
 	delete message;
 }

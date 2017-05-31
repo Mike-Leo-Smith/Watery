@@ -24,6 +24,7 @@
 			<gl_texture name="xuming_image" path="Assets/Images/xuming.png"/>
 			<gl_texture name="laji_image" path="Assets/Images/laji.png"/>
 			<gl_shader name="sprite_shader" path="Scripts/Shaders/sprite.vert:Scripts/Shaders/sprite.frag"/>
+			<gl_shader name="sprite_mono_shader" path="Scripts/Shaders/sprite.vert:Scripts/Shaders/sprite_mono.frag"/>
 			<gl_shader name="background_shader" path="Scripts/Shaders/background.vert:Scripts/Shaders/background.frag"/>
 			<gl_vertex_array name="face_rect" path="Assets/VertexArrays/face.va"/>
 			<gl_vertex_array name="bg_rect" path="Assets/VertexArrays/background.va"/>

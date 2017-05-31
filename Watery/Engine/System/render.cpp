@@ -9,6 +9,7 @@
 #include "render.h"
 #include "../Mathematics/mathematics.h"
 #include "../Component/rotation.h"
+#include "../Component/scale.h"
 
 namespace watery
 {
@@ -84,6 +85,12 @@ namespace watery
 				{
 					Quaternion rotation = static_cast<Rotation *>(object->component("rotation"))->quaternion();
 					model *= Mathematics::rotation(rotation);
+				}
+				
+				if (object->enabled("scale"))
+				{
+					float scale = static_cast<Scale *>(object->component("scale"))->scale();
+					model *= Mathematics::scale(scale);
 				}
 				
 				shader->set_uniform_mat4fv("model", model.entries());

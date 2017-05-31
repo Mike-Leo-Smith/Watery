@@ -123,7 +123,7 @@ set(SOURCE_FILES
         Watery/Framework/XML/xml_element.cpp
 		Watery/Framework/XML/xml_element.h
 		Watery/ThirdParty/LodePNG/lodepng.cpp
-		Watery/ThirdParty/LodePNG/lodepng.h Watery/Engine/Component/AI_position_animation.cpp Watery/Engine/Component/AI_position_animation.h)
+		Watery/ThirdParty/LodePNG/lodepng.h Watery/Engine/Component/AI_position_animation.cpp Watery/Engine/Component/AI_position_animation.h Watery/Engine/Component/scale.h Watery/Engine/Component/shrink_animation.cpp Watery/Engine/Component/shrink_animation.h)
 
 add_executable(Watery ${SOURCE_FILES})
 

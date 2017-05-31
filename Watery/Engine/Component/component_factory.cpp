@@ -13,6 +13,8 @@
 #include "lifetime.h"
 #include "helix_animation.h"
 #include "AI_position_animation.h"
+#include "shrink_animation.h"
+#include "scale.h"
 
 namespace watery
 {
@@ -50,6 +52,16 @@ namespace watery
 			buffer >> x >> y >> z;
 			
 			component = new Position(Vector(x, y, z));
+		}
+		else if (type == "scale")
+		{
+			float scale;
+			std::stringstream buffer;
+			
+			buffer << arg;
+			buffer >> scale;
+			
+			component = new Scale(scale);
 		}
 		else if (type == "velocity")
 		{
@@ -157,11 +169,15 @@ namespace watery
 		{
 			if (arg == "helix_animation")
 			{
-				component = new HelixAnimation();
+				component = new HelixAnimation;
 			}
 			else if (arg == "AI_position_animation")
 			{
-				component = new AI_position_animation();
+				component = new AI_position_animation;
+			}
+			else if (arg == "shrink_animation")
+			{
+				component = new ShrinkAnimation;
 			}
 		}
 		

@@ -25,6 +25,7 @@ namespace watery
 			_timer.set_time_out(1000000);
 			_timer.reset();
 		}
+		virtual ~AI_position_animation(void) override {}
 		virtual void animate(Object *parent) override;
 		
 	};
