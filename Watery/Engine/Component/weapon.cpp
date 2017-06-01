@@ -2,11 +2,11 @@
 // Created by 97344 on 2017/5/27.
 //
 
+#include <memory>
+#include <algorithm>
 #include <sstream>
 #include <cmath>
 #include <iostream>
-#include <memory>
-#include <algorithm>
 #include "weapon.h"
 #include "rotation.h"
 #include "../Mathematics/mathematics.h"

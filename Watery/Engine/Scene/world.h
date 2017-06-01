@@ -5,10 +5,10 @@
 #ifndef WATERY_WORLD_H
 #define WATERY_WORLD_H
 
-#include <map>
-#include <string>
-#include <gl/glew.h>
 #include <memory>
+#include <string>
+#include <map>
+#include <gl/glew.h>
 #include "object.h"
 
 namespace watery

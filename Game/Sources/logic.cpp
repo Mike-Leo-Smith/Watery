@@ -2,8 +2,8 @@
 // Created by Mike Smith on 2017/5/26.
 //
 
-#include <iostream>
 #include <memory>
+#include <iostream>
 #include "logic.h"
 #include "../../Watery/Engine/Component/angular_velocity.h"
 #include "../../Watery/Engine/Physics/circle.h"
