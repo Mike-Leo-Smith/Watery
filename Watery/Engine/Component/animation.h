@@ -15,7 +15,7 @@ namespace watery
 	public:
 		Animation(void) : Component("animation") {}
 		virtual ~Animation(void) override {}
-		virtual void animate(Object *parent) = 0;
+		virtual void animate(std::shared_ptr<Object> parent) = 0;
 	};
 }
 

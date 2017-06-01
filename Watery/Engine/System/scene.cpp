@@ -17,7 +17,7 @@ void watery::Scene::do_updating_tasks(void)
 {
 	handle_message();
 	advance_status();
-	detect_collisions();    // This should be placed after status being advanced, so that dead objects will not be detected.
+	detect_collisions();
 }
 
 void watery::Scene::detect_collisions(void)
@@ -27,7 +27,7 @@ void watery::Scene::detect_collisions(void)
 	
 	for (auto i = _world.objects().begin(); i != _world.objects().end(); i++)
 	{
-		Object *object = i->second;
+		std::shared_ptr<Object> object = i->second;
 		
 		if (object->enabled("bounding_shape"))
 		{
@@ -36,7 +36,7 @@ void watery::Scene::detect_collisions(void)
 			{
 				if (i == j) { continue; }
 				
-				Object *another = j->second;
+				std::shared_ptr<Object> another = j->second;
 				
 				if (another->enabled("bounding_shape"))
 				{
@@ -59,10 +59,10 @@ void watery::Scene::advance_status(void)
 {
 	std::vector<std::string> dead_objects;
 	
-	// Prune dead objects first. Note that it should be placed at the top, so that they will not be sent in a message.
+	// Prune the dead objects.
 	for (auto &object_item : _world.objects())
 	{
-		Object *object = object_item.second;
+		std::shared_ptr<Object> object = object_item.second;
 		
 		if (object->enabled("lifetime"))
 		{
@@ -78,17 +78,17 @@ void watery::Scene::advance_status(void)
 		_world.destroy_object(name);
 	}
 	
+	// Update living objects' status.
 	for (auto &object_item : _world.objects())
 	{
-		Object *object = object_item.second;
+		std::shared_ptr<Object> object = object_item.second;
 		
-		// Updating health.
+		// Health.
 		if (object->enabled("health"))
 		{
 			if (static_cast<Health *>(object->component("health"))->dying())
 			{
 				dispatch_message(new DyingEvent(object));
-				object->disable("bounding_shape");
 			}
 		}
 		

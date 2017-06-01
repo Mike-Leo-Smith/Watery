@@ -14,24 +14,17 @@ namespace watery
 	
 	void World::destroy_all(void)
 	{
-		for (auto &item : _objects)
-		{
-			delete item.second;
-		}
 		_objects.clear();
 	}
 	
-	Object *World::create_object(const std::string &name, const std::string &type)
+	std::shared_ptr<Object> World::create_object(const std::string &name, const std::string &type)
 	{
-		Object *object = nullptr;
-		
 		if (_objects.count(name))
 		{
-			delete _objects.at(name);
 			_objects.erase(name);
 		}
 		
-		object = new Object(name, type);
+		std::shared_ptr<Object> object(new Object(name, type));
 		_objects.emplace(name, object);
 		
 		return object;
@@ -44,7 +37,6 @@ namespace watery
 	
 	void World::destroy_object(const std::string &name)
 	{
-		delete _objects.at(name);
 		_objects.erase(name);
 	}
 }

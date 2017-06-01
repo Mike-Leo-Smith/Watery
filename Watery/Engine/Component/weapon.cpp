@@ -14,7 +14,7 @@ namespace watery
 {
 	int Weapon::_bullet_count = 0;
 	
-	void Weapon::fire(Object *owner)
+	void Weapon::fire(std::shared_ptr<Object> owner)
 	{
 		if (_timer.time_out())
 		{
@@ -23,7 +23,7 @@ namespace watery
 			{
 				std::string name = owner->name();
 				std::reverse(name.begin(), name.end());
-				Object *object = _world.create_object(name + "_bullet" + std::to_string(_bullet_count++), owner->type());
+				std::shared_ptr<Object> object = _world.create_object(name + "_bullet" + std::to_string(_bullet_count++), owner->type());
 				std::cout << object->name() << std::endl;
 				float angle = static_cast<Rotation *>(owner->component("rotation"))->angle();
 				if(owner->type()=="enemy")angle+=180;
@@ -60,7 +60,7 @@ namespace watery
 				{
 					std::string name = owner->name();
 					std::reverse(name.begin(), name.end());
-					Object *object = _world.create_object(name + "_bullet" + std::to_string(_bullet_count++),"enemy");
+					std::shared_ptr<Object> object = _world.create_object(name + "_bullet" + std::to_string(_bullet_count++), "enemy");
 					
 					if(owner->type()=="enemy")angle+=180;
 					Vector v = Mathematics::cartesian(BULLET_SPEED, angle);
@@ -91,7 +91,7 @@ namespace watery
 				{
 					std::string name = owner->name();
 					std::reverse(name.begin(), name.end());
-					Object *object = _world.create_object(name + "_bullet" + std::to_string(_bullet_count++),"enemy");
+					std::shared_ptr<Object> object = _world.create_object(name + "_bullet" + std::to_string(_bullet_count++), "enemy");
 					
 					if(owner->type()=="enemy")angle+=180;
 					Vector v = Mathematics::cartesian(BULLET_SPEED, angle);
@@ -127,7 +127,7 @@ namespace watery
 			{
 				std::string name = owner->name();
 				std::reverse(name.begin(), name.end());
-				Object *object = _world.create_object(name + "_bullet" + std::to_string(_bullet_count++), owner->type());
+				std::shared_ptr<Object> object = _world.create_object(name + "_bullet" + std::to_string(_bullet_count++), owner->type());
 				std::cout << object->name() << std::endl;
 				float angle = static_cast<Rotation *>(owner->component("rotation"))->angle();
 				if(owner->type()=="enemy")angle+=180;

@@ -8,7 +8,7 @@
 
 namespace watery
 {
-	void HelixAnimation::animate(Object *parent)
+	void HelixAnimation::animate(std::shared_ptr<Object> parent)
 	{
 		watery::Velocity *velocity = static_cast<watery::Velocity *>(parent->component("velocity"));
 		float time = _timer.elapsed_time() * 1e-6f;

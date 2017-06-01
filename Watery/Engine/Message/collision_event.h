@@ -13,15 +13,15 @@ namespace watery
 	class CollisionEvent : public Message
 	{
 	private:
-		Object *_object1;
-		Object *_object2;
+		std::shared_ptr<Object> _object1;
+		std::shared_ptr<Object> _object2;
 	
 	public:
-		CollisionEvent(Object *object1, Object *object2, Microsecond time_out = COLLISION_EVENT_DEFAULT_TIME_OUT)
+		CollisionEvent(std::shared_ptr<Object> object1, std::shared_ptr<Object> object2, Microsecond time_out = COLLISION_EVENT_DEFAULT_TIME_OUT)
 				: Message("collision_event", time_out), _object1(object1), _object2(object2) {}
 		virtual ~CollisionEvent(void) override {}
-		virtual Object *object1(void) { return _object1; }
-		virtual Object *object2(void) { return _object2; }
+		virtual std::shared_ptr<Object> object1(void) { return _object1; }
+		virtual std::shared_ptr<Object> object2(void) { return _object2; }
 	};
 }
 

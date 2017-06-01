@@ -12,7 +12,7 @@ namespace watery
 #ifndef _WIN32
 		for (const auto &item : _world.objects())
 		{
-			const Object *object = item.second;
+			const std::shared_ptr<Object> object = item.second;
 			
 			if (object->bound("audio"))
 			{

@@ -16,7 +16,7 @@ namespace watery
 	class World
 	{
 	private:
-		std::map<std::string, Object *> _objects;
+		std::map<std::string, std::shared_ptr<Object>> _objects;
 		
 		World(void) {}
 		World(const World &) = delete;
@@ -26,11 +26,11 @@ namespace watery
 	
 	public:
 		static World &instance(void);
-		Object *create_object(const std::string &name, const std::string &type = "undefined");
-		Object *object(const std::string &name) { return (_objects.count(name) ? _objects.at(name) : nullptr); }
-		const Object *object(const std::string &name) const { return (_objects.count(name) ? _objects.at(name) : nullptr); }
-		std::map<std::string, Object *> &objects(void) { return _objects; };
-		const std::map<std::string, Object *> &objects(void) const { return _objects; };
+		std::shared_ptr<Object> create_object(const std::string &name, const std::string &type = "undefined");
+		std::shared_ptr<Object> object(const std::string &name) { return (_objects.count(name) ? _objects.at(name) : nullptr); }
+		const std::shared_ptr<Object> object(const std::string &name) const { return (_objects.count(name) ? _objects.at(name) : nullptr); }
+		std::map<std::string, std::shared_ptr<Object>> &objects(void) { return _objects; };
+		const std::map<std::string, std::shared_ptr<Object>> &objects(void) const { return _objects; };
 		void destroy_object(const std::string &name);
 		void destroy_all(void);
 	};
