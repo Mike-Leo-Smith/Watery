@@ -5,9 +5,12 @@
 #include <sstream>
 #include <cmath>
 #include <iostream>
+#include <memory>
+#include <algorithm>
 #include "weapon.h"
 #include "rotation.h"
 #include "../Mathematics/mathematics.h"
+
 #define BULLET_SPEED 1000
 #define BULLET_OFFSET 0.15
 namespace watery

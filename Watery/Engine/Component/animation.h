@@ -5,6 +5,7 @@
 #ifndef WATERY_ANIMATION_H
 #define WATERY_ANIMATION_H
 
+#include <memory>
 #include "component.h"
 #include "../Scene/object.h"
 

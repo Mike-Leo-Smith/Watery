@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <memory>
 #include "logic.h"
 #include "../../Watery/Engine/Component/angular_velocity.h"
 #include "../../Watery/Engine/Physics/circle.h"

@@ -8,6 +8,7 @@
 #include <map>
 #include <string>
 #include <gl/glew.h>
+#include <memory>
 #include "object.h"
 
 namespace watery

@@ -5,6 +5,7 @@
 #ifndef WATERY_COLLISION_EVENT_H
 #define WATERY_COLLISION_EVENT_H
 
+#include <memory>
 #include "message.h"
 #include "../Scene/object.h"
 
