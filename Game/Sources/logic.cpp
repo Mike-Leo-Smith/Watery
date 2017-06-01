@@ -188,7 +188,12 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 		std::shared_ptr<watery::Object> pepper = is_type(object1->name(), "role") ? object2 : object1;
 		
 		pepper->create_component("lifetime", "1");
-		role->create_component("weapon", "shotgun2 1");
+		
+		if (role->enabled("weapon"))
+		{
+			static_cast<watery::Weapon *>(role->component("weapon"))->set_type("shotgun2", 1);
+		}
+		
 		role->create_component("texture", "laji_image");
 		role->create_component("vertex_array", "laji_va");
 	}
