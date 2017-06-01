@@ -6,7 +6,7 @@
 
 namespace watery
 {
-	void AI_position_animation::animate(Object *parent)
+	void AI_position_animation::animate(std::shared_ptr<Object> parent)
 	{
 		watery::Velocity *velocity = static_cast<Velocity *>(parent->component("velocity"));
 		//Microsecond time = _timer.elapsed_time();

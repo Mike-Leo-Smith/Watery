@@ -7,7 +7,7 @@
 
 namespace watery
 {
-	void ShrinkAnimation::animate(Object *parent)
+	void ShrinkAnimation::animate(std::shared_ptr<Object> parent)
 	{
 		if (_timer.time_out())
 		{

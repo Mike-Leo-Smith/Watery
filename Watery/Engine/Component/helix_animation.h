@@ -16,7 +16,7 @@ namespace watery
 		Timer _timer;
 	
 	public:
-		virtual void animate(Object *parent) override;
+		virtual void animate(std::shared_ptr<Object> parent) override;
 		virtual ~HelixAnimation(void) override {}
 	};
 }

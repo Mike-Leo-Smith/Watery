@@ -2,6 +2,7 @@
 // Created by Mike Smith on 2017/5/26.
 //
 
+#include <memory>
 #include <iostream>
 #include "logic.h"
 #include "../../Watery/Engine/Component/angular_velocity.h"
@@ -32,7 +33,7 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 	
 	for (auto &role_item: _world.objects())
 	{
-		watery::Object *role = role_item.second;
+		std::shared_ptr<watery::Object> role = role_item.second;
 		
 		if (is_type(role->name(), "bullet"))
 		{
@@ -46,6 +47,11 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 		
 		watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
 		watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
+		
+		if (role_v == nullptr || role_pos == nullptr)
+		{
+			continue;
+		}
 		
 		if (role_pos->x() <= 100)
 		{
@@ -86,7 +92,7 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 		}
 	}
 	
-	watery::Object *role = _world.object("role");
+	std::shared_ptr<watery::Object> role = _world.object("role");
 	watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
 	
 	// Resistance.
@@ -133,21 +139,15 @@ void Logic::handle_keyboard_event(watery::KeyboardEvent *message)
 
 void Logic::handle_collision_event(watery::CollisionEvent *message)
 {
-	watery::Object *object1 = message->object1();
-	watery::Object *object2 = message->object2();
+	std::shared_ptr<watery::Object> object1 = message->object1();
+	std::shared_ptr<watery::Object> object2 = message->object2();
 	
-	if ((is_type(object1->name(), "enemy") && is_type(object2->name(), "ymene_bullet")) ||
-	    (is_type(object1->name(), "ymene_bullet") && is_type(object2->name(), "emeny")))
-	{
-		//enemy and its bullet
-		std::cout << "fuck you this man" << std::endl;
-	}
-	else if ((is_type(object1->name(), "ymene_bullet") && is_type(object2->name(), "elor_bullet")) ||
-	         (is_type(object1->name(), "elor_bullet") && is_type(object2->name(), "ymene_bullet")))
+	if ((is_type(object1->name(), "ymene_bullet") && is_type(object2->name(), "elor_bullet")) ||
+	    (is_type(object1->name(), "elor_bullet") && is_type(object2->name(), "ymene_bullet")))
 	{
 		//bullet
-		static_cast<watery::Lifetime *>(object1->component("lifetime"))->set_lifetime(1);
-		static_cast<watery::Lifetime *>(object2->component("lifetime"))->set_lifetime(1);
+		object1->create_component("lifetime", "1");
+		object2->create_component("lifetime", "1");
 		
 	}
 	else if ((is_type(object1->name(), "ymene_bullet") && is_type(object2->name(), "role")) ||
@@ -155,11 +155,11 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 	{
 		if (is_type(object1->name(), "role"))
 		{
-			static_cast<watery::Lifetime *>(object2->component("lifetime"))->set_lifetime(1);
+			object2->create_component("lifetime", "1");
 		}
 		else
 		{
-			static_cast<watery::Lifetime *>(object1->component("lifetime"))->set_lifetime(1);
+			object1->create_component("lifetime", "1");
 		}
 	}
 	else if ((is_type(object1->name(), "enemy") && is_type(object2->name(), "elor_bullet")) ||
@@ -167,50 +167,54 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 	{
 		if (is_type(object1->name(), "enemy"))
 		{
-			static_cast<watery::Health *>(object1->component("health"))->decrease(1);
-			static_cast<watery::Lifetime *>(object2->component("lifetime"))->set_lifetime(1);
+			if (object1->enabled("health"))
+			{
+				static_cast<watery::Health *>(object1->component("health"))->decrease(1);
+			}
+			object2->create_component("lifetime", "1");
 		}
 		else
 		{
-			static_cast<watery::Lifetime *>(object1->component("lifetime"))->set_lifetime(1);
-			static_cast<watery::Health *>(object2->component("health"))->decrease(1);
+			if (object2->enabled("health"))
+			{
+				static_cast<watery::Health *>(object2->component("health"))->decrease(1);
+			}
+			object1->create_component("lifetime", "1");
 		}
 	}
-	else if ((is_type(object1->name(), "role") && is_type(object2->name(), "pepper")) ||
-	         (is_type(object1->name(), "pepper") && is_type(object2->name(), "role")))
+	else if ((is_type(object1->name(), "role") && is_type(object2->name(), "pepper"))
+	         || (is_type(object1->name(), "pepper") && is_type(object2->name(), "role")))
 	{
-		watery::Object *role = is_type(object1->name(), "pepper") ? object2 : object1;
-		watery::Object *pepper = is_type(object1->name(), "role") ? object2 : object1;
-		static_cast<watery::Lifetime *>(pepper->component("lifetime"))->set_lifetime(1);
-		static_cast<watery::Weapon *>(role->component("weapon"))->set_type("shotgun2", 1);
+		std::shared_ptr<watery::Object> role = is_type(object1->name(), "pepper") ? object2 : object1;
+		std::shared_ptr<watery::Object> pepper = is_type(object1->name(), "role") ? object2 : object1;
+		
+		pepper->create_component("lifetime", "1");
+		
+		if (role->enabled("weapon"))
+		{
+			static_cast<watery::Weapon *>(role->component("weapon"))->set_type("shotgun2", 1);
+		}
+		
 		role->create_component("texture", "laji_image");
 		role->create_component("vertex_array", "laji_va");
 	}
 	else if ((is_type(object1->name(), "role") && is_type(object2->name(), "enemy"))
 	         || (is_type(object1->name(), "enemy") && is_type(object2->name(), "role")))
 	{
-		watery::Object *role = nullptr;
-		watery::Object *collider = nullptr;
+		std::shared_ptr<watery::Object> role = message->object1();
+		std::shared_ptr<watery::Object> collider = message->object2();
 		
-		if (message->object1()->name() == "role")
+		if (role->enabled("bounding_shape") && role->enabled("position") && role->enabled("velocity")
+		    && collider->enabled("bounding_shape") && collider->enabled("position") && collider->enabled("velocity"))
 		{
-			role = message->object1();
-			collider = message->object2();
-		}
-		else
-		{
-			role = message->object2();
-			collider = message->object1();
-		}
-		
-		if (role != nullptr)
-		{
+			
 			watery::Circle *role_shape = static_cast<watery::Circle *>(static_cast<watery::BoundingShape *>(role->component("bounding_shape"))->shape());
 			watery::Circle *coll_shape = static_cast<watery::Circle *>(static_cast<watery::BoundingShape *>(collider->component("bounding_shape"))->shape());
 			watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
 			watery::Position *coll_pos = static_cast<watery::Position *>(collider->component("position"));
 			watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
 			watery::Velocity *coll_v = static_cast<watery::Velocity *>(collider->component("velocity"));
+			
 			watery::Vector norm = (role_shape->center() + role_pos->vector()) - (coll_shape->center() + coll_pos->vector());
 			
 			norm.normalize();
@@ -235,7 +239,7 @@ void Logic::handle_collision_event(watery::CollisionEvent *message)
 
 void Logic::handle_dying_event(watery::DyingEvent *message)
 {
-	watery::Object *object = message->object();
+	std::shared_ptr<watery::Object> object = message->object();
 	
 	object->destroy_component("velocity");
 	object->destroy_component("weapon");
@@ -253,11 +257,11 @@ void Logic::update_camera(void)
 	constexpr float left_border = 400;
 	constexpr float right_border = 800;
 	
-	watery::Object *role = _world.object("role");
+	std::shared_ptr<watery::Object> role = _world.object("role");
 	watery::Velocity *role_v = static_cast<watery::Velocity *>(role->component("velocity"));
 	watery::Position *role_pos = static_cast<watery::Position *>(role->component("position"));
 	
-	watery::Object *camera = _world.object("camera");
+	std::shared_ptr<watery::Object> camera = _world.object("camera");
 	watery::Position *camera_pos = static_cast<watery::Position *>(camera->component("position"));
 	watery::Velocity *camera_v = static_cast<watery::Velocity *>(camera->component("velocity"));
 	

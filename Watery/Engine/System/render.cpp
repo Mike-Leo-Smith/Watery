@@ -28,7 +28,7 @@ namespace watery
 	const Matrix Render::get_view_matrix(void) const
 	{
 		Matrix view;
-		Object *camera = _world.object("camera");
+		std::shared_ptr<Object> camera = _world.object("camera");
 		
 		if (camera != nullptr)
 		{
@@ -59,7 +59,7 @@ namespace watery
 		for (auto &item : _world.objects())
 		{
 			Matrix model;
-			Object *object = item.second;
+			std::shared_ptr<Object> object = item.second;
 			
 			GLShader *shader = nullptr;
 			GLVertexArray *vertex_array = nullptr;

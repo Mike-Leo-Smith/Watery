@@ -15,7 +15,7 @@ namespace watery
 	public:
 		Constraint(void) : Component("constraint") {}
 		virtual ~Constraint(void) {}
-		virtual void constrain(Object *parent) = 0;
+		virtual void constrain(std::shared_ptr<Object> parent) = 0;
 	};
 }
 

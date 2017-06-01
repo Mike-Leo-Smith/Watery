@@ -18,7 +18,7 @@ namespace watery
 	public:
 		ShrinkAnimation(void) : _timer(30000) {}
 		virtual ~ShrinkAnimation(void) override {}
-		virtual void animate(Object *parent) override;
+		virtual void animate(std::shared_ptr<Object> parent) override;
 	};
 }
 

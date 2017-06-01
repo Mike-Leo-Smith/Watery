@@ -35,7 +35,7 @@ namespace watery
 				_life.reset();
 			}
 		}
-		virtual void fire(Object *owner);
+		virtual void fire(std::shared_ptr<Object> owner);
 		virtual ~Weapon(void) override {}
 	};
 }

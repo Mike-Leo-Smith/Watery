@@ -26,7 +26,7 @@ namespace watery
 			_timer.reset();
 		}
 		virtual ~AI_position_animation(void) override {}
-		virtual void animate(Object *parent) override;
+		virtual void animate(std::shared_ptr<Object> parent) override;
 		
 	};
 }

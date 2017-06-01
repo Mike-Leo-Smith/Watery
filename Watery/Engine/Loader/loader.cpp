@@ -72,7 +72,7 @@ namespace watery
 				{
 					for (auto object_tag : world_tag->child("object"))      // Traverse all object tags in a world tag.
 					{
-						Object *object = _world.create_object(object_tag->attribute("name"), object_tag->attribute("type"));
+						std::shared_ptr<Object> object = _world.create_object(object_tag->attribute("name"), object_tag->attribute("type"));
 						
 						// Create the components and bind it to the object.
 						for (auto component_tags : object_tag->children())   // Traverse all component tags in a object tag.
