@@ -5,8 +5,8 @@
 #ifndef WATERY_BOUNDING_SHAPE_H
 #define WATERY_BOUNDING_SHAPE_H
 
-#include "../Physics/shape.h"
 #include "component.h"
+#include "../../Framework/Physics/shape.h"
 
 namespace watery
 {

@@ -3,15 +3,14 @@
 //
 
 #include "scene.h"
-#include "../Physics/shape.h"
 #include "../Component/bounding_shape.h"
-#include "../Physics/physics.h"
 #include "../Component/animation.h"
 #include "../Component/lifetime.h"
 #include "../Component/angular_velocity.h"
 #include "../Component/rotation.h"
 #include "../Component/constraint.h"
 #include "../Component/weapon.h"
+#include "../../Framework/Physics/physics.h"
 
 void watery::Scene::do_updating_tasks(void)
 {

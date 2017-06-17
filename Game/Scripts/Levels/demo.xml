@@ -1,19 +1,11 @@
 <game name="Contra">
 	<!-- Window -->
 	<window title="Demo" width="1600" height="1000"/>
-	<!-- Systems -->
-	<system>
-		<input name="input" interval="50000"/>
-		<render name="render" interval="16000"/>
-		<sound name="sound" interval="50000"/>
-		<scene name="scene" interval="20000"/>
-		<logic name="logic" interval="15000"/>
-	</system>
 	<!-- Level 1 -->
 	<level id="1">
 		<!-- Assets -->
 		<asset>
-			<gl_texture name="face_image" path="Assets/Images/face.png"/>
+			<gl_texture name="face_image" path="Assets/Images/tank.png"/>
 			<gl_texture name="bg_image" path="Assets/Images/background.png"/>
 			<gl_texture name="enemy1_image" path="Assets/Images/enemy1.png"/>
 			<gl_texture name="enemy2_image" path="Assets/Images/enemy2.png"/>
@@ -27,6 +19,7 @@
 			<gl_shader name="sprite_mono_shader" path="Scripts/Shaders/sprite.vert:Scripts/Shaders/sprite_mono.frag"/>
 			<gl_shader name="background_shader" path="Scripts/Shaders/background.vert:Scripts/Shaders/background.frag"/>
 			<gl_vertex_array name="face_rect" path="Assets/VertexArrays/face.va"/>
+			<gl_vertex_array name="tank_va" path="Assets/VertexArrays/tank.va"/>
 			<gl_vertex_array name="bg_rect" path="Assets/VertexArrays/background.va"/>
 			<gl_vertex_array name="small_bullet_va" path="Assets/VertexArrays/small_bullet.va"/>
 			<gl_vertex_array name="pepper_va" path="Assets/VertexArrays/pepper.va"/>
@@ -59,7 +52,7 @@
 				<angular_velocity arg="0"/>
 				<shader arg="sprite_shader"/>
 				<texture arg="face_image"/>
-				<vertex_array arg="face_rect"/>
+				<vertex_array arg="tank_va"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="shotgun 0"/>
 			</object>
@@ -73,7 +66,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="5 5"/>
 			</object>
 			<object name="enemy21" type="enemy">
@@ -85,7 +78,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="5 5"/>
 			</object>
 			<object name="enemy22" type="enemy">
@@ -97,7 +90,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="5 5"/>
 			</object>
 			
@@ -110,7 +103,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="7 7"/>
 			</object>
 			<object name="enemy31" type="enemy">
@@ -122,7 +115,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="7 7"/>
 			</object>
 			<object name="enemy32" type="enemy">
@@ -134,7 +127,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="7 7"/>
 			</object>
 			<object name="enemy33" type="enemy">
@@ -146,7 +139,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="7 7"/>
 			</object>
 			
@@ -159,7 +152,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="shotgun 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="9 9"/>
 			</object>
 			<object name="enemy41" type="enemy">
@@ -171,7 +164,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="shotgun 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="9 9"/>
 			</object>
 			<object name="enemy43" type="enemy">
@@ -183,7 +176,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="shotgun 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="9 9"/>
 			</object>
 			
@@ -196,7 +189,7 @@
 				<texture arg="enemy5_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<weapon arg="helix 1"/>
 				<health arg="11 11"/>
 			</object>
@@ -208,7 +201,7 @@
 				<texture arg="enemy5_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<weapon arg="helix 1"/>
 				<health arg="11 11"/>
 			</object>
@@ -222,7 +215,7 @@
 				<vertex_array arg="pepper_va"/>
 				<bounding_shape arg="pepper_bounding"/>
 				<lifetime arg="100000000"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="13 13"/>
 			</object>
 			<object name="pepper2" type="enemy">
@@ -234,7 +227,7 @@
 				<vertex_array arg="pepper_va"/>
 				<bounding_shape arg="pepper_bounding"/>
 				<lifetime arg="100000000"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="13 13"/>
 			</object>
 			<object name="enemy501" type="enemy">
@@ -245,7 +238,7 @@
 				<texture arg="enemy5_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<weapon arg="helix 1"/>
 				<health arg="11 11"/>
 			</object>
@@ -257,7 +250,7 @@
 				<texture arg="enemy5_image"/>
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<weapon arg="helix 1"/>
 				<health arg="11 11"/>
 			</object>
@@ -270,7 +263,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="shotgun 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="9 9"/>
 			</object>
 			<object name="enemy402" type="enemy">
@@ -282,7 +275,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="shotgun 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="9 9"/>
 			</object>
 			<object name="enemy301" type="enemy">
@@ -294,7 +287,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="7 7"/>
 			</object>
 			<object name="enemy302" type="enemy">
@@ -306,7 +299,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="7 7"/>
 			</object>
 			<object name="enemy303" type="enemy">
@@ -318,7 +311,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="7 7"/>
 			</object>
 			<object name="enemy200" type="enemy">
@@ -330,7 +323,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="5 5"/>
 			</object>
 			<object name="enemy201" type="enemy">
@@ -342,7 +335,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="5 5"/>
 			</object>
 			<object name="enemy202" type="enemy">
@@ -354,7 +347,7 @@
 				<vertex_array arg="face_rect"/>
 				<bounding_shape arg="role_bounding"/>
 				<weapon arg="normal 1"/>
-				<animation arg="AI_position_animation"/>
+				<animation arg="random_move_animation"/>
 				<health arg="5 5"/>
 			</object>
 		</world>

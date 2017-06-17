@@ -20,6 +20,7 @@ private:
 
 protected:
 	virtual void handle_keyboard_event(watery::KeyboardEvent *message) override;
+	virtual void handle_mouse_event(watery::MouseEvent *message) override;
 	virtual void handle_collision_event(watery::CollisionEvent *message) override;
 	virtual void handle_dying_event(watery::DyingEvent *message) override;
 	virtual void do_updating_tasks(void) override;

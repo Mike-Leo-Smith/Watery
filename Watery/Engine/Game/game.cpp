@@ -13,6 +13,8 @@ namespace watery
 {
 	void Game::run(void)
 	{
+		_loader.load_level("1");
+		
 		for (auto &item : _systems)
 		{
 			System *system = item.second;

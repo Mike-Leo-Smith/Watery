@@ -1,24 +1,18 @@
-
 #include "../../Watery/Engine/Scene/world.h"
 #include "../../Watery/Engine/System/render.h"
-#include "../../Watery/Engine/Mathematics/mathematics.h"
 #include "../../Watery/Engine/System/input.h"
 #include "../../Watery/Engine/System/sound.h"
 #include "../../Watery/Engine/Loader/loader.h"
 #include "../../Watery/Engine/System/scene.h"
 #include "../../Watery/Engine/Game/game.h"
-#include "../../Watery/Engine/Physics/rectangle.h"
-#include "../../Watery/Engine/Physics/circle.h"
 #include "logic.h"
 
 int main(void)
 {
-	watery::Loader &loader = watery::Loader::instance();
-	
-	loader.configure("Scripts/Levels/demo.xml");
-	loader.load_level("1");
-	
 	watery::Game *game = new watery::Game;
+	
+	game->configure("Scripts/Levels/demo.xml");
+	
 	watery::Input *input = new watery::Input;
 	watery::Sound *sound = new watery::Sound;
 	watery::Scene *scene = new watery::Scene;
@@ -40,6 +34,9 @@ int main(void)
 	delete scene;
 	delete sound;
 	delete input;
+	
+	std::vector<int> array;
+	std::vector<int>::iterator iter;
 	
 	return 0;
 }

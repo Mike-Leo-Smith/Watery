@@ -5,14 +5,13 @@
 #include <cstdlib>
 #include <sstream>
 #include "component_factory.h"
-#include "../Physics/shape.h"
 #include "bounding_shape.h"
 #include "rotation.h"
 #include "angular_velocity.h"
 #include "weapon.h"
 #include "lifetime.h"
 #include "helix_animation.h"
-#include "AI_position_animation.h"
+#include "random_move_animation.h"
 #include "shrink_animation.h"
 #include "scale.h"
 
@@ -171,9 +170,9 @@ namespace watery
 			{
 				component = new HelixAnimation;
 			}
-			else if (arg == "AI_position_animation")
+			else if (arg == "random_move_animation")
 			{
-				component = new AI_position_animation;
+				component = new RandomMoveAnimation;
 			}
 			else if (arg == "shrink_animation")
 			{

@@ -7,9 +7,9 @@
 
 #include "system.h"
 #include "render.h"
-#include "../Mathematics/mathematics.h"
 #include "../Component/rotation.h"
 #include "../Component/scale.h"
+#include "../../Framework/Mathematics/mathematics.h"
 
 namespace watery
 {

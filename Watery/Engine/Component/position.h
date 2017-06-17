@@ -6,7 +6,7 @@
 #define WATERY_POSITION_H
 
 #include "component.h"
-#include "../Mathematics/vector.h"
+#include "../../Framework/Mathematics/vector.h"
 
 namespace watery
 {

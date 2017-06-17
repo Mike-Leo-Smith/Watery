@@ -5,8 +5,8 @@
 #ifndef WATERY_SHAPE_WRAPPER_H
 #define WATERY_SHAPE_WRAPPER_H
 
-#include "../Physics/shape.h"
 #include "resource_wrapper.h"
+#include "../../Framework/Physics/shape.h"
 
 namespace watery
 {

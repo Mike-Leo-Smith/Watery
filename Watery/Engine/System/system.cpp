@@ -66,7 +66,7 @@ namespace watery
 			accumulated += time;
 		}
 		
-		Microsecond average = accumulated / _recoder.size();
+		Microsecond average = accumulated / (long long)_recoder.size();
 		Microsecond calibrated = 2 * _interval - average;
 		
 		if (calibrated <= 0)

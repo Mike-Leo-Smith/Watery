@@ -4,8 +4,8 @@
 
 #include <fstream>
 #include "shape_wrapper.h"
-#include "../Physics/circle.h"
-#include "../Physics/rectangle.h"
+#include "../../Framework/Physics/circle.h"
+#include "../../Framework/Physics/rectangle.h"
 
 namespace watery
 {

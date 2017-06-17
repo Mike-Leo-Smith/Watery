@@ -1,21 +1,21 @@
 cmake_minimum_required(VERSION 3.7)
 project(Watery)
 
-set(CMAKE_CXX_STANDARD 14)
+#set(CMAKE_CXX_STANDARD 14)
 
 if (WIN32)
 	add_definitions(-DGLEW_STATIC)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static -O3 -mwindows")
 elseif (APPLE)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL -O3")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL -O3 -std=c++1z")
 endif ()
 
 set(SOURCE_FILES
 		Game/Sources/logic.cpp
 		Game/Sources/logic.h
         Game/Sources/main.cpp
-		Watery/Engine/Component/AI_position_animation.cpp
-		Watery/Engine/Component/AI_position_animation.h
+		Watery/Engine/Component/random_move_animation.cpp
+		Watery/Engine/Component/random_move_animation.h
 		Watery/Engine/Component/angular_velocity.h
         Watery/Engine/Component/animation.h
         Watery/Engine/Component/audio.h
@@ -50,26 +50,25 @@ set(SOURCE_FILES
         Watery/Engine/Message/message_bus.h
         Watery/Engine/Message/messenger.cpp
         Watery/Engine/Message/messenger.h
-        Watery/Engine/Mathematics/mathematics.cpp
-        Watery/Engine/Mathematics/mathematics.h
-        Watery/Engine/Mathematics/matrix.cpp
-        Watery/Engine/Mathematics/matrix.h
-        Watery/Engine/Mathematics/quaternion.cpp
-        Watery/Engine/Mathematics/quaternion.h
-        Watery/Engine/Mathematics/vector.cpp
-        Watery/Engine/Mathematics/vector.h
+		Watery/Framework/Mathematics/mathematics.cpp
+		Watery/Framework/Mathematics/mathematics.h
+		Watery/Framework/Mathematics/matrix.cpp
+		Watery/Framework/Mathematics/matrix.h
+		Watery/Framework/Mathematics/quaternion.cpp
+		Watery/Framework/Mathematics/quaternion.h
+		Watery/Framework/Mathematics/vector.cpp
+		Watery/Framework/Mathematics/vector.h
         Watery/Engine/Message/collision_event.h
         Watery/Engine/Message/dying_event.h
         Watery/Engine/Message/keyboard_event.h
-        Watery/Engine/Message/mouse_event.cpp
-        Watery/Engine/Message/mouse_event.h
-        Watery/Engine/Physics/circle.cpp
-        Watery/Engine/Physics/circle.h
-        Watery/Engine/Physics/physics.cpp
-        Watery/Engine/Physics/physics.h
-        Watery/Engine/Physics/rectangle.cpp
-        Watery/Engine/Physics/rectangle.h
-        Watery/Engine/Physics/shape.h
+		Watery/Engine/Message/mouse_event.h
+		Watery/Framework/Physics/circle.cpp
+		Watery/Framework/Physics/circle.h
+		Watery/Framework/Physics/physics.cpp
+		Watery/Framework/Physics/physics.h
+		Watery/Framework/Physics/rectangle.cpp
+		Watery/Framework/Physics/rectangle.h
+		Watery/Framework/Physics/shape.h
         Watery/Engine/Resource/al_audio_wrapper.cpp
         Watery/Engine/Resource/al_audio_wrapper.h
         Watery/Engine/Resource/gl_shader_wrapper.cpp
@@ -128,7 +127,7 @@ set(SOURCE_FILES
         Watery/Framework/XML/xml_element.cpp
 		Watery/Framework/XML/xml_element.h
 		Watery/ThirdParty/LodePNG/lodepng.cpp
-		Watery/ThirdParty/LodePNG/lodepng.h)
+		Watery/ThirdParty/LodePNG/lodepng.h Watery/Framework/HID/mouse.cpp Watery/Framework/HID/mouse.h)
 
 add_executable(Watery ${SOURCE_FILES})
 

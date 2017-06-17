@@ -7,9 +7,9 @@
 
 #include "system.h"
 #include "../Scene/world.h"
-#include "../Mathematics/matrix.h"
 #include "../../Framework/Window/window.h"
 #include "../../Framework/Graphics/gl_graphics.h"
+#include "../../Framework/Mathematics/matrix.h"
 
 namespace watery
 {

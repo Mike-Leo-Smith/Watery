@@ -15,7 +15,6 @@ namespace watery
 	{
 	private:
 		Timer _timer;
-		int _acceleration_x, _acceleration_y;
 	
 	public:
 		RandomMoveAnimation() { _timer.set_time_out(1000000); }

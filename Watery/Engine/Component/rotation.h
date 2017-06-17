@@ -6,7 +6,7 @@
 #define WATERY_ROTATION_H
 
 #include "component.h"
-#include "../Mathematics/quaternion.h"
+#include "../../Framework/Mathematics/quaternion.h"
 
 namespace watery
 {

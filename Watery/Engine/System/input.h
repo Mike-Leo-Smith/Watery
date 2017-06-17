@@ -9,6 +9,7 @@
 #include "../Message/message.h"
 #include "../../Framework/Window/window.h"
 #include "../../Framework/HID/keyboard.h"
+#include "../../Framework/HID/mouse.h"
 
 namespace watery
 {
@@ -16,6 +17,7 @@ namespace watery
 	{
 	private:
 		Keyboard _keyboard;
+		Mouse _mouse;
 	
 	protected:
 		virtual void do_updating_tasks(void) override;

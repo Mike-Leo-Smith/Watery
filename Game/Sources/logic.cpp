@@ -6,11 +6,10 @@
 #include <iostream>
 #include "logic.h"
 #include "../../Watery/Engine/Component/angular_velocity.h"
-#include "../../Watery/Engine/Physics/circle.h"
 #include "../../Watery/Engine/Component/bounding_shape.h"
-#include "../../Watery/Engine/Physics/physics.h"
 #include "../../Watery/Engine/Component/weapon.h"
 #include "../../Watery/Engine/Component/lifetime.h"
+#include "../../Watery/Framework/Physics/circle.h"
 
 constexpr float ACCELERATION = 100.0f;
 constexpr float SPEED_CONSTRAINT = 850.0f;
@@ -305,4 +304,10 @@ void Logic::do_updating_tasks(void)
 {
 	handle_message();
 	update_camera();
+}
+
+void Logic::handle_mouse_event(watery::MouseEvent *message)
+{
+	std::cout << "Mouse: (" << message->position().x() << ", " << message->position().y()
+	          << ", " << message->left_down() << ", " << message->right_down() << ")" << std::endl;
 }

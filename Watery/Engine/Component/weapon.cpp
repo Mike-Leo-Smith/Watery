@@ -9,7 +9,7 @@
 #include <iostream>
 #include "weapon.h"
 #include "rotation.h"
-#include "../Mathematics/mathematics.h"
+#include "../../Framework/Mathematics/mathematics.h"
 
 #define BULLET_SPEED 1000
 #define BULLET_OFFSET 0.15
