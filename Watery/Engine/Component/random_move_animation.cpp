@@ -2,11 +2,11 @@
 // Created by 97344 on 2017/5/29.
 //
 
-#include "AI_position_animation.h"
+#include "RandomMoveAnimation.h"
 
 namespace watery
 {
-	void AI_position_animation::animate(std::shared_ptr<Object> parent)
+	void RandomMoveAnimation::animate(std::shared_ptr<Object> parent)
 	{
 		watery::Velocity *velocity = static_cast<Velocity *>(parent->component("velocity"));
 		//Microsecond time = _timer.elapsed_time();
