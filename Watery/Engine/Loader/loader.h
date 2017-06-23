@@ -1,6 +1,7 @@
-//
-// Created by Mike Smith on 2017/5/16.
-//
+/// @file loader.h
+/// @brief Header file for class Loader.
+/// @author ZSK
+/// @date May 16, 2017
 
 #ifndef WATERY_LOADER_H
 #define WATERY_LOADER_H

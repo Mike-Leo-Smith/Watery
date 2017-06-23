@@ -1,10 +1,10 @@
-#include "../../Watery/Engine/Scene/world.h"
-#include "../../Watery/Engine/System/render.h"
-#include "../../Watery/Engine/System/input.h"
-#include "../../Watery/Engine/System/sound.h"
-#include "../../Watery/Engine/Loader/loader.h"
-#include "../../Watery/Engine/System/scene.h"
-#include "../../Watery/Engine/Game/game.h"
+#include "../../../Watery/Engine/Scene/world.h"
+#include "../../../Watery/Engine/System/render.h"
+#include "../../../Watery/Engine/System/input.h"
+#include "../../../Watery/Engine/System/sound.h"
+#include "../../../Watery/Engine/Loader/loader.h"
+#include "../../../Watery/Engine/System/scene.h"
+#include "../../../Watery/Engine/Game/game.h"
 #include "logic.h"
 
 int main(void)

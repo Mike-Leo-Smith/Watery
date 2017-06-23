@@ -1,6 +1,7 @@
-//
-// Created by Mike Smith on 2017/6/18.
-//
+/// @file client.h
+/// @brief Header file for class Client.
+/// @author YJY
+/// @date June 18, 2017
 
 #ifndef WATERY_SERVER_H
 #define WATERY_SERVER_H

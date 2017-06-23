@@ -1,6 +1,7 @@
-//
-// Created by Mike Smith on 2017/5/26.
-//
+/// @file collision_event.h
+/// @brief Header file for class CollisionEvent.
+/// @author ZSK
+/// @date May 26, 2017
 
 #ifndef WATERY_COLLISION_EVENT_H
 #define WATERY_COLLISION_EVENT_H

@@ -1,6 +1,7 @@
-//
-// Created by Mike Smith on 2017/5/13.
-//
+/// @file game.h
+/// @brief Header file for class Game.
+/// @author ZSK
+/// @date May 13, 2017
 
 #ifndef WATERY_GAME_H
 #define WATERY_GAME_H

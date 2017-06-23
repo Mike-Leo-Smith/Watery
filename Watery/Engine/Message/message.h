@@ -1,6 +1,7 @@
-//
-// Created by Mike Smith on 2017/4/17.
-//
+/// @file massage.h
+/// @brief Header file for class Message.
+/// @author ZSK
+/// @date April 18, 2017
 
 #ifndef WATERY_MESSAGE_H
 #define WATERY_MESSAGE_H

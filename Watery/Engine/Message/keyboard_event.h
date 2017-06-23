@@ -1,6 +1,7 @@
-//
-// Created by Mike Smith on 2017/4/18.
-//
+/// @file keyboard_event.h
+/// @brief Header file for class KeyboardEvent.
+/// @author ZSK
+/// @date April 18, 2017
 
 #ifndef WATERY_KEYBOARD_EVENT_H
 #define WATERY_KEYBOARD_EVENT_H

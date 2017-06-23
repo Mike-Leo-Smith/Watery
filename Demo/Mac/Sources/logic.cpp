@@ -5,11 +5,11 @@
 #include <memory>
 #include <iostream>
 #include "logic.h"
-#include "../../Watery/Engine/Component/angular_velocity.h"
-#include "../../Watery/Engine/Component/bounding_shape.h"
-#include "../../Watery/Engine/Component/weapon.h"
-#include "../../Watery/Engine/Component/lifetime.h"
-#include "../../Watery/Framework/Physics/circle.h"
+#include "../../../Watery/Engine/Component/angular_velocity.h"
+#include "../../../Watery/Engine/Component/bounding_shape.h"
+#include "../../../Watery/Engine/Component/weapon.h"
+#include "../../../Watery/Engine/Component/lifetime.h"
+#include "../../../Watery/Framework/Physics/circle.h"
 
 constexpr float ACCELERATION = 100.0f;
 constexpr float SPEED_CONSTRAINT = 850.0f;

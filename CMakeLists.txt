@@ -15,9 +15,9 @@ find_package(OpenCV REQUIRED)
 include_directories(Watery/ThirdParty/ASIO)
 
 set(SOURCE_FILES
-		Demo/Sources/logic.cpp
-		Demo/Sources/logic.h
-		Demo/Sources/main.cpp
+		Demo/Mac/Sources/logic.cpp
+		Demo/Mac/Sources/logic.h
+		Demo/Mac/Sources/main.cpp
 		Watery/Engine/Component/random_move_animation.cpp
 		Watery/Engine/Component/random_move_animation.h
 		Watery/Engine/Component/angular_velocity.h

@@ -1,6 +1,7 @@
-//
-// Created by Mike Smith on 2017/5/26.
-//
+/// @file dying_event.h
+/// @brief Header file for class DyingEvent.
+/// @author ZSK
+/// @date May 26, 2017
 
 #ifndef WATERY_DYING_EVENT_H
 #define WATERY_DYING_EVENT_H
