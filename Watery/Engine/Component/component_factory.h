@@ -1,6 +1,6 @@
 /// @file component_factory.h
 /// @brief Header file for class ComponentFactory.
-/// @author Mike Smith
+/// @author ZSK
 /// @date May 7, 2017.
 
 #ifndef WATERY_COMPONENT_FACTORY_H

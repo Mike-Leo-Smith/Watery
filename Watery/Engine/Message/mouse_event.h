@@ -18,7 +18,7 @@ namespace watery
 		bool _right_down;
 		
 	public:
-		MouseEvent(const Vector &position, bool left_down, bool right_down, Microsecond time_out = KEYBOARD_EVENT_DEFAULT_TIME_OUT)
+		MouseEvent(const Vector &position, bool left_down, bool right_down, Microsecond time_out = MOUSE_EVENT_DEFAULT_TIMEOUT)
 				: Message("mouse_event", time_out), _position(position), _left_down(left_down), _right_down(right_down) {}
 		virtual ~MouseEvent(void) override {}
 		const Vector &position(void) const { return _position; }

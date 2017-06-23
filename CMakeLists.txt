@@ -1,19 +1,23 @@
 cmake_minimum_required(VERSION 3.7)
 project(Watery)
 
-#set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 14)
+add_definitions(-DASIO_STANDALONE)
 
 if (WIN32)
 	add_definitions(-DGLEW_STATIC)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static -O3 -mwindows")
 elseif (APPLE)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL -O3 -std=c++1z")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -framework OpenAL -O3")
 endif ()
 
+find_package(OpenCV REQUIRED)
+include_directories(Watery/ThirdParty/ASIO)
+
 set(SOURCE_FILES
-		Game/Sources/logic.cpp
-		Game/Sources/logic.h
-        Game/Sources/main.cpp
+		Demo/Sources/logic.cpp
+		Demo/Sources/logic.h
+		Demo/Sources/main.cpp
 		Watery/Engine/Component/random_move_animation.cpp
 		Watery/Engine/Component/random_move_animation.h
 		Watery/Engine/Component/angular_velocity.h
@@ -25,8 +29,8 @@ set(SOURCE_FILES
         Watery/Engine/Component/component_factory.h
         Watery/Engine/Component/constraint.h
         Watery/Engine/Component/health.h
-		Watery/Engine/Component/helix_animation.cpp
-		Watery/Engine/Component/helix_animation.h
+		Watery/Engine/Component/helix_move_animation.cpp
+		Watery/Engine/Component/helix_move_animation.h
         Watery/Engine/Component/lifetime.h
         Watery/Engine/Component/position.h
         Watery/Engine/Component/rotation.h
@@ -34,8 +38,7 @@ set(SOURCE_FILES
         Watery/Engine/Component/shader.h
 		Watery/Engine/Component/shrink_animation.cpp
 		Watery/Engine/Component/shrink_animation.h
-        Watery/Engine/Component/text.h
-        Watery/Engine/Component/texture.h
+		Watery/Engine/Component/texture.h
         Watery/Engine/Component/velocity.h
         Watery/Engine/Component/vertex_array.h
 		Watery/Engine/Component/weapon.cpp
@@ -118,21 +121,27 @@ set(SOURCE_FILES
         Watery/Framework/Graphics/gl_vertex_array.h
         Watery/Framework/HID/keyboard.cpp
         Watery/Framework/HID/keyboard.h
-        Watery/Framework/Network/network.cpp
-        Watery/Framework/Network/network.h
-        Watery/Framework/Window/window.cpp
+		Watery/Framework/HID/mouse.cpp
+		Watery/Framework/HID/mouse.h
+		Watery/Framework/Network/client.cpp
+		Watery/Framework/Network/client.h
+		Watery/Framework/Network/server.cpp
+		Watery/Framework/Network/server.h
+		Watery/Framework/Network/network.cpp
+		Watery/Framework/Network/network.h
+		Watery/Framework/Window/window.cpp
         Watery/Framework/Window/window.h
         Watery/Framework/XML/xml_document.cpp
         Watery/Framework/XML/xml_document.h
         Watery/Framework/XML/xml_element.cpp
 		Watery/Framework/XML/xml_element.h
 		Watery/ThirdParty/LodePNG/lodepng.cpp
-		Watery/ThirdParty/LodePNG/lodepng.h Watery/Framework/HID/mouse.cpp Watery/Framework/HID/mouse.h)
+		Watery/ThirdParty/LodePNG/lodepng.h)
 
 add_executable(Watery ${SOURCE_FILES})
 
 if (APPLE)
-    target_link_libraries(${PROJECT_NAME} glfw glew alut)
+	target_link_libraries(${PROJECT_NAME} glfw glew alut ${OpenCV_LIBS})
 elseif (WIN32)
     target_link_libraries(${PROJECT_NAME} glew32 glfw3 opengl32)
 endif ()

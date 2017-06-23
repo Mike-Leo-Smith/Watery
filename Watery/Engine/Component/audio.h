@@ -1,6 +1,6 @@
 /// @file audio.h
 /// @brief Header file for class Audio.
-/// @author Mike Smith
+/// @author YJY
 /// @date May 7, 2017
 
 #ifndef WATERY_AUDIO_H
@@ -16,6 +16,7 @@ namespace watery
 	/// @brief Audio component for objects.
 	/// @note Disabled on Windows due to incompatibility.
 	/// @see Component
+	/// @see Object
 	class Audio : public Component
 	{
 	private:
@@ -28,9 +29,15 @@ namespace watery
 		/// @param audio Pointer to OpenAL audio resources.
 		/// @see Component
 		/// @see ALAudio
+		/// @see Object
+		/// @see ComponentFactory
+		/// @note This function should not be called manually. Use it via the interfaces of ComponentFactory or Object.
 		Audio(ALAudio *audio = nullptr) : Component("audio"), _audio(audio) {}
 		
 		/// @brief Destructor.
+		/// @see ComponentFactory
+		/// @see Object
+		/// @note This function should not be called manually. Use it via the interfaces of ComponentFactory or Object.
 		virtual ~Audio(void) override {}
 		
 		/// @brief Bind an ALAudio pointer to the component.

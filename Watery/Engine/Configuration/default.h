@@ -1,6 +1,7 @@
-//
-// Created by Mike Smith on 2017/5/5.
-//
+/// @file default.h
+/// @brief Header file for default settings.
+/// @author ZSK
+/// @date May 5, 2017
 
 #ifndef WATERY_CONFIGURE_H
 #define WATERY_CONFIGURE_H
@@ -9,11 +10,20 @@
 
 namespace watery
 {
-	// Message time outs.
-	constexpr Microsecond KEYBOARD_EVENT_DEFAULT_TIME_OUT = 50000;
-	constexpr Microsecond MESSAGE_EVENT_DEFAULT_TIME_OUT = 50000;
-	constexpr Microsecond COLLISION_EVENT_DEFAULT_TIME_OUT = 100000;
-	constexpr Microsecond DYING_EVENT_DEFAULT_TIME_OUT = 100000;
+	/// @brief Default message timeout in microseconds.
+	constexpr Microsecond MESSAGE_DEFAULT_TIMEOUT = 50000;
+	
+	/// @brief Default keyboard event timeout in microseconds.
+	constexpr Microsecond KEYBOARD_EVENT_DEFAULT_TIMEOUT = 50000;
+	
+	/// @brief Default mouse event timeout in microseconds.
+	constexpr Microsecond MOUSE_EVENT_DEFAULT_TIMEOUT = 50000;
+	
+	/// @brief Default collision event timeout in microseconds.
+	constexpr Microsecond COLLISION_EVENT_DEFAULT_TIMEOUT = 100000;
+	
+	/// @brief Default dying event timeout in microseconds.
+	constexpr Microsecond DYING_EVENT_DEFAULT_TIMEOUT = 100000;
 	
 	// System update intervals.
 	constexpr Microsecond SYSTEM_DEFAULT_UPDATE_INTERVAL = 50000;

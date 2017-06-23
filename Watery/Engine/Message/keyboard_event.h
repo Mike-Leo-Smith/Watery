@@ -17,7 +17,7 @@ namespace watery
 		KeyboardStatus _keyboard_status;
 		
 	public:
-		KeyboardEvent(KeyboardStatus code = 0, Microsecond time_out = KEYBOARD_EVENT_DEFAULT_TIME_OUT)
+		KeyboardEvent(KeyboardStatus code = 0, Microsecond time_out = KEYBOARD_EVENT_DEFAULT_TIMEOUT)
 				: _keyboard_status(code), Message("keyboard_event", time_out) {}
 		virtual ~KeyboardEvent(void) override {}
 		virtual KeyboardStatus keyboard_status(void) const { return _keyboard_status; }

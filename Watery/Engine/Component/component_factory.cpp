@@ -10,7 +10,7 @@
 #include "angular_velocity.h"
 #include "weapon.h"
 #include "lifetime.h"
-#include "helix_animation.h"
+#include "helix_move_animation.h"
 #include "random_move_animation.h"
 #include "shrink_animation.h"
 #include "scale.h"
@@ -168,7 +168,7 @@ namespace watery
 		{
 			if (arg == "helix_animation")
 			{
-				component = new HelixAnimation;
+				component = new HelixMoveAnimation;
 			}
 			else if (arg == "random_move_animation")
 			{

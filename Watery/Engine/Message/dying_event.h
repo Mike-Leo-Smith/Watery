@@ -16,7 +16,7 @@ namespace watery
 		std::shared_ptr<Object> _object;
 	
 	public:
-		DyingEvent(std::shared_ptr<Object> object, Microsecond time_out = DYING_EVENT_DEFAULT_TIME_OUT)
+		DyingEvent(std::shared_ptr<Object> object, Microsecond time_out = DYING_EVENT_DEFAULT_TIMEOUT)
 				: Message("dying_event", time_out), _object(object) {}
 		virtual ~DyingEvent(void) override {}
 		virtual std::shared_ptr<Object> object(void) { return _object; }

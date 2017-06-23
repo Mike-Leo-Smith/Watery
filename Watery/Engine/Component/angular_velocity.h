@@ -1,6 +1,6 @@
 /// @file angular_velocity.h
 /// @brief Header file for class AngularVelocity.
-/// @author Mike Smith
+/// @author ZSK
 /// @date May 26, 2017
 
 #ifndef WATERY_ANGULAR_VELOCITY_H
@@ -12,6 +12,7 @@ namespace watery
 {
 	/// @brief Angular velocity component for objects.
 	/// @see Component
+	/// @see Object
 	class AngularVelocity : public Component
 	{
 	private:
